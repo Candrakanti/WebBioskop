@@ -18,9 +18,10 @@
     </div>
     
 </nav>
-<hr class="hr mb-5" width="80%" size="5" style="display: block; margin-left:auto; margin-right:auto; background-color: rgb(0, 0, 0); color: #000000;">
+<hr class="border border-danger border-2 opacity-50"  width="80%" style="display: block; margin-left:auto; margin-right:auto;">
 
-{{-- <nav class="navbar navbar-expand-lg bg-light">
+
+<nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,4 +51,4 @@
       </ul>
     </div>
   </div>
-</nav> --}}
+</nav>
