@@ -1,0 +1,36 @@
+* {
+    padding:0;
+    margin:0;
+    
+}
+.navbar {
+float:left;
+width:100%;
+
+}
+.navbar li {
+float: left; 
+list-style:none ;
+margin-right: 20px;
+
+}
+
+.navbar li a { 
+    color: #c83c34; 
+    text-decoration:none; 
+    padding:20px;
+    display:block;
+    font-weight:bold;
+}
+
+.center ul{
+width: -moz-fit-content;
+width: -webkit-fit-content;
+width: fit-content;
+margin: auto;
+margin-left: 100px;
+}
+
+.hr.mb-5 {
+    opacity: none;
+}
