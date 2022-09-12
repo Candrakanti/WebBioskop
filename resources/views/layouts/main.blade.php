@@ -14,7 +14,7 @@
     <title>SeeNema</title>
   </head>
   <body>
-    @include('partials.navbar')
+    @include('partials.navbarNew')
     <div class="container mt-4">
       @yield('container')
     </div>
