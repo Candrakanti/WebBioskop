@@ -5,8 +5,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <img class="label" src="img/SeeNemass.png" alt="" width="150" height="150" style="margin-left: 200px;">
-      
-      <div class="navbar center">     
+
+      <div class="navbar center">
         <ul class="navbar-nav ms-6 mb-4" >
         <li><a href="/">HOME</a></li>
         <li><a href="/">MOVIE</a></li>
@@ -14,9 +14,9 @@
         <li><a href="/">MYSEENEMA</a></li>
         </ul>
     </div>
-    
+
     </div>
-    
+
 </nav>
 <hr class="hr mb-5" width="80%" size="5" style="display: block; margin-left:auto; margin-right:auto; background-color: rgb(0, 0, 0); color: #000000;">
 
