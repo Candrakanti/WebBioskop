@@ -6,9 +6,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mb-3">
-
           <li class="nav-item ">
-            <a class="nav-link" href="#">HOME</a>
+            <a class="nav-link" href="/">HOME</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">MOVIE</a>
@@ -16,21 +15,17 @@
           <li class="nav-item">
             <a class="nav-link" href="#">TICKET</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">MYCGV</a>
+          <li>
+            <a class="nav-link" href="/mycgv">MYCGV</a>
           </li>
-
-        </ul>
-        <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link " href="/login">LOGIN</a>
-        </li>
+            <li class="nav-item">
+                {{-- <a href="/login" class="nav-link "> <i class="fa-solid fa-right-to-bracket"></i> Login</a> --}}
+                <a href="/login" class="nav-link {{ ($title === "Login")? 'active' : '' }} "> <i class="fa-solid fa-right-to-bracket"></i> Login</a>
         </ul>
     </div>
     </div>
   </nav>
-
-  <div class="container mb-5">
+  <div class="container mb-1">
     <hr class="border border-danger border-2 opacity-50">
 </div>
 
