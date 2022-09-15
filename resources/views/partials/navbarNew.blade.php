@@ -18,9 +18,7 @@
           <li>
             <a class="nav-link" href="/mycgv">MYCGV</a>
           </li>
-            <li class="nav-item">
-                {{-- <a href="/login" class="nav-link "> <i class="fa-solid fa-right-to-bracket"></i> Login</a> --}}
-                <a href="/login" class="nav-link {{ ($title === "Login")? 'active' : '' }} "> <i class="fa-solid fa-right-to-bracket"></i> Login</a>
+           
         </ul>
     </div>
     </div>

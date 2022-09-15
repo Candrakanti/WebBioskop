@@ -27,6 +27,7 @@ Route::get('/mycgv', [CgvController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/mycgv', [ProfilController::class, 'index']);
 
