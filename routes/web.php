@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/mycgv', [CgvController::class, 'index']);
 
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::get('/mycgv', [ProfilController::class, 'index']);
