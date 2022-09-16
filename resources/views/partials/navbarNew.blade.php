@@ -7,11 +7,12 @@
       <div class="collapse navbar-collapse " id="navbarNav">
         <ul class="navbar-nav mb-3">
           <li class="nav-item ">
+
             <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/">HOME</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{ ($title === "Movie")? 'active' : '' }}"  href="/movie">MOVIE</a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link {{ ($title === "Ticket")? 'active' : '' }}"  href="/">TICKET</a>
             {{-- <a class="nav-link" href="#">TICKET</a> --}}

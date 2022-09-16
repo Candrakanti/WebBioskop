@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CgvController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MovieController;
+
 use App\Http\Controllers\UnpaidController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\AdminFilmController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +41,10 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::get('/movie', [MovieController::class, 'index']);
+
 Route::get('/unpaid', [UnpaidController::class, 'index']);
+
+
+Route::get('/film', [AdminFilmController::class, 'index']);
+
+// Route::get('/film',[ AdminFilmController::class, 'ceckSlug'])->middleware('admin');
