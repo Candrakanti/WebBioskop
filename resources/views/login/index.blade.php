@@ -86,6 +86,7 @@
             </form>
 
             <small class="d-block text-center mt-3">Not Registered? <a href="/register">Register Now ! </a></small>
+            <small class="d-block text-center mt-3"><a href="/forgot">Forgot Password?</a></small>
           </main>
     </div>
 {{-- PUNYA FORM SIGN! --}}

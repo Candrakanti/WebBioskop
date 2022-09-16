@@ -7,10 +7,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mb-3">
           <li class="nav-item ">
-            <a class="nav-link" href="/">HOME</a>
+            <a class="nav-link" href="/home">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">MOVIE</a>
+            <a class="nav-link" href="/movie">MOVIE</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">TICKET</a>

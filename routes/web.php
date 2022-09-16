@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\AdminFilmController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,9 @@ Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/movie', [MovieController::class, 'index']);
+
+Route::get('/film', [AdminFilmController::class, 'index']);
+
+// Route::get('/film',[ AdminFilmController::class, 'ceckSlug'])->middleware('admin');
+
+
