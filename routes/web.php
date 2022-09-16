@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CgvController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\UnpaidController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +25,18 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/mycgv', [CgvController::class, 'index']);
+Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
-
-Route::get('/mycgv', [ProfilController::class, 'index']);
-
-
-Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
+Route::get('/movie', [MovieController::class, 'index']);
+Route::get('/unpaid', [UnpaidController::class, 'index']);

@@ -9,8 +9,8 @@ class CgvController extends Controller
     public function index()
     {
         return view('profil.index', [
-            'title' => 'Profil',
-            'active' => 'Profil'
+            'title' => 'Mycgv',
+            'active' => 'Mycgv'
         ]);
     }
 }
