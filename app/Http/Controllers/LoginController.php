@@ -25,6 +25,8 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/mycgv');
         }
+
+        else
         return back()->with('loginError', 'Login Gagal !');
     }
 
@@ -36,6 +38,6 @@ class LoginController extends Controller
 
         request()->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/mycgv');
     }
 }

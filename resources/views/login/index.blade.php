@@ -37,6 +37,18 @@
 </div>
 
 <div class="row">
+    <div class="col-12 col-lg-12 col-md-12 text-center">
+        @if(session()->has('message'))
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ session('loginError') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+@endif
+    </div>
+</div>
+
+<div class="row">
     <div class="col-lg-6 col-md-6 col-xs-12 d-none d-md-block d-sm-block">
         <img src="img/login.png" width="70%" alt="...">
     </div>
@@ -84,8 +96,15 @@
               <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
 
             </form>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-6">
+        <small class="d-block text-center mt-3">Forgot Your Password? <a href="{{ route('forget.password.get') }}">Change Your Password ! </a></small>
+    </div>
+    <div class="col-lg-6 col-md-6 col-6">
+        <small class="d-block text-center mt-3">Not Registered? <a href="/register">Register Now ! </a></small>
+    </div>
+</div>
 
-            <small class="d-block text-center mt-3">Not Registered? <a href="/register">Register Now ! </a></small>
           </main>
     </div>
 {{-- PUNYA FORM SIGN! --}}
