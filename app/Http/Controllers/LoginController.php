@@ -21,9 +21,27 @@ class LoginController extends Controller
             'email' => 'required|email:dns',
             'password' => 'required'
         ]);
+      
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/mycgv');
+
+            $level=Auth::User()->level;
+
+            if($level=='admin_film'){
+    
+             return redirect()->intended('/film');
+            }
+        
+            if($level=='user'){
+           return redirect()->intended('/mycgv');
+                // return view('profil.index', [
+                //     'title' => 'Mycgv',
+                //     'active' => 'Mycgv'
+                // ]);
+            }
+
+            // return redirect()->intended('/mycgv');
         }
 
         else
