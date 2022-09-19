@@ -32,7 +32,7 @@ class ForgotPasswordController extends Controller
     public function submitForgetPasswordForm(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users',
+            'email' => 'required|email:dns|exists:users',
         ]);
 
         $token = Str::random(64);
@@ -92,6 +92,6 @@ class ForgotPasswordController extends Controller
 
         DB::table('password_resets')->where(['email' => $request->email])->delete();
 
-        return redirect('/login')->with('message', 'Your password has been changed!');
+        return redirect('/login')->with('success', 'Your password has been changed!');
     }
 }
