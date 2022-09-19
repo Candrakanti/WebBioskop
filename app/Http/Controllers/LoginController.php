@@ -16,18 +16,25 @@ class LoginController extends Controller
     }
     public function authenticate(Request $request)
     {
-        $credentials = $request->validate([
+        $kredensil = $request->validate([
             'username' => 'required ',
             'email' => 'required|email:dns',
             'password' => 'required'
         ]);
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/mycgv');
+        if (Auth::attempt($kredensil)) {
+            // $request->session()->regenerate();
+            // return redirect()->intended('/mycgv');
+            $user = Auth::user();
+            if ($user->level == '1') {
+                return redirect()->intended('/film');
+            }
+            elseif ($user->level == '2') {
+            return redirect()->intended('/home');
         }
-
-        else
-        return back()->with('loginError', 'Login Gagal !');
+        // return back()->with('loginError', 'Login Gagal !');
+        return redirect()->intended('/');
+    }
+    return redirect('/login');
     }
 
     public function logout()

@@ -35,6 +35,20 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
+Route::group(['middleware' => ['auth']], function (){
+Route::group(['middleware' => ['cek_login:admin']], function (){    
+   Route::get('/film', [AdminFilmController::class, 'index'])->name('admin');
+});
+
+Route::group(['middleware' => ['cek_login:user']], function (){  
+    Route::get('/home', function () {
+        return view('home')->name('user');
+    });  
+});
+});
+
+// Route::resource('/film', AdminFilmController::class)->except('show')->middleware('admin');
+
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
