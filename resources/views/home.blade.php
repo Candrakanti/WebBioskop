@@ -40,7 +40,6 @@
     <div class="row pt-5">
         <div class="col-8">
 
-<<<<<<< HEAD
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
@@ -74,16 +73,13 @@
         </li>
       </div>
     </div>
-  </div> --}} -->
-=======
+  </div> --}} --> 
     <div class="row text-end">
         <div class="col-4 col-lg-2 col-md-2 col-sm-2">
             <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/">PLAYING</a>
         </div>
         <div class="col-4  col-lg-2 col-md-2 col-sm-2">UPCOMING</div>
     </div>
->>>>>>> 60f2e04e3118dfb44fd7b87cf82f7f7ef1626dab
-
         </div>
 
         <div class="col-4 col-lg-4 col-md-4 col-sm-4">
