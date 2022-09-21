@@ -25,28 +25,15 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            $level=Auth::User()->level;
-
-            if($level=='admin_film'){
-    
-             return redirect()->intended('/film');
-            }
-        
-            if($level=='user'){
-           return redirect()->intended('/mycgv');
-                // return view('profil.index', [
-                //     'title' => 'Mycgv',
-                //     'active' => 'Mycgv'
-                // ]);
-            }
-
-            // return redirect()->intended('/mycgv');
+            return redirect()->intended('/mycgv');
         }
 
         else
-        return back()->with('loginError', 'Login Gagal !');
+        return back()->with('loginError', 'Login Gagal !');       
     }
+
+
+   
 
     public function logout()
     {
