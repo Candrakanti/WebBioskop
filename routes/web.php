@@ -49,6 +49,4 @@ Route::get('/unpaid', [UnpaidController::class, 'index']);
 Route::get('/paydone', [PaydoneController::class, 'index']);
 
 
-Route::get('/film', [AdminFilmController::class, 'index']);
-
-// Route::get('/film',[ AdminFilmController::class, 'ceckSlug'])->middleware('admin');
+Route::get('/film', [AdminFilmController::class, 'index'])->middleware('ceklevel:admin_film');
