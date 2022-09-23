@@ -84,18 +84,18 @@
      <!-- <img src="https://i.ibb.co/XZz9KXZ/scl3.png"  class="img-thumbnail" alt="">-->
       <!-- Sidebar user (optional) -->
       <div  class="user-panel mt-1 pb-3 mb-3 d-flex" style="border-bottom: 1px solid #ffffff;">
-        {{-- <div class="image">
-          <img src="https://www.smkn11bdg.sch.id/src/images/11.png"  class="brand-image img-circle elevation-3" alt="">
-        </div> --}}
+         <div class="image">
+          <img src="img/profil.png"  class="brand-image img-circle elevation-3" alt="">
+        </div> 
        <div class="info">
         <a class="navbar-brand" href="/" style="font-family: 'Dancing Script', cursive;
         font-size: 35px; color:rgb(255, 255, 255);">
-          {{-- <img src="img/profile.png" alt="" width="100" height="50" class="d-inline-block align-text-top" style="
-           float: right; margin: 5px;}"> --}}
+         
           <h5>ADMIN FILM</h5>
         </a>
         </div>
       </div>
+      
 
       <!-- SidebarSearch Form search warning -->
       {{-- <div class="form-inline">
@@ -110,7 +110,7 @@
       </div> --}}
 
       <!-- Sidebar Menu -->
-    @include('film.menu')
+    @include('film.template.menu')
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

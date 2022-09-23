@@ -23,7 +23,7 @@
     <div class="col-lg-6 col-md-6 col-sm-6 col-6 me-auto" >
       <li class="nav-item dropdown" style="  list-style-type: none !important;">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    {{ auth()->user()->name }}
+    {{ auth()->user()->username }}
         </a>
         <ul class="dropdown-menu">
           <li>

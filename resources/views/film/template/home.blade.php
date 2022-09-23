@@ -1,5 +1,5 @@
 
-@extends('film.main')
+@extends('film.template.main')
 
 @section('judul')
     ADMIN FILM

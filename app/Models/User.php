@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -17,14 +17,18 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
+        'id',
         'name',
         'email',
+        'phone',
         'username',
         'password',
         'level'
     ];
 
+    // protected $guarded = [];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -43,4 +47,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function boot()
+{
+    parent::boot();
+
+    self::creating(function ($model) {
+        $model->id= IdGenerator::generate(['table' => 'users', 'length' => 10, 'prefix' =>'CST-'.date('dmy')]);
+    });
+}
+ 
 }
