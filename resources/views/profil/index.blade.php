@@ -77,7 +77,7 @@
     <div class="col-12 col-lg-12 col-md-12 col-sm-6 text-center ">
       <form action="/film" method="get">
         @csrf
-        <button class="badge rounded-pill text-bg-info btn-lg" type="submit" class="dropdown-item" style="border: 0"><i class="bi bi-box-arrow-in-right"></i> Masuk Admin Film</button>
+        <button type="submit" class="btn btn-outline-danger" style="border: 0"><i class="bi bi-box-arrow-in-right"></i> Masuk Admin Film</button>
       </form>
     </div>
   </div>

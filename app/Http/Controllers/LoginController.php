@@ -46,3 +46,4 @@ class LoginController extends Controller
         return redirect('/mycgv');
     }
 }
+ 

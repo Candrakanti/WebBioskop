@@ -16,8 +16,12 @@ class AdminfilmController extends Controller
     }
     public function crud()
     {
+
         return view('film.home');
     }
 
-    
+    public function input()
+    {
+        return view('film.input');
+    }
 }

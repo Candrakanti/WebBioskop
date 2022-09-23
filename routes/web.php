@@ -48,6 +48,8 @@ Route::get('/movie', [MovieController::class, 'index']);
 
 Route::get('/unpaid', [UnpaidController::class, 'index']);
 Route::get('/paydone', [PaydoneController::class, 'index']);
+Route::get('/crudFilm', [AdminFilmController::class, 'crud']);
+Route::get('/inputFilm', [AdminFilmController::class,'input']);
 
 Route::group(["middleware" => 'ceklevel:admin_film'], function () {
     Route::get('/film', [AdminFilmController::class, 'index']);
