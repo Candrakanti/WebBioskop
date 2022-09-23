@@ -14,7 +14,7 @@
             <a class="nav-link {{ ($title === "Movie")? 'active' : '' }}"  href="/movie">MOVIE</a>
 
           <li class="nav-item">
-            <a class="nav-link {{ ($title === "Ticket")? 'active' : '' }}"  href="/">TICKET</a>
+            <a class="nav-link {{ ($title === "Ticket")? 'active' : '' }}"  href="/ticket">TICKET</a>
             {{-- <a class="nav-link" href="#">TICKET</a> --}}
           </li>
           <li>

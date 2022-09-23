@@ -14,6 +14,10 @@ class AdminfilmController extends Controller
     {
         return view('film.index');
     }
+    public function crud()
+    {
+        return view('film.home');
+    }
 
     
 }

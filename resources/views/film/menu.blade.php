@@ -13,7 +13,7 @@
         </a>
       </li>
       <li class="nav-item text-center">
-        <a href="/kartupelajar/" class="nav-link">
+        <a href="/crudFilm" class="nav-link">
             <i class="fas fa-id-card" style="color: rgb(255, 255, 255)"></i>
           <b style="color: rgb(255, 255, 255)">
             Film

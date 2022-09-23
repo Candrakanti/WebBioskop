@@ -72,7 +72,7 @@ class ForgotPasswordController extends Controller
     {
         $request->validate([
             'email' => 'required|email|exists:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:5|confirmed',
             'password_confirmation' => 'required'
         ]);
 
@@ -85,13 +85,15 @@ class ForgotPasswordController extends Controller
 
         if (!$updatePassword) {
             return back()->withInput()->with('error', 'Invalid token!');
-        }
+        }  
 
         $user = User::where('email', $request->email)
             ->update(['password' => Hash::make($request->password)]);
 
         DB::table('password_resets')->where(['email' => $request->email])->delete();
-
+ 
+    
         return redirect('/login')->with('success', 'Your password has been changed!');
-    }
+
+    } 
 }
