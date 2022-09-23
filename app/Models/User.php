@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Support\Facades\DB;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -18,17 +19,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
-    protected $fillable = [
-        'id',
-        'name',
-        'email',
-        'phone',
-        'username',
-        'password',
-        'level'
-    ];
+    // protected $fillable = [
+    //     'id',
+    //     'name',
+    //     'email',
+    //     'phone',
+    //     'username',
+    //     'password',
+    // ];
 
-    // protected $guarded = [];
+
+    protected $guarded = ['is_admin'];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -48,13 +49,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function boot()
-{
-    parent::boot();
+    // public static function deleteId(){
+    //     DB::statement("ALTER TABLE users AUTO_INCREMENT = id;");
+    // }
 
-    self::creating(function ($model) {
-        $model->id= IdGenerator::generate(['table' => 'users', 'length' => 10, 'prefix' =>'CST-'.date('dmy')]);
-    });
-}
+    
+
+//     public static function boot()
+// {
+//     parent::boot();
+
+//     self::creating(function ($model) {
+//         $model->akun= IdGenerator::generate(['table' => 'users', 'length' => 11, 'prefix' =>'CST-'.date('dmy')]);
+//     });
+//}
  
 }

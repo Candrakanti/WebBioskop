@@ -6,49 +6,43 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
-      <li class="nav-item text-center">
+      <li class="nav-item">
         <a href="/film" class="nav-link">
-          <b style="color: rgb(255, 255, 255)">
+          <i class="nav-icon bi bi-people-fill" style="color:rgb(255, 255, 255)"></i>
+          <p style="color:rgb(255, 255, 255)">
             BERANDA
-          </b>
+          </p>
         </a>
       </li>
-      <li class="nav-item text-center">
-        <a href="/crud/table" class="nav-link">
-            <i class="fas fa-id-card" style="color: rgb(255, 255, 255)"></i>
-          <b style="color: rgb(255, 255, 255)">
-            Film
-          </b>
+
+      <li class="nav-item">
+        <a href="/crudFilm" class="nav-link">
+          <i class="fa-solid fa-film" style="color:rgb(255, 255, 255)"></i>
+          <p style="color:rgb(255, 255, 255)">
+            FILM
+          </p>
         </a>
       </li>
+
+      {{-- <li class="nav-item">
+        <a href="/logout" method="post" class="nav-link">
+          <i class="fa-solid fa-film" style="color:rgb(255, 255, 255)"></i>
+          <p style="color:rgb(255, 255, 255)">
+            LOGOUT
+          </p>
+        </a>
+      </li> --}}
 
       <li class="nav-item" style="padding-top:170%;">
           <form action="/logout" method="post" class="nav-link">
             @csrf
             <button type="submit" class="nav-link text-start" style=" margin-left: 40px">
-              <b style="color: rgb(255, 255, 255)">
-                Logout&nbsp;&nbsp;
-              </b> <i class="fa-sharp fa-solid fa-right-from-bracket" style="color: #fff"></i>
+              <p style="color: rgb(255, 255, 255)">
+                Logout
+              </p> <i class="fa-sharp fa-solid fa-right-from-bracket" style="color: #fff"></i>
             </button>
             </form>
       </li>
-
-      {{-- <li class="nav-item text-center">
-          <form action="/logout" method="post">
-            @csrf
-            <button type="submit" class="nav-link"> <b style="color: rgb(255, 255, 255)">Logout</b> 
-              <i class="fas fa-solid fa-right-from-bracket" style="color: rgb(255, 255, 255)"></ </button>
-          </form>
-      </li> --}}
-      
-      
-{{-- 
-      <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
-        <span data-feather="home"></span>
-        Dashboard
-      </a> --}}
-    
-
     </ul>
   </nav>
 

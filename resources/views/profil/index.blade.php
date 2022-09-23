@@ -23,21 +23,23 @@
     <div class="col-lg-6 col-md-6 col-sm-6 col-6 me-auto" >
       <li class="nav-item dropdown" style="  list-style-type: none !important;">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    {{ auth()->user()->username }}
+          {{ auth()->user()->name }}
         </a>
         <ul class="dropdown-menu">
           <li>
             <form action="/logout" method="post">
               @csrf
-              <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-in-right"></i> Logout</button>
+              <button type="submit" class="dropdown-item"><i class="fa-regular fa-circle-xmark"></i> Logout</button>
             </form>
-          </li>
+               </li>
         </ul>
       </li>
     </div>
 
   </div>
 </div>
+
+@if(auth()->user ()->is_admin =="user")
 
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
@@ -67,6 +69,24 @@
            </div>
     </div>
 </div>
+@endif
+
+@if(auth()->user ()->is_admin =="admin_film")
+<div class="container pt-2">
+  <div class="row">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-6 text-center ">
+      <form action="/film" method="get">
+        @csrf
+        <button type="submit" class="btn btn-outline-danger" style="border: 0"><i class="bi bi-box-arrow-in-right"></i> Masuk Admin Film</button>
+      </form>
+    </div>
+  </div>
+  
+</div>
+
+
+
+@endif
 
     @else
 
