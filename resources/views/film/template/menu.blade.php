@@ -8,8 +8,8 @@
            with font-awesome or any other icon font library -->
       <li class="nav-item">
         <a href="/film" class="nav-link">
-          <i class="nav-icon bi bi-people-fill" style="color:rgb(255, 255, 255)"></i>
-          <p style="color:rgb(255, 255, 255)">
+          <i class="nav-icon bi bi-people-fill" style="color: white"></i>
+          <p style="color:white">
             BERANDA
           </p>
         </a>

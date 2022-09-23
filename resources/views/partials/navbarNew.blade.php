@@ -15,8 +15,10 @@
 </li>
 
           <li class="nav-item">
-            <a class="nav-link {{ ($title === "Ticket")? 'active' : '' }}"  href="/">TICKET</a>
-            
+
+            <a class="nav-link {{ ($title === "Ticket")? 'active' : '' }}"  href="/ticket">TICKET</a>
+            {{-- <a class="nav-link" href="#">TICKET</a> --}}
+        
           </li>
           <li>
             <a class="nav-link {{ ($title === "Mycgv")? 'active' : '' }}"  href="/mycgv">MYSEENEMA</a>

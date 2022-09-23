@@ -84,12 +84,15 @@
 
         <div class="col-4 col-lg-4 col-md-4 col-sm-4">
             <li class="nav-item dropdown"  style="  list-style-type: none !important;">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+            
+             
+                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Dropdown
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li> 
 
                 </ul>
               </li>

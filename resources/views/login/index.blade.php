@@ -11,6 +11,7 @@
         </div>
     </div>
 </div> --}}
+<div class="container shadow-lg p-3 mb-5 bg-body rounded">
 <h1 class="h3 mb-3 fw-normal text-center pb-3">Please sign in</h1>
 <div class="row justify-content-center">
 
@@ -37,7 +38,7 @@
 </div>
 
 
-<div class="row">
+  <div class="row ">
     <div class="col-lg-6 col-md-6 col-xs-12 d-none d-md-block d-sm-block">
         <img src="img/login.png" width="70%" alt="...">
     </div>
@@ -97,6 +98,9 @@
 {{-- PUNYA FORM SIGN! --}}
 
     </div>
+
+</div>
+
 
 
 

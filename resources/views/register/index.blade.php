@@ -10,8 +10,11 @@
         </div>
     </div>
 </div> --}}
+<div class="container shadow-lg p-3 mb-5 bg-body rounded">
 
-<div class="row justify-content-center">
+
+
+<div class="row justify-content-center ">
 
 
     <div class="col-md-8">
@@ -130,7 +133,7 @@
 </div>
 
 
-
+</div>
 
 
 @endsection
