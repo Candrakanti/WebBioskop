@@ -66,16 +66,12 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
             'active' => 'Admin Studio'
         ]);
     });
-    Route::get('/table', function () {
-        return view('studio.templateDashboard.table', [
-            'title' => 'Admin Studio',
-            'active' => 'Admin Studio'
-        ]);
-    });
+
     Route::get('/crudJadwal', function () {
 
-        return view('studio.template.CrudJadwal', [
+        return view('studio.crudJadwal.LayoutJadwal', [
             'title' => 'Admin Studio',
+            'pages' => 'Table Jadwal',
             'active' => 'Admin Studio'
         ]);
     });
