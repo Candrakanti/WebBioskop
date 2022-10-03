@@ -16,9 +16,17 @@ class CekLevel
      */
     public function handle(Request $request, Closure $next, ...$is_admin)
     {
-        if(in_array($request->user()->is_admin,$is_admin)) {
-            return$next($request);
+
+        if ($request->user()->is_admin != 'admin_film') {
+            return abort(403, "No access here, sorry!");
         }
-        return redirect()->intended('/film');
+
+        return $next($request);
+
+
+        // if(in_array($request->user()->is_admin,$is_admin)) {
+        //     return$next($request);
+        // }
+        // return redirect()->intended('/film');
     }
 }

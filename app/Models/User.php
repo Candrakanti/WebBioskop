@@ -28,6 +28,7 @@ class User extends Authenticatable
     //     'password',
     // ];
 
+
     protected $guarded = ['is_admin'];
     /**
      * The attributes that should be hidden for serialization.
@@ -48,19 +49,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public static function deleteId(){
-    //     DB::statement("ALTER TABLE users AUTO_INCREMENT = id;");
-    // }
+   
 
     
 
 //     public static function boot()
 // {
 //     parent::boot();
-
-//     self::creating(function ($model) {
-//         $model->akun= IdGenerator::generate(['table' => 'users', 'length' => 11, 'prefix' =>'CST-'.date('dmy')]);
-//     });
-//}
+//     // DB::statement("ALTER TABLE users AUTO_INCREMENT = id;");
+//     // DB::table('users')->truncate();
+//     // self::creating(function ($model) {
+//     //     $model->akun= IdGenerator::generate(['table' => 'users', 'length' => 11, 'prefix' =>'CST-'.date('dmy')]);
+//     // });
+// }
  
 }

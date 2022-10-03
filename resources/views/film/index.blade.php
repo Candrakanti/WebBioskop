@@ -1,4 +1,4 @@
-@extends('film.layout')
+@extends('film.layout.main')
 
 @section('content')
 
