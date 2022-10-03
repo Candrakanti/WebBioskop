@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CrudJadwal;
+use App\Models\Studio;
 use Illuminate\Http\Request;
 
 class CrudJadwalController extends Controller
@@ -12,9 +13,17 @@ class CrudJadwalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        $jd = CrudJadwal::all();
+        return view('studio.crudJadwal.LayoutJadwal', compact('jd'), [
+            'title' => 'Admin Studio',
+            'pages' => 'Table Studio'
+        ]);
     }
 
     /**

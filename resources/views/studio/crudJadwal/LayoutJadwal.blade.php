@@ -44,7 +44,7 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Auditori</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Kursi</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
-                  @foreach($std as $key => $data ) 
+                  @foreach($jd as $key => $data ) 
                 </tr>
               </thead>
 
