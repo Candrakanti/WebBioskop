@@ -2,7 +2,9 @@
 
 @section('container')
 
+
 <div class="row justify-content-center">
+  <hr class="border border-danger border-2 opacity-50 " >
     <div class="col-lg-10 col-md-10 col-xs-10  ">
 
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
@@ -35,42 +37,37 @@
     </div>
 </div>
 
+<div class="container" style="margin-bottom: 5%">
 
+  <div class="row pt-5">
+      <div class="col-8">
 
-<div class="container">
-
-
-
-  <div class="container" style="margin-bottom: 5%">
-
-      <div class="row pt-5">
-          <div class="col-8">
-
-      <div class="row text-end">
-          <div class="col-4 col-lg-2 col-md-2 col-sm-2">
-              <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/">PLAYING</a>
-          </div>
-          <div class="col-4  col-lg-2 col-md-2 col-sm-2">UPCOMING</div>
+  <div class="row text-end">
+      <div class="col-4 col-lg-2 col-md-2 col-sm-2">
+          <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/">PLAYING</a>
       </div>
-
-          </div>
-
-          <div class="col-4 col-lg-4 col-md-4 col-sm-4">
-              <li class="nav-item dropdown"  style="  list-style-type: none !important;">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-
-                  </ul>
-                </li>
-          </div>
+      <div class="col-4  col-lg-2 col-md-2 col-sm-2">
+        <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/">UPCOMING</a>
       </div>
-
   </div>
 
+      </div>
+
+      <div class="col-4 col-lg-4 col-md-4 col-sm-4">
+          <li class="nav-item dropdown"  style="  list-style-type: none !important;">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+
+              </ul>
+            </li>
+      </div>
+  </div>
+
+</div>
 
 
 @endsection
