@@ -14,12 +14,12 @@ class AdminfilmController extends Controller
     {
         return view('film.index');
     }
-    public function crud()
-    {
+    // public function crud()
+    // {
 
-        return view('film.template.home' );
+    //     return view('film.template.home' );
 
-    }
+    // }
 
     public function input()
     {
