@@ -52,15 +52,10 @@ Route::get('/paydone', [PaydoneController::class, 'index']);
 Route::group(["middleware" => 'ceklevel:admin_film'], function () {
     Route::get('/film', [AdminFilmController::class, 'index']);
     Route::get('/crudFilm', [AdminFilmController::class, 'crud']);
+    Route::get('film/home', [AdminFilmController::class, 'destroy']);
+    Route::get('/hapusfilm', [AdminFilmController::class, 'hapusfilm'])->name('hapusfilm');
 });
 
-Route::group(["middleware" => 'ceklevel:admin_film'], function () {
-    Route::get('/film', [AdminFilmController::class, 'index']);
-    Route::get('/crudFilm', [AdminFilmController::class, 'crud']);
-});
-
-
-// Route::get('/film', [AdminFilmController::class, 'index'])->middleware('ceklevel:admin_film');
-// Route::get('/crudFilm', [AdminFilmController::class, 'crud'])->middleware('ceklevel:admin_film');
 Route::get('/ticket', [TicketController::class, 'index']);
+
 
