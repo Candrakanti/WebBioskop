@@ -15,7 +15,7 @@
 
 <body>
 <div class="container pb-3">
-  <a href="/CrudStudio/create" class="btn btn-info">  Create Data Studio</a>
+  <a href="/crudJadwal/create" class="btn btn-info">  Create Data Jadwal</a>
    
 <div class="container pt-3">
   @if (session()->has('success'))
@@ -39,10 +39,12 @@
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Id Studio</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Jenis Studio</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Auditori</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Kursi</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Id Jadwal</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Studio</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Film</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Tayang Awal</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Tayang Akhir</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam Tayang</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                   @foreach($jd as $key => $data ) 
                 </tr>
@@ -64,35 +66,41 @@
                   </td>
 
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">{{$data->id_studio}}</p>
+                    <p class="text-xs font-weight-bold mb-0">{{$data->id_jadwal}}</p>
                   </td>
 
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_jenis_studio}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_studio}}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->audiotori}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_film}}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->jumlah_kursi}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->tgl_tayang_awal}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->tgl_tayang_akhir}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->jam_tayang}}</span>
                   </td>
 
                      <td class="align-middle text-center text-sm">
                     <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Edit</a>
                    
-                    {{-- <form id="delete-user-form" action="/CrudStudio/{{ $data->id_studio }}" method="POST" class="d-inline">
+                    {{-- <form id="delete-user-form" action="/CrudJadwal/{{ $data->id_jadwal }}" method="POST" class="d-inline">
                       @csrf
                       @method('DELETE')
-                    <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" data-id="{{$data->id_studio}}"  data-name="{{$data->id_studio}}"  > delete</a>
+                    <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" data-id="{{$data->id_jadwal}}"  data-name="{{$data->id_studio}}"  > delete</a>
                     </form> --}}
 
-                    <form method="POST" action="{{ route('CrudStudio.delete', $data->id_studio) }}" class="d-inline">
+                    <form method="POST" action="{{ route('crudJadwal.delete', $data->id_jadwal) }}" class="d-inline">
                       @csrf
                       <input name="_method" type="hidden" value="DELETE">
-                      <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$data->id_studio}}" data-toggle="tooltip" title='Delete'>Delete</button>
+                      <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$data->id_jadwal}}" data-toggle="tooltip" title='Delete'>Delete</button>
                   </form>
 
-                    {{-- <a href="/CrudStudio/{{ $data->id_studio }}" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
+                    {{-- <a href="" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
                   </td>
                  
                 </tr>

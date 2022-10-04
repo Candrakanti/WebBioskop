@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CrudJadwal;
 use App\Models\Studio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CrudJadwalController extends Controller
 {
@@ -33,7 +34,17 @@ class CrudJadwalController extends Controller
      */
     public function create()
     {
-        //
+        $data = CrudJadwal::join('film', 'studio.id_film', '=', 'jadwal.id_film')
+        ->join ('studio' , 'studio'.'id_studio' , '=', 'jadwal'.'id_studio') 
+            ->get(
+                ['jadwal.*', 'film.*' ,'studio.*']
+            );
+
+        return view('studio.crudJadwal.input', compact('data'),  [
+            // 'jenis_studio' => jenis_studio::all(),
+            'title' => 'Admin Studio',
+            'pages' => 'Input Jadwal'
+        ]);
     }
 
     /**
@@ -44,7 +55,18 @@ class CrudJadwalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData =  $request->validate([
+
+            'id_jadwal' => 'required|max:5|unique:studio',
+            'id_studio' => 'required',
+            'id_film' => 'required',
+            'tgl_tayang_awal' => 'required',
+            'tgl_tayang_akhir' => 'required',
+            'tgl_tayang_awal' => 'required',
+        ]);
+
+        studio::create($validatedData);
+        return redirect('/CrudJadwal')->with('success', 'Berhasil Data Telah Ditambahkan!');
     }
 
     /**
@@ -87,8 +109,9 @@ class CrudJadwalController extends Controller
      * @param  \App\Models\CrudJadwal  $crudJadwal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CrudJadwal $crudJadwal)
+    public function destroy(CrudJadwal $crudJadwal, $id_jadwal)
     {
-        //
+        DB::table('jadwal')->where('id_jadwal', $id_jadwal)->delete();
+        return redirect('/crudJadwal')->with('success', 'Data Berhasil Di Hapus');
     }
 }
