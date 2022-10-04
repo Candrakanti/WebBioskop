@@ -9,8 +9,8 @@ class MovieController extends Controller
     public function index()
     {
         return view('movie.index', [
-            'title' => 'Movie',
-            'active' => 'Movie'
+            "title" => "Movie",
+            "active" => "Movie"
         ]);
     }
 }
