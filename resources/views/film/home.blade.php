@@ -1,92 +1,147 @@
 
-@extends('film.template.main')
+@extends('film.layout.sidebar')
 
-@section('judul')
-    ADMIN FILM
-@endsection
+@section('container')
 
-@section('isi')
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMIN FILM</title>
+    <title>{{$title}}</title>
     
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-  
-        <link rel="stylesheet" type="text/css" href=" https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
-       
-        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
-
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
-
 </head>
 
 <body>
-<div class="container">
-      <a class="btn btn-outline-dark" href="/">+ Create New Film</a>
-      <br><br>
-      {{-- <button type="button" class="btn btn-outline-dark"> Create New Film</button><br><br> --}}
-    <div>
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success " role="alert">
-            <strong><p>{{ $message }}</p></strong>
-            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">  </button>
-          </div>
-        @endif
+<div class="container pb-3">
+  <a href="/crudFilm/create" class="btn btn-info">Create Data Film</a>
+   
+<div class="container pt-3">
+  @if (session()->has('success'))
+  <div class="alert alert-success " role="alert">
+     {{session('success')}}
     </div>
-    <table id="datafilm" class="table table-striped table-bordered text-center">
-      <thead>
-          <tr>
-            <th>NO</th>
-            <th>ID FILM</th>
-            <th>ID JADWAL</th>
-            <th>JUDUL</th>
-            <th>JENIS</th>
-            <th>AKSI</th>
-          </tr>
-      </thead>
-      @foreach ($films as $key => $film)
-      <tr>
-          <td>{{$key++}}</td>
-          <td>{{$film->id_film}}</td>
-          <td>{{$film->id_jadwal}}</td>
-          <td>{{$film->judul_film}}</td>
-          <td>{{$film->jenis_film}}</td>
-          <td>
-              <div class="row justify-content">
-                <div class="col-4">
-                    <form action="{{ route('hapusfilm') }}">
-                        <input type="hidden" name= "id" value="{{ $film->id_film }}">
-                        @method('delete')
-                        @csrf
-                        <button class="btn btn-danger col-m-1" onclick="return confirm ('Are you sure to delete this data?')"><i class="fas fa-trash-alt"></i></button>
-                    </form>
-                </div>
-                  <div class="col-4">
-                      <a href="/#" class="btn btn-info" style="background-color: #495C83; color: #fff;"><i class="fas fa-pencil-alt"></i></a>
-                  </div>
-                  <div class="col-4">
-                      <a href="/#" class="btn btn-info" style="background-color: #yellow ; color: #fff;"><i class="fa fa-eye"></i></a>
-                  </div>
-  </div>
-          </td>
-      </tr>
-      @endforeach
-  </table>
+  @endif
 </div>
+       
+
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-header pb-0">
+          <h6 class="text-center">Data Film</h6>
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0" id="myTable">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">id_film</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">id_jadwal</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">judul</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">jenis</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                  @foreach($films as $key => $film ) 
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div>
+                       
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{$key++}}</h6>
+                
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{$film->id_film}}</p>
+                  </td>
+
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$film->id_jadwal}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$film->judul_film}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$film->jenis_film}}</span>
+                  </td>
+
+                     <td class="align-middle text-center text-sm">
+                    <a class="badge badge-sm bg-gradient-warning" href="">Edit</a>
+                   
+                    {{-- <form id="delete-user-form" action="/CrudStudio/{{ $film->id_studio }}" method="POST" class="d-inline">
+                      @csrf
+                      @method('DELETE')
+                    <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" film-id="{{$film->id_studio}}"  film-name="{{$film->id_studio}}"  > delete</a>
+                    </form> --}}
+                  
+
+                    <form method="POST" action="{{ route('crudFilm.delete', $film->id_film) }}" class="d-inline">
+                        @csrf
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$film->id_film}}" data-toggle="tooltip" title='Delete'>Delete</button>
+                    </form>
+
+                    {{-- <a href="/CrudStudio/{{ $film->id_studio }}" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
+                  </td>
+                 
+                </tr>
+                <tr>
+                  <td>
+
+                   
+                </tr>
+              </tbody>
+              @endforeach
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script> --}}
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+
 <script>
-$(document).ready(function () {
-$('#datafilm').DataTable();
-});
+
+$('.show_confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          var id_film = $(this).attr('data-id');
+          event.preventDefault();
+          swal({
+              title: "APA ANDA YAKIN ?",
+              text: "Anda Akan Menghapus ID Studio "+id_film+"",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+
 </script>
+
+
 </html>
 @endsection
