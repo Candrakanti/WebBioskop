@@ -9,11 +9,13 @@ class CrudJadwal extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = "studio";
+    protected $table = "jadwal";
     protected $fillable = [
+        'id_jadwal',
         'id_studio',
-        'id_jenis_studio',
-        'audiotori',
-        'jumlah_kursi',
+        'id_film',
+        'tgl_tayang_awal',
+        'tgl_tayang_akhir',
+        'jam_tayang',
     ];
 }

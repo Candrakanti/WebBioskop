@@ -12,9 +12,18 @@ class CrudJadwalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        $std = CrudJadwal::all();
+        return view('studio.crud.LayoutStudio', compact('std'), [
+            'title' => 'Admin Studio',
+            'pages' => 'Table Studio'
+        ]);
     }
 
     /**
