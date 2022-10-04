@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('ticket.index', [
-            'title' => 'Ticket',
-            'active' => 'Ticket'
+            'title' => 'ticket',
+            'active' => 'ticket'
         ]);
     }
 }
