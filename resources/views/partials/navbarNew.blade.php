@@ -55,9 +55,6 @@
     </nav>   
   </header>
 
-  
-  
-  
   <script src="{{ asset('landingPage/vendors/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('landingPage/vendors/bootstrap/bootstrap.min.js') }}"></script>
   <script src="{{ asset('landingPage/vendors/owl-carousel/js/owl.carousel.min.js') }} "></script>
