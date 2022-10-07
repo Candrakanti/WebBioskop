@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CrudJadwal;
+use App\Models\jadwal;
+use App\Models\Film;
+use App\Models\studio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,11 +21,18 @@ class CrudJadwalController extends Controller
     }
     public function index()
     {
+        // $data = studio::with(relations: 'studio')->get();
+
+        // $data1 = film::with(relations: 'film')->get();
+
+        // $data = jadwal::with('jadwals')->get();
+
+        $data = \App\Models\jadwal::with(['Film', 'studio'])->get();
 
         // $jd = CrudJadwal::all();
-        $data = CrudJadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')
-            ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
-            ->get(['film.*', 'jadwal.*', 'studio.*']);
+        // $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
+        //     ->join('film', 'film.id_film', '=', 'jadwal.id_film')
+        //     ->get(['studio.*', 'jadwal.*', 'film.*']);
 
         return view('studio.crudJadwal.LayoutJadwal', compact('data'), [
 
@@ -40,11 +49,14 @@ class CrudJadwalController extends Controller
     public function create()
     {
 
-        $data = CrudJadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')
-            ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
-            ->get(['film.*', 'jadwal.*', 'studio.*']);
+        // $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
+        //     // ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
+        //     ->get(['studio.*', 'jadwal.*']);
+        // $data = \App\Models\jadwal::with(['Film', 'studio'])->get();
 
-        return view('studio.crudJadwal.input', compact('data'),  [
+        $data =  studio::all();
+        $data1 =  Film::all();
+        return view('studio.crudJadwal.input', compact('data', 'data1'),  [
             // 'jenis_studio' => jenis_studio::all(),
             'title' => 'Admin Studio',
             'pages' => 'Input Jadwal'
@@ -61,25 +73,25 @@ class CrudJadwalController extends Controller
     {
         $validatedData =  $request->validate([
 
-            'id_jadwal' => 'required|max:5|unique:jadwal',
-            'id_studio' => 'required',
+            'id_jadwal' => 'required|min:5|max:10|unique:jadwal',
+            // 'id_studio' => 'required',
             'id_film' => 'required',
             'tgl_tayang_awal' => 'required',
             'tgl_tayang_akhir' => 'required',
-            'tgl_tayang_awal' => 'required',
+            'jam_tayang' => 'required',
         ]);
 
-        CrudJadwal::create($validatedData);
+        jadwal::create($validatedData);
         return redirect('/crudJadwal')->with('success', 'Berhasil Data Telah Ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CrudJadwal  $crudJadwal
+     * @param  \App\Models\jadwal $crudJadwal
      * @return \Illuminate\Http\Response
      */
-    public function show(CrudJadwal $crudJadwal)
+    public function show(jadwal $crudJadwal)
     {
         //
     }
@@ -87,10 +99,10 @@ class CrudJadwalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CrudJadwal  $crudJadwal
+     * @param  \App\Models\jadwal  $crudJadwal
      * @return \Illuminate\Http\Response
      */
-    public function edit(CrudJadwal $crudJadwal)
+    public function edit(jadwal $crudJadwal)
     {
         //
     }
@@ -99,10 +111,10 @@ class CrudJadwalController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CrudJadwal  $crudJadwal
+     * @param  \App\Models\jadwal  $crudJadwal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CrudJadwal $crudJadwal)
+    public function update(Request $request, jadwal $crudJadwal)
     {
         //
     }
@@ -110,10 +122,10 @@ class CrudJadwalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CrudJadwal  $crudJadwal
+     * @param  \App\Models\jadwal  $crudJadwal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CrudJadwal $crudJadwal, $id_jadwal)
+    public function destroy(jadwal $crudJadwal, $id_jadwal)
     {
         DB::table('jadwal')->where('id_jadwal', $id_jadwal)->delete();
         return redirect('/crudJadwal')->with('success', 'Data Berhasil Di Hapus');
