@@ -9,6 +9,7 @@ use App\Http\Controllers\CgvController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UnpaidController;
 use App\Http\Controllers\PaydoneController;
+use Carbon\Carbon;
 use App\Http\Controllers\TicketController;
 
 use App\Http\Controllers\AdminFilmController;
@@ -91,4 +92,4 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
 
 // Route::get('/film', [AdminFilmController::class, 'index'])->middleware('ceklevel:admin_film');
 // Route::get('/crudFilm', [AdminFilmController::class, 'crud'])->middleware('ceklevel:admin_film');
-Route::get('/ticket', [TicketController::class, 'index']);
+Route::get('/ticket', [TicketController::class, 'index'] );
