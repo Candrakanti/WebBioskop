@@ -9,6 +9,7 @@ use App\Http\Controllers\CgvController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UnpaidController;
 use App\Http\Controllers\PaydoneController;
+use App\Http\Controllers\TicketController;
 
 use App\Http\Controllers\AdminFilmController;
 
@@ -48,7 +49,15 @@ Route::get('/movie', [MovieController::class, 'index']);
 Route::get('/unpaid', [UnpaidController::class, 'index']);
 Route::get('/paydone', [PaydoneController::class, 'index']);
 
+Route::group(["middleware" => 'ceklevel:admin_film'], function () {
+    Route::get('/film', [AdminFilmController::class, 'index']);
+    Route::get('/crudFilm', [AdminFilmController::class, 'crud']);
+});
 
 Route::get('/film', [AdminFilmController::class, 'index'])->middleware('auth');
 
-// Route::get('/film',[ AdminFilmController::class, 'ceckSlug'])->middleware('admin');
+// Route::get('/film', [AdminFilmController::class, 'index'])->middleware('ceklevel:admin_film');
+// Route::get('/crudFilm', [AdminFilmController::class, 'crud'])->middleware('ceklevel:admin_film');
+Route::get('/ticket', [TicketController::class, 'index']);
+
+

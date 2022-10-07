@@ -26,15 +26,9 @@
       
     </ul>
 
-    <!-- Right navbar links -->
+  
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        -->
-
+ 
 
         <div class="navbar-search-block">
           <form class="form-inline">
@@ -59,24 +53,14 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      <!--Pengaturan widget harus dengan demo.js
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    -->
+   
     </ul>
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="color:rgb(255, 255, 255); background-color: #131834;">
-    <!-- Brand Logo -->
-    <!--<a style="text-decoration: none;" href="https://scola.id/" class="brand-link">
-      <img src="https://i.ibb.co/7nsXchf/scl.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>-->
+  
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -95,6 +79,7 @@
         </a>
         </div>
       </div>
+      
 
       <!-- SidebarSearch Form search warning -->
       {{-- <div class="form-inline">
@@ -109,7 +94,7 @@
       </div> --}}
 
       <!-- Sidebar Menu -->
-    @include('film.menu')
+    @include('film.template.menu')
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

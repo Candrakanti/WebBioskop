@@ -1,4 +1,4 @@
-@extends('film.main')
+@extends('film.template.main')
 @section('isi')
 <!DOCTYPE html>
 <html>
