@@ -46,7 +46,8 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Tayang Akhir</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam Tayang</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
-                  @foreach($data as $key => $data ) 
+                 
+                  @foreach($data as $key=> $data ) 
                 </tr>
               </thead>
 
@@ -64,14 +65,17 @@
                       </div>
                     </div>
                   </td>
+          
+
 
                   <td>
                     <p class="text-xs font-weight-bold mb-0">{{$data->id_jadwal}}</p>
                   </td>
-
+   
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_studio}}</span>
+                    <p class="text-secondary text-xs font-weight-bold">{{$data->id_studio}}</p>
                   </td>
+    
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$data->id_film}}</span>
                   </td>
@@ -88,11 +92,7 @@
                      <td class="align-middle text-center text-sm">
                     <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Edit</a>
                    
-                    {{-- <form id="delete-user-form" action="/CrudJadwal/{{ $data->id_jadwal }}" method="POST" class="d-inline">
-                      @csrf
-                      @method('DELETE')
-                    <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" data-id="{{$data->id_jadwal}}"  data-name="{{$data->id_studio}}"  > delete</a>
-                    </form> --}}
+                
 
                     <form method="POST" action="{{ route('crudJadwal.delete', $data->id_jadwal) }}" class="d-inline">
                       @csrf
@@ -100,7 +100,7 @@
                       <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$data->id_jadwal}}" data-toggle="tooltip" title='Delete'>Delete</button>
                   </form>
 
-                    {{-- <a href="" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
+                 
                   </td>
                  
                 </tr>

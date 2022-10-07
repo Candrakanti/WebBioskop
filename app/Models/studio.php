@@ -16,4 +16,17 @@ class studio extends Model
         'audiotori',
         'jumlah_kursi',
     ];
+
+    // public function studio()
+    // {
+    //     // return $this->hasOneThrough(App\Models\jadwal::class, App\Models\studio::class);
+    //     // return $this->hasManyThrough(related: jadwal::class, through: studio::class);
+    //     // return $this->belongsTo(related: jadwal::class);
+    //     return $this->belongsTo(related: jadwal::class);
+    // }
+
+    public function jadwal()
+    {
+        return $this->hasMany('App\Models\jadwal');
+    }
 }
