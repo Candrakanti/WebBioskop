@@ -14,7 +14,11 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminFilmController;
 use App\Http\Controllers\AdminStudioController;
 use App\Http\Controllers\CrudStudioController;
+
 use App\Http\Controllers\CrudFilmController;
+
+use App\Http\Controllers\CrudJadwalController;
+
 use App\Models\studio;
 
 /*
@@ -80,16 +84,12 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
             'active' => 'Admin Studio'
         ]);
     });
-    Route::get('/table', function () {
-        return view('studio.templateDashboard.table', [
-            'title' => 'Admin Studio',
-            'active' => 'Admin Studio'
-        ]);
-    });
+
     Route::get('/crudJadwal', function () {
 
-        return view('studio.template.CrudJadwal', [
+        return view('studio.crudJadwal.LayoutJadwal', [
             'title' => 'Admin Studio',
+            'pages' => 'Table Jadwal',
             'active' => 'Admin Studio'
         ]);
     });
@@ -99,7 +99,8 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::post('/CrudStudio/update', [CrudStudioController::class, 'update']);
     Route::delete('/CrudStudio/delete/{id_studio}', [CrudStudioController::class, 'destroy'])->name('CrudStudio.delete');
 
-   
+
+    Route::resource('/crudJadwal', CrudJadwalController::class);
 
 });
 

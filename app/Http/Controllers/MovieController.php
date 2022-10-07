@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Film;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -10,7 +11,8 @@ class MovieController extends Controller
     {
         return view('movie.index', [
             'title' => 'Movie',
-            'active' => 'Movie'
+            'active' => 'Movie',
+            'posts' => Film::all()
         ]);
     }
 }

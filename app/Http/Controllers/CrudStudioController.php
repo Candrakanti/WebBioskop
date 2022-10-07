@@ -40,7 +40,7 @@ class CrudStudioController extends Controller
         return view('studio.crud.input',  compact('jenis_studio'), [
             // 'jenis_studio' => jenis_studio::all(),
             'title' => 'Admin Studio',
-            'pages' => 'Table Studio'
+            'pages' => 'Input Studio'
         ]);
     }
 

@@ -68,7 +68,7 @@
                   </td>
 
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$film->id_jadwal}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$film->image}}</span>
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$film->judul_film}}</span>
@@ -79,6 +79,7 @@
 
                      <td class="align-middle text-center text-sm">
                     <a class="badge badge-sm bg-gradient-warning" href="">Edit</a>
+                    <a class="badge badge-sm bg-gradient-warning" href="">Detail</a>
                    
                     {{-- <form id="delete-user-form" action="/CrudStudio/{{ $film->id_studio }}" method="POST" class="d-inline">
                       @csrf
