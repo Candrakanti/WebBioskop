@@ -27,7 +27,7 @@ class CrudJadwalController extends Controller
 
         // $data = jadwal::with('jadwals')->get();
 
-        $data = \App\Models\jadwal::with(['Film', 'studio'])->get();
+        $data = \App\Models\jadwal::with(['studio', 'Film'])->get();
 
         // $jd = CrudJadwal::all();
         // $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
@@ -37,7 +37,7 @@ class CrudJadwalController extends Controller
         return view('studio.crudJadwal.LayoutJadwal', compact('data'), [
 
             'title' => 'Admin Studio',
-            'pages' => 'Table Studio'
+            'pages' => 'Table Jadwal'
         ]);
     }
 
@@ -73,8 +73,8 @@ class CrudJadwalController extends Controller
     {
         $validatedData =  $request->validate([
 
-            'id_jadwal' => 'required|min:5|max:10|unique:jadwal',
-            // 'id_studio' => 'required',
+            'id_jadwal' => 'required|min:5|max:10|unique:jadwal|string',
+            'id_studio' => 'required',
             'id_film' => 'required',
             'tgl_tayang_awal' => 'required',
             'tgl_tayang_akhir' => 'required',
@@ -102,9 +102,21 @@ class CrudJadwalController extends Controller
      * @param  \App\Models\jadwal  $crudJadwal
      * @return \Illuminate\Http\Response
      */
-    public function edit(jadwal $crudJadwal)
+    public function edit($id_jadwal)
     {
-        //
+        // $data = jadwal::join('film', 'jadwal.id_film', '=', 'film.id_film')->join('studio', 'jadwal.id_studio', '=', 'studio.id_studio')->get('jadwal.*', 'film.*', 'studio.*')->where('id_jadwal', $id_jadwal)->first();
+        $jadwal =  DB::table('jadwal')->where('id_jadwal', $id_jadwal)->first();
+        $studio =  studio::all();
+        $film =  Film::all();
+        return view(
+            'studio.crudJadwal.edit',
+            compact('jadwal', 'studio', 'film'),
+            [
+                'studio' => $jadwal,
+                'title' => 'Edit Jadwal',
+                'pages' => 'Edit Jadwal'
+            ]
+        );
     }
 
     /**
@@ -116,7 +128,18 @@ class CrudJadwalController extends Controller
      */
     public function update(Request $request, jadwal $crudJadwal)
     {
-        //
+        $jadwal = jadwal::where('id_jadwal', $request->id_jadwal)
+            ->update([
+                'id_jadwal' => $request->id_jadwal,
+                'id_studio' => $request->id_studio,
+                'id_film' => $request->id_film,
+                'tgl_tayang_awal' => $request->tgl_tayang_awal,
+                'tgl_tayang_akhir' => $request->tgl_tayang_akhir,
+                'jam_tayang' => $request->jam_tayang,
+
+            ]);
+
+        return redirect('/crudJadwal')->with('success', 'Data Berhasil Diubah!');
     }
 
     /**

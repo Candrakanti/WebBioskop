@@ -10,6 +10,8 @@ class jadwal extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $primaryKey = 'id_jadwal';
+    protected $keyType = 'string';
     protected $table = "jadwal";
     protected $fillable = [
         'id_jadwal',
@@ -18,6 +20,7 @@ class jadwal extends Model
         'tgl_tayang_awal',
         'tgl_tayang_akhir',
         'jam_tayang',
+        'test',
     ];
 
     // public function jadwal()
@@ -33,13 +36,12 @@ class jadwal extends Model
     //     // return $this->hasMany(App\Models\film::class);
     // }
 
-    public function film()
-    {
-        return $this->belongsTo('App\Models\Film');
-    }
-
     public function studio()
     {
         return $this->belongsTo('App\Models\studio');
+    }
+    public function film()
+    {
+        return $this->belongsTo('App\Models\Film');
     }
 }

@@ -90,7 +90,7 @@
                   </td>
 
                      <td class="align-middle text-center text-sm">
-                    <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Edit</a>
+                    <a class="badge badge-sm bg-gradient-warning" href="/crudJadwal/{{$data->id_jadwal}}/edit">Edit</a>
                    
                 
 
