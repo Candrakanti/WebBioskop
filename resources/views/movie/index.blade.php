@@ -40,7 +40,7 @@
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-3">
     <div class="card" >
-           <img src="img/bk10.jpg" class="card-img-top" alt="" width="" height="" style="margin-left:5px; ">
+           <img src="/assets/img/bk8.jpg" class="card-img-top" alt="" width="" height="" style="margin-left:5px; ">
         <div class="card-body">
         <a href="#" class="btn btn-outline-dark">BOOK NOW</a>
        </div>
@@ -49,7 +49,7 @@
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-3">
     <div class="card" >
-           <img src="img/bk7.jpg" class="card-img-top" alt="" width="" height="" style="margin-left: ">
+           <img src="/assets/img/bk8.jpg" class="card-img-top" alt="" width="" height="" style="margin-left: ">
         <div class="card-body">
         <a href="#" class="btn btn-outline-dark">BOOK NOW</a>
        </div>
@@ -58,7 +58,7 @@
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-3">
     <div class="card" >
-           <img src="img/bk8.jpg" class="card-img-top" alt="" width="" height="" style="margin-left: ">
+           <img src="/assets/img/bk8.jpg" class="card-img-top" alt="" width="" height="" style="margin-left: ">
         <div class="card-body">
         <a href="#" class="btn btn-outline-dark">BOOK NOW</a>
        </div>
@@ -67,7 +67,7 @@
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-3">
     <div class="card" >
-           <img src="img/bk9.jpg" class="card-img-top" alt="" width="" height="" style="margin-left: ">
+           <img src="/assets/img/bk8.jpg" class="card-img-top" alt="" width="" height="" style="margin-left: ">
         <div class="card-body">
         <a href="#" class="btn btn-outline-dark">BOOK NOW</a>
        </div>

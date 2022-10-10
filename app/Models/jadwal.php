@@ -33,13 +33,14 @@ class jadwal extends Model
     //     // return $this->hasMany(App\Models\film::class);
     // }
 
-    public function film()
+    public function Film()
     {
-        return $this->belongsTo('App\Models\Film');
+        return $this->belongsTo('App\Models\Film' , 'id_film', 'judul_film',);
     }
 
     public function studio()
     {
-        return $this->belongsTo('App\Models\studio');
+        return $this->belongsTo('App\Models\studio' ,'id_studio', 'audiotori');
     }
+
 }
