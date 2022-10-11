@@ -55,7 +55,7 @@ class CrudStudioController extends Controller
 
         $validatedData =  $request->validate([
 
-            'id_studio' => 'required|max:5|unique:studio',
+            'id_studio' => 'required|min:5|max:225|unique:studio',
             'id_jenis_studio' => 'required',
             'audiotori' => 'required',
             'jumlah_kursi' => 'required',

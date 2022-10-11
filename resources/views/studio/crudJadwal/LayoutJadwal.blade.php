@@ -72,8 +72,8 @@
                     <p class="text-xs font-weight-bold mb-0">{{$data->id_jadwal}}</p>
                   </td>
    
-                  <td class="align-middle text-center">
-                    <p class="text-secondary text-xs font-weight-bold">{{$data->id_studio}}</p>
+                  <td class="align-middle text-center pt-1">
+                    <p class="text-secondary text-xs font-weight-bold">{{$data->id_film}}</p>
                   </td>
     
                   <td class="align-middle text-center">

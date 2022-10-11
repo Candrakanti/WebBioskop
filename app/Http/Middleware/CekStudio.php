@@ -18,7 +18,7 @@ class CekStudio
     {
         if ($request->user()->is_admin != 'admin_studio') {
             return abort(403, "No access here, sorry!");
-        }
+        }   
 
 
 

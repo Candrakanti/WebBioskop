@@ -22,17 +22,13 @@ class CrudJadwalController extends Controller
     public function index()
     {
         // $data = studio::with(relations: 'studio')->get();
-
         // $data1 = film::with(relations: 'film')->get();
-
         // $data = jadwal::with('jadwals')->get();
+        // $data = \App\Models\jadwal::with(['studio', 'Film'])->get();
 
-        $data = \App\Models\jadwal::with(['studio', 'Film'])->get();
-
-        // $jd = CrudJadwal::all();
-        // $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
-        //     ->join('film', 'film.id_film', '=', 'jadwal.id_film')
-        //     ->get(['studio.*', 'jadwal.*', 'film.*']);
+        $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
+            ->join('film', 'film.id_film', '=', 'jadwal.id_film')
+            ->get(['studio.*', 'jadwal.*', 'film.*']);
 
         return view('studio.crudJadwal.LayoutJadwal', compact('data'), [
 
@@ -105,14 +101,19 @@ class CrudJadwalController extends Controller
     public function edit($id_jadwal)
     {
         // $data = jadwal::join('film', 'jadwal.id_film', '=', 'film.id_film')->join('studio', 'jadwal.id_studio', '=', 'studio.id_studio')->get('jadwal.*', 'film.*', 'studio.*')->where('id_jadwal', $id_jadwal)->first();
-        $jadwal =  DB::table('jadwal')->where('id_jadwal', $id_jadwal)->first();
+        // $jadwal =  DB::table('jadwal')->where('id_jadwal', $id_jadwal)->first();
         $studio =  studio::all();
         $film =  Film::all();
+
+        $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
+            ->join('film', 'film.id_film', '=', 'jadwal.id_film')
+            ->get(['studio.*', 'jadwal.*', 'film.*'])->where('id_jadwal', $id_jadwal)->first();
+
         return view(
             'studio.crudJadwal.edit',
-            compact('jadwal', 'studio', 'film'),
+            compact('data', 'studio', 'film'),
             [
-                'studio' => $jadwal,
+                'studio' => $data,
                 'title' => 'Edit Jadwal',
                 'pages' => 'Edit Jadwal'
             ]
