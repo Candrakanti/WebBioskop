@@ -68,12 +68,9 @@ Route::group(["middleware" => 'ceklevel:admin_film'], function () {
 
     Route::resource('/crudFilm', CrudFilmController::class);
     Route::delete('/crudFilm/delete/{id_film}', [CrudFilmController::class, 'destroy'])->name('crudFilm.delete');
-    
-    // Route::get('/film', [AdminFilmController::class, 'index']);
-    // Route::get('/crudFilm', [AdminFilmController::class, 'crud']);
-    // Route::get('/crudFilm/create', [AdminFilmController::class, 'create']);
-    // Route::resource('/crudFilm', AdminFilmController::class);
-    // Route::delete('/crudFilm/delete/{id_film}', [AdminFilmController::class, 'destroy'])->name('crudFilm.delete');
+    Route::get('/crudFilm/edit/{id_film}',[CrudFilmController::class,'edit'])->name('crudFilm.edit');
+    Route::post('/crudFilm/update',[CrudFilmController::class,'update']);
+
 });
 
 Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
@@ -101,6 +98,8 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
 
 
     Route::resource('/crudJadwal', CrudJadwalController::class);
+
+    Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 
 });
 

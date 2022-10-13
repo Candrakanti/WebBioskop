@@ -40,10 +40,9 @@
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">id_film</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">id_jadwal</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">judul</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">jenis</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   @foreach($films as $key => $film ) 
                 </tr>
               </thead>
@@ -68,40 +67,24 @@
                   </td>
 
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$film->image}}</span>
-                  </td>
-                  <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$film->judul_film}}</span>
                   </td>
+
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$film->jenis_film}}</span>
                   </td>
 
                      <td class="align-middle text-center text-sm">
-                    <a class="badge badge-sm bg-gradient-warning" href="">Edit</a>
-                    <a class="badge badge-sm bg-gradient-warning" href="">Detail</a>
-                   
-                    {{-- <form id="delete-user-form" action="/CrudStudio/{{ $film->id_studio }}" method="POST" class="d-inline">
-                      @csrf
-                      @method('DELETE')
-                    <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" film-id="{{$film->id_studio}}"  film-name="{{$film->id_studio}}"  > delete</a>
-                    </form> --}}
-                  
-
+                    <a class="badge badge-sm bg-gradient-warning" href="/crudFilm/{{$film->id_film}}/edit">Edit</a>
+                    <a class="badge badge-sm bg-gradient-warning" href="{{ route('crudFilm.show', $film->id_film) }}">Detail</a>
+                    
                     <form method="POST" action="{{ route('crudFilm.delete', $film->id_film) }}" class="d-inline">
                         @csrf
                         <input name="_method" type="hidden" value="DELETE">
                         <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$film->id_film}}" data-toggle="tooltip" title='Delete'>Delete</button>
                     </form>
 
-                    {{-- <a href="/CrudStudio/{{ $film->id_studio }}" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
-                  </td>
-                 
-                </tr>
-                <tr>
-                  <td>
-
-                   
+                  </td>               
                 </tr>
               </tbody>
               @endforeach

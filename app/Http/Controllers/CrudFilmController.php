@@ -6,6 +6,7 @@ use App\Models\Film;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CrudFilmController  extends Controller
 {
@@ -65,12 +66,9 @@ class CrudFilmController  extends Controller
             $validatedData['image'] = $request->file('image')->store('film-images');
         }
 
-        $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
-
         Film::create($validatedData);
 
-        return redirect('/crudFilm')->with('success', 'New post has been added!');
+        return redirect('/crudFilm')->with('success', 'New film has been added!');
     }
 
     /**
@@ -79,9 +77,14 @@ class CrudFilmController  extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_film)
     {
-        //
+        $film = Film::where('id_film', $id_film)->first();
+        return view('film.detail', compact('film'), [
+            'title' => 'Admin Film',
+            'active' => 'Admin Film',
+            'pages' => 'Detail Film',           
+    ]);
     }
 
     /**
@@ -90,9 +93,40 @@ class CrudFilmController  extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    // public function edit(Film $film, $id_film)
+    // {
+    //     $jenis_studio = jenis_studio::all('id_jenis_studio');
+    //     return view(
+    //         'studio.crud.edit',
+    //         compact('jenis_studio'),
+    //         [
+    //             'studio' => $std,
+    //             'title' => 'Edit Studio',
+    //             'pages' => 'Edit Studio'
+    //         ]
+    //     );
+    // }
+
+    // public function edit($id_film)
+    // {
+    //     $film = DB::table('film')->where('id_film', $id_film)->first();
+    //     return view('film.edit',  ['film'=> $film],
+    //     [
+    //         'film' => $film,
+    //         'title' => 'Edit Film',
+    //         'pages' => 'Edit Film'
+    //     ]); 
+
+    // }
+
+    public function edit(Film $film , $id_film)
     {
-        //
+        $film = DB::table('film')->where('id_film', $id_film)->first();
+        return view('film.edit', compact('film'), [
+            'film' => $film,
+            'title' => 'Edit Film',
+            'pages' => 'Edit Film'
+        ]);
     }
 
     /**
@@ -102,10 +136,63 @@ class CrudFilmController  extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, Film $film)
     {
-        //
+
+        $validatedData = $request->validate([
+            'id_film' => 'required|max:255',
+            'judul_film' => 'required|max:255',
+            'jenis_film' => 'required|max:255',
+            // 'jenis_film' => 'required',
+            'produser' => 'required|max:255',
+            'sutradara' => 'required|max:255',
+            'penulis' => 'required|max:255',
+            'cast' => 'required|max:255',
+            'link_trailer' => 'required|max:255',
+            'image' =>'image|file|max:1024',
+            'sinopsis' => 'required'
+        ]);
+
+        if($request->file('image')) {
+            if($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('film-images');
+        }
+        
+        Film::where('id_film', $request->id_film)->update($validatedData);
+
+        return redirect('/crudFilm')->with('success', 'Film has been updated!');
     }
+
+    // public function update(Request $request, Film $film)
+    // {
+    //     $film = Film::where('id_film', $request->id_film)
+    //          ->update([
+    //         'id_film'=>$request->id_film,
+    //         'judul_film'=>$request->judul_film,
+    //         'jenis_film'=>$request->jenis_film,
+    //         'produser'=>$request->produser,
+    //         'sutradara'=>$request->sutradara,
+    //         'penulis'=>$request->penulis,
+    //         'cast'=>$request->cast,
+    //         'link_trailer'=>$request->link_trailer,
+    //         // 'image'=>$request->image,
+    //         'sinopsis'=>$request->sinopsis
+            
+    //     ]);
+
+    //     if($request->file('image')) {
+    //         if($request->oldImage) {
+    //             Storage::delete($request->oldImage);
+    //         }
+    //         $validatedData['image'] = $request->file('image')->store('film-images');
+    //     }
+
+        
+    //     return redirect('/crudFilm')->with('success', 'Data Berhasil Diedit!');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -113,9 +200,16 @@ class CrudFilmController  extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_film)
+    public function destroy(Film $film, $id_film)
     {
-        DB::table('film')->where('id_film', $id_film)->delete();
-        return redirect('/crudFilm')->with('success', 'Data Berhasil Di Hapus');
+        if($film->image) {
+            Storage::delete($film->image);
+        }
+        
+         DB::table('film')->where('id_film', $id_film)->delete();
+        return redirect('/crudFilm')->with('success', 'Film has been deleted!');
+
+        // DB::table('film')->where('id_film', $id_film)->delete();
+        // return redirect('/crudFilm')->with('success', 'Data Berhasil Di Hapus');
     }
 }

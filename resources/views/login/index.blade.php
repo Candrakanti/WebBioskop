@@ -91,7 +91,7 @@
             </form>
 
 
-        <small class="d-block text-center mt-3">Forgot Your Password? <a href="{{ route('forget.password.get') }}">Change Your Password ! </a></small>
+        <small class="d-block text-center mt-3">Forgot Your Password? <a href="{{ route('forget.password.get') }}" >Change Your Password ! </a></small>
    
         <small class="d-block text-center mt-3">Not Registered? <a href="/register">Register Now ! </a></small>
  

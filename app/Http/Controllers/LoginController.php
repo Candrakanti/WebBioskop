@@ -10,8 +10,8 @@ class LoginController extends Controller
     public function index()
     {
         return view('login.index', [
-            'title' => 'login',
-            'active' => 'login'
+            'title' => 'mycgv',
+            'active' => 'mycgv'
         ]);
     }
     public function authenticate(Request $request)
@@ -21,19 +21,17 @@ class LoginController extends Controller
             'email' => 'required|email:dns',
             'password' => 'required'
         ]);
-      
+
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/mycgv');
-        }
-
-        else
-        return back()->with('loginError', 'Login Gagal !');       
+        } else
+            return back()->with('loginError', 'Login Gagal !');
     }
 
 
-   
+
 
     public function logout()
     {
@@ -46,4 +44,3 @@ class LoginController extends Controller
         return redirect('/mycgv');
     }
 }
- 

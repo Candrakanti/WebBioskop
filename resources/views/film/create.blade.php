@@ -27,7 +27,24 @@
           @enderror
         </div>
 
-        <div class="mb-3">
+          <div class="mb-3">
+            <label for="jenis_film" class="form-label">Jenis Film</label>
+              <select id="jenis_film" class="form-select @error('jenis_film') is-invalid @enderror" name="jenis_film" required autocomplete="current-jenis_film">
+                <option>Horor</option>
+                <option>Romance</option>
+                <option>Action</option>
+                <option>Thriller</option>
+                <option>Comedy</option>
+              </select>
+              @error('jenis_film')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+              @enderror
+          </div>
+
+
+        {{-- <div class="mb-3">
           <label for="jenis_film" class="form-label">Jenis Film</label>
           <input type="text" class="form-control @error('jenis_film') is-invalid @enderror" id="jenis_film" 
           name="jenis_film" required autofocus value="{{ old('jenis_film') }}">
@@ -36,7 +53,7 @@
             {{ $message }}
           </div>
           @enderror
-        </div>
+        </div> --}}
 
         <div class="mb-3">
           <label for="produser" class="form-label">Produser</label>
@@ -128,7 +145,14 @@
             <trix-editor input="sinopsis"></trix-editor>
           </div>
 
-        <button type="submit" class="btn btn-info">Input Film</button>
+          <div class="form-group mt-5">
+            <button type="submit" class="btn btn-info">Input Film</button>
+            <a href="{{ url('/crudFilm') }}" class="btn btn-danger">
+            Cancel</a>
+        </div>
+
+        {{-- <button type="submit" class="btn btn-info">Input Film</button>
+        <button type="submit" class="btn btn-danger">Back</button> --}}
       </form>
 </div>
 
@@ -138,19 +162,19 @@
     e.preventDefault();
   })
 
-// function previewImage() {
-//   const image = document.querySelector('#image');
-//   const imgPreview = document.querySelector('.img-preview');
+function previewImage() {
+  const image = document.querySelector('#image');
+  const imgPreview = document.querySelector('.img-preview');
 
-//   imgPreview.style.display = 'block';
+  imgPreview.style.display = 'block';
 
-//   const oFReader = new FileReader();
-//   oFReader.readAsDataURL(image.files[0]);
+  const oFReader = new FileReader();
+  oFReader.readAsDataURL(image.files[0]);
 
-//   oFReader.onload = function(oFREvent) {
-//     imgPreview.src = oFREvent.target.result;
-//   }
-// }
+  oFReader.onload = function(oFREvent) {
+    imgPreview.src = oFREvent.target.result;
+  }
+}
 </script>
     
 @endsection

@@ -1,71 +1,115 @@
-@extends('film.template.main')
+@extends('film.layout.sidebar')
 
 
-@section('content')
+@section('container')
 
-<br><br><br><br>
+<h5>Id Film |{{ $film->id_film }}</h5>
+<a href="/crudFilm" class="btn btn-danger"><span data-feather="arrow-left"></span>Back</a>
+<a href="" class="btn btn-warning"><span data-feather="edit"></span>Edit</a>
+
+
+{{-- <div class="card-body">
 <div class="container">
-    <div class="d-flex justify-content-center">
-        <div class="card" style="width: 50rem;">
-            <div class="card-header" style="background-color: #2EB7EA">
-                <div class="row">
-                    <div class="col-2">
-                        <img src="https://cdn.antaranews.com/cache/800x533/2016/12/20161221Logo-kotaBandung-001.jpg" alt="" style="width:125px; height:120px">
-                    </div>
-                    <div class="col-8 text-center"><br><br>
-                        <h3 style="font-family:'Times' ;">KARTU INDONESIA MAJU</h3>
-                    </div>
-                    <div class="col-2">
-                        <img src="https://www.smkn11bdg.sch.id/src/images/11.png"  alt="" style="width:100px; height:120px;">
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                @foreach ($kartumaju as $item)
-                <table class="table">
-                    <tr>
-                        <td>NOMOR KARTU</td>
-                        <td>:</td>
-                        <td>{{$item->nomor_kartu}}</td>
-                    </tr>
-                    <tr>
-                        <td>NAMA </td>
-                        <td>:</td>
-                        <td>{{$item->nama}}</td>
-                    </tr>
-                    <tr>
-                        <td>ALAMAT</td>
-                        <td>:</td>
-                        <td>{{$item->alamat}}</td>
-                    </tr>
-                    <tr>
-                        <td>LAHIR</td>
-                        <td>:</td>
-                        <td>{{$item->lahir}}</td>
-                    </tr>
-                    <tr>
-                        <td>NIK</td>
-                        <td>:</td>
-                        <td>{{$item->nik}}</td>
-                    </tr>
-                    <tr>
-                        <td>FASILITAS</td>
-                        <td>:</td>
-                        <td>{{$item->fasilitas}}</td>
-                    </tr>
-                </table>
-                @endforeach
-                <br>
-                <div class="d-flex justify-content-center">
-                <a href="{{route('kartu.home')}}" class="btn"  style="background-color: rgb(115, 81, 148); color:white;">Kembali</a>
-            </div>
-            </div>
-        </div>
+   
+
+<div class="row">
+    <div class="col-lg-6">
+       
+        @if ($film->image)
+          <div style="max-height: 500px; overflow:hidden;">
+            <img src="{{ asset('storage/' . $film->image) }}"
+            class="img-fluid mt-3">  
+          </div>      
+        @endif
+    </div>
+    
+    <div class="col-lg-6">
+        <article class="my-3 fs-5">
+            <p> <b> Judul Film : </b><span id="judul_film"> {!! $film->judul_film  !!}</span></p>
+            <p><b>Jenis Film : </b><span id="jenis_film"> {!! $film->jenis_film  !!}</span></p>
+            <p><b>Produser : </b><span id="produser"> {!! $film->produser  !!}</span></p>
+            <p><b>Sutradara : </b><span id="sutradara"> {!! $film->sutradara  !!}</span></p>
+            <p><b>Penulis : </b><span id="penulis"> {!! $film->penulis  !!}</span></p>
+        </article>
     </div>
 </div>
-<div class="d-flex justify-content-center">
-{{ $kartumaju->links()}}
-<br>
 </div>
-<br><br>
+</div> --}}
+
+<div class="card mb-3" >
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        @if ($film->image)
+          <div style="max-height: 500px; overflow:hidden;">
+            <img src="{{ asset('storage/' . $film->image) }}"
+            class="img-fluid mt-3">  
+          </div>      
+        @endif
+      </div>
+      
+      <div class="col-md-8">
+        <div class="card-body">
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-start">Judul Film :</label>
+                <div class="col-md-6">
+                    <span id="judul_film"> {!! $film->judul_film  !!}</span></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-start">Jenis Film :</label>
+                <div class="col-md-6">
+                    <span id="jenis_film"> {!! $film->jenis_film  !!}</span></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-start">Produser :</label>
+                <div class="col-md-6">
+                    <span id="produser"> {!! $film->produser  !!}</span></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-start">Sutradara :</label>
+                <div class="col-md-6">
+                    <span id="sutradara"> {!! $film->sutradara  !!}</span></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-start">Penulis :</label>
+                <div class="col-md-6">
+                    <span id="penulis"> {!! $film->penulis  !!}</span></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-start">Cast :</label>
+                <div class="col-md-6">
+                    <span id="cast"> {!! $film->cast  !!}</span></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-start">Link Trailer :</label>
+                <div class="col-md-6">
+                    <span id="link_trailer"> {!! $film->link_trailer  !!}</span></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-start">Sinopsis :</label>
+                <div class="col-md-6">
+                    <span id="sinopsis"> {!! $film->sinopsis  !!}</span></p>
+                </div>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+
 @endsection
