@@ -69,7 +69,11 @@ class CrudJadwalController extends Controller
     {
         $validatedData =  $request->validate([
 
+<<<<<<< HEAD
             'id_jadwal' => 'required|min:5|max:10|unique:jadwal|string',
+=======
+            'id_jadwal' => 'required|min:5|max:10|unique:jadwal',
+>>>>>>> 7b7a364158e15447fc29c2f0ed4d31437c7c61e1
             'id_studio' => 'required',
             'id_film' => 'required',
             'tgl_tayang_awal' => 'required',

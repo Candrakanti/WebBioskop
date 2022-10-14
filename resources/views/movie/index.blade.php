@@ -6,37 +6,71 @@
 
 
 
-    <div class="container" style="margin-bottom: 5%">
+  <div class="container" style="margin-bottom: 5%">
 
-        <div class="row pt-5">
-            <div class="col-8">
-
-        <div class="row text-end">
-            <div class="col-4 col-lg-2 col-md-2 col-sm-2">
-                <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/">PLAYING</a>
-            </div>
-            <div class="col-4  col-lg-2 col-md-2 col-sm-2">UPCOMING</div>
+    <div class="row pt-5">
+        <div class="col-8">
+  
+    <div class="row text-end">
+        <div class="col-4 col-lg-2 col-md-2 col-sm-2">
+            <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/">PLAYING</a>
         </div>
-
-            </div>
-
-            <div class="col-4 col-lg-4 col-md-4 col-sm-4">
-                <li class="nav-item dropdown"  style="  list-style-type: none !important;">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-
-                    </ul>
-                  </li>
-            </div>
+        <div class="col-4  col-lg-2 col-md-2 col-sm-2">
+          <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/">UPCOMING</a>
         </div>
-
     </div>
+  
+        </div>
+  
+        <div class="col-4 col-lg-4 col-md-4 col-sm-4">
+            <li class="nav-item dropdown"  style="  list-style-type: none !important;">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+  
+                </ul>
+              </li>
+        </div>
+    </div>
+  
+  </div>
 
-<div class="container ">
+  @foreach ($posts as $film)
+      <article>
+        <h2><a href="">{{ $film->judul_film }}</a></h2>
+      </article>
+  @endforeach
+
+  <div class="container">
+    <div class="row">
+        @foreach ($posts->skip(1) as $film)
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
+                @if ($film->image)
+                  <img src="{{ asset('storage/' . $film->image) }}"
+                  class="img-fluid">  
+              @else
+                  <img src="https://source.unsplash.com/500x400?" 
+                  class="card-img-top">
+              @endif
+              
+                <div class="card-body">
+                  <h5 class="card-title">{{ $film->judul_film }}</h5>
+                  {{-- <p class="card-text">{{ $film->excerpt }}</p> --}}
+                  <a href="" class="btn btn-success">Read more</a>
+                </div>
+              </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+  </div>
+
+{{-- <div class="container ">
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-3">
     <div class="card" >
@@ -78,6 +112,6 @@
 
 
   </div>
-</div>
+</div> --}}
 
 @endsection
