@@ -35,7 +35,7 @@
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0" id="myTable">
+            <table class="table mb-0" id="myTable">
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
@@ -73,11 +73,11 @@
                   </td>
    
                   <td class="align-middle text-center pt-1">
-                    <p class="text-secondary text-xs font-weight-bold">{{$data->id_film}}</p>
+                    <p class="text-secondary text-xs font-weight-bold">{{$data->id_studio}}</p>
                   </td>
     
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_film}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->judul_film}}</span>
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$data->tgl_tayang_awal}}</span>
@@ -86,7 +86,7 @@
                     <span class="text-secondary text-xs font-weight-bold">{{$data->tgl_tayang_akhir}}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->jam_tayang}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->jam_tayang1}}</span>
                   </td>
 
                      <td class="align-middle text-center text-sm">

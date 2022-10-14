@@ -37,7 +37,7 @@
               
                     @foreach ($film as $data)
                 
-                    <option value="{{$data->id_film}}" selected>{{$data->id_film}}</option>
+                    <option value="{{$data->id_film}}" selected>{{$data->judul_film}}</option>
                     @endforeach
                   </select>
             </div>
@@ -55,6 +55,10 @@
             <div class="form-group">
                 <label for="jam_tayang">Jam Tayang</label>
                 <input type="time" name="jam_tayang" id="jam_tayang" class="form-control" value="{{$data->jam_tayang }}" required="">
+            </div>
+            <div class="form-group">
+                <label for="jam_tayang1">Jam Tayang</label>
+                <input type="text" name="jam_tayang1" id="jam_tayang1" class="form-control" value="{{$data->jam_tayang1 }}" required="">
             </div>
            
        

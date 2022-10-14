@@ -21,7 +21,9 @@ class CrudStudioController extends Controller
     }
     public function index()
     {
-        $std = studio::all();
+        // $std = studio::all();
+        $std = studio::join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
+            ->get(['studio.*', 'detail_jenis_studio.*']);
         return view('studio.crud.LayoutStudio', compact('std'), [
             'title' => 'Admin Studio',
             'pages' => 'Table Studio'
@@ -84,7 +86,7 @@ class CrudStudioController extends Controller
      */
     public function edit(studio $studio, $id_studio)
     {
-        $jenis_studio = jenis_studio::all('id_jenis_studio');
+        $jenis_studio = jenis_studio::all();
         $std = DB::table('studio')->where('id_studio', $id_studio)->first();
         return view(
             'studio.crud.edit',

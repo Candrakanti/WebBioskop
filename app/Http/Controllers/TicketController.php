@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
+
     public function index()
     {
         $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')

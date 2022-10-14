@@ -68,7 +68,7 @@
                   </td>
 
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_jenis_studio}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->jenis_studio}}</span>
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$data->audiotori}}</span>

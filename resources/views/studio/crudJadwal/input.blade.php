@@ -45,7 +45,7 @@
               
                   @foreach ($data1 as $js)
               
-                  <option value="{{$js->id_film}}" selected>{{$js->id_film}}</option>
+                  <option value="{{$js->id_film}}" selected>{{$js->judul_film}}</option>
                   @endforeach
                 </select>
               
@@ -81,6 +81,39 @@
                 @enderror
               </div>
 
+              <div class="mb-3">
+                <label for="jam_tayang1" class="form-label">Jam Tayang1</label>
+              {{-- <input type="checkbox" name="jam_tayang1[]" value="13.00">13.00 --}}
+                <input type="text" class="form-control @error('jam_tayang1') is-invalid @enderror" name="jam_tayang1" autofocus required value="{{ old('jam_tayang1') }}">
+                @error('jam_tayang1')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+                @enderror
+              </div>
+
+              {{-- <div class="form-group">
+                <label for="jam_tayang1">jam_tayang1</label>
+                <div class="row">
+                    <div class="col-md-2">
+                        Key:
+                    </div>
+                    <div class="col-md-4">
+                        Value:
+                    </div>
+                </div>
+                @for ($i=0; $i <= 1; $i++)
+                <div class="row">
+                    <div class="col-md-2">
+                        <input type="text" name="jam_tayang1[{{ $i }}][key]" class="form-control" value="{{ old('jam_tayang1['.$i.'][key]') }}">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="jam_tayang1[{{ $i }}][value]" class="form-control" value="{{ old('jam_tayang1['.$i.'][value]') }}">
+                    </div>
+                </div>
+                @endfor
+            </div>
+            <div> --}}
             
               <div class="mb-3">
                 <button type="submit" class="btn btn-success">Save</button>

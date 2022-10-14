@@ -20,22 +20,25 @@ class jadwal extends Model
         'tgl_tayang_awal',
         'tgl_tayang_akhir',
         'jam_tayang',
-        'test',
+        'jam_tayang1',
     ];
 
-    // public function jadwal()
-    // {
-    //     return $this->hasMany(related: jadwal::class);
-    // }
+    protected $casts = [
+        'jam_tayang1' => 'array'
+    ];
 
-    // public function jadwals()
-    // {
-    //     // return $this->hasMany(related: jadwal::class);
-    //     return $this->hasManyThrough(related: Film::class, through: jadwal::class);
+    public function setjamtayang1Attribute($value)
+    {
+        $jam_tayang1 = [];
 
-    //     // return $this->hasMany(App\Models\film::class);
-    // }
+        foreach ($value as $array_item) {
+            if (!is_null($array_item['key'])) {
+                $jam_tayang1[] = $array_item;
+            }
+        }
 
+        $this->attributes['jam_tayang1'] = json_encode($jam_tayang1);
+    }
     public function studio()
     {
         return $this->belongsTo('App\Models\studio');

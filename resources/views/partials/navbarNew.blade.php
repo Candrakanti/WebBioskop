@@ -35,16 +35,16 @@
             </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link  {{Request::is('/*') ? 'active' : ''}}" href="/" >HOME</a>
+            <a class="nav-link  {{ ($title === "Home")? 'active' : '' }}" href="/" >HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{Request::is('/movie') ? 'active' : ''}}" href="/movie" >MOVIE</a>
+            <a class="nav-link {{ ($title === "Movie")? 'active' : '' }}" href="/movie" >MOVIE</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{Request::is('Ticket*') ? 'active' : ''}}"  href="/ticket">TICKET</a>  
+            <a class="nav-link"  href="/ticket">TICKET</a>  
           </li>
           <li class="nav-item">
-            <a class="nav-link {{Request::is('mycgv*') ? 'active' : ''}}" href="/mycgv">MYSEENEMA</a>
+            <a class="nav-link " href="/mycgv">MYSEENEMA</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
             <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Contact Us</button>

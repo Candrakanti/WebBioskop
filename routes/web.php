@@ -10,6 +10,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UnpaidController;
 use App\Http\Controllers\PaydoneController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TicketrController;
 
 use App\Http\Controllers\AdminFilmController;
 use App\Http\Controllers\AdminStudioController;
@@ -30,7 +31,8 @@ use App\Models\studio;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        "active" => "Home"
     ]);
 });
 
@@ -48,7 +50,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 //    END ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 
-Route::get('ja', [MovieController::class, 'index']);
+Route::get('/movie', [MovieController::class, 'index']);
 
 Route::get('/unpaid', [UnpaidController::class, 'index']);
 Route::get('/paydone', [PaydoneController::class, 'index']);
@@ -94,3 +96,4 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
 // Route::get('/film', [AdminFilmController::class, 'index'])->middleware('ceklevel:admin_film');
 // Route::get('/crudFilm', [AdminFilmController::class, 'crud'])->middleware('ceklevel:admin_film');
 Route::get('/ticket', [TicketController::class, 'index']);
+// Route::resource('/ticket', [TicketrController::class, 'index']);
