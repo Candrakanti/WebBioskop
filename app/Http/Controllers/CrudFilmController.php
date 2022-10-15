@@ -206,10 +206,9 @@ class CrudFilmController  extends Controller
             Storage::delete($film->image);
         }
         
-         DB::table('film')->where('id_film', $id_film)->delete();
+        // Film::destroy($film->id_film);
+        DB::table('film')->where('id_film', $id_film)->delete();
         return redirect('/crudFilm')->with('success', 'Film has been deleted!');
-
-        // DB::table('film')->where('id_film', $id_film)->delete();
         // return redirect('/crudFilm')->with('success', 'Data Berhasil Di Hapus');
     }
 }

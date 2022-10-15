@@ -9,12 +9,11 @@ class MovieController extends Controller
 {
     public function index()
     {
-        return view('movie.index', [
-
+        $data =  Film::all();
+        return view('movie.index', compact('data'),  [
             'title' => 'Movie',
             'active' => 'Movie',
             'posts' => Film::all()
-
         ]);
     }
 }

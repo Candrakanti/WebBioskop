@@ -38,12 +38,6 @@
   
   </div>
 
-  @foreach ($posts as $film)
-      <article>
-        <h2><a href="">{{ $film->judul_film }}</a></h2>
-      </article>
-  @endforeach
-
   <div class="container">
     <div class="row">
         @foreach ($posts->skip(1) as $film)
