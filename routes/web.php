@@ -10,16 +10,14 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UnpaidController;
 use App\Http\Controllers\PaydoneController;
 use App\Http\Controllers\TicketController;
-use App\Http\Controllers\TicketrController;
 
 use App\Http\Controllers\AdminFilmController;
-use App\Http\Controllers\AdminStudioController;
 use App\Http\Controllers\CrudStudioController;
 
 use App\Http\Controllers\CrudFilmController;
 
 use App\Http\Controllers\CrudJadwalController;
-
+use App\Http\Controllers\RticketController;
 use App\Models\studio;
 
 /*
@@ -104,6 +102,6 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 });
 
-Route::get('/ticket', [TicketController::class, 'index']);
-
-// Route::resource('/ticket', [TicketrController::class, 'index']);
+// Route::get('/ticket', [TicketController::class, 'index']);
+Route::resource('/ticket', RticketController::class);
+Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');

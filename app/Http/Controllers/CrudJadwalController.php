@@ -44,16 +44,14 @@ class CrudJadwalController extends Controller
      */
     public function create()
     {
-
         // $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
-        //     // ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
-        //     ->get(['studio.*', 'jadwal.*']);
-        // $data = \App\Models\jadwal::with(['Film', 'studio'])->get();
+        //     ->join('film', 'film.id_film', '=', 'jadwal.id_film')
+        //     ->get(['studio.*', 'film.*', 'jadwal.*']);
 
         $data =  studio::all();
         $data1 =  Film::all();
-        return view('studio.crudJadwal.input', compact('data', 'data1'),  [
-            // 'jenis_studio' => jenis_studio::all(),
+        $data2 =  jadwal::all();
+        return view('studio.crudJadwal.input', compact('data', 'data1', 'data2'),  [
             'title' => 'Admin Studio',
             'pages' => 'Input Jadwal'
         ]);
@@ -69,17 +67,14 @@ class CrudJadwalController extends Controller
     {
         $validatedData =  $request->validate([
 
-<<<<<<< HEAD
-            'id_jadwal' => 'required|min:5|max:10|unique:jadwal|string',
-=======
+            // 'id_jadwal' => 'required|min:5|max:10|unique:jadwal|string',
             'id_jadwal' => 'required|min:5|max:10|unique:jadwal',
->>>>>>> 7b7a364158e15447fc29c2f0ed4d31437c7c61e1
             'id_studio' => 'required',
             'id_film' => 'required',
             'tgl_tayang_awal' => 'required',
             'tgl_tayang_akhir' => 'required',
             'jam_tayang' => 'required',
-            'jam_tayang1' => 'required',
+            // 'jam_tayang1' => 'required',
         ]);
 
         jadwal::create($validatedData);
@@ -142,7 +137,7 @@ class CrudJadwalController extends Controller
                 'tgl_tayang_awal' => $request->tgl_tayang_awal,
                 'tgl_tayang_akhir' => $request->tgl_tayang_akhir,
                 'jam_tayang' => $request->jam_tayang,
-                'jam_tayang1' => $request->jam_tayang1,
+                // 'jam_tayang1' => $request->jam_tayang1,
 
             ]);
 

@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
+use App\Models\jadwal;
 use App\Models\studio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class TicketrController extends Controller
+class RticketController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id_jadwal)
+    public function index()
     {
-        $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
+        $data = jadwal::join('studio', 'studio.id_studio', '=', 'studio.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
             ->join('film', 'film.id_film', '=', 'jadwal.id_film')
-            ->get(['studio.*', 'jadwal.*', 'film.*', 'detail_jenis_studio.*'])->where('id_jadwal', $id_jadwal)->first();
-
+            ->get(['studio.*', 'jadwal.*', 'film.*', 'detail_jenis_studio.*']);
+        // $data = jadwal::all();
         return view('ticket.index', compact('data'), [
             'title' => 'ticket',
             'active' => 'ticket'
@@ -48,20 +51,25 @@ class TicketrController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show($id_jadwal)
+    public function show(Ticket $ticket, $id_jadwal)
     {
+        $data = DB::table('jadwal')->where('id_jadwal', $id_jadwal)->first();
+        return view('ticket.show', [
+            'data' => $data,
+            'title' => 'Jam Tayang'
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ticket $ticket)
     {
         //
     }
@@ -70,10 +78,10 @@ class TicketrController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Ticket $ticket)
     {
         //
     }
@@ -81,10 +89,10 @@ class TicketrController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ticket $ticket)
     {
         //
     }
