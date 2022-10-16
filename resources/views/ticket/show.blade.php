@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <h1>{{ $data->judul_film }}</h1>
+    @foreach ($data as $dt)
+        <h1> {{ $d->judul_film }}</h1>
+    @endforeach
 @endsection
