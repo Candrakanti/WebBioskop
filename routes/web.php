@@ -12,13 +12,12 @@ use App\Http\Controllers\PaydoneController;
 use App\Http\Controllers\TicketController;
 
 use App\Http\Controllers\AdminFilmController;
-use App\Http\Controllers\AdminStudioController;
 use App\Http\Controllers\CrudStudioController;
 
 use App\Http\Controllers\CrudFilmController;
 
 use App\Http\Controllers\CrudJadwalController;
-
+use App\Http\Controllers\RticketController;
 use App\Models\studio;
 
 /*
@@ -34,7 +33,8 @@ use App\Models\studio;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        "active" => "Home"
     ]);
 });
 
@@ -68,9 +68,8 @@ Route::group(["middleware" => 'ceklevel:admin_film'], function () {
 
     Route::resource('/crudFilm', CrudFilmController::class);
     Route::delete('/crudFilm/delete/{id_film}', [CrudFilmController::class, 'destroy'])->name('crudFilm.delete');
-    Route::get('/crudFilm/edit/{id_film}',[CrudFilmController::class,'edit'])->name('crudFilm.edit');
-    Route::post('/crudFilm/update',[CrudFilmController::class,'update']);
-
+    Route::get('/crudFilm/edit/{id_film}', [CrudFilmController::class, 'edit'])->name('crudFilm.edit');
+    Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
 });
 
 Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
@@ -98,10 +97,11 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
 
 
     Route::resource('/crudJadwal', CrudJadwalController::class);
+    Route::get('/crudJadwal/edit{id_jadwal}', [CrudJadwalController::class, 'edit'])->name('crudJadwal.edit');
 
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
-
 });
 
-Route::get('/ticket', [TicketController::class, 'index']);
-
+// Route::get('/ticket', [TicketController::class, 'index']);
+Route::resource('/ticket', RticketController::class);
+Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');

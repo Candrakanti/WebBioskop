@@ -40,27 +40,38 @@
 
   <div class="container">
     <div class="row">
-        @foreach ($posts->skip(1) as $film)
+      @foreach ($data as $data)
+
+      <div class="card" style="width: 18rem;">
+        @if ($data->image)
+        <img src="{{ asset('storage/' . $data->image) }}" class="card-img-top" alt="">
+        @endif
+        <div class="card-body">
+          <h5 class="card-title">{{ $data->judul_film }}</h5>
+        </div>
+        <div class="card-body">
+          <a href="#" class="btn btn-primary">BOOK NOW</a>
+        </div>
+      </div>
+
+
+{{-- 
         <div class="col-md-4 mb-3">
             <div class="card">
                 <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
-                @if ($film->image)
-                  <img src="{{ asset('storage/' . $film->image) }}"
+                @if ($fl->image)
+                  <img src="{{ asset('storage/' . $fl->image) }}"
                   class="img-fluid">  
-              @else
-                  <img src="https://source.unsplash.com/500x400?" 
-                  class="card-img-top">
               @endif
               
                 <div class="card-body">
-                  <h5 class="card-title">{{ $film->judul_film }}</h5>
-                  {{-- <p class="card-text">{{ $film->excerpt }}</p> --}}
+                  <h5 class="card-title">{{ $fl->judul_fl }}</h5>
                   <a href="" class="btn btn-success">Read more</a>
                 </div>
               </div>
         </div>
-        @endforeach
-    </div>
+    </div> --}}
+    @endforeach
 </div>
   </div>
 

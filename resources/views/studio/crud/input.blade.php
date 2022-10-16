@@ -25,15 +25,15 @@
               </div>
 
               <div class="mb-3">
-                <label for="id_jenis_studio" class="form-label">id jenis studio</label>
+                <label for="id_jenis_studio" class="form-label"> Jenis Studio</label>
                 {{-- <input type="tect" class="form-control" name="id_studio" autofocus> --}}
                 <select class="form-select form-select-lg mb-3" name="id_jenis_studio">
 
                     @foreach ($jenis_studio as $js)
                     @if(old('id_jenis_studio') == $js->id_jenis_studio)
-                    <option value="{{$js->id_jenis_studio}}" selected>{{$js->id_jenis_studio}}</option>
+                    <option value="{{$js->id_jenis_studio}}" selected>{{$js->jenis_studio}}</option>
                     @else
-                    <option value="{{$js->id_jenis_studio}}">{{$js->id_jenis_studio}}</option>
+                    <option value="{{$js->id_jenis_studio}}">{{$js->jenis_studio}}</option>
                     @endif
                     @endforeach
                   </select>

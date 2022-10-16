@@ -9,6 +9,8 @@ class studio extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $primaryKey = 'id_studio';
+    protected $keyType = 'string';
     protected $table = "studio";
     protected $fillable = [
         'id_studio',
@@ -27,6 +29,7 @@ class studio extends Model
 
     public function jadwal()
     {
-        return $this->hasMany('App\Models\jadwal');
+        // return $this->hasMany('App\Models\jadwal');
+        return $this->belongsTo('App\Models\jadwal', 'order_id');
     }
 }
