@@ -66,9 +66,9 @@
             </div>
 
             <div class="row mb-3">
-                <label class="col-md-4 col-form-label text-md-start">Produser :</label>
+                <label class="col-md-4 col-form-label text-md-start">Producer :</label>
                 <div class="col-md-6">
-                    <span id="produser"> {!! $film->produser  !!}</span></p>
+                    <span id="produser"> {!! $film->producer  !!}</span></p>
                 </div>
             </div>
 
