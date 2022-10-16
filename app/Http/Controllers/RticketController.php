@@ -56,7 +56,9 @@ class RticketController extends Controller
      */
     public function show(Ticket $ticket, $id_jadwal)
     {
-        $data = DB::table('jadwal')->where('id_jadwal', $id_jadwal)->first();
+        $data = jadwal::join('studio', 'studio.id_studio', '=', 'studio.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
+            ->join('film', 'film.id_film', '=', 'jadwal.id_film')
+            ->get(['studio.*', 'jadwal.*', 'film.*', 'detail_jenis_studio.*'])->where('id_jadwal', $id_jadwal)->first();
         return view('ticket.show', [
             'data' => $data,
             'title' => 'Jam Tayang'
