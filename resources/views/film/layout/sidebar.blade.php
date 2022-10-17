@@ -8,7 +8,6 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title> SEENEMA | {{$title}}</title>
   <!--     Fonts and icons     -->
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
@@ -21,23 +20,33 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('assetsSoft/css/soft-ui-dashboard.css?v=1.0.3') }}"
   rel="stylesheet" />
+  <link rel="stylesheet" href="https://fontawesome.com/icons/pen-to-square?s=duotone">
+
+  <!-- Trix Editor -->
+  <link rel="stylesheet" type="text/css" href="/css/trix.css">
+  <script type="text/javascript" src="/js/trix.js"></script>
+  <style>
+    trix-toolbar [data-trix-button-group="file-tools"] {
+      display:none;
+    }
+  </style> 
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
-  <aside class="sidenav  navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 x fixed-start ms-3  bg-white" id="sidenav-main">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3  bg-white" id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html" target="_blank">
-        <img src="{{ asset('img/seenema.png') }}" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="{{ asset('img/seenema.png') }}" class="navbar-brand-img h-100" alt="main_logo" height="300%" width="40%" style="max-height: none; ">
         <span class="ms-1 font-weight-bold">SEENEMA</span>
       </a>
     </div>
-
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link   {{Request:: is('beranda') ? 'active' : ''}}" href="/beranda">
+          <a class="nav-link  {{Request:: is('film*') ? 'active' : ''}} " href="/film">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-dark text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -58,7 +67,7 @@
         </li>
       
         <li class="nav-item">
-          <a class="nav-link  {{Request:: is('CrudStudio*') ? 'active' : ''}} " href="CrudStudio">
+          <a class="nav-link  {{Request:: is('crudFilm*') ? 'active' : ''}} " href="/crudFilm">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>
@@ -74,34 +83,9 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Studio</span>
+            <span class="nav-link-text ms-1">Film</span>
           </a>
         </li>
-
-
-        <li class="nav-item">
-          <a class="nav-link  {{Request:: is('crudJadwal*') ? 'active' : ''}} " href="/crudJadwal">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>credit-card</title>
-                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                  <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                    <g transform="translate(1716.000000, 291.000000)">
-                      <g transform="translate(453.000000, 454.000000)">
-                        <path class="color-background opacity-6" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z"></path>
-                        <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
-                      </g>
-                    </g>
-                  </g>
-                </g>
-              </svg>
-          </div>
-            <span class="nav-link-text ms-1">Jadwal</span>
-          </a>
-        </li>
-
-
-        <li class="nav-item">
        
           <form action="/logout" method="post" class="d-inline">
             @csrf
@@ -121,17 +105,14 @@
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
     <!-- Navbar -->
-  
-
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky" id="navbarBlur" navbar-scroll="true">
-
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{$pages}}</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{ $pages }}</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Dashboard Admin Studio</h6>
+          <h6 class="font-weight-bolder mb-0">Dashboard Admin Film</h6>
         </nav>
         
           <ul class="navbar-nav  justify-content-end">

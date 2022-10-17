@@ -20,7 +20,6 @@ class jadwal extends Model
         'tgl_tayang_awal',
         'tgl_tayang_akhir',
         'jam_tayang',
-        'test',
     ];
 
     // public function jadwal()
@@ -49,5 +48,9 @@ class jadwal extends Model
     {
         return $this->belongsTo('App\Models\jenis_studio');
     }
+
+    protected $casts = [
+        'jam_tayang' => 'array'
+    ];
 
 }
