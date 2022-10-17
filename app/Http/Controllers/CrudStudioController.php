@@ -21,7 +21,7 @@ class CrudStudioController extends Controller
     }
     public function index()
     {
-        $std = studio::all();
+         
         return view('studio.crud.LayoutStudio', compact('std'), [
             'title' => 'Admin Studio',
             'pages' => 'Table Studio'
@@ -132,6 +132,6 @@ class CrudStudioController extends Controller
         // studio::find($id_studio)->delete();
         // return redirect('/CrudStudio')->with('success', 'Data Berhasil Di Hapus');
         DB::table('studio')->where('id_studio', $id_studio)->delete();
-        return redirect('/crudStudio')->with('success', 'Data Berhasil Di Hapus');
+        return redirect('/CrudStudio')->with('success', 'Data Berhasil Di Hapus');
     }
 }

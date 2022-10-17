@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\jadwal;
 use App\Models\Film;
+use App\Models\studio;
+use App\Models\jenis_studio;
 class TicketController extends Controller
 {
     public function index()
@@ -15,9 +17,14 @@ class TicketController extends Controller
         //     "active" => "ticket"
         // ]);
 
-        $data = \App\Models\jadwal::with(['Film', 'studio'])->get();
+        // $data = \App\Models\jadwal::with(['Film', 'studio'])->get();
+        $Film= Film::all();
+        $studio= studio::all();
+        $jenis_studio= jenis_studio::all();
+        $jadwal= jadwal::all();
 
-        return view('ticket.index', compact('data'), [
+        // $data = \App\Models\jadwal::with(['studio', 'film','jenis_studio'])->get();
+        return view('ticket.index', compact('Film','studio','jenis_studio','jadwal'), [
 
             'title' => 'Ticket Bioskop',
             'pages' => 'Ticket Bioskop'

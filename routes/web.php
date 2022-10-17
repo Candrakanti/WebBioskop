@@ -85,6 +85,8 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
 
 
     Route::resource('/crudJadwal', CrudJadwalController::class);
+    Route::get('/crudJadwal/edit{id_jadwal}', [CrudJadwalController::class, 'edit'])->name('crudJadwal.edit');
+    Route::post('/crudJadwal/update{id_jadwal}', [CrudJadwalController::class, 'update']);
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 });
 

@@ -12,7 +12,7 @@ class Film extends Model
     protected $table = "film";
     protected $fillable = [
         'id_film',
-        // 'id_jadwal',
+        'id_jadwal',
         'judul_film',
         'jenis_film',
         'produser',

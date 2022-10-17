@@ -4,32 +4,36 @@
 
 
 
-@foreach($data as $key => $film ) 
+@foreach($Film as $key => $data ) 
 <div class="container">
    
     <div class="row">
-        <h1>{{$key++}}</h1> 
+     
      
         <div class="col-6">
+       
+         <b>
+            <p>{{$data->judul_film}} </p>
+          
+        </b>
+      
+            <p>
+            {{$data->id_studio}}</p>
             
-         <b><p>{{$film->judul_film}} </p></b>
-            <p>REGULER 2D</p>
-           
         </div>
 
         <div class="col-6">
             <b><p style="margin-left: 80%;">Audio 3</p></b>
         </div>
-     
+      
     </div> 
   
     <a href="" class="btn btn-secondary"></a> 
-</div>
 
+    <hr class="border border-secondary border-2 opacity-50">
+</div>
 @endforeach
-<div class="container mb-1" style="background-color: black">
-            <hr class="border border-2 ">
- </div>
+
 
 
 @endsection
