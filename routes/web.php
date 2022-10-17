@@ -53,6 +53,11 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 //    END ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 
 Route::get('/movie', [MovieController::class, 'index']);
+Route::get('/movie/detail/{id_film}', [MovieController::class, 'detail'])->name('movie.detail');
+Route::get('/movie/booking/{id_film}', [MovieController::class, 'detail'])->name('movie.booking');
+
+Route::resource('/ticket', RticketController::class);
+Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
 
 Route::get('/unpaid', [UnpaidController::class, 'index']);
 Route::get('/paydone', [PaydoneController::class, 'index']);
@@ -103,5 +108,4 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
 });
 
 // Route::get('/ticket', [TicketController::class, 'index']);
-Route::resource('/ticket', RticketController::class);
-Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
+
