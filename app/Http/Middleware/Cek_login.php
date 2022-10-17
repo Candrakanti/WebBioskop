@@ -17,16 +17,15 @@ class Cek_login
      */
     public function handle(Request $request, Closure $next, $role)
     {
-       if (!Auth::check()) {
-        return redirect('login');
-       }
-        
-       $user = Auth::user();
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
 
-       if ($user->level == $role) {
-        return $next($request);
+        $user = Auth::user();
 
-       }
-       return redirect('login')->with('error', "Kamu harus login yaa...");
+        if ($user->level == $role) {
+            return $next($request);
+        }
+        return redirect('/login')->with('error', "Kamu harus login yaa...");
     }
 }

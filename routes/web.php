@@ -11,7 +11,8 @@ use App\Http\Controllers\UnpaidController;
 use App\Http\Controllers\PaydoneController;
 use App\Http\Controllers\TicketController;
 
-use App\Http\Controllers\AdminFilmController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CrudStudioController;
 
 use App\Http\Controllers\CrudFilmController;
@@ -53,6 +54,7 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 //    END ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 
 Route::get('/movie', [MovieController::class, 'index']);
+
 
 Route::get('/unpaid', [UnpaidController::class, 'index']);
 Route::get('/paydone', [PaydoneController::class, 'index']);
@@ -102,6 +104,10 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 });
 
-// Route::get('/ticket', [TicketController::class, 'index']);
 Route::resource('/ticket', RticketController::class);
-Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
+Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('ticket.show');
+
+Route::resource('/booking', BookingController::class)->middleware('auth');
+Route::get('add-to-cart/{id_film}', [BookingController::class, 'store'])->name('add.to.cart')->middleware('auth');
+// Route::get('/booking', [CartController::class, 'index'])->name('booking.cart')->middleware('auth');
+// Route::post('/cart', [CartController::class, 'store'])->name('booking.add')->middleware('auth');

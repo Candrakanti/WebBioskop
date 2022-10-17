@@ -54,11 +54,11 @@ class RticketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket, $id_jadwal)
+    public function show(Ticket $ticket, $id_film)
     {
         $data = jadwal::join('studio', 'studio.id_studio', '=', 'studio.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
             ->join('film', 'film.id_film', '=', 'jadwal.id_film')
-            ->get(['studio.*', 'jadwal.*', 'film.*', 'detail_jenis_studio.*'])->where('id_jadwal', $id_jadwal)->first();
+            ->get(['studio.*', 'jadwal.*', 'film.*', 'detail_jenis_studio.*'])->where('id_jadwal', $id_film)->first();
         return view('ticket.show', [
             'data' => $data,
             'title' => 'Jam Tayang'
