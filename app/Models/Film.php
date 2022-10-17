@@ -39,6 +39,9 @@ class Film extends Model
     // 'id_film', 'judul_film', 'jenis_film', 'produser', 'sutradara', 'penulis', 'cast', 'link_trailer', 'image', 'sinopsis'];
 
 
+    // 'id_film', 'judul_film', 'jenis_film', 'producer', 'sutradara', 'penulis', 'cast', 'link_trailer', 'image', 'sinopsis'];
+
+
     public function jadwal()
     {
         return $this->hasMany('App\Models\jadwal');

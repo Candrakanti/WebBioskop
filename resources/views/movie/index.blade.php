@@ -38,35 +38,40 @@
   
   </div>
 
-  @foreach ($posts as $film)
-      <article>
-        <h2><a href="">{{ $film->judul_film }}</a></h2>
-      </article>
-  @endforeach
-
   <div class="container">
     <div class="row">
-        @foreach ($posts->skip(1) as $film)
+      @foreach ($data as $data)
+
+      <div class="card" style="width: 18rem;">
+        @if ($data->image)
+        <img src="{{ asset('storage/' . $data->image) }}" class="card-img-top" alt="">
+        @endif
+        <div class="card-body">
+          <h5 class="card-title">{{ $data->judul_film }}</h5>
+        </div>
+        <div class="card-body">
+          <a href="#" class="btn btn-primary">BOOK NOW</a>
+        </div>
+      </div>
+
+
+{{-- 
         <div class="col-md-4 mb-3">
             <div class="card">
                 <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
-                @if ($film->image)
-                  <img src="{{ asset('storage/' . $film->image) }}"
+                @if ($fl->image)
+                  <img src="{{ asset('storage/' . $fl->image) }}"
                   class="img-fluid">  
-              @else
-                  <img src="https://source.unsplash.com/500x400?" 
-                  class="card-img-top">
               @endif
               
                 <div class="card-body">
-                  <h5 class="card-title">{{ $film->judul_film }}</h5>
-                  {{-- <p class="card-text">{{ $film->excerpt }}</p> --}}
+                  <h5 class="card-title">{{ $fl->judul_fl }}</h5>
                   <a href="" class="btn btn-success">Read more</a>
                 </div>
               </div>
         </div>
-        @endforeach
-    </div>
+    </div> --}}
+    @endforeach
 </div>
   </div>
 
@@ -74,9 +79,9 @@
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-3">
     <div class="card" >
-           <img src="/assets/img/bk8.jpg" class="card-img-top" alt="" width="" height="" style="margin-left:5px; ">
+           <img src="/assets/img/setan.jpg" class="card-img-top" alt="" width="" height="" style="margin-left:5px; ">
         <div class="card-body">
-        <a href="#" class="btn btn-outline-dark">BOOK NOW</a>
+        <a href="/detail" class="btn btn-outline-dark">BOOK NOW</a>
        </div>
      </div>
     </div>
@@ -85,7 +90,7 @@
     <div class="card" >
            <img src="/assets/img/bk8.jpg" class="card-img-top" alt="" width="" height="" style="margin-left: ">
         <div class="card-body">
-        <a href="#" class="btn btn-outline-dark">BOOK NOW</a>
+        <a href="/detail" class="btn btn-outline-dark">BOOK NOW</a>
        </div>
      </div>
     </div>

@@ -56,10 +56,10 @@
         </div> --}}
 
         <div class="mb-3">
-          <label for="produser" class="form-label">Produser</label>
-          <input type="text" class="form-control @error('produser') is-invalid @enderror" id="produser" 
-          name="produser" required autofocus value="{{ old('produser') }}">
-          @error('produser')
+          <label for="producer" class="form-label">Producer</label>
+          <input type="text" class="form-control @error('producer') is-invalid @enderror" id="producer" 
+          name="producer" required autofocus value="{{ old('producer') }}">
+          @error('producer')
           <div class="invalid-feedback">
             {{ $message }}
           </div>

@@ -35,10 +35,10 @@ class jadwal extends Model
     //     // return $this->hasMany(App\Models\film::class);
     // }
 
-    public function film()
-    {
-        return $this->belongsTo('App\Models\Film');
-    }
+    // public function film()
+    // {
+    //     return $this->belongsTo('App\Models\Film');
+    // }
 
     public function studio()
     {
@@ -52,5 +52,10 @@ class jadwal extends Model
     protected $casts = [
         'jam_tayang' => 'array'
     ];
+
+    public function Film()
+    {
+        return $this->hasMany('App\Models\Film');
+    }
 
 }

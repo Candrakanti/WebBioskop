@@ -53,7 +53,7 @@ class CrudFilmController  extends Controller
             'judul_film' => 'required|max:255',
             'jenis_film' => 'required|max:255',
             // 'jenis_film' => 'required',
-            'produser' => 'required|max:255',
+            'producer' => 'required|max:255',
             'sutradara' => 'required|max:255',
             'penulis' => 'required|max:255',
             'cast' => 'required|max:255',
@@ -145,7 +145,7 @@ class CrudFilmController  extends Controller
             'judul_film' => 'required|max:255',
             'jenis_film' => 'required|max:255',
             // 'jenis_film' => 'required',
-            'produser' => 'required|max:255',
+            'producer' => 'required|max:255',
             'sutradara' => 'required|max:255',
             'penulis' => 'required|max:255',
             'cast' => 'required|max:255',
@@ -206,10 +206,9 @@ class CrudFilmController  extends Controller
             Storage::delete($film->image);
         }
         
-         DB::table('film')->where('id_film', $id_film)->delete();
+        // Film::destroy($film->id_film);
+        DB::table('film')->where('id_film', $id_film)->delete();
         return redirect('/crudFilm')->with('success', 'Film has been deleted!');
-
-        // DB::table('film')->where('id_film', $id_film)->delete();
         // return redirect('/crudFilm')->with('success', 'Data Berhasil Di Hapus');
     }
 }

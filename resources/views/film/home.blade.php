@@ -78,7 +78,7 @@
                     <a class="badge badge-sm bg-gradient-warning" href="/crudFilm/{{$film->id_film}}/edit">Edit</a>
                     <a class="badge badge-sm bg-gradient-warning" href="{{ route('crudFilm.show', $film->id_film) }}">Detail</a>
                     
-                    <form method="POST" action="{{ route('crudFilm.delete', $film->id_film) }}" class="d-inline">
+                    <form method="POST" action="/crudFilm/{{ $film->id_film }}" class="d-inline">
                         @csrf
                         <input name="_method" type="hidden" value="DELETE">
                         <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$film->id_film}}" data-toggle="tooltip" title='Delete'>Delete</button>
