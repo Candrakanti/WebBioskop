@@ -69,7 +69,7 @@
                     </div>
                 </div>
     
-                <a class="btn btn-danger" href="/">BOOK NOW</a>
+                <a class="btn btn-danger" href="/movie/detbooking/{{ $data->id_film }}">BOOK NOW</a>
                 
             </div>
           </div>
