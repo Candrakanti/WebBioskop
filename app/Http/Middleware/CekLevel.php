@@ -23,6 +23,7 @@ class CekLevel
 
         return $next($request);
 
+
         // if(in_array($request->user()->is_admin,$is_admin)) {
         //     return$next($request);
         // }
