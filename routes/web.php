@@ -18,6 +18,7 @@ use App\Http\Controllers\CrudFilmController;
 
 use App\Http\Controllers\CrudJadwalController;
 use App\Http\Controllers\RticketController;
+use App\Http\Controllers\SeatController;
 use App\Models\studio;
 
 /*
@@ -52,6 +53,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 //    END ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 
+Route::get('/ticket/seat', [SeatController::class, 'index']);
 Route::get('/movie', [MovieController::class, 'index']);
 Route::get('/movie/detail/{id_film}', [MovieController::class, 'detail'])->name('movie.detail');
 Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking'])->name('movie.detbooking');

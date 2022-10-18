@@ -26,12 +26,7 @@
         </div>
     </div>
 
-    {{-- <a>{{ $data['value']->['jam_tayang'] }}</a> --}}
-    @foreach ($data as $property)
-    <p>{!! $property->jam_tayang !!}</p>
-        {{-- <a href="{{ route('ticket.show', $data->id_jadwal) }}" class="btn btn-dark"
-            style="color: white">{{ $property['value'] }}</a> --}}
-    @endforeach
+   
 
 
 
