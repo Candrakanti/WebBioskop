@@ -15,6 +15,7 @@ class TicketController extends Controller
 
     public function index()
     {
+<<<<<<< HEAD
         // return view('ticket.index', [
         //     "title" => "ticket",
         //     "active" => "ticket"
@@ -40,6 +41,11 @@ class TicketController extends Controller
         // return view('ticket.index', compact('data'), [
         //     'title' => 'ticket',
         //     'active' => 'ticket'
+=======
+        $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
+            ->join('film', 'film.id_film', '=', 'jadwal.id_film')
+            ->get(['studio.*', 'jadwal.*', 'film.*', 'detail_jenis_studio.*']);
+>>>>>>> cc8e4c63f4d4c1b3f319dcb7b27d7eae12572677
 
         ]);
     }

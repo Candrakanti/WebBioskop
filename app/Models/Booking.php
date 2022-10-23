@@ -5,20 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class studio extends Model
+class Booking extends Model
 {
     use HasFactory;
+    protected $table = "booking";
     public $timestamps = false;
-    protected $primaryKey = 'id_studio';
+    protected $primaryKey = 'id_booking';
     protected $keyType = 'string';
-    protected $table = "studio";
-    protected $fillable = [
-        'id_studio',
-        'id_jenis_studio',
-        'id_kota',
-        'audiotori',
-        'jumlah_kursi',
-    ];
 
-   
+    protected $fillable = [
+        'id_booking',
+        'id_customer',
+        'id_payment',
+        'id_jadwal',
+        'tanggal_booking',
+        'jumlah_kursi',
+        'qr_tiket',
+        'total_harga',
+    ];
 }

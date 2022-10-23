@@ -17,13 +17,13 @@ class CrudFilmController  extends Controller
      */
     public function index()
     {
-       
+
         $films = Film::all();
         return view('film.home', compact('films'), [
             'title' => 'Admin Film',
             'active' => 'Admin Film',
-            'pages' => 'Data Film',           
-    ]);
+            'pages' => 'Data Film',
+        ]);
     }
 
     /**
@@ -58,11 +58,11 @@ class CrudFilmController  extends Controller
             'penulis' => 'required|max:255',
             'cast' => 'required|max:255',
             'link_trailer' => 'required|max:255',
-            'image' =>'image|file|max:1024',
+            'image' => 'image|file|max:1024',
             'sinopsis' => 'required'
         ]);
 
-        if($request->file('image')) {
+        if ($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('film-images');
         }
 
@@ -83,8 +83,8 @@ class CrudFilmController  extends Controller
         return view('film.detail', compact('film'), [
             'title' => 'Admin Film',
             'active' => 'Admin Film',
-            'pages' => 'Detail Film',           
-    ]);
+            'pages' => 'Detail Film',
+        ]);
     }
 
     /**
@@ -119,7 +119,7 @@ class CrudFilmController  extends Controller
 
     // }
 
-    public function edit(Film $film , $id_film)
+    public function edit(Film $film, $id_film)
     {
         $film = DB::table('film')->where('id_film', $id_film)->first();
         return view('film.edit', compact('film'), [
@@ -150,17 +150,17 @@ class CrudFilmController  extends Controller
             'penulis' => 'required|max:255',
             'cast' => 'required|max:255',
             'link_trailer' => 'required|max:255',
-            'image' =>'image|file|max:1024',
+            'image' => 'image|file|max:1024',
             'sinopsis' => 'required'
         ]);
 
-        if($request->file('image')) {
-            if($request->oldImage) {
+        if ($request->file('image')) {
+            if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
             $validatedData['image'] = $request->file('image')->store('film-images');
         }
-        
+
         Film::where('id_film', $request->id_film)->update($validatedData);
 
         return redirect('/crudFilm')->with('success', 'Film has been updated!');
@@ -180,7 +180,7 @@ class CrudFilmController  extends Controller
     //         'link_trailer'=>$request->link_trailer,
     //         // 'image'=>$request->image,
     //         'sinopsis'=>$request->sinopsis
-            
+
     //     ]);
 
     //     if($request->file('image')) {
@@ -190,7 +190,7 @@ class CrudFilmController  extends Controller
     //         $validatedData['image'] = $request->file('image')->store('film-images');
     //     }
 
-        
+
     //     return redirect('/crudFilm')->with('success', 'Data Berhasil Diedit!');
     // }
 
@@ -202,10 +202,9 @@ class CrudFilmController  extends Controller
      */
     public function destroy(Film $film, $id_film)
     {
-        if($film->image) {
+        if ($film->image) {
             Storage::delete($film->image);
-        }
-        
+        }       
         // Film::destroy($film->id_film);
         DB::table('film')->where('id_film', $id_film)->delete();
         return redirect('/crudFilm')->with('success', 'Film has been deleted!');

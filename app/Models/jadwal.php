@@ -20,6 +20,7 @@ class jadwal extends Model
         'tgl_tayang_awal',
         'tgl_tayang_akhir',
         'jam_tayang',
+        'detail_kota',
     ];
 
     // public function jadwal()
@@ -50,12 +51,14 @@ class jadwal extends Model
     }
 
     protected $casts = [
-        'jam_tayang' => 'array'
+        'jam_tayang' => 'array',
+        'detail_kota' => 'array',
     ];
 
     public function Film()
     {
         return $this->hasMany('App\Models\Film');
     }
+
 
 }
