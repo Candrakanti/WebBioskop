@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class studio extends Model
+class kota extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $primaryKey = 'id_studio';
+    protected $primaryKey = 'id_kota';
     protected $keyType = 'string';
-    protected $table = "studio";
+    protected $table = "kota";
     protected $fillable = [
-        'id_studio',
-        'id_jenis_studio',
         'id_kota',
-        'audiotori',
-        'jumlah_kursi',
+        'kota',
+        'detail_kota',
     ];
-
-   
+    protected $casts = [
+        'detail_kota' => 'array'
+    ];
 }

@@ -48,8 +48,8 @@
             </div>
 
             <div class="form-group">
-                <label for="produser">Produser</label>
-                <input type="text" name="produser" id="produser" class="form-control" value="{{$film->produser }}" required="">
+                <label for="produser">Producer</label>
+                <input type="text" name="producer" id="produser" class="form-control" value="{{$film->producer }}" required="">
             </div>
 
             <div class="form-group">

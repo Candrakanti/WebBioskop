@@ -13,6 +13,13 @@ class Film extends Model
     protected $primaryKey = 'id_film';
     protected $keyType = 'string';
     protected $fillable = [
+
         'id_film', 'judul_film', 'jenis_film', 'producer', 'sutradara', 'penulis', 'cast', 'link_trailer', 'image', 'sinopsis'
     ];
+
+
+    public function jadwal()
+    {
+        return $this->hasMany('App\Models\jadwal');
+    }
 }

@@ -14,7 +14,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CrudStudioController;
-
+use App\Http\Controllers\KotaController;
 use App\Http\Controllers\CrudFilmController;
 
 use App\Http\Controllers\CrudJadwalController;
@@ -54,6 +54,11 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 //    END ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 
 Route::get('/movie', [MovieController::class, 'index']);
+Route::get('/movie/detail/{id_film}', [MovieController::class, 'detail'])->name('movie.detail');
+Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking'])->name('movie.detbooking');
+
+Route::resource('/ticket', RticketController::class);
+Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
 
 
 Route::get('/unpaid', [UnpaidController::class, 'index']);
@@ -97,12 +102,14 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::post('/CrudStudio/update', [CrudStudioController::class, 'update']);
     Route::delete('/CrudStudio/delete/{id_studio}', [CrudStudioController::class, 'destroy'])->name('CrudStudio.delete');
 
+    Route::resource('/kota', KotaController::class);
 
     Route::resource('/crudJadwal', CrudJadwalController::class);
     Route::get('/crudJadwal/edit{id_jadwal}', [CrudJadwalController::class, 'edit'])->name('crudJadwal.edit');
 
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 });
+
 
 Route::resource('/ticket', RticketController::class);
 Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('ticket.show');
@@ -111,3 +118,4 @@ Route::resource('/booking', BookingController::class)->middleware('auth');
 Route::get('add-to-cart/{id_film}', [BookingController::class, 'store'])->name('add.to.cart')->middleware('auth');
 // Route::get('/booking', [CartController::class, 'index'])->name('booking.cart')->middleware('auth');
 // Route::post('/cart', [CartController::class, 'store'])->name('booking.add')->middleware('auth');
+// Route::get('/ticket', [TicketController::class, 'index']);

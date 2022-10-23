@@ -74,7 +74,7 @@ class CrudJadwalController extends Controller
             'tgl_tayang_awal' => 'required',
             'tgl_tayang_akhir' => 'required',
             'jam_tayang' => 'required',
-            // 'jam_tayang1' => 'required',
+            'detail_kota' => 'required',
         ]);
 
         jadwal::create($validatedData);

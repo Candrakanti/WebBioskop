@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="container pb-5" id="tanggal">
+    {{-- <div class="container pb-5" id="tanggal">
         hi
-    </div>
+    </div> --}}
     @foreach ($data as $dt)
         <div class="row">
 

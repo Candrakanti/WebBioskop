@@ -44,17 +44,6 @@
             </div>
 
 
-            {{-- <div class="mb-3">
-          <label for="jenis_film" class="form-label">Jenis Film</label>
-          <input type="text" class="form-control @error('jenis_film') is-invalid @enderror" id="jenis_film" 
-          name="jenis_film" required autofocus value="{{ old('jenis_film') }}">
-          @error('jenis_film')
-          <div class="invalid-feedback">
-            {{ $message }}
-          </div>
-          @enderror
-        </div> --}}
-
             <div class="mb-3">
                 <label for="producer" class="form-label">producer</label>
                 <input type="text" class="form-control @error('producer') is-invalid @enderror" id="producer"
@@ -65,6 +54,7 @@
                     </div>
                 @enderror
             </div>
+
 
             <div class="mb-3">
                 <label for="sutradara" class="form-label">Sutradara</label>
@@ -109,21 +99,6 @@
                     </div>
                 @enderror
             </div>
-
-
-
-            {{-- <div class="mb-3">
-            <label for="category" class="form-label">Category</label>
-            <select class="form-select" name="category_id">
-              @foreach ($categories as $category)
-              @if (old('category_id') == $category->id)
-                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-              @else
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-              @endif  
-              @endforeach
-            </select>
-          </div> --}}
 
             <div class="mb-3">
                 <label for="image" class="form-label">Post Image</label>
