@@ -1,43 +1,11 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="container pb-5" id="tanggal">
+    {{-- <div class="container pb-5" id="tanggal">
         hi
-    </div>
+    </div> --}}
     @foreach ($data as $dt)
         <div class="row">
-
-
-
-@foreach($Film as $key => $data ) 
-<div class="container">
-   
-    <div class="row">
-     
-     
-        <div class="col-6">
-       
-         <b>
-            <p>{{$data->judul_film}} </p>
-          
-        </b>
-      
-            <p>
-            {{$data->id_studio}}</p>
-            
-        </div>
-
-        <div class="col-6">
-            <b><p style="margin-left: 80%;">Audio 3</p></b>
-        </div>
-      
-    </div> 
-  
-    <a href="" class="btn btn-secondary"></a> 
-
-    <hr class="border border-secondary border-2 opacity-50">
-</div>
-@endforeach
 
             <div class="col-5">
                 <h5> {{ $dt->judul_film }}</h5>
@@ -68,5 +36,4 @@
 
         <hr class="border border-secondary border-2 opacity-50">
     @endforeach
-    
 @endsection

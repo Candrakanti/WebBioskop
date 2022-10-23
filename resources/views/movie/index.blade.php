@@ -2,21 +2,30 @@
 
 @section('container')
 
+
+<div class="container-fluid text-center" style="margin-top: 70px;">
+ {{-- <img src="{{asset('img/movie.png')}} "class="d-block" width="1250" height="500">
+ <h5 class="">ppppp</h5> --}}
+ <div class="container text-center" style="background-image: url({{asset('img/movie.png')}}); height: 200%;" width="1250%" height="500%">
+  <h2 style="color: #fff;">Alamat</h2>
+
+  
+</div>
+</div>
+
+
+
 <div class="container">
-
-
-
-  <div class="container" style="margin-bottom: 5%">
 
     <div class="row pt-5">
         <div class="col-8">
   
     <div class="row text-end">
         <div class="col-4 col-lg-2 col-md-2 col-sm-2">
-            <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/">PLAYING</a>
+            <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/"><b>PLAYING</b></a>
         </div>
         <div class="col-4  col-lg-2 col-md-2 col-sm-2">
-          <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/">UPCOMING</a>
+          <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="/"><b>UPCOMING</b></a>
         </div>
     </div>
   
@@ -34,45 +43,26 @@
                 </ul>
               </li>
         </div>
-    </div>
   
   </div>
 
   <div class="container">
     <div class="row">
-      @foreach ($data as $data)
-
-      <div class="card" style="width: 18rem;">
-        @if ($data->image)
-        <img src="{{ asset('storage/' . $data->image) }}" class="card-img-top" alt="">
+      @foreach ($data as $film)
+      <div class="card" style="width: 15rem;">
+        @if ($film->image)
+        <div class="shadow mb-5">
+        <a href="/movie/detail/{{ $film->id_film }}">
+        <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top" alt="">
+        </a>
+      </div>
         @endif
-        <div class="card-body">
-          <h5 class="card-title">{{ $data->judul_film }}</h5>
-        </div>
-        <div class="card-body">
+        <div class="card-body" style="padding: 43px;">
           <a href="#" class="btn btn-primary">BOOK NOW</a>
         </div>
       </div>
-
-
-{{-- 
-        <div class="col-md-4 mb-3">
-            <div class="card">
-                <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
-                @if ($fl->image)
-                  <img src="{{ asset('storage/' . $fl->image) }}"
-                  class="img-fluid">  
-              @endif
-              
-                <div class="card-body">
-                  <h5 class="card-title">{{ $fl->judul_fl }}</h5>
-                  <a href="" class="btn btn-success">Read more</a>
-                </div>
-              </div>
-        </div>
-    </div> --}}
-    @endforeach
-</div>
+      @endforeach
+    </div>
   </div>
 
 {{-- <div class="container ">

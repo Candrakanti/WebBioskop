@@ -35,6 +35,7 @@
                 <option>Action</option>
                 <option>Thriller</option>
                 <option>Comedy</option>
+                <option>Fantasy</option>
               </select>
               @error('jenis_film')
               <div class="invalid-feedback">

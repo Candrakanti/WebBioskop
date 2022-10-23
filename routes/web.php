@@ -54,6 +54,10 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 //    END ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 
 Route::get('/movie', [MovieController::class, 'index']);
+Route::get('/movie/detail/{id_film}', [MovieController::class, 'detail'])->name('movie.detail');
+Route::get('/movie/booking/{id_film}', [MovieController::class, 'detail'])->name('movie.booking');
+
+
 
 Route::get('/unpaid', [UnpaidController::class, 'index']);
 Route::get('/paydone', [PaydoneController::class, 'index']);
@@ -103,12 +107,5 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 });
 
-
-
-
-// Route::get('/film', [AdminFilmController::class, 'index'])->middleware('ceklevel:admin_film');
-// Route::get('/crudFilm', [AdminFilmController::class, 'crud'])->middleware('ceklevel:admin_film');
-Route::get('/ticket', [TicketController::class, 'index'] );
-// Route::get('/ticket', [TicketController::class, 'index']);
 Route::resource('/ticket', RticketController::class);
 Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
