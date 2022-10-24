@@ -28,11 +28,12 @@
 
                             <ul class="dropdown-menu">
                                 @foreach ($data as $dt)
-                                    <p>{{ $dt->kota }}</p>
+                                    {{-- <a href="{{ route('movie.detkota', $dt->id_kota) }}" class="btn btn-dark"
+                                        style="color: white">{{ $dt->kota }}</a> --}}
                                 @endforeach
 
                             </ul>
-                        </li>
+
 
                     </div>
 
@@ -44,7 +45,6 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach ($data as $dt)
-                                    {{-- <p>{{ $dt->detail_kota }}</p> --}}
                                     @foreach ($dt->detail_kota as $dt)
                                         <p>{{ $dt['value'] }}</p>
                                     @endforeach
@@ -60,8 +60,12 @@
 
         <div class="container">
             <div class="row">
+
+
                 @foreach ($data as $film)
                     <div class="card" style="width: 15rem;">
+
+
                         @if ($film->image)
                             <div class="shadow mb-5">
                                 <a href="/movie/detail/{{ $film->id_film }}">
@@ -69,9 +73,14 @@
                                 </a>
                             </div>
                         @endif
+
                         <a href="/movie/detail/{{ $film->id_film }}">
-                            <h6 class="text-center">{{ $film->judul_film }}</h6>
+                            <h6 class="text-center">
+
+                                {{ $film->judul_film }}
+                            </h6>
                         </a>
+
                         <div class="card-body">
                             <a href="#" class="btn btn-primary">BOOK NOW</a>
                         </div>

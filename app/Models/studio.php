@@ -15,7 +15,6 @@ class studio extends Model
     protected $fillable = [
         'id_studio',
         'id_jenis_studio',
-        'id_kota',
         'audiotori',
         'jumlah_kursi',
     ];

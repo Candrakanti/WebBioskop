@@ -17,14 +17,14 @@ class jadwal extends Model
         'id_jadwal',
         'id_studio',
         'id_film',
+        'id_kota',
         'tgl_tayang_awal',
         'tgl_tayang_akhir',
         'jam_tayang',
-        'detail_kota',
     ];
 
     protected $casts = [
         'jam_tayang' => 'array',
-        'detail_kota' => 'array',
+
     ];
 }

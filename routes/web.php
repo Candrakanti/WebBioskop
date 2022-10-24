@@ -56,6 +56,7 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 Route::get('/movie', [MovieController::class, 'index']);
 Route::get('/movie/detail/{id_film}', [MovieController::class, 'detail'])->name('movie.detail');
 Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking'])->name('movie.detbooking');
+// Route::get('/movie/kota/{id_kota}', [MovieController::class, 'detkota'])->name('movie.detkota');
 
 Route::resource('/ticket', RticketController::class);
 Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
