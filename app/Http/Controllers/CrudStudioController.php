@@ -42,9 +42,8 @@ class CrudStudioController extends Controller
     public function create()
     {
         $jenis_studio = jenis_studio::all();
-        $kota = kota::all();
-
-        return view('studio.crud.input',  compact('jenis_studio', 'kota'), [
+  
+        return view('studio.crud.input',  compact('jenis_studio'), [
             // 'jenis_studio' => jenis_studio::all(),
             'title' => 'Admin Studio',
             'pages' => 'Input Studio'
@@ -64,7 +63,6 @@ class CrudStudioController extends Controller
 
             'id_studio' => 'required|min:5|max:225|unique:studio',
             'id_jenis_studio' => 'required',
-            'id_kota' => 'required',
             'audiotori' => 'required',
             'jumlah_kursi' => 'required',
         ]);

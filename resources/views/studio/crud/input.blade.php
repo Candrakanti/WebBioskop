@@ -40,7 +40,7 @@
 
                 </div>
 
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="id_kota" class="form-label"> id_kota</label>
                     <select class="form-select form-select-lg mb-3" name="id_kota">
 
@@ -52,7 +52,7 @@
                             @endif
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
 
                 {{-- <div class="form-group">
                     <label for="jam_tayang"> Kota</label>

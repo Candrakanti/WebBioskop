@@ -22,6 +22,8 @@ use App\Http\Controllers\CrudJadwalController;
 use App\Http\Controllers\RticketController;
 use App\Models\studio;
 
+use App\Http\Controllers\CrudPaymentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,6 +59,7 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 Route::get('/movie', [MovieController::class, 'index']);
 Route::get('/movie/detail/{id_film}', [MovieController::class, 'detail'])->name('movie.detail');
 Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking'])->name('movie.detbooking');
+// Route::get('/movie/kota/{id_kota}', [MovieController::class, 'detkota'])->name('movie.detkota');
 
 
 
@@ -122,4 +125,9 @@ Route::get('add-to-cart/{id_film}', [BookingController::class, 'store'])->name('
 // Route::get('/booking', [CartController::class, 'index'])->name('booking.cart')->middleware('auth');
 // Route::post('/cart', [CartController::class, 'store'])->name('booking.add')->middleware('auth');
 // Route::get('/ticket', [TicketController::class, 'index']);
+
+
+Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
+    Route::get('/payment', [CrudPaymentController::class, 'index']);
+});
 

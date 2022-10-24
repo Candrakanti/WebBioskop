@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'ceklevel' => \App\Http\Middleware\CekLevel::class,
         'cekstudio' => \App\Http\Middleware\CekStudio::class,
+        'cekpayment' => \App\Http\Middleware\CekPayment::class,
     ];
 }

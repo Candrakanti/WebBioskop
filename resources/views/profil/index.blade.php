@@ -101,6 +101,20 @@
 
             </div>
         @endif
+        @if (auth()->user()->is_admin == 'admin_payment')
+            <div class="container pt-2">
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-6 text-center ">
+                        <form action="/payment" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger" style="border: 0"><i
+                                    class="bi bi-box-arrow-in-right"></i> Masuk Admin Payment</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        @endif
     @else
         <h2 class="text-center"> Kamu Belum Login !</h2>
         <div class="container shadow-lg p-3 mb-5 bg-body rounded text-center">

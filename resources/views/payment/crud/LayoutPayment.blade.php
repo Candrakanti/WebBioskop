@@ -1,5 +1,5 @@
 
-@extends('studio.templateDashboard.sidebar')
+@extends('payment.templateDashboard.sidebar')
 
 @section('container')
 
@@ -39,12 +39,12 @@
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Id Studio</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Jenis Studio</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Auditori</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Kursi</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
-                  @foreach($std as $key => $data ) 
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Id Payment</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Booking</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Payment</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Bayar</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                  @foreach($data as $key => $data ) 
                 </tr>
               </thead>
 
@@ -64,20 +64,23 @@
                   </td>
 
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">{{$data->id_studio}}</p>
+                    <p class="text-xs font-weight-bold mb-0">{{$data->id_payment}}</p>
                   </td>
 
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->jenis_studio}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_booking}}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->audiotori}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->jenis_payment}}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->jumlah_kursi}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->jumlah_bayar}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->status}}</span>
                   </td>
 
-                     <td class="align-middle text-center text-sm">
+                     {{-- <td class="align-middle text-center text-sm">
                     <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Edit</a>
                    
                     {{-- <form id="delete-user-form" action="/CrudStudio/{{ $data->id_studio }}" method="POST" class="d-inline">
@@ -86,18 +89,18 @@
                     <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" data-id="{{$data->id_studio}}"  data-name="{{$data->id_studio}}"  > delete</a>
                     </form> --}}
 
-                    <form method="POST" action="{{ route('CrudStudio.delete', $data->id_studio) }}" class="d-inline">
+                    {{-- <form method="POST" action="{{ route('CrudStudio.delete', $data->id_studio) }}" class="d-inline">
                       @csrf
                       <input name="_method" type="hidden" value="DELETE">
                       <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$data->id_studio}}" data-toggle="tooltip" title='Delete'>Delete</button>
-                  </form>
+                  </form> --}}
 
                     {{-- <a href="/CrudStudio/{{ $data->id_studio }}" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
                   </td>
                  
                 </tr>
                 <tr>
-                  <td>
+                  <td> 
 
                    
                 </tr>

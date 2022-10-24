@@ -44,7 +44,7 @@ class KotaController extends Controller
     public function store(Request $request)
     {
         $validatedData =  $request->validate([
-            'id_kota' => 'required|min:5|max:225|unique:studio',
+            'id_kota' => 'required|min:5|max:225|unique:kota',
             'kota' => 'required',
             'detail_kota' => 'required',
         ]);
