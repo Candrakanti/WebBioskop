@@ -116,7 +116,3 @@ Route::resource('/ticket', RticketController::class);
 Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('ticket.show');
 
 Route::resource('/booking', BookingController::class)->middleware('auth');
-Route::get('add-to-cart/{id_film}', [BookingController::class, 'store'])->name('add.to.cart')->middleware('auth');
-// Route::get('/booking', [CartController::class, 'index'])->name('booking.cart')->middleware('auth');
-// Route::post('/cart', [CartController::class, 'store'])->name('booking.add')->middleware('auth');
-// Route::get('/ticket', [TicketController::class, 'index']);

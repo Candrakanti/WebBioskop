@@ -16,9 +16,9 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
-        return view('profil.cart', [
-            "title" => "mycgv",
-            "active" => "mycgv"
+        return view('movie.seat', [
+            'title' => 'Seat',
+            'pages' => 'Table Studio'
         ]);
     }
 

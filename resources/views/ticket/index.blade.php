@@ -26,13 +26,13 @@
             </div>
         </div>
 
-        <form action="add.to.cart" method="POST">
+        {{-- <form action="add.to.cart" method="POST">
             @csrf
-            @foreach ($dt->jam_tayang as $property)
-                {{-- <input type="text" name="jam_tayang" value="{{ $property['value'] }}" class="form-control"> --}}
-                <button class="btn btn-dark" style="color: white">{{ $property['value'] }}</button>
+            @foreach ($dt->jam_tayang as $property) --}}
+        {{-- <input type="text" name="jam_tayang" value="{{ $property['value'] }}" class="form-control"> --}}
+        {{-- <button class="btn btn-dark" style="color: white">{{ $property['value'] }}</button>
             @endforeach
-        </form>
+        </form> --}}
 
         <hr class="border border-secondary border-2 opacity-50">
     @endforeach

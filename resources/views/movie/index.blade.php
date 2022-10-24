@@ -82,7 +82,7 @@
                         </a>
 
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary">BOOK NOW</a>
+                            <a href="/booking" class="btn btn-primary">BOOK NOW</a>
                         </div>
                     </div>
                 @endforeach
