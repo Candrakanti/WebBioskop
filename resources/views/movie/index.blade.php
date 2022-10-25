@@ -59,11 +59,11 @@
         </section>
 
         <div class="container">
-            <div class="row">
+            <div class="row ">
 
 
                 @foreach ($data as $film)
-                    <div class="card" style="width: 15rem;">
+                    <div class="card product_data" style="width: 15rem;">
 
 
                         @if ($film->image)
@@ -73,19 +73,42 @@
                                 </a>
                             </div>
                         @endif
-
+                        <input type="hidden" value="{{ $film->judul_film }}" class="prod_id">
                         <a href="/movie/detail/{{ $film->id_film }}">
-                            <h6 class="text-center">
+                            <h6 class="text-center ">
 
                                 {{ $film->judul_film }}
                             </h6>
                         </a>
 
                         <div class="card-body">
-                            <a href="/booking" class="btn btn-primary">BOOK NOW</a>
+                            <a href="/booking/show/{{ $film->id_film }}" class="btn btn-primary">BOOK NOW</a>
                         </div>
+
+                        {{-- <div class="card-body">
+                            <button class="btn btn-primary addToCartBtn">BOOK NOW</button>
+                        </div> --}}
+
                     </div>
                 @endforeach
             </div>
         </div>
+        <script>
+            $('document').ready(function() {
+                $('.addToCartBtn').click(function(e) {
+                    e.preventDefault();
+                    var product_id = $(this).closest('.product_data').find('.prod_id').val();
+                    $.ajax({
+                        method: "POST",
+                        url: "/AddToCart",
+                        data: {
+                            'product_id': product_id
+                        },
+                        success: function(response) {
+
+                        }
+                    })
+                });
+            });
+        </script>
     @endsection

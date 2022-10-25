@@ -39,7 +39,12 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mycgv', [CgvController::class, 'index']);
+    Route::get('/booking/show/{id_film}', [BookingController::class, 'index'])->name('booking.show');
+    Route::get('/booking/show/{id_film}', [BookingController::class, 'index'])->name('booking.show');
+    Route::post('/AddToCart', [BookingController::class, 'addProduct']);
+});
 
 //   ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -114,5 +119,3 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
 
 Route::resource('/ticket', RticketController::class);
 Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('ticket.show');
-
-Route::resource('/booking', BookingController::class)->middleware('auth');

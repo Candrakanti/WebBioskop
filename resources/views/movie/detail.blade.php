@@ -64,7 +64,7 @@
 
                             <a style="color:#0000FF;" href="{{ $data->link_trailer }}">Wacth Trailer</a>&nbsp&nbsp&nbsp
 
-                            <a style="color:#FF0000;" href=""> Book Now</a>
+                            <a href="/booking/show/{{ $data->id_film }}">BOOK NOW</a>
                             <hr class="border border-danger border-2 opacity-50" width="40%" style="margin-left:">
                         </div>
 

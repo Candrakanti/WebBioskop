@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\kota;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Film;
@@ -14,9 +15,10 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $id_film)
     {
-        return view('movie.seat', [
+        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
+        return view('movie.seat', compact('data'), [
             'title' => 'Seat',
             'pages' => 'Table Studio'
         ]);
@@ -69,6 +71,10 @@ class BookingController extends Controller
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
+    public function addProduct()
+    {
+        return "hi";
+    }
     /**
      * Display the specified resource.
      *
