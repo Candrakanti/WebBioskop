@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ForgotPasswordController;
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CgvController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UnpaidController;
@@ -32,13 +33,15 @@ use App\Models\studio;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home",
-        "active" => "Home"
-    ]);
-});
+// Route::get('/', function () {
+//     return view('home', [
+//         "title" => "Home",
+//         "active" => "Home"
+//     ]);
+// });
 
+Route::get('/', [HomeController::class, 'index']);
+// Route::get('//{tgl_tayang_awal}', [HomeController::class, 'detail'])->name('home.detail');
 Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
 
 //   ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !

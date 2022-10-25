@@ -40,9 +40,9 @@
           <li class="nav-item">
             <a class="nav-link {{ ($title === "Movie")? 'active' : '' }}" href="/movie" >MOVIE</a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link"  href="/ticket">TICKET</a>  
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a class="nav-link " href="/mycgv">MYSEENEMA</a>
           </li>

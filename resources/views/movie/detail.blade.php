@@ -21,6 +21,7 @@
             <div class="col-8 ">
             <div class="card-body">
                 <h5 style="color: red"><b>{{ $data->judul_film }}</b></h5>
+                <h5>{{ $data->tgl_tayang_awal }}</h5>
     
             
                 <div class="row mb-3 ">
