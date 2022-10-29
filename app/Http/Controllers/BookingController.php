@@ -1,22 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-<<<<<<< HEAD
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
-{
-    public function index()
-    {
-        return view('movie.index', [
-            "title" => "movie",
-            "active" => "movie"
-        ]);
-    }
-=======
+
+
 use App\Models\Booking;
-use Illuminate\Http\Request;
+
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Film;
 
@@ -29,9 +19,9 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
-        return view('profil.cart', [
-            "title" => "mycgv",
-            "active" => "mycgv"
+        return view('movie.seat', [
+            'title' => 'Seat',
+            'pages' => 'Table Studio'
         ]);
     }
 
@@ -126,5 +116,5 @@ class BookingController extends Controller
     {
         //
     }
->>>>>>> cc8e4c63f4d4c1b3f319dcb7b27d7eae12572677
+
 }

@@ -37,7 +37,7 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link   {{Request:: is('beranda') ? 'active' : ''}}" href="/beranda">
+          <a class="nav-link   {{Request:: is('payment') ? 'active' : ''}}" href="/payment">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-dark text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -58,7 +58,7 @@
         </li>
       
         <li class="nav-item">
-          <a class="nav-link  {{Request:: is('CrudStudio*') ? 'active' : ''}} " href="CrudStudio">
+          <a class="nav-link  {{Request:: is('CrudPayment*') ? 'active' : ''}} " href="CrudPayment">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>
@@ -74,7 +74,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Studio</span>
+            <span class="nav-link-text ms-1">Customer</span>
           </a>
         </li>
 
@@ -96,7 +96,7 @@
                 </g>
               </svg>
           </div>
-            <span class="nav-link-text ms-1">Jadwal</span>
+            <span class="nav-link-text ms-1">Laporan Penjualan</span>
           </a>
         </li>
 

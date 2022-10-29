@@ -21,7 +21,19 @@ class CrudPaymentController extends Controller
 
         $data = studio::all();
 
-        return view('payment.crud.LayoutPayment', compact('data'), [
+        return view('payment.crud.index', compact('data'), [
+            'title' => 'Admin Payment',
+            'pages' => 'Table Payment'
+        ]);
+        // return view('studio.LayoutStudio')->with('studio', $studio);
+    }
+
+    public function customer()
+    {
+
+        $data = payment::all();
+
+        return view('payment.crud.LayoutPayment',  compact('data'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);

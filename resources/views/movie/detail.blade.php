@@ -160,9 +160,5 @@
 </form>
 
 @endsection
-        </div>
-
-        </div>
-    </form>
-@endsection
+        
 
