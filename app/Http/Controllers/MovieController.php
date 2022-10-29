@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cart1;
 use App\Models\Film;
 use App\Models\kota;
 use App\Models\jadwal;
 use App\Models\studio;
-
+use App\Models\user;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -17,6 +20,9 @@ class MovieController extends Controller
         // $data = kota::join('studio', 'studio.id_kota', '=', 'kota.id_kota')->join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')->join('film', 'film.id_film', '=', 'jadwal.id_film')->get(['kota.*', 'studio.*', 'jadwal.*', 'film.*']);
 
         $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
+        $cart = Cart::content();
+        // dd($cart);
+        $data2 = user::all();
 
         // $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('kota', 'kota.id_kota', '=', 'jadwal.id_kota')
         //     ->get(['jadwal.*', 'film.*', 'studio.*', 'kota.*']);

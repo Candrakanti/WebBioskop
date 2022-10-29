@@ -54,7 +54,9 @@
                             <a class="nav-link " href="/mycgv">MYSEENEMA</a>
                         </li>
                         <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-                            <form class="d-inline" method="get" action="/booking">
+
+
+                            <form class="d-inline" method="get" action="cart/detail">
                                 @csrf
 
                                 <button type="submit" class="btn btn-info position-relative" data-toggle="modal"
@@ -62,14 +64,10 @@
                                     Keranjang
                                     <span
                                         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        99+
+                                        {{-- {{ \Gloudemans\Shoppingcart\Facades\Cart::content()->count() }} --}}
 
                                     </span>
-                                </button>
 
-                                {{-- <button class="btn
-                                btn-info" data-toggle="modal"
-                                    data-target="#exampleModal">Keranjang</button> --}}
                             </form>
                         </li>
                     </ul>

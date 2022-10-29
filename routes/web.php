@@ -42,8 +42,8 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/mycgv', [CgvController::class, 'index']);
     Route::get('/booking/show/{id_film}', [BookingController::class, 'index'])->name('booking.show');
-    Route::get('/booking/show/{id_film}', [BookingController::class, 'index'])->name('booking.show');
-    Route::post('/AddToCart', [BookingController::class, 'addProduct']);
+    Route::post('AddProduct/{id_film}', [BookingController::class, 'store'])->name('cart.store');
+    Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
 });
 
 //   ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !

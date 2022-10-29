@@ -64,7 +64,13 @@
 
                             <a style="color:#0000FF;" href="{{ $data->link_trailer }}">Wacth Trailer</a>&nbsp&nbsp&nbsp
 
-                            <a href="/booking/show/{{ $data->id_film }}">BOOK NOW</a>
+                            <form action="/AddProduct" method="post">
+                                @csrf
+                                {{-- <input type="hidden" name="id_film" value="{{ $data->id_film }}"> --}}
+                                <button type="submit"> BOOK NOW</button>
+                                {{-- <a href="/booking/show/{{ $data->id_film }}">BOOK NOW</a> --}}
+                            </form>
+
                             <hr class="border border-danger border-2 opacity-50" width="40%" style="margin-left:">
                         </div>
 
