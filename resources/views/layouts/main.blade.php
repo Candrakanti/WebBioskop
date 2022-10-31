@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    @include('partials.navbarNew')
+    @include('layouts.navbarNew')
 
 
     <div class="container ">

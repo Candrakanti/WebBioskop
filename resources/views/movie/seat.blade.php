@@ -22,62 +22,84 @@
 
         <input type="hidden" class="qty-input" value="{{ $data->jenis_studio }}" class="prod_id">
 
+        @if ($data->jenis_studio === 'Regular')
+            <div class="seats" id="seats" name="harga">
+                <label> <input type="checkbox" value="{{ $data->harga }}" data-value="A1" name="programming">
+                    PHP</label>
+                <label><input type="checkbox" value="{{ $data->harga }}" data-value="A2" name="programming"> Java</label>
 
-        <ul id="list" class="list-unstyled" onclick="seat();">
-
-
-            @if ($data->jenis_studio === 'Regular')
-                <div class="row ">
-
-                    <div class="col-4 col-lg-4 col-md-4 col-sm-4">
-                        <h1>A</h1>
-                        <li class="border border-5" data-value="A1">
-                            <h1 class="text-center pt-5">DIV 1</h1>
-                        </li>
-
-                    </div>
-
-                    <div class="col-4 col-lg-4 col-md-4 col-sm-4">
-                        <h1>B</h1>
-                        <li class="border border-5 " data-value="B1">
-                            <h1 class="text-center pt-5">DIV 2A</h1>
-                        </li>
-
-                    </div>
-                </div>
-
-                <div class="pt-3">
-
-                    <input class="form-control" type="text" placeholder="Kursi Yang Anda Pilih"
-                        aria-label="Disabled input example" disabled id="seat">
-                </div>
-            @endif
+            </div>
 
 
+            {{-- <a href="/Npayment" class="btn btn-danger">Click here to Get Values</a> --}}
+            <div class="pt-3">
 
-        </ul>
+                <input class="form-control btn btn-secondary" type="text" placeholder="Kursi Yang Anda Pilih"
+                    aria-label="Disabled input example" disabled id="seat">
+                {{-- <span class="badge rounded-pill text-bg-info" disabled>Info</span> --}}
+            </div>
 
+            <div class="pt-3">
+                <input class="form-control" type="text" placeholder="Kursi Yang Anda Pilih"
+                    aria-label="Disabled input example" disabled id="price">
+            </div>
+        @endif
 
 
         <div class="card-body">
-            <a class="btn btn-primary ">BOOK NOW</a>
+            <button class="btn btn-primary" id="book" disabled>BOOK NOW</button>
         </div>
-
-
 
     </form>
 
 
 
     <script>
-        function seat() {
-            $('li').click(function(e) {
-                e.preventDefault();
-                var value = $(this).closest('li').data('value');
-                document.getElementById('seat').value = value;
-                // console.log(value);
+        $(document).ready(function() {
+            $('.seats').click(function() {
+                var test = new Array();
+                $("input[name='programming']:checked").each(function() {
+                    test.push($(this).data('value'));
+                });
+                document.getElementById('seat').value = test;
+
+                var input = document.getElementsByName("programming");
+                var total = 0;
+                for (var i = 0; i < input.length; i++) {
+                    if (input[i].checked) {
+                        total += parseFloat(input[i].value);
+                    }
+                }
+                document.getElementById("price").value = "Rp." + total.toFixed(2).replace(/\.00/g, '');
+
+                document.querySelector('#seats').addEventListener('change', () => {
+                    var seat = document.getElementById("seats");
+                    var checkeds = seat.getElementsByTagName("INPUT");
+
+                    var counter = 0;
+
+                    for (let i = 0; i < checkeds.length; i++) {
+                        if (checkeds[i].checked) {
+                            counter++;
+                        }
+                    }
+
+                    if (counter >= 1) {
+                        document.getElementById("book").disabled = false;
+                    } else {
+                        document.getElementById("book").disabled = true;
+                    }
+                });
+
+                // alert("My favourite programming languages are: " + test);
+
             });
-        }
+        });
+
+
+
+
+
 
         // $('document').ready(function() {
         //     $('.addToCartBtn').click(function(e) {

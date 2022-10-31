@@ -112,10 +112,12 @@ class BookingController extends Controller
             "title" => "mycgv",
             "active" => "mycgv"
         ]);
-
-
     }
 
+    public function form()
+    {
+        return "hi";
+    }
 
     /**
      * Show the form for editing the specified resource.
