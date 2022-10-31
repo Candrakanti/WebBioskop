@@ -87,9 +87,9 @@
             
                                  
             
-                                    <div class="row">
+                                    <div class="row offset-1">
             
-                                      <div class="col-6 col-lg-6 col-md-5 col-sm-6">
+                                      <div class="col-5 col-lg-5 col-md-5 col-sm-5">
                                         <div class="form-floating mb-3">
                                           <input type="time" name="time" class="form-control @error('time') is-invalid  @enderror"  id="time" placeholder="Password" required value="{{ old('time') }}">
                                           <label for="time">time</label>
@@ -101,7 +101,7 @@
                                         </div>
                                       </div>
             
-                                      <div class="col-6 col-lg-6 col-md-5 col-sm-6 "> <div class="form-floating">
+                                      <div class="col-5 col-lg-5 col-md-5 col-sm-5"> <div class="form-floating">
                                         <input type="seat" name="seat" class="form-control @error('seat') is-invalid  @enderror"  id="seat" placeholder="seat" required value="{{ old('seat') }}">
                                         <label for="seat">seat</label>
                                         @error('seat')
@@ -136,7 +136,7 @@
                       </div>
             
                 <div class="col-lg-6 col-md-6 col-xs-12 text-end d-none d-md-block d-sm-block">
-                    <img src="" width="70%" alt="...">
+                    <img src="img/register.png" width="70%" alt="...">
                 </div>
             
             
