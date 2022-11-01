@@ -35,7 +35,22 @@
                         @if ($data->jenis_studio === 'Regular')
                             <div class="seats" id="seats" name="harga">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-3">
+                                      <p class="text-center">H</p>
+                                      <p class="text-center">G</p>
+                                      <p class="text-center">F</p>
+                                      <p class="text-center">E</p>
+                                      <p class="text-center">D</p>
+                                      <p class="text-center">C</p>
+                                      <p class="text-center">B</p>
+                                      <p class="text-center">A</p>
+                                      
+
+
+                                    </div>
+
+
+                                    <div class="col-3">
                                          <label> <input type="checkbox" value="{{ $data->harga }}"
                                                 data-value="H1" name="programming">
                                         </label>
@@ -94,7 +109,7 @@
                                         
                                     </div>
 
-                                    <div class="col-4"> 
+                                    <div class="col-3"> 
                                         <label> <input type="checkbox" value="{{ $data->harga }}"
                                                 data-value="H3" name="programming"></label>
                                         <label><input type="checkbox" value="{{ $data->harga }}" data-value="H4"
@@ -147,7 +162,7 @@
                                         
                                     </div>
 
-                                    <div class="col-4"> 
+                                    <div class="col-3"> 
                                         <label> <input type="checkbox" value="{{ $data->harga }}"
                                                 data-value="H6" name="programming"> </label>
 
