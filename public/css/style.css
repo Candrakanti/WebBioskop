@@ -35,8 +35,11 @@ margin-left: 100px;
     opacity: none;
 }
 
+<<<<<<< HEAD
 .bg {
  background-image: url("{{asset('img/movie.png')}}");
 }
+=======
+>>>>>>> 06a3db8173eb97796a4913590191f77104991677
 
      

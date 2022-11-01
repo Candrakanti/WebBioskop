@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    @include('partials.navbarNew')
+    @include('navbarNew')
 
     <section id="playing">
         <div class="container" style="margin-bottom: 5%">

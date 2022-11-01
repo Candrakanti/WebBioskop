@@ -42,7 +42,13 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mycgv', [CgvController::class, 'index']);
+    Route::get('/booking/show/{id_film}', [BookingController::class, 'index'])->name('booking.show');
+    Route::post('AddProduct/{id_film}', [BookingController::class, 'store'])->name('cart.store');
+    Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
+    Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
+});
 
 //   ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -133,6 +139,5 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'customer']);
     
 });
-
 
 

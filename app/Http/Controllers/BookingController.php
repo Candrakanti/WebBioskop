@@ -8,7 +8,14 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Models\detail_booking;
+use App\Models\kota;
+// use Illuminate\Http\Request;
 use App\Models\Film;
+// use App\Models\cart;
+
+use Illuminate\Support\Facades\Auth;
+
 
 class BookingController extends Controller
 {
@@ -17,11 +24,22 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $id_film)
     {
-        return view('movie.seat', [
+        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
+
+        return view('movie.seat', compact('data',), [
             'title' => 'Seat',
             'pages' => 'Table Studio'
+        ]);
+    }
+
+    public function count()
+    {
+        $count = \DB::table('cart')->where(Auth::user()->id)->count();
+        return view('partials.navbarNew', compact('count'), [
+            "title" => "mycgv",
+            "active" => "mycgv"
         ]);
     }
 
@@ -53,25 +71,35 @@ class BookingController extends Controller
      */
     public function store(Request $request, $id_film)
     {
-        $product = Film::findOrFail($id_film);
-        $cart = session()->get('film', []);
-
-        if (isset($cart[$id_film])) {
-            $cart[$id_film]['quantity']++;
-        } else {
-
-            $cart[$id_film] = [
-
-                "judul_film" => $product->judul_film,
-                // "quantity" => 1,
-                "jam_tayang" => $product->jam_tayang,
-            ];
-        }
-
-        session()->put('film', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        // echo request()->ip();
+        // die();
+        cart::insert([
+            'id_film' => $id_film,
+            'user_id' => Auth::user()->id,
+        ]);
+        return redirect('/movie')->with('success', 'success adding to cart !');
     }
 
+    public function addToCart(Request $request)
+    {
+        $product = Film::findOrFail($request->input(key: 'id_film'));
+        Cart::add(
+            $product->id_film,
+            $product->judul_film,
+            $request->input(key: 'quantity'),
+            $product->harga / 100,
+            $product->image
+        );
+        return redirect('/movie')->with('success', 'success adding to cart !');
+
+        // \Cart::add([
+        //     'id' => $request->id,
+        //     'id_film' => $request->name,
+        // ]);
+        // session()->flash('success', 'Product is Added to Cart Successfully !');
+
+        // return redirect()->route('cart.list');
+    }
     /**
      * Display the specified resource.
      *
@@ -80,7 +108,19 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        // $cart = Cart::content();
+        // dd($cart);
+
+        $carts = cart::where('user_id', Auth::user()->id);
+        return view('movie.cart', compact('cart'), [
+            "title" => "mycgv",
+            "active" => "mycgv"
+        ]);
+    }
+
+    public function form()
+    {
+        return "hi";
     }
 
     /**
