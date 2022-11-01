@@ -97,24 +97,26 @@
 
                 </div>
             @endforeach
-        </div>
-    </div>
-    <script>
-        $('document').ready(function() {
-            $('.addToCartBtn').click(function(e) {
-                e.preventDefault();
-                var product_id = $(this).closest('.product_data').find('.prod_id').val();
-                $.ajax({
-                    method: "POST",
-                    url: "/AddToCart",
-                    data: {
-                        'product_id': product_id
-                    },
-                    success: function(response) {
 
-                    }
-                })
+        </div>
+
+
+        <script>
+            $('document').ready(function() {
+                $('.addToCartBtn').click(function(e) {
+                    e.preventDefault();
+                    var product_id = $(this).closest('.product_data').find('.prod_id').val();
+                    $.ajax({
+                        method: "POST",
+                        url: "/AddToCart",
+                        data: {
+                            'product_id': product_id
+                        },
+                        success: function(response) {
+
+                        }
+                    })
+                });
             });
-        });
-    </script>
-@endsection
+        </script>
+    @endsection

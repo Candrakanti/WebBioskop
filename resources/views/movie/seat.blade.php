@@ -3,6 +3,7 @@
     <form method="POST" action="{{ route('booking.show', $data->id_film) }} " class="product_data">
         @csrf
 
+
         <div class="container ">
             <h1>{{ $data->judul_film }}</h1>
             <div class="row">
@@ -16,34 +17,89 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
+
+
+        <div class="row">
+            <div class="col-8">
+
+
+                <div class="card border border-5">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                        @if ($data->jenis_studio === 'Regular')
+                            <div class="seats" id="seats" name="harga">
+                                <div class="row">
+
+                                    <div class="col-3">
+                                        <nav class="nav flex-column">
+                                            <a class="nav-link active" aria-current="page" href="#">Active</a>
+                                            <a class="nav-link" href="#">Link</a>
+                                            <a class="nav-link" href="#">Link</a>
+                                            <a class="nav-link disabled" href="#" tabindex="-1"
+                                                aria-disabled="true">Disabled</a>
+                                        </nav>
+                                    </div>
+
+                                    <div class="col-3"> <label> <input type="checkbox" value="{{ $data->harga }}"
+                                                data-value="A10" name="programming">
+                                        </label>
+
+                                        <label><input type="checkbox" value="{{ $data->harga }}" data-value="A2"
+                                                name="programming"></label>
+                                    </div>
+                                    <div class="col-3"> <label> <input type="checkbox" value="{{ $data->harga }}"
+                                                data-value="A9" name="programming">
+                                        </label>
+
+                                        <label><input type="checkbox" value="{{ $data->harga }}" data-value="A2"
+                                                name="programming"></label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            {{-- <a href="/Npayment" class="btn btn-danger">Click here to Get Values</a> --}}
+                            <div class="pt-3">
+
+                                <input class="form-control btn btn-secondary" type="text"
+                                    placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" disabled
+                                    id="seat">
+                                {{-- <span class="badge rounded-pill text-bg-info" disabled>Info</span> --}}
+                            </div>
+
+                            <div class="pt-3">
+                                <input class="form-control" type="text" placeholder="Kursi Yang Anda Pilih"
+                                    aria-label="Disabled input example" disabled id="price">
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-4">
+
+                <div class="card border border-5">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <div class="row">
+                            <div class="col-6">HAri :</div>
+                            <div class="col-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <input type="hidden" class="qty-input" value="{{ $data->jenis_studio }}" class="prod_id">
 
-        @if ($data->jenis_studio === 'Regular')
-            <div class="seats" id="seats" name="harga">
-                <label> <input type="checkbox" value="{{ $data->harga }}" data-value="A1" name="programming">
-                    PHP</label>
-                <label><input type="checkbox" value="{{ $data->harga }}" data-value="A2" name="programming"> Java</label>
 
-            </div>
-
-
-            {{-- <a href="/Npayment" class="btn btn-danger">Click here to Get Values</a> --}}
-            <div class="pt-3">
-
-                <input class="form-control btn btn-secondary" type="text" placeholder="Kursi Yang Anda Pilih"
-                    aria-label="Disabled input example" disabled id="seat">
-                {{-- <span class="badge rounded-pill text-bg-info" disabled>Info</span> --}}
-            </div>
-
-            <div class="pt-3">
-                <input class="form-control" type="text" placeholder="Kursi Yang Anda Pilih"
-                    aria-label="Disabled input example" disabled id="price">
-            </div>
-        @endif
 
 
         <div class="card-body">

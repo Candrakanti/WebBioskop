@@ -11,22 +11,17 @@ use App\Models\user;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class MovieController extends Controller
 {
     public function index()
     {
 
-        // $data = kota::join('studio', 'studio.id_kota', '=', 'kota.id_kota')->join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')->join('film', 'film.id_film', '=', 'jadwal.id_film')->get(['kota.*', 'studio.*', 'jadwal.*', 'film.*']);
-
         $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
         $cart = Cart::content();
         // dd($cart);
         $data2 = user::all();
-
-        // $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('kota', 'kota.id_kota', '=', 'jadwal.id_kota')
-        //     ->get(['jadwal.*', 'film.*', 'studio.*', 'kota.*']);
-        // $data2 =  kota::join('studio', 'studio.id_kota', '=', 'kota.id_kota')->join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')->join('film', 'film.id_film', '=', 'jadwal.id_film')->groupBy('film.id_film')->get(['kota.*', 'studio.*', 'jadwal.*', 'film.*']);
 
         return view('movie.index', compact('data'), [
             'title' => 'movie',
@@ -36,13 +31,18 @@ class MovieController extends Controller
 
     public function detail($id_film)
     {
-        $data = Film::join('jadwal', 'jadwal.id_film', '=', 'film.id_film')
-            ->get(['jadwal.*', 'film.*'])
-            ->where('id_film', $id_film)->first();
+        // $data = Film::join('jadwal', 'jadwal.id_film', '=', 'film.id_film')
+        //     ->get(['jadwal.*', 'film.*'])
+        //     ->where('id_film', $id_film)->first();
+
+        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
+
+        $date = Carbon::now()->format('d-m-Y');
 
         return view('movie.detail', compact('data'), [
             "title" => "Detail movie",
             "active" => 'Movie',
+            "date" => $date
         ]);
     }
 

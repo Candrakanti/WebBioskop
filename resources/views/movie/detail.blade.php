@@ -64,6 +64,34 @@
 
                             <a style="color:#0000FF;" href="{{ $data->link_trailer }}">Wacth Trailer</a>&nbsp&nbsp&nbsp
 
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Launch demo modal
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <iframe width="100%" height="100%"
+                                                src="https://www.youtube.com/watch?v=wlp9yv33nWA&feature=youtu.be"
+                                                frameborder="0" allowfullscreen></iframe>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <form action="/AddProduct" method="post">
                                 @csrf
                                 {{-- <input type="hidden" name="id_film" value="{{ $data->id_film }}"> --}}
@@ -80,12 +108,46 @@
                             </label>
                             <span id="sinopsis">{!! $data->sinopsis !!}</span></p>
                         </div>
+
                     </div>
                 </div>
-
             </div>
+
         </div>
         </div>
         </div>
+
+        <div class="container" style="padding-bottom: 60%">
+
+            <a href="#" class="link-warning">{{ \Carbon\Carbon::now()->format('l') }}</a>
+            <a href="#" class="link-warning">{{ \Carbon\Carbon::now()->format('d') }}</a>
+            <a href="#" class="link-warning">{{ \Carbon\Carbon::now()->format('M') }}</a>
+            <br>
+
+
+            <a href="#" class="link-warning">{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
+            <a href="#" class="link-warning">{{ \Carbon\Carbon::tomorrow()->format('d') }}</a>
+            <a href="#" class="link-warning">{{ \Carbon\Carbon::tomorrow()->format('M') }}</a>
+            <br>
+
+            <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            {{ $data->kota }}
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <span class="badge rounded-pill bg-light text-dark">
+                                {{ $data->jam_tayang }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
     </form>
 @endsection
