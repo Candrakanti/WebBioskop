@@ -89,6 +89,7 @@
                     </div>
 
                     {{-- ADDING CART HERE ! --}}
+
                     {{-- END  CART ! --}}
 
                     {{-- <div class="card-body">

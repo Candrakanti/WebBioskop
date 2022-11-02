@@ -9,6 +9,7 @@ use App\Http\Controllers\CgvController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UnpaidController;
 use App\Http\Controllers\PaydoneController;
+use Carbon\Carbon;
 use App\Http\Controllers\TicketController;
 
 use App\Http\Controllers\BookingController;
@@ -20,6 +21,8 @@ use App\Http\Controllers\CrudFilmController;
 use App\Http\Controllers\CrudJadwalController;
 use App\Http\Controllers\RticketController;
 use App\Models\studio;
+
+use App\Http\Controllers\CrudPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,12 +67,11 @@ Route::get('/movie/detail/{id_film}', [MovieController::class, 'detail'])->name(
 Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking'])->name('movie.detbooking');
 // Route::get('/movie/kota/{id_kota}', [MovieController::class, 'detkota'])->name('movie.detkota');
 
-Route::resource('/ticket', RticketController::class);
-Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
+
 
 
 Route::get('/unpaid', [UnpaidController::class, 'index']);
-Route::get('/paydone', [PaydoneController::class, 'index']);
+Route::resource('/paydone', PaydoneController::class);
 
 Route::group(["middleware" => 'ceklevel:admin_film'], function () {
     Route::get('/film', function () {
@@ -117,6 +119,22 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 });
 
+Route::resource('/ticket', RticketController::class);
+Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
+
 
 Route::resource('/ticket', RticketController::class);
 Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('ticket.show');
+
+Route::resource('/booking', BookingController::class)->middleware('auth');
+
+Route::get('add-to-cart/{id_film}', [BookingController::class, 'store'])->name('add.to.cart')->middleware('auth');
+// Route::get('/booking', [CartController::class, 'index'])->name('booking.cart')->middleware('auth');
+// Route::post('/cart', [CartController::class, 'store'])->name('booking.add')->middleware('auth');
+// Route::get('/ticket', [TicketController::class, 'index']);
+
+
+Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
+    Route::get('/payment', [CrudPaymentController::class, 'index']);
+    Route::get('/payment', [CrudPaymentController::class, 'customer']);
+});

@@ -17,6 +17,7 @@ class CreateCartTable extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('id_film');
+            $table->float('harga');
             $table->timestamps();
         });
     }

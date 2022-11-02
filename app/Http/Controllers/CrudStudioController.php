@@ -23,6 +23,7 @@ class CrudStudioController extends Controller
     }
     public function index()
     {
+
         // $std = studio::all();
         $std = studio::join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
             ->get(['studio.*', 'detail_jenis_studio.*']);

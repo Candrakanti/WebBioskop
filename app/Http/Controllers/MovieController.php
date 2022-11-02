@@ -19,7 +19,7 @@ class MovieController extends Controller
     {
 
         $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
-        $cart = Cart::content();
+        // $cart = Cart::content();
         // dd($cart);
         $data2 = user::all();
 

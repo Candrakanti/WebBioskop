@@ -111,6 +111,7 @@
 
                     </div>
                 </div>
+
             </div>
 
         </div>
@@ -124,6 +125,7 @@
             <a href="#" class="link-warning">{{ \Carbon\Carbon::now()->format('M') }}</a>
             <br>
 
+            {{-- Carbon::now()->toDayDateTimeString(); --}}
 
             <a href="#" class="link-warning">{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
             <a href="#" class="link-warning">{{ \Carbon\Carbon::tomorrow()->format('d') }}</a>

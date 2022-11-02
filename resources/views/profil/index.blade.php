@@ -62,7 +62,7 @@
 
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                    <img src="img/cekl.png" width="5%" alt="...">
+                    <img href="/paydone" src="img/cekl.png" width="5%" alt="...">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">
                             <a href="/paydone" class="text-decoration-none link-dark">Selesai</a>
@@ -95,6 +95,20 @@
                             @csrf
                             <button type="submit" class="btn btn-outline-danger" style="border: 0"><i
                                     class="bi bi-box-arrow-in-right"></i> Masuk Admin Studio</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        @endif
+        @if (auth()->user()->is_admin == 'admin_payment')
+            <div class="container pt-2">
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-6 text-center ">
+                        <form action="/payment" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger" style="border: 0"><i
+                                    class="bi bi-box-arrow-in-right"></i> Masuk Admin Payment</button>
                         </form>
                     </div>
                 </div>
