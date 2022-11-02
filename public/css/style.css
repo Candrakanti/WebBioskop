@@ -1,9 +1,26 @@
 
 * {
   padding:0;
-  margin:0;
-  
+  margin:0;  
 }
+/* 
+.menu-item:hover {
+  cursor: pointer;
+  color: #fd711a !important;
+  background: #f7f7f7 !important;
+  border-radius: 10px;
+}
+
+.active .menu-item {
+  color: #fd711a !important;
+  background: #061019;
+  border-radius: 10px;
+} */
+
+.active .nav-link {
+  color: #fd711a !important;
+} 
+
 .navbar {
 float:left;
 width:100%;
@@ -17,7 +34,7 @@ margin-right: 20px;
 }
 
 .navbar li a { 
-  color: #c83c34; 
+  color: #c83c34 ; 
   text-decoration:none; 
   padding:20px;
   display:block;

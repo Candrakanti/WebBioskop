@@ -4,35 +4,34 @@
 
 
 <div class="row justify-content-center">
-  <hr class="border border-danger border-2 opacity-50 " >
     <div class="col-lg-10 col-md-10 col-xs-10  ">
 
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="img/carousel1.jpg" class="d-block w-100" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="img/carousel2.jpg" class="d-block w-100" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="img/carousel3.jpg" class="d-block w-100" alt="">
-              </div>
-            </div>
-            {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button> --}}
+      <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="img/carousel1.jpg" class="d-block w-100" alt="...">
           </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="img/carousel2.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="img/carousel3.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
 
     </div>
 </div>
@@ -60,13 +59,39 @@
         <p class="py-4 m-0 text-muted">Power-packed with impressive features and well-optimized, this template is designed to provide the best performance in all circumstances.</p>
         <p class="pb-2 font-weight-medium text-muted">Its smart features make it a powerful stand-alone website building tool.</p>
       </div>
-      <a href="/playing" class="btn btn-info" > Pesan Ticket Sekarang !</a>
+      <a href="/movie" class="btn btn-danger" > Pesan Ticket Sekarang !</a>
     </div>
   </div>
 </section>    
 
-
 <section id="playing">
+  <div class="container" style="margin-bottom: 5%">
+
+      <div class="row pt-5">
+          <div class="col-8">
+
+              <li class="nav-item dropdown" style="  list-style-type: none !important;">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Movies in Bandung
+                 </a>
+                  <ul class="dropdown-menu">
+                      @foreach ($data as $dt)
+                          {{-- @foreach ($dt->detail_kota as $dt)
+                              <p>{{ $dt['value'] }}</p>
+                          @endforeach --}}
+                          <p>{{ $dt->id_kota }}</p>
+                      @endforeach
+                  </ul>
+              </li>
+
+          </div>
+      </div>
+      </div>
+</section>
+
+
+{{-- <section id="playing">
   <div class="container" style="margin-bottom: 5%">
     <div class="row pt-5">
         <div class="col-8"> 
@@ -81,38 +106,17 @@
     </div>
   </div>
   </div>
-</section>
+</section> --}}
 
-<section id="playing">
-<div class="container">
-  <div class="row">
-    @foreach ($data as $film)
-    <div class="card" style="width: 15rem;">
-      @if ($film->image)
-      <div class="shadow mb-5">
-      <a href="/movie/detail/{{ $film->id_film }}">
-      <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top" alt="">
-      </a>
-    </div>
-      @endif
-      <div class="card-body" style="padding: 43px;">
-        <a href="#" class="btn btn-primary">BOOK NOW</a>
-      </div>
-    </div>
-    @endforeach
-  </div>
-</div>
-</section>
-
-<section id="upcoming">
+{{-- <section id="playing">
   <div class="container">
     <div class="row">
       @foreach ($data as $film)
       <div class="card" style="width: 15rem;">
         @if ($film->image)
-        <div class="shadow mb-5">
+        <div class="shadow-lg rounded">
         <a href="/movie/detail/{{ $film->id_film }}">
-        <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top" alt="">
+        <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
         </a>
       </div>
         @endif
@@ -123,12 +127,34 @@
       @endforeach
     </div>
   </div>
+</section> --}}
+
+<section id="upcoming">
+  <div class="container">
+    <div class="row">
+      @foreach ($data as $film)
+      <div class="card" style="width: 17rem;">
+        @if ($film->image)
+        <div class="rounded">
+        <a href="/movie/detail/{{ $film->id_film }}">
+        <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
+        </a>
+      </div>
+        @endif
+        <br>
+        {{-- <input type="hidden" value="{{ $film->judul_film }}" class="prod_id"> --}}
+        <a href="/movie/detail/{{ $film->id_film }}">
+            <h6 class="text-center" style="color: black">
+                <b>{{ $film->judul_film }}</b>
+            </h6>
+        </a>
+        <div class="card-body text-center">
+            <a href="/booking/show/{{ $film->id_film }}" class="btn btn-danger">BOOK NOW</a>
+        </div>
+      </div>
+      @endforeach
+    </div>
+  </div>
   </section>
 
-
-<footer class="border-top">
-  <p class="text-center text-muted pt-4">Copyright ©2021 <a href="https://www.instagram.com/penuh.rekayasa/?next=%2F" class="px-1" target="_blank"> SEENEMA  </a> All rights reserved.</p>
-
-  <p class="text-center text-muted pt-2">Dibuat Oleh: <a  class="px-1" target="_blank"> 12 RPL 1 WEB BIOSKOP  </a></p>
-</footer>
 @endsection

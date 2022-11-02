@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\detail_kota;
 use App\Models\studio;
+use App\Models\kota;
 use App\Models\jenis_studio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +41,7 @@ class CrudStudioController extends Controller
     public function create()
     {
         $jenis_studio = jenis_studio::all();
+  
         return view('studio.crud.input',  compact('jenis_studio'), [
             // 'jenis_studio' => jenis_studio::all(),
             'title' => 'Admin Studio',

@@ -12,9 +12,10 @@ use App\Http\Controllers\UnpaidController;
 use App\Http\Controllers\PaydoneController;
 use App\Http\Controllers\TicketController;
 
-use App\Http\Controllers\AdminFilmController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CrudStudioController;
-
+use App\Http\Controllers\KotaController;
 use App\Http\Controllers\CrudFilmController;
 
 use App\Http\Controllers\CrudJadwalController;
@@ -40,9 +41,17 @@ use App\Models\studio;
 //     ]);
 // });
 
+
 Route::get('/', [HomeController::class, 'index']);
 // Route::get('//{tgl_tayang_awal}', [HomeController::class, 'detail'])->name('home.detail');
 Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mycgv', [CgvController::class, 'index']);
+    Route::get('/booking/show/{id_film}', [BookingController::class, 'index'])->name('booking.show');
+    Route::post('/AddToCart', [BookingController::class, 'addProduct']);
+});
+
 
 //   ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -60,9 +69,11 @@ Route::get('/ticket/seat', [SeatController::class, 'index']);
 Route::get('/movie', [MovieController::class, 'index']);
 Route::get('/movie/detail/{id_film}', [MovieController::class, 'detail'])->name('movie.detail');
 Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking'])->name('movie.detbooking');
+// Route::get('/movie/kota/{id_kota}', [MovieController::class, 'detkota'])->name('movie.detkota');
 
 Route::resource('/ticket', RticketController::class);
 Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
+
 
 Route::get('/unpaid', [UnpaidController::class, 'index']);
 Route::get('/paydone', [PaydoneController::class, 'index']);
@@ -105,6 +116,7 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::post('/CrudStudio/update', [CrudStudioController::class, 'update']);
     Route::delete('/CrudStudio/delete/{id_studio}', [CrudStudioController::class, 'destroy'])->name('CrudStudio.delete');
 
+    Route::resource('/kota', KotaController::class);
 
     Route::resource('/crudJadwal', CrudJadwalController::class);
     Route::get('/crudJadwal/edit{id_jadwal}', [CrudJadwalController::class, 'edit'])->name('crudJadwal.edit');
@@ -112,5 +124,6 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 });
 
-// Route::get('/ticket', [TicketController::class, 'index']);
 
+Route::resource('/ticket', RticketController::class);
+Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('ticket.show');

@@ -26,13 +26,13 @@
             </div>
         </div>
 
-        @foreach ($dt->jam_tayang as $property)
-            <a href="{{ route('ticket.show', $dt->id_jadwal) }}" class="btn btn-dark"
-                style="color: white">{{ $property['value'] }}</a>
-        @endforeach
-
-
-
+        {{-- <form action="add.to.cart" method="POST">
+            @csrf
+            @foreach ($dt->jam_tayang as $property) --}}
+        {{-- <input type="text" name="jam_tayang" value="{{ $property['value'] }}" class="form-control"> --}}
+        {{-- <button class="btn btn-dark" style="color: white">{{ $property['value'] }}</button>
+            @endforeach
+        </form> --}}
 
         <hr class="border border-secondary border-2 opacity-50">
     @endforeach
