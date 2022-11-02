@@ -47,28 +47,15 @@
                         <li class="nav-item">
                             <a class="nav-link {{ $title === 'Movie' ? 'active' : '' }}" href="/movie">MOVIE</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/ticket">TICKET</a>
-                        </li>
+                        {{-- <li class="nav-item">
+            <a class="nav-link"  href="/ticket">TICKET</a>  
+          </li> --}}
                         <li class="nav-item">
                             <a class="nav-link " href="/mycgv">MYSEENEMA</a>
                         </li>
                         <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-
-
-                            <form class="d-inline" method="get" action="cart/detail">
-                                @csrf
-
-                                <button type="submit" class="btn btn-info position-relative" data-toggle="modal"
-                                    data-target="#exampleModal">
-                                    Keranjang
-                                    <span
-                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {{-- {{ \Gloudemans\Shoppingcart\Facades\Cart::content()->count() }} --}}
-
-                                    </span>
-
-                            </form>
+                            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Contact
+                                Us</button>
                         </li>
                     </ul>
                 </div>
