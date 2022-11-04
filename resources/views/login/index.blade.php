@@ -15,8 +15,8 @@
 
 
 
-<div class="container shadow-lg p-3 mb-5 bg-body rounded "  >
-<h1 class="h3 mb-3 fw-normal text-center pb-3">PLEASE SIGN IN !</h1>
+<div class="container shadow-lg p-3 mb-5 bg-body rounded">
+<h1 class="h3 mb-3 fw-normal text-center pb-3">Masuk Akun!</h1>
 <div class="row justify-content-center">
 
 
@@ -86,14 +86,14 @@
 
 
 
-              <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
+              <button class="w-100 btn btn-lg btn-danger mt-3" type="submit">Sign in</button>
 
             </form>
 
 
-        <small class="d-block text-center mt-3">Forgot Your Password? <a href="{{ route('forget.password.get') }}" >Change Your Password ! </a></small>
+        <small class="d-block text-center mt-3">Forgot Your Password? <a href="{{ route('forget.password.get') }}" class="text-danger"> Change Your Password ! </a></small>
    
-        <small class="d-block text-center mt-3">Not Registered? <a href="/register">Register Now ! </a></small>
+        <small class="d-block text-center mt-3">Not Registered? <a href="/register"  class="text-danger">Register Now !</a></small>
  
 </div>
 

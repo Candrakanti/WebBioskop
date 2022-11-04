@@ -23,10 +23,7 @@
                 Audiotori {!! $data->audiotori !!}
             </div>
         </div>
-
-
-
         <hr class="border border-secondary border-2 opacity-50">
-
     </form>
 @endsection
+

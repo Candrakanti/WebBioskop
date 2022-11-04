@@ -1,8 +1,6 @@
 @extends('layouts.main')
 
 @section('container')
-    <hr class="border border-danger border-2 opacity-50" width="80%"
-        style="display: block; margin-left:auto; margin-right:auto;">
     <form method="POST" action="{{ route('movie.detail', $data->id_film) }}">
         @csrf
         <div class="container d-flex justify-content-center">

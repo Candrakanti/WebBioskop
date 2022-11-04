@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ForgotPasswordController;
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CgvController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UnpaidController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\CrudFilmController;
 
 use App\Http\Controllers\CrudJadwalController;
 use App\Http\Controllers\RticketController;
+use App\Http\Controllers\SeatController;
 use App\Models\studio;
 
 use App\Http\Controllers\CrudPaymentController;
@@ -35,12 +37,17 @@ use App\Http\Controllers\CrudPaymentController;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home",
-        "active" => "Home"
-    ]);
-});
+// Route::get('/', function () {
+//     return view('home', [
+//         "title" => "Home",
+//         "active" => "Home"
+//     ]);
+// });
+
+
+Route::get('/', [HomeController::class, 'index']);
+// Route::get('//{tgl_tayang_awal}', [HomeController::class, 'detail'])->name('home.detail');
+Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/mycgv', [CgvController::class, 'index']);
@@ -49,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
 });
+
 
 //   ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -62,6 +70,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 //    END ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 
+Route::get('/ticket/seat', [SeatController::class, 'index']);
 Route::get('/movie', [MovieController::class, 'index']);
 Route::get('/movie/detail/{id_film}', [MovieController::class, 'detail'])->name('movie.detail');
 Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking'])->name('movie.detbooking');

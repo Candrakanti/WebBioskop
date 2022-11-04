@@ -22,7 +22,7 @@
         <nav class="navbar navbar-expand-lg pl-3 pl-sm-0 bg-white" id="navbar" class="pb-5">
             <div class="container">
                 <div class="navbar-brand-wrapper d-flex w-100">
-                    <img src="{{ asset('landingPage/images/Group2.svg') }}" alt="">
+                    <img src="/img/see.png" alt="" style="width: 20%">
                     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
                     <ul class="navbar-nav align-items-lg-center align-items-start ml-auto">
                         <li class="d-flex align-items-center justify-content-between pl-4 pl-lg-0">
                             <div class="navbar-collapse-logo">
-                                <img src=" {{ asset('landingPage/images/Group2.svg') }}" alt="">
+                                <img src=" /img/see.png" alt="" style="width: 70%">
                             </div>
                             <button class="navbar-toggler close-button" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -42,19 +42,20 @@
                             </button>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  {{ $title === 'Home' ? 'active' : '' }}" href="/">HOME</a>
+                            <a class="nav-link {{ request()->is('/') ? ' active' : '' }}" href="/">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ $title === 'Movie' ? 'active' : '' }}" href="/movie">MOVIE</a>
+                            <a class="nav-link {{ request()->is('*movie') ? ' active' : '' }}" href="/movie">MOVIE</a>
                         </li>
+                        {{-- $request->route()->named('articles.index') ? ' active' : '' --}}
                         {{-- <li class="nav-item">
             <a class="nav-link"  href="/ticket">TICKET</a>  
           </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link " href="/mycgv">MYSEENEMA</a>
+                            <a class="nav-link {{ request()->is('mycgv') ? ' active' : '' }}" href="/mycgv">MYSEENEMA</a>
                         </li>
                         <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-                            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Contact
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Contact
                                 Us</button>
                         </li>
                     </ul>
@@ -62,7 +63,12 @@
             </div>
         </nav>
     </header>
-
+    <div class="container">
+        <div class="row">
+            <hr class="border border-danger border-2 opacity-100" style="margin-bottom: 50px;">
+        </div>
+    </div>
+    
     <script src="{{ asset('landingPage/vendors/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('landingPage/vendors/bootstrap/bootstrap.min.js') }}"></script>
     <script src="{{ asset('landingPage/vendors/owl-carousel/js/owl.carousel.min.js') }} "></script>

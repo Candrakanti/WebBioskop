@@ -59,6 +59,16 @@
                     </select>
                 </div>
 
+                <div class="mb-3">
+                    <label for="id_bioskop" class="form-label">Bioskop</label>
+                    {{-- <input type="tect" class="form-control" name="id_jadwal" autofocus> --}}
+                    <select class="form-select form-select-lg mb-3" name="id_bioskop">
+                        @foreach ($data4 as $js)
+                            <option value="{{ $js->id_bioskop }}" selected>{{ $js->bioskop }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                     <div class="mb-3">
                         <label for="tgl_tayang_awal" class="form-label">Tanggal Tayang Awal</label>
                         <input type="date" class="form-control @error('tgl_tayang_awal') is-invalid @enderror"
