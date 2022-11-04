@@ -1,16 +1,36 @@
 @extends('layouts.main')
 
 @section('container')
-   
+
+ {{-- <section id="kota">
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-8">
+                <div class="btn-group">
+                    <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+                      <h1><b>Movie In</b></h1>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li><button class="dropdown-item" type="button">Action</button></li>
+                      <li><button class="dropdown-item" type="button">Another action</button></li>
+                      <li><button class="dropdown-item" type="button">Something else here</button></li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+    </div>
+ </section>
+    --}}
         <section id="kota">
             <div class="container mb-4">
                 <div class="row">
                     <div class="col-8">
                         <li class="nav-item dropdown" style="list-style-type: none !important;">
+                            <h1  style="color: red"><b>
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" style="padding: none !important;">
-                            Movies In
-                           </a>
+                                aria-expanded="false" style="padding: none !important;">
+                                Movie In
+                            </a>
                             <ul class="dropdown-menu">
                                 @foreach ($data as $dt)
                                     @foreach ($dt->detail_kota as $dt)
@@ -18,6 +38,8 @@
                                     @endforeach
                                 @endforeach
                             </ul>
+                            </b></h1>
+                          
                         </li>
                     </div>
                 </div>
