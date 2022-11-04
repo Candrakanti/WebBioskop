@@ -1,5 +1,5 @@
 
-@extends('studio.templateDashboard.sidebar')
+@extends('film.layout.sidebar')
 
 @section('container')
 
@@ -15,7 +15,7 @@
 
 <body>
 <div class="container pb-3">
-  <a href="/CrudStudio/create" class="btn btn-info">  Create Data Studio</a>
+  <a href="/crudFilm/create" class="btn btn-info">Create Data Film</a>
    
 <div class="container pt-3">
   @if (session()->has('success'))
@@ -31,7 +31,7 @@
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
-          <h6 class="text-center">Data Studio</h6>
+          <h6 class="text-center">Data Film</h6>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
@@ -39,12 +39,11 @@
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Id Studio</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Jenis Studio</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Auditori</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Kursi</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
-                  @foreach($std as $key => $data ) 
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">id_film</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">judul</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">jenis</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                  @foreach($films as $key => $film ) 
                 </tr>
               </thead>
 
@@ -64,42 +63,28 @@
                   </td>
 
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">{{$data->id_studio}}</p>
+                    <p class="text-xs font-weight-bold mb-0">{{$film->id_film}}</p>
                   </td>
 
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->jenis_studio}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$film->judul_film}}</span>
                   </td>
+
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->audiotori}}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->jumlah_kursi}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$film->jenis_film}}</span>
                   </td>
 
                      <td class="align-middle text-center text-sm">
-                    <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Edit</a>
-                   
-                    {{-- <form id="delete-user-form" action="/CrudStudio/{{ $data->id_studio }}" method="POST" class="d-inline">
-                      @csrf
-                      @method('DELETE')
-                    <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" data-id="{{$data->id_studio}}"  data-name="{{$data->id_studio}}"  > delete</a>
-                    </form> --}}
+                    <a class="badge badge-sm bg-gradient-warning" href="/crudFilm/{{$film->id_film}}/edit">Edit</a>
+                    <a class="badge badge-sm bg-gradient-warning" href="{{ route('crudFilm.show', $film->id_film) }}">Detail</a>
+                    
+                    <form method="POST" action="/crudFilm/{{ $film->id_film }}" class="d-inline">
+                        @csrf
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$film->id_film}}" data-toggle="tooltip" title='Delete'>Delete</button>
+                    </form>
 
-                    <form method="POST" action="{{ route('CrudStudio.delete', $data->id_studio) }}" class="d-inline">
-                      @csrf
-                      <input name="_method" type="hidden" value="DELETE">
-                      <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$data->id_studio}}" data-toggle="tooltip" title='Delete'>Delete</button>
-                  </form>
-
-                    {{-- <a href="/CrudStudio/{{ $data->id_studio }}" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
-                  </td>
-                 
-                </tr>
-                <tr>
-                  <td>
-
-                   
+                  </td>               
                 </tr>
               </tbody>
               @endforeach
@@ -123,11 +108,11 @@
 $('.show_confirm').click(function(event) {
           var form =  $(this).closest("form");
           var name = $(this).data("name");
-          var id_studio = $(this).attr('data-id');
+          var id_film = $(this).attr('data-id');
           event.preventDefault();
           swal({
               title: "APA ANDA YAKIN ?",
-              text: "Anda Akan Menghapus ID Studio "+id_studio+"",
+              text: "Anda Akan Menghapus ID Studio "+id_film+"",
               icon: "warning",
               buttons: true,
               dangerMode: true,

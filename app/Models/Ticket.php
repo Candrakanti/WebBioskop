@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class jadwal extends Model
+class Ticket extends Model
 {
     use HasFactory;
     public $timestamps = false;
@@ -25,9 +24,4 @@ class jadwal extends Model
     protected $casts = [
         'jam_tayang' => 'array'
     ];
-
-    public function Film()
-    {
-        return $this->hasMany('App\Models\Film');
-    }
 }

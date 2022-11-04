@@ -25,8 +25,9 @@
                 
                 <select class="form-select form-select-lg mb-3" name="id_jenis_studio">
                     @foreach($jenis_studio as $js)
-    <option value="{{$js->id_jenis_studio}}" {{ old('id_jenis_studio', $js->id_jenis_studio) || $js->id_jenis_studio === $js->id_jenis_studio ? 'selected' : '' }}>{{ $js->id_jenis_studio }}</option>
+    <option value="{{$js->id_jenis_studio}}" {{ old('id_jenis_studio', $js->id_jenis_studio) || $js->jenis_studio === $js->jenis_studio ? 'selected' : '' }}>{{ $js->jenis_studio }}</option>
 @endforeach
+
                 </select>
             </div>
             <div class="form-group">

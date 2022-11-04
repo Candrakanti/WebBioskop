@@ -12,9 +12,12 @@ use App\Http\Controllers\PaydoneController;
 use App\Http\Controllers\TicketController;
 
 use App\Http\Controllers\AdminFilmController;
-use App\Http\Controllers\AdminStudioController;
 use App\Http\Controllers\CrudStudioController;
+
+use App\Http\Controllers\CrudFilmController;
+
 use App\Http\Controllers\CrudJadwalController;
+use App\Http\Controllers\RticketController;
 use App\Models\studio;
 
 /*
@@ -30,7 +33,8 @@ use App\Models\studio;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        "active" => "Home"
     ]);
 });
 
@@ -54,12 +58,22 @@ Route::get('/unpaid', [UnpaidController::class, 'index']);
 Route::get('/paydone', [PaydoneController::class, 'index']);
 
 
-
 Route::get('/film', [AdminFilmController::class, 'index'])->middleware('auth');
 
+
 Route::group(["middleware" => 'ceklevel:admin_film'], function () {
-    Route::get('/film', [AdminFilmController::class, 'index']);
-    Route::get('/crudFilm', [AdminFilmController::class, 'crud']);
+    Route::get('/film', function () {
+        return view('film.template.index', [
+            'title' => 'Admin Film',
+            'pages' => 'Beranda Admin Film',
+            'active' => 'Admin Film'
+        ]);
+    });
+
+    Route::resource('/crudFilm', CrudFilmController::class);
+    Route::delete('/crudFilm/delete/{id_film}', [CrudFilmController::class, 'destroy'])->name('crudFilm.delete');
+    Route::get('/crudFilm/edit/{id_film}', [CrudFilmController::class, 'edit'])->name('crudFilm.edit');
+    Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
 });
 
 Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
@@ -87,12 +101,17 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
 
 
     Route::resource('/crudJadwal', CrudJadwalController::class);
+    Route::get('/crudJadwal/edit{id_jadwal}', [CrudJadwalController::class, 'edit'])->name('crudJadwal.edit');
+
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 });
+
 
 
 // Route::get('/film', [AdminFilmController::class, 'index'])->middleware('ceklevel:admin_film');
 // Route::get('/crudFilm', [AdminFilmController::class, 'crud'])->middleware('ceklevel:admin_film');
 Route::get('/ticket', [TicketController::class, 'index']);
 
-
+// Route::get('/ticket', [TicketController::class, 'index']);
+Route::resource('/ticket', RticketController::class);
+Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');

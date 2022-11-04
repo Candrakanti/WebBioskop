@@ -1,6 +1,7 @@
-@extends('studio.templateDashboard.sidebar')
+@extends('film.layout.sidebar')
 
 @section('container')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
 <body>
     <h1 class="fs-1" style="margin-top:5%; margin-left:20%">
      <b>SELAMAT DATANG </b> <br>
-   <h2 class="fw-light" style="margin-left: 40%; text-transform: uppercase"> ADMIN STUDIO &nbsp;{{ auth()->user()->name }}</h2>
+   <h2 class="fw-light" style="margin-left: 40%; text-transform: uppercase"> ADMIN FILM &nbsp;{{ auth()->user()->name }}</h2>
 </h1>
    
      <div class="container d-flex justify-content-center" style="">
@@ -23,4 +24,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
+    
 @endsection
