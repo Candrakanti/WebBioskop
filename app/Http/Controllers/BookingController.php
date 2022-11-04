@@ -11,6 +11,7 @@ use App\Models\kota;
 use App\Models\Film;
 use App\Models\cart;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -70,9 +71,13 @@ class BookingController extends Controller
     {
         // echo request()->ip();
         // die();
+
+        // dd($request);
         cart::insert([
             'id_film' => $id_film,
             'user_id' => Auth::user()->id,
+            'harga' => $request->harga,
+            'kursi' =>   $request->kursi,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

@@ -17,6 +17,7 @@ class cart extends Model
         'user_id',
         'id_film',
         'harga',
+        'kursi',
         'created_at',
         'updated_at',
 
