@@ -15,7 +15,7 @@ class CreateBookingTable extends Migration
     {
         Schema::create('booking', function (Blueprint $table) {
             $table->string('id_booking', 225)->primary();
-            $table->string('id_customer', 225);
+            $table->string('id');
             $table->string('id_payment');
             $table->string('id_jadwal');
             $table->date('tanggal_booking');

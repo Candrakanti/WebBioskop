@@ -16,7 +16,7 @@ class CreateDetailJenisStudioTable extends Migration
         Schema::create('detail_jenis_studio', function (Blueprint $table) {
             $table->string('id_jenis_studio', 225)->primary();
             $table->string('jenis_studio');
-            $table->double('harga');
+            $table->float('harga');
             $table->timestamps();
         });
     }

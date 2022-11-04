@@ -2,7 +2,7 @@
 
 @section('container')
    
-        <section id="playing">
+        <section id="kota">
             <div class="container mb-4">
                 <div class="row">
                     <div class="col-8">
@@ -21,10 +21,15 @@
                         </li>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
 
         <section id="movie">
+            @if (session()->has('success'))
+            <div class="alert alert-success " role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="container">
             <div class="row">
               @foreach ($data as $film)
@@ -77,6 +82,7 @@
                 @endforeach
             </div>
         </div> --}}
+
         <script>
             $('document').ready(function() {
                 $('.addToCartBtn').click(function(e) {

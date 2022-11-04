@@ -1,7 +1,7 @@
 
 * {
   padding:0;
-  margin:0;  
+  margin:0;
 }
 /* 
 .menu-item:hover {
@@ -34,7 +34,7 @@ margin-right: 20px;
 }
 
 .navbar li a { 
-  color: #c83c34 ; 
+  color: #c83c34; 
   text-decoration:none; 
   padding:20px;
   display:block;
@@ -51,4 +51,8 @@ margin-left: 100px;
 
 .hr.mb-5 {
   opacity: none;
+}
+
+.bg {
+ background-image: url("{{asset('img/movie.png')}}");
 }
