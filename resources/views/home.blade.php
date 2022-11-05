@@ -62,30 +62,29 @@
   </div>
 </section>    
 
-<section id="playing">
-  <div class="container" style="margin-bottom: 5%">
-
-      <div class="row pt-5">
+<section id="kota">
+  <div class="container mb-4">
+      <div class="row">
           <div class="col-8">
-
-              <li class="nav-item dropdown" style="  list-style-type: none !important;">
+              <li class="nav-item dropdown" style="list-style-type: none !important;">
+                  <h1  style="color: red"><b>
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Movies in Bandung
-                 </a>
+                      aria-expanded="false" style="padding: none !important;">
+                      Movies in Bandung
+                  </a>
                   <ul class="dropdown-menu">
                       @foreach ($data as $dt)
-                          {{-- @foreach ($dt->detail_kota as $dt)
+                          @foreach ($dt->detail_kota as $dt)
                               <p>{{ $dt['value'] }}</p>
-                          @endforeach --}}
-                          <p>{{ $dt->id_kota }}</p>
+                          @endforeach
                       @endforeach
                   </ul>
+                  </b></h1>
+                
               </li>
-
           </div>
       </div>
-      </div>
+  </div>
 </section>
 
 

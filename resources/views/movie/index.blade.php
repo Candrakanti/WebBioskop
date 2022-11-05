@@ -29,7 +29,7 @@
                             <h1  style="color: red"><b>
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false" style="padding: none !important;">
-                                Movie In
+                                Movies in Bandung
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach ($data as $dt)

@@ -30,13 +30,15 @@
                                         <div class="col-4 col-lg-4  col-sm-4 col-md-4 px-0">
                                             <label>
                                                 <input id="hi" type="checkbox" value="{{ $data->harga }}"
-                                                    data-value="H1" class="harga">
+                                                    data-value="H1" class="harga" name="kursi"
+                                                    {{ $data->kursi? 'checked' : ''}}
+                                                    >
                                             </label>
 
                                             <label>
 
                                                 <input type="checkbox" value="{{ $data->harga }}" data-value="H2"
-                                                    class="harga"></label> <br>
+                                                    class="harga" name="kursi"     {{ $data->kursi? 'checked' : ''}}></label> <br>
 
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="G1"
                                                     class="harga"></label>
@@ -144,8 +146,8 @@
 
                                         <div class="col-4 col-lg-4 col-sm-4 col-md-4 px-0"name="harga">
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H6"
-                                                    class="harga" disabled> </label>
-
+                                                    class="harga" > </label>
+                                          
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="H7"
                                                     class="harga"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="G7"
@@ -310,7 +312,7 @@
                     test.push($(this).data('value'))
                 });
 
-                document.getElementById("book").disabled = true;
+
 
                 document.getElementById('seat').value = test;
 
@@ -338,8 +340,9 @@
 
                     if (counter >= 1) {
 
-                        document.getElementById("hi").disabled = true;
+                        document.getElementById("book").disabled = false;
                         $('#gap_form').wrap(
+
                             '<form id="Form2" action="{{ route('cart.store', $data->id_film) }}" method="POST" ></form>'
                         );
                     } else {
