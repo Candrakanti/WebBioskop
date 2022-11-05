@@ -1,21 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-
-
-
 use App\Models\Booking;
 
-use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\detail_booking;
 use App\Models\kota;
 // use Illuminate\Http\Request;
 use App\Models\Film;
-// use App\Models\cart;
+use App\Models\cart;
+use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Auth;
-
 
 class BookingController extends Controller
 {
@@ -28,7 +25,7 @@ class BookingController extends Controller
     {
         $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
 
-        return view('movie.seat', compact('data',), [
+        return view('movie.seat', compact('data'), [
             'title' => 'Seat',
             'pages' => 'Table Studio'
         ]);
@@ -76,6 +73,8 @@ class BookingController extends Controller
         cart::insert([
             'id_film' => $id_film,
             'user_id' => Auth::user()->id,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
         return redirect('/movie')->with('success', 'success adding to cart !');
     }
@@ -156,5 +155,4 @@ class BookingController extends Controller
     {
         //
     }
-
 }

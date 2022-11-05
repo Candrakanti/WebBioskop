@@ -89,6 +89,7 @@
                     </div>
 
                     {{-- ADDING CART HERE ! --}}
+
                     {{-- END  CART ! --}}
 
                     {{-- <div class="card-body">
@@ -99,6 +100,35 @@
             @endforeach
 
         </div>
+
+
+
+        
+       
+
+        <div class="container">
+
+            <h4><b>Pesanan Saya</b></h4>
+
+            <h4 class="text-center"> Selesai</h4>
+            
+            <hr class="border border-secondary border-2 opacity-100" style="margin-bottom: 50px;">
+
+            <div class="row">
+                <div class="col-6 col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                    <img src="/img/bk10.jpg" class="card-img-top" alt="" style="width: 60%">
+                </div>
+    
+                <div class="col-3 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <p class="text-center" style="padding-top:35%;"> Black Adam</p>
+                </div>
+    
+                <div class="col-3 col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                    <p class="" style="padding-top:30%;"> Selesai</p>
+                    <button type="button" class="rounded-pill"> cetak pdf</button>
+                </div>
+            </div>
+         </div>
 
 
         <script>
@@ -119,6 +149,8 @@
                 });
             });
 
+
     </script>
 @endsection
+
 

@@ -71,7 +71,7 @@ Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking']
 
 
 Route::get('/unpaid', [UnpaidController::class, 'index']);
-Route::get('/paydone', [PaydoneController::class, 'index']);
+Route::resource('/paydone', PaydoneController::class);
 
 Route::group(["middleware" => 'ceklevel:admin_film'], function () {
     Route::get('/film', function () {
@@ -137,7 +137,4 @@ Route::get('add-to-cart/{id_film}', [BookingController::class, 'store'])->name('
 Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
     Route::get('/payment', [CrudPaymentController::class, 'customer']);
-    
 });
-
-

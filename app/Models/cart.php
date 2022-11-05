@@ -16,6 +16,9 @@ class cart extends Model
         'id',
         'user_id',
         'id_film',
+        'harga',
+        'created_at',
+        'updated_at',
 
     ];
 }
