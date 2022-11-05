@@ -17,17 +17,48 @@ class jadwal extends Model
         'id_jadwal',
         'id_studio',
         'id_film',
+        'id_kota',
         'tgl_tayang_awal',
         'tgl_tayang_akhir',
         'jam_tayang',
     ];
 
+    // public function jadwal()
+    // {
+    //     return $this->hasMany(related: jadwal::class);
+    // }
+
+    // public function jadwals()
+    // {
+    //     // return $this->hasMany(related: jadwal::class);
+    //     return $this->hasManyThrough(related: Film::class, through: jadwal::class);
+
+    //     // return $this->hasMany(App\Models\film::class);
+    // }
+
+    // public function film()
+    // {
+    //     return $this->belongsTo('App\Models\Film');
+    // }
+
+    public function studio()
+    {
+        return $this->belongsTo('App\Models\studio');
+    }
+    public function jenis_studio()
+    {
+        return $this->belongsTo('App\Models\jenis_studio');
+    }
+
     protected $casts = [
-        'jam_tayang' => 'array'
+        'jam_tayang' => 'array',
+
     ];
 
     public function Film()
     {
         return $this->hasMany('App\Models\Film');
     }
+
+
 }

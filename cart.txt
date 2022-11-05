@@ -1,0 +1,19 @@
+    {{-- @if ($cart->where('id', $film->id_film)->count())
+                        <button class="btn btn-info">In Cart</button>
+                    @else --}}
+                    <form action="{{ route('cart.store', $film->id_film) }}" method="POST">
+                        @csrf
+
+                        {{-- <input type="hidden" value="{{ $data->id }}" name="id"> --}}
+
+                        {{-- <input type="hidden" value="{{ $film->id }}" name="id"> --}}
+                        <input type="hidden" value="{{ $film->id_film }}" name="id_film">
+                        <input type="hidden" value="{{ $film->judul_film }}" name="judul_film">
+                        {{-- <input type="hidden" value="{{ $film->image }}" name="image"> --}}
+                        <input type="hidden" value="{{ $film->harga }}" name="harga">
+                        <input type="hidden" value="1" name="quantity">
+                        {{-- <input type="hidden" value="1" name="quantity"> --}}
+
+                        <button type="submit" class="btn btn-info">Add To Cart</button>
+                    </form>
+                    {{-- @endif --}}

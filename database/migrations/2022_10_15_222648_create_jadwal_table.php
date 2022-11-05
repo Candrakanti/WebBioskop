@@ -17,6 +17,7 @@ class CreateJadwalTable extends Migration
             $table->string('id_jadwal', 225)->primary();
             $table->string('id_studio');
             $table->string('id_film');
+            $table->string('id_kota');
             $table->date('tgl_tayang_awal');
             $table->date('tgl_tayang_akhir');
             $table->json('jam_tayang');

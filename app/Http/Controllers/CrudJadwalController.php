@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\jadwal;
 use App\Models\Film;
 use App\Models\studio;
+use App\Models\kota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -51,7 +52,8 @@ class CrudJadwalController extends Controller
         $data =  studio::all();
         $data1 =  Film::all();
         $data2 =  jadwal::all();
-        return view('studio.crudJadwal.input', compact('data', 'data1', 'data2'),  [
+        $data3 =  kota::all();
+        return view('studio.crudJadwal.input', compact('data', 'data1', 'data2', 'data3'),  [
             'title' => 'Admin Studio',
             'pages' => 'Input Jadwal'
         ]);
@@ -71,10 +73,10 @@ class CrudJadwalController extends Controller
             'id_jadwal' => 'required|min:5|max:10|unique:jadwal',
             'id_studio' => 'required',
             'id_film' => 'required',
+            'id_kota' => 'required',
             'tgl_tayang_awal' => 'required',
             'tgl_tayang_akhir' => 'required',
             'jam_tayang' => 'required',
-            // 'jam_tayang1' => 'required',
         ]);
 
         jadwal::create($validatedData);

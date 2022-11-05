@@ -17,12 +17,13 @@ class CreateFilmTable extends Migration
             $table->string('id_film', 225)->primary();
             $table->string('judul_film');
             $table->string('jenis_film');
-            $table->string('producer',50);
-            $table->string('sutradara',50);
-            $table->string('penulis',50);
+            $table->string('producer', 50);
+            $table->string('sutradara', 50);
+            $table->string('penulis', 50);
             $table->text('cast');
             $table->text('sinopsis');
             $table->string('link_trailer');
+            $table->string('image');
             $table->timestamps();
         });
     }

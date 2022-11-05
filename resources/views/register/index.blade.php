@@ -114,11 +114,11 @@
                         </div>
    
 
-                    <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Register</button>
+                    <button class="w-100 btn btn-lg btn-danger mt-3" type="submit">Register</button>
 
                   </form>
 
-                  <small class="d-block text-center mt-3">Already Have Account? <a href="/login">Login Now ! </a></small>
+                  <small class="d-block text-center mt-3">Already Have Account? <a href="/login" class="text-danger">Login Now ! </a></small>
 
                 </main>
                 {{-- PUNYA FORM REGISTER --}}
