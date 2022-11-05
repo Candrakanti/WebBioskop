@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -147,3 +148,4 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
     Route::get('/payment', [CrudPaymentController::class, 'customer']);
 });
+
