@@ -49,15 +49,17 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="id_kota" class="form-label"> Kota</label>
+                    <label for="id_bioskop" class="form-label"> Nama Bioskop</label>
                     {{-- <input type="tect" class="form-control" name="id_jadwal" autofocus> --}}
-                    <select class="form-select form-select-lg mb-3" name="id_kota">
+                    <select class="form-select form-select-lg mb-3" name="id_bioskop">
 
                         @foreach ($data3 as $js)
-                            <option value="{{ $js->id_kota }}" selected>{{ $js->kota }}</option>
+                            <option value="{{ $js->id_bioskop }}" selected>{{ $js->nama_bioskop }}</option>
                         @endforeach
                     </select>
                 </div>
+
+               
 
                     <div class="mb-3">
                         <label for="tgl_tayang_awal" class="form-label">Tanggal Tayang Awal</label>

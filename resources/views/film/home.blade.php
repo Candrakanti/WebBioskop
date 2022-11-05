@@ -3,8 +3,6 @@
 @section('container')
     <!DOCTYPE html>
     <html lang="en">
-
-
     <body>
         <div class="container pb-3">
             <a href="/crudFilm/create" class="btn btn-info">Create Data Film</a>

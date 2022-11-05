@@ -5,8 +5,6 @@
     <form method="POST" action="{{ route('movie.detail', $data->id_film) }}">
         @csrf
         <div class="container d-flex justify-content-center">
-
-
             <div class="row d-flex justify-content-center">
                 <div class="col-4">
                     @if ($data->image)
@@ -19,15 +17,16 @@
 
                 <div class="col-8 ">
                     <div class="card-body">
-                        <h5 style="color: red"><b>{{ $data->judul_film }}</b></h5>
-
-
-                        <div class="row mb-3 ">
-                            <label class="col-md-3 col-form-label text-md-start">Jenis Film <td>:</td></label>
-                            <div class="col-md-6">
-                                <span id="jenis_film">{{ $data->jenis_film }}</span></p>
+                        <div class="row">
+                            <div class="col-6">
+                                <h5 style="color: red"><b>{{ $data->judul_film }}</b></h5>
+                            </div>
+                            <div class="col-6 text-end"> <span
+                                    class="badge rounded-pill text-bg-danger btn btn-lg">{{ $data->jenis_film }}</span>
                             </div>
                         </div>
+
+
 
                         <div class="row mb-3 ">
                             <label class="col-md-3 col-form-label text-md-start">Producer <td>:</td></label>
@@ -59,11 +58,11 @@
                         </div>
 
                         <div class="row-mb-3" style="margin-left:5%">
-                            <hr class="border border-danger border-2 opacity-50" width="40%" style="margin-left:">
+                            <hr class="border border-danger border-2 opacity-100" width="40%" style="margin-left:">
 
                             <a style="color:#0000FF;" href="{{ $data->link_trailer }}">Wacth Trailer</a>&nbsp&nbsp&nbsp
 
-                            <!-- Button trigger modal -->
+                            {{-- <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                                 Launch demo modal
@@ -87,18 +86,13 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
+                            <a href="/booking/show/{{ $data->id_film }}" style="color:#0000FF;" class="border border-0 "
+                                id="book">Book Now</a>
 
-                            <form action="/AddProduct" method="post">
-                                @csrf
-                                {{-- <input type="hidden" name="id_film" value="{{ $data->id_film }}"> --}}
-                                <button type="submit"> BOOK NOW</button>
-                                {{-- <a href="/booking/show/{{ $data->id_film }}">BOOK NOW</a> --}}
-                            </form>
-
-                            <hr class="border border-danger border-2 opacity-50" width="40%" style="margin-left:">
+                            <hr class="border border-danger border-2 opacity-100" width="40%" style="margin-left:">
                         </div>
 
                         <div class="row mb-3">
@@ -118,30 +112,33 @@
         </div>
 
         <div class="container">
-            <div class="row "> 
-                <div class="col-2 text-center">
-                    <a href="#" class="link-warning">{{ \Carbon\Carbon::now()->format('l') }}</a>
-                
-            <div class="row text-center" style="margin-left:32%;">
-                    <div class="col-6">
-                        <a href="#" class="link-warning">{{ \Carbon\Carbon::now()->format('d') }}</a>
-                        <a href="#" class="link-warning">{{ \Carbon\Carbon::now()->format('M') }}</a>
-                    </div>
+            <div class="row">
+                <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3">
+                    <span class="badge rounded-pill text-bg-danger btn btn-lg">Today</span>
                 </div>
+            </div>
 
-                </div>
-
-                <div class="col-6 text-center">
-                    <a href="#" class="link-warning">{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
-
-                    <div class="row text-center" style="margin-left:32%;" >
-                        <div class="col-6">
-                            <a href="#" class="link-warning">{{ \Carbon\Carbon::tomorrow()->format('d') }}</a>
-                            <a href="#" class="link-warning">{{ \Carbon\Carbon::tomorrow()->format('M') }}</a>
+            <div class="row ">
+                <div class="col-4 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
+                    <a href="/BookNow" class="link-dark">{{ \Carbon\Carbon::now()->format('l') }}</a>
+                    <div class="row ">
+                        <div class="col-5 col-lg-5 col-sm-5 col-xs-5 mb-3">
+                            <a href="/BookNow" class="link-danger">{{ \Carbon\Carbon::now()->format('d,M') }}</a>
                         </div>
                     </div>
                 </div>
-                
+
+                <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
+                    <a href="/BookLater" class="link-dark">{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
+
+                    <div class="row ">
+                        <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3">
+                            <a href="/BookLater" class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -149,27 +146,22 @@
 
 
         <div class="container" style="padding-bottom: 60%">
-
-           
-            
-            <br>
-
-            {{-- Carbon::now()->toDayDateTimeString(); --}}
-
-           
-            
-            <br>
-
-          
-
             <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            {{ $data->kota }}
+                            <div class="col-4 col-lg-4 col-md-4 col-sm-6">
+                                <img src="/img/logo.png" class="card-img-top" alt="" style="width: 30%">
+                            </div>
+                            <div class="col-8">
+                                <p><b>KINGS PLAZA</b></p>
+                            </div>
                         </button>
+
+
                     </h2>
+
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                         data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
@@ -182,5 +174,11 @@
             </div>
 
     </form>
+
+    <script>
+        $('#gap_form').wrap(
+            '<form id="Form2" action="{{ route('booking.show', $data->id_film) }} " method="POST" ></form>'
+        );
+    </script>
 @endsection
 

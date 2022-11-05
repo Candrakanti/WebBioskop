@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fontawesome.com/icons/pen-to-square?s=duotone">
 
     {{-- TAILWIND DAN FLOWBITE --}}
 
@@ -27,12 +28,15 @@
         @yield('container')
     </div>
 
-    <div class="container">
+    <div class="container " style="padding-top: 10%">
         <div class="row">
             <footer class="border-top">
-                <p class="text-center text-muted pt-4">Copyright ©2021 <a href="https://www.instagram.com/penuh.rekayasa/?next=%2F" class="px-1" target="_blank"> SEENEMA  </a> All rights reserved.</p>
-                <p class="text-center text-muted pt-2">Dibuat Oleh: <a  class="px-1" target="_blank"> 12 RPL 1 WEB BIOSKOP  </a></p>
-              </footer>
+                <p class="text-center text-muted pt-4">Copyright ©2021 <a
+                        href="https://www.instagram.com/penuh.rekayasa/?next=%2F" class="px-1" target="_blank">
+                        SEENEMA </a> All rights reserved.</p>
+                <p class="text-center text-muted pt-2">Dibuat Oleh: <a class="px-1" target="_blank"> 12 RPL 1 WEB
+                        BIOSKOP </a></p>
+            </footer>
         </div>
     </div>
 

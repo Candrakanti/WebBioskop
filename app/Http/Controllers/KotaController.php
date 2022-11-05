@@ -17,7 +17,7 @@ class KotaController extends Controller
         $data = kota::all();
         return view('studio.kota.index', compact('data'), [
             'title' => 'Admin Studio',
-            'pages' => 'Table Kota'
+            'pages' => 'Table Bioskop'
         ]);
     }
 
@@ -31,7 +31,7 @@ class KotaController extends Controller
         $data = kota::all();
         return view('studio.kota.input', compact('data'), [
             'title' => 'Admin Studio',
-            'pages' => 'Table Kota'
+            'pages' => 'Table Bioksop'
         ]);
     }
 
@@ -44,9 +44,8 @@ class KotaController extends Controller
     public function store(Request $request)
     {
         $validatedData =  $request->validate([
-            'id_kota' => 'required|min:5|max:225|unique:kota',
-            'kota' => 'required',
-            'detail_kota' => 'required',
+            'id_bioskop' => 'required|min:5|max:225|unique:bioskop',
+            'nama_bioskop' => 'required'
         ]);
         kota::create($validatedData);
         return redirect('/kota')->with('success', 'Berhasil Data Telah Ditambahkan!');

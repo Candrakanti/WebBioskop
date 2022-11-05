@@ -9,15 +9,11 @@ class kota extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $primaryKey = 'id_kota';
+    protected $primaryKey = 'id_bioskop';
     protected $keyType = 'string';
-    protected $table = "kota";
+    protected $table = "bioskop";
     protected $fillable = [
-        'id_kota',
-        'kota',
-        'detail_kota',
-    ];
-    protected $casts = [
-        'detail_kota' => 'array'
-    ];
+        'id_bioskop',
+        'nama_bioskop',
+    ];    
 }

@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="container pb-3">
-        <a href="/kota/create" class="btn btn-info"> Create Data Kota</a>
+        <a href="/kota/create" class="btn btn-info"> Create Data bioskop</a>
 
         <div class="container pt-3">
             @if (session()->has('success'))
@@ -17,7 +17,7 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6 class="text-center">Data Kota</h6>
+                            <h6 class="text-center">Data Bioskop</h6>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -28,13 +28,10 @@
                                                 No</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Id kota</th>
+                                                Id Bioskop</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Kota</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Detail Kota</th>
+                                                Nama Bioskop</th>
 
 
                                             @foreach ($data as $key => $data)
@@ -59,20 +56,13 @@
 
 
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $data->id_kota }}</p>
+                                                <p class="text-xs font-weight-bold mb-0">{{ $data->id_bioskop }}</p>
                                             </td>
 
                                             <td class="align-middle text-center pt-1">
                                                 <p class="text-secondary text-xs font-weight-bold">
-                                                    {{ $data->id_kota }}</p>
+                                                    {{ $data->nama_bioskop }}</p>
                                             </td>
-                                            @foreach ($data->detail_kota as $d)
-                                                <td class="align-middle text-center">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $d['value'] }}</span>
-
-                                                </td>
-                                            @endforeach
                                         </tr>
                                     </tbody>
                                     @endforeach

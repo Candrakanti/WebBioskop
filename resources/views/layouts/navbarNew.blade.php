@@ -65,7 +65,7 @@
     </header>
     <div class="container">
         <div class="row">
-            <hr class="border border-danger border-2 opacity-100" style="margin-bottom: 50px;">
+            <hr class="border border-danger border-3 opacity-100" style="margin-bottom: 50px;">
         </div>
     </div>
     
