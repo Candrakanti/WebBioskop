@@ -47,7 +47,6 @@ use App\Http\Controllers\CrudPaymentController;
 
 
 Route::get('/', [HomeController::class, 'index']);
-// Route::get('//{tgl_tayang_awal}', [HomeController::class, 'detail'])->name('home.detail');
 Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {

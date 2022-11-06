@@ -7,6 +7,7 @@ use App\Models\Booking;
 
 use App\Models\detail_booking;
 use App\Models\kota;
+use App\Models\jadwal;
 // use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\cart;
@@ -24,7 +25,7 @@ class BookingController extends Controller
      */
     public function index(Request $request, $id_film)
     {
-        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->join('cart','cart.id_film','=','film.id_film')->join('users' ,'users.id' ,'=','cart.user_id')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*','cart.*','users.*'])->where('id_film', $id_film)->first();
+        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
         return view('movie.seat', compact('data'), [
             'title' => 'Seat',
             'pages' => 'Table Studio'
@@ -104,15 +105,16 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function show(Booking $booking)
+    public function show($id_film)
     {
-        // $cart = Cart::content();
-        // dd($cart);
+       
+    }
 
-        $carts = cart::where('user_id', Auth::user()->id);
-        return view('movie.cart', compact('cart'), [
-            "title" => "mycgv",
-            "active" => "mycgv"
+    public function detail($id_film){
+       $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->get(['jadwal.*','film.*','studio.*',])->where('id_film', $id_film)->first();
+        return view('movie.seat', compact('data'), [
+            'title' => 'Seat',
+            'pages' => 'Table Studio'
         ]);
     }
 

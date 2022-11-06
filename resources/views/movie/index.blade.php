@@ -70,7 +70,7 @@
                        <b> {{ $film->judul_film }}</b>
                     </h6>
                 </a>
-                <div class="card-body text-center">
+                <div class="card-body text-center"> 
                     <a href="/booking/show/{{ $film->id_film }}" class="btn btn-danger">BOOK NOW</a>
                 </div>
               </div>
