@@ -26,10 +26,8 @@
                                 <div class="seats" id="seats" name="harga">
                                     <div class="row  g-0 mx-0 ">
     
-                                            <input type="checkbox" class="seat" name="selected[]" value="H1"><p>A26</p>
-                                            <input type="checkbox" class="seat" name="selected[]" value="H2"><p>A27</p>
-                                            <input type="checkbox" class="seat" name="selected[]" value="H3"><p>A28</p>
-                                            <input type="checkbox" class="seat" name="selected[]" value="h4"><p>A29</p>
+                                            <input type="checkbox" class="seat" name="harga" value="{{ $data->harga }}" data-value="H1"><p>A26</p>
+                                            <input type="checkbox" class="seat" name="harga" value="{{ $data->harga }}" data-value="H2"><p>A27</p>
     
                                         <div class="col-4 col-lg-4  col-sm-4 col-md-4 px-0">
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H1"
@@ -262,7 +260,7 @@
                 
                                             <div class="pt-3">
                                                 <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
-                                                name="harga" aria-label="Disabled input example" readonly id="price">
+                                                name="harga" aria-label="Disabled input example"  id="price">
                                             </div>
                 
                                             <div class="container text-center mt-3">
@@ -287,17 +285,18 @@
 
     <script>
                 $(function() {
-        var reserved = [<?php $data->harga ?>] ;
-        var seats = document.getElementsByClassName('seat');
+                        var reserved = [<?php $data->kursi ?>] ;
+        var seats = document.getElementsByClassName('harga');
         for (var i = 0; i < seats.length; i++) {
         reserved.map(function(v) {
-        if (seats[i].value === v) {
+        if (seats[i].data('value') === v) {
                 seats[i].setAttribute("disabled", "true");
                 seats[i].setAttribute("checked", "true");
         }
         });
         }
         }); 
+      
 
 
         $(document).ready(function() {
@@ -310,8 +309,7 @@
                                 test.push($(this).data('value'));
                         
                 }); 
-                
-                document.getElementById('seat').value = test;
+           document.getElementById('seat').value = test;
                 var input = document.getElementsByName("harga");
                 var total = 0;
                 for (var i = 0; i < input.length; i++) {
@@ -319,7 +317,7 @@
                         total += parseFloat(input[i].value);
                     }
                 }
-                document.getElementById("price").value = "Rp." + total.toFixed(2).replace(/\.00/g, '');
+                document.getElementById("price").value =  total.toFixed(2).replace(/\.00/g, '');
 
                 document.querySelector('#seats').addEventListener('change', () => {
                     var seat = document.getElementById("seats");
