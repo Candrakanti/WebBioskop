@@ -2,7 +2,8 @@
 @section('container')
     <form method="POST" action="{{ route('booking.show', $data->id_film) }}">
         @csrf
-
+        <h2>{{ $data->user_id }}</h2>
+    
 
         <div class="row" >
                 
@@ -15,189 +16,182 @@
                                     class="rounded d-flex justify-content-center">
                             </div>
     
-                            <p class="card-text text-center pt-1"> SCREEN</p>
+                            <p class="card-text text-center pt-1"> SCREEN </p>
     
                             <div class="alert alert-danger" role="alert">
                                 <p class="text-center"> {{ $data->jenis_studio }} : {{ $data->harga }}</p>
                             </div>
-    
-    
+
                             @if ($data->jenis_studio === 'Regular')
                                 <div class="seats" id="seats" name="harga">
                                     <div class="row  g-0 mx-0 ">
-    
-                                            <input type="checkbox" class="seat" name="harga" value="{{ $data->harga }}" data-value="H1"><p>A26</p>
-                                            <input type="checkbox" class="seat" name="harga" value="{{ $data->harga }}" data-value="H2"><p>A27</p>
-    
                                         <div class="col-4 col-lg-4  col-sm-4 col-md-4 px-0">
-                                            <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H1"
-                                                  name="harga">
+                                            <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H1" {{  ($data->kursi == 1 ? 'disabled' : '') }}
+                                                  name="kursi" >
                                             </label>
     
-                                            <label><input type="checkbox" value="{{ $data->harga }}" data-value="H2"
-                                                   name="harga"></label> <br>
+                                            <label><input type="checkbox" value="{{ $data->harga }}" data-value="H2"  {{  ($data->kursi == 1 ? 'disabled' : '') }}
+                                                   name="kursi"></label> <br>
     
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="G1"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
     
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="G2"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
     
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="G3"
-                                                    name="harga"></label> <br>
+                                                    name="kursi"></label> <br>
     
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="F1"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
     
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="F2"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
     
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="F3"
-                                                    name="harga"></label> <br>
+                                                    name="kursi"></label> <br>
     
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="E1"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="E2"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="E3"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="D1"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="D2"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="D3"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="C1"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="C2"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="C3"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="B1"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="B2"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="B3"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="A1"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="A2"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="A3"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
     
                                         </div>
     
                                         <div class="col-4 col-lg-4 col-sm-4 col-md-4 px-0">
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H3"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="H4"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="H5"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="G4"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="G5"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="G6"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="F4"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="F5"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="F6"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="E4"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="E5"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="E6"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="D4"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="D5"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="D6"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="C4"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="C5"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="C6"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="B4"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="B5"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="B6"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="A4"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="A5"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="A6"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
     
     
                                         </div>
     
                                         <div class="col-4 col-lg-4 col-sm-4 col-md-4 px-0">
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H6"
-                                                    name="harga"> </label>
+                                                    name="kursi"> </label>
     
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="H7"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="G7"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="G8"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="G9"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="F7"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="F8"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="F9"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="E7"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="E8"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="E9"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="D7"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="D8"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="D9"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="C7"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="C8"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="C9"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="B7"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="B8"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="B9"
-                                                    name="harga"></label><br>
+                                                    name="kursi"></label><br>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="A7"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="A8"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="A9"
-                                                    name="harga"></label>
+                                                    name="kursi"></label>
     
                                         </div>
                                     </div>
-    
                                 </div>
-    
-    
-                                {{-- <a href="/Npayment" class="btn btn-danger">Click here to Get Values</a> --}}
+                                
                             @endif
+                        
                         </div>
                     </div>
     
@@ -284,33 +278,18 @@
     </form>
 
     <script>
-                $(function() {
-                        var reserved = [<?php $data->kursi ?>] ;
-        var seats = document.getElementsByClassName('harga');
-        for (var i = 0; i < seats.length; i++) {
-        reserved.map(function(v) {
-        if (seats[i].data('value') === v) {
-                seats[i].setAttribute("disabled", "true");
-                seats[i].setAttribute("checked", "true");
-        }
-        });
-        }
-        }); 
-      
-
-
         $(document).ready(function() {
 
             $('.seats').click(function() {
                 var test = new Array();
                 var book ="H1";
-                $("input[name='harga']:checked").each(function() {
+                $("input[name='kursi']:checked").each(function() {
                        
                                 test.push($(this).data('value'));
                         
                 }); 
            document.getElementById('seat').value = test;
-                var input = document.getElementsByName("harga");
+                var input = document.getElementsByName("kursi");
                 var total = 0;
                 for (var i = 0; i < input.length; i++) {
                     if (input[i].checked) {

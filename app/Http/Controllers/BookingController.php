@@ -26,11 +26,17 @@ class BookingController extends Controller
     public function index(Request $request, $id_film)
     {
         $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
-        return view('movie.seat', compact('data'), [
+
+     
+        return view('movie.seat', compact('data' ), [
             'title' => 'Seat',
             'pages' => 'Table Studio'
         ]);
+
+
+           // $data2 = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->join('cart','cart.id_film' , 'jadwal.id_film')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*' , 'cart.*'])->where('kursi', $kursi)->first();
     }
+
 
     public function count()
     {
@@ -68,11 +74,18 @@ class BookingController extends Controller
         // die();
 
         // dd($request);
-        cart::insert([
+        // cart::insert([
+        //     'id_film' => $id_film,
+        //     'user_id' => Auth::user()->id,
+        //     'harga' => $request->harga,
+        //     'kursi' =>   $request->kursi,
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
+        detail_booking::insert([
             'id_film' => $id_film,
             'user_id' => Auth::user()->id,
             'harga' => $request->harga,
-            'kursi' =>   $request->kursi,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

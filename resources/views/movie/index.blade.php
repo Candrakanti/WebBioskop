@@ -2,25 +2,6 @@
 
 @section('container')
 
- {{-- <section id="kota">
-    <div class="container mb-4">
-        <div class="row">
-            <div class="col-8">
-                <div class="btn-group">
-                    <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
-                      <h1><b>Movie In</b></h1>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li><button class="dropdown-item" type="button">Action</button></li>
-                      <li><button class="dropdown-item" type="button">Another action</button></li>
-                      <li><button class="dropdown-item" type="button">Something else here</button></li>
-                    </ul>
-                  </div>
-            </div>
-        </div>
-    </div>
- </section>
-    --}}
         <section id="kota">
             <div class="container mb-4">
                 <div class="row">
