@@ -24,20 +24,6 @@
 
                             @if ($data->jenis_studio === 'Regular')
 
-                            <div>form 1:
-                                <div class="totalchecked">0 selected</div>
-                                <div>
-                                  <input type="checkbox" class="class" name="1">
-                                  <input type="checkbox" class="class" name="2">
-                                  <input type="checkbox" class="class" name="3">
-                                </div>
-                              </div>
-
-                              <div>
-
-                                
-                              </div>
-
                                 <div class="seats" id="seats" name="harga">
                                         
                                     <div class="row  g-0 mx-0 ">
@@ -352,27 +338,8 @@
                         document.getElementById("book").disabled = true;
                     }
                 });
-                // alert("My favourite programming languages are: " + test);
             });
         });
-        // $('document').ready(function() {
-        //     $('.addToCartBtn').click(function(e) {
-        //         e.preventDefault();
-        //         var product_id = $(this).closest('.product_data').find('.prod_id').val();
-        //         var product_qty = $(this).closest('.product_data').find('.qty-input').val();
-        //         alert(product_id);
-        //         alert(product_qty);
-        //         $.ajax({
-        //             method: "POST",
-        //             url: "/AddToCart",
-        //             data: {
-        //                 'product_id': product_id,
-        //                 'product_qty': product_qty,
-        //             },
-        //             success: function(response) {
-        //             }
-        //         })
-        //     });
-        // });
+     
     </script>
 @endsection

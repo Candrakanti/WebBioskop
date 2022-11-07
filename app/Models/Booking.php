@@ -19,7 +19,7 @@ class Booking extends Model
         // 'id_payment',
         'id_jadwal',
         'tanggal_booking',
-        // 'jumlah_kursi',
+        'jumlah_kursi',
         // 'qr_tiket',
         'harga',
     ];

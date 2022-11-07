@@ -83,6 +83,7 @@ class BookingController extends Controller
         'id_booking' => Auth::user()->id,
             'id_customer' => Auth::user()->id,
             'id_jadwal' => $id_jadwal,
+            'jumlah_kursi' => $request->jumlah_kursi,
             'tanggal_booking' => now(),
             'harga' => $request->harga,
             'created_at' => now(),
