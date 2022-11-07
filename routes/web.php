@@ -128,9 +128,7 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 });
 
-Route::resource('/ticket', RticketController::class);
-Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
-
+Route::get('/film', [AdminFilmController::class, 'index'])->middleware('auth');
 
 Route::resource('/ticket', RticketController::class);
 Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('ticket.show');
@@ -147,4 +145,5 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
     Route::get('/payment', [CrudPaymentController::class, 'customer']);
 });
+
 
