@@ -16,11 +16,11 @@ class Booking extends Model
     protected $fillable = [
         'id_booking',
         'id_customer',
-        'id_payment',
+        // 'id_payment',
         'id_jadwal',
         'tanggal_booking',
-        'jumlah_kursi',
-        'qr_tiket',
-        'total_harga',
+        // 'jumlah_kursi',
+        // 'qr_tiket',
+        'harga',
     ];
 }

@@ -25,16 +25,14 @@ class BookingController extends Controller
      */
     public function index(Request $request, $id_film)
     {
-        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
+        // $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
 
+        $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*'])->where('id_film',$id_film)->first();
      
         return view('movie.seat', compact('data' ), [
             'title' => 'Seat',
             'pages' => 'Table Studio'
         ]);
-
-
-           // $data2 = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->join('cart','cart.id_film' , 'jadwal.id_film')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*' , 'cart.*'])->where('kursi', $kursi)->first();
     }
 
 
@@ -68,27 +66,29 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id_film)
+    public function store(Request $request, $id_jadwal)
     {
         // echo request()->ip();
         // die();
 
         // dd($request);
-        cart::insert([
-            'id_film' => $id_film,
-            'user_id' => Auth::user()->id,
-            'harga' => $request->harga,
-            'kursi' =>   $request->kursi,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        // detail_booking::insert([
+        // cart::insert([
         //     'id_film' => $id_film,
         //     'user_id' => Auth::user()->id,
         //     'harga' => $request->harga,
+        //     'kursi' =>   $request->kursi,
         //     'created_at' => now(),
         //     'updated_at' => now(),
         // ]);
+       Booking::insert([
+        'id_booking' => Auth::user()->id,
+            'id_customer' => Auth::user()->id,
+            'id_jadwal' => $id_jadwal,
+            'tanggal_booking' => now(),
+            'harga' => $request->harga,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         return redirect('/movie')->with('success', 'success adding to cart !');
     }
 
