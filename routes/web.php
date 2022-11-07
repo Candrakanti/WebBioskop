@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -46,7 +47,6 @@ use App\Http\Controllers\CrudPaymentController;
 
 
 Route::get('/', [HomeController::class, 'index']);
-// Route::get('//{tgl_tayang_awal}', [HomeController::class, 'detail'])->name('home.detail');
 Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
@@ -55,8 +55,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('AddProduct/{id_film}', [BookingController::class, 'store'])->name('cart.store');
     Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
-    // Route::get('/BookNow/{id_film}', [MovieController::class, 'seat'])->name('BookNow');
-    Route::get('/BookLater', [MovieController::class, 'booklater']);
+    Route::get('/BookLater/{id_film}', [MovieController::class, 'booklater'])->name('booklater.show');
+    Route::get('/BookNow/{id_film}', [MovieController::class, 'booknow'])->name('booknow.show');;
 
 });
 

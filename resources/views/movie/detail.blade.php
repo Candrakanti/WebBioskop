@@ -131,11 +131,11 @@
                 </div>
 
                 <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
-                    <a href="/BookLater" class="link-dark">{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
+                    <a href="/BookLater/{{ $data->id_film }}" class="link-dark">{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
 
                     <div class="row ">
                         <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3">
-                            <a href="/BookLater" class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a>
+                            <a href="/BookLater/{{ $data->id_film }}" class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a>
 
                         </div>
                     </div>

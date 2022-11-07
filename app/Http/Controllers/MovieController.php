@@ -21,7 +21,6 @@ class MovieController extends Controller
         $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
         // $cart = Cart::content();
         // dd($cart);
-        $data2 = user::all();
 
         return view('movie.index', compact('data'), [
             'title' => 'movie',
@@ -31,9 +30,7 @@ class MovieController extends Controller
 
     public function detail($id_film)
     {
-        // $data = Film::join('jadwal', 'jadwal.id_film', '=', 'film.id_film')
-        //     ->get(['jadwal.*', 'film.*'])
-        //     ->where('id_film', $id_film)->first();
+       
 
         $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
 
@@ -83,8 +80,23 @@ class MovieController extends Controller
        
     // }
 
-    public function booklater(){
-        return view('movie.booklater', [
+    public function booklater(Request $request, $id_film){
+
+        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')
+        ->join('film', 'film.id_film', '=', 'jadwal.id_film')
+        ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
+        ->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
+
+        return view('movie.booklater', compact('data'), [ 
+            "title" => "seat",
+            "active" => 'Movie',
+        ]);
+    }
+
+    public function booknow(Request $request, $id_film){
+
+        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
+        return view('movie.booknow',  compact('data'), [
             "title" => "seat",
             "active" => 'Movie',
         ]);

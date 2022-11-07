@@ -68,8 +68,6 @@ class CrudJadwalController extends Controller
     public function store(Request $request)
     {
         $validatedData =  $request->validate([
-
-            // 'id_jadwal' => 'required|min:5|max:10|unique:jadwal|string',
             'id_jadwal' => 'required|min:5|max:10|unique:jadwal',
             'id_studio' => 'required',
             'id_film' => 'required',
