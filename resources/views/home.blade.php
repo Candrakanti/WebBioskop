@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
+
 <div class="row justify-content-center">
     <div class="col-lg-10 col-md-10 col-xs-10 ">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -34,6 +35,7 @@
 </div>
 
 <section class="marketing"  >
+  
   <div class="row align-items-center pt-5">
     <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
       <h3 class="m-0">Saksikan Film Kesayangan Anda <br>Di Seenema Terdekat!</h3>
@@ -61,94 +63,58 @@
   </div>
 </section>    
 
-<section id="playing">
-  <div class="container" style="margin-bottom: 5%">
-
-      <div class="row pt-5">
+<section id="kota">
+  <div class="container mb-4">
+      <div class="row">
           <div class="col-8">
-
-              <li class="nav-item dropdown" style="  list-style-type: none !important;">
+              <li class="nav-item dropdown" style="list-style-type: none !important;">
+                  <h1  style="color: red"><b>
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Movies in Bandung
-                 </a>
+                      aria-expanded="false" style="padding: none !important;">
+                      Movies in Bandung
+                  </a>
                   <ul class="dropdown-menu">
                       @foreach ($data as $dt)
-                          {{-- @foreach ($dt->detail_kota as $dt)
+                          @foreach ($dt->detail_kota as $dt)
                               <p>{{ $dt['value'] }}</p>
-                          @endforeach --}}
-                          <p>{{ $dt->id_kota }}</p>
+                          @endforeach
                       @endforeach
                   </ul>
+                  </b></h1>
+                
               </li>
-
           </div>
       </div>
-      </div>
+  </div>
 </section>
-
-
-{{-- <section id="playing">
-  <div class="container" style="margin-bottom: 5%">
-    <div class="row pt-5">
-        <div class="col-8"> 
-    <div class="row text-end">
-        <div class="col-4 col-lg-2 col-md-2 col-sm-2">
-            <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="#playing"><b>PLAYING</b></a>
-        </div>
-        <div class="col-4  col-lg-2 col-md-2 col-sm-2">
-          <a class="nav-link {{ ($title === "Home")? 'active' : '' }}"  href="#upcoming"><b>UPCOMING</b></a>
-        </div>
-    </div>
-    </div>
-  </div>
-  </div>
-</section> --}}
-
-{{-- <section id="playing">
-  <div class="container">
-    <div class="row">
-      @foreach ($data as $film)
-      <div class="card" style="width: 15rem;">
-        @if ($film->image)
-        <div class="shadow-lg rounded">
-        <a href="/movie/detail/{{ $film->id_film }}">
-        <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
-        </a>
-      </div>
-        @endif
-        <div class="card-body" style="padding: 43px;">
-          <a href="#" class="btn btn-primary">BOOK NOW</a>
-        </div>
-      </div>
-      @endforeach
-    </div>
-  </div>
-</section> --}}
 
 <section id="upcoming">
   <div class="container">
     <div class="row">
       @foreach ($data as $film)
-      <div class="card" style="width: 17rem;">
-        @if ($film->image)
-        <div class="rounded">
-        <a href="/movie/detail/{{ $film->id_film }}">
-        <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
-        </a>
-      </div>
-        @endif
-        <br>
-        {{-- <input type="hidden" value="{{ $film->judul_film }}" class="prod_id"> --}}
-        <a href="/movie/detail/{{ $film->id_film }}">
-            <h6 class="text-center" style="color: black">
-                <b>{{ $film->judul_film }}</b>
-            </h6>
-        </a>
-        <div class="card-body text-center">
-            <a href="/booking/show/{{ $film->id_film }}" class="btn btn-danger">BOOK NOW</a>
+      <div class="col-6 col-lg-3 col-md-3 col-sm-6 col-xs-6">
+        <div class="card" style="width: 17rem;">
+          @if ($film->image)
+          <div class="rounded">
+          <a href="/movie/detail/{{ $film->id_film }}">
+          <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
+          </a>
+        </div>
+          @endif
+          <br>
+          {{-- <input type="hidden" value="{{ $film->judul_film }}" class="prod_id"> --}}
+          <a href="/movie/detail/{{ $film->id_film }}">
+              <h6 class="text-center" style="color: black">
+                  <b>{{ $film->judul_film }}</b>
+              </h6>
+          </a>
+          <div class="card-body text-center">
+              <a href="/booking/show/{{ $film->id_film }}" class="btn btn-danger">BOOK NOW</a>
+          </div>
         </div>
       </div>
+
+      
       @endforeach
     </div>
   </div>

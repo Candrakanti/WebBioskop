@@ -2,25 +2,6 @@
 
 @section('container')
 
- {{-- <section id="kota">
-    <div class="container mb-4">
-        <div class="row">
-            <div class="col-8">
-                <div class="btn-group">
-                    <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
-                      <h1><b>Movie In</b></h1>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li><button class="dropdown-item" type="button">Action</button></li>
-                      <li><button class="dropdown-item" type="button">Another action</button></li>
-                      <li><button class="dropdown-item" type="button">Something else here</button></li>
-                    </ul>
-                  </div>
-            </div>
-        </div>
-    </div>
- </section>
-    --}}
         <section id="kota">
             <div class="container mb-4">
                 <div class="row">
@@ -29,7 +10,7 @@
                             <h1  style="color: red"><b>
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false" style="padding: none !important;">
-                                Movie In
+                                Movies in Bandung
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach ($data as $dt)
@@ -70,7 +51,7 @@
                        <b> {{ $film->judul_film }}</b>
                     </h6>
                 </a>
-                <div class="card-body text-center">
+                <div class="card-body text-center"> 
                     <a href="/booking/show/{{ $film->id_film }}" class="btn btn-danger">BOOK NOW</a>
                 </div>
               </div>
