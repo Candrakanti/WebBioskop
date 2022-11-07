@@ -313,12 +313,7 @@
     </form>
 
     <script>
-//         $( document ).ready(function() {
-// //                 var $SelectCount = $("input:checkbox")
-// //     $SelectCount.change(function(){
-// //         var countChecked = $(this).parent().find("input:checkbox").filter(':checked').length;
-// //         $(this).parent().siblings(".totalchecked").text(countChecked + " Selected");
-// //     });          
+        
         $(document).ready(function() {
             $('.seats').click(function() {
                 var test = new Array();
@@ -329,11 +324,6 @@
                 var check =    $(":checkbox:checked").length;
            document.getElementById('seat').value = test ;
            document.getElementById('count_seat').value=  check;
-
-        // console.log(check);
-        //    alert($(":checkbox:checked").length);
-        // document.getElementById('count_seat' ).check;
-        let checked = $(".check:checked");
   
                 var input = document.getElementsByName("kursi");
                 var total = 0;
