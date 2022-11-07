@@ -119,11 +119,11 @@
             <div class="row ">
 
                 <div class="col-4 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
-                    <a href="/BookNow" class="link-dark">{{ \Carbon\Carbon::now()->format('l') }}</a>
+                    <a href="/BookNow/{{ $data->id_film }}" class="link-dark">{{ \Carbon\Carbon::now()->format('l') }}</a>
 
                     <div class="row ">
                         <div class="col-5 col-lg-5 col-sm-5 col-xs-5 mb-3">
-                            <a href="/BookNow" class="link-danger">{{ \Carbon\Carbon::now()->format('d,M') }}</a>
+                            <a href="/BookNow/{{ $data->id_film }}" class="link-danger">{{ \Carbon\Carbon::now()->format('d,M') }}</a>
 
                         </div>
                     </div>
@@ -131,11 +131,11 @@
                 </div>
 
                 <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
-                    <a href="/BookLater" class="link-dark">{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
+                    <a href="/BookLater/{{ $data->id_film }}" class="link-dark">{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
 
                     <div class="row ">
                         <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3">
-                            <a href="/BookLater" class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a>
+                            <a href="/BookLater/{{ $data->id_film }}" class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a>
 
                         </div>
                     </div>

@@ -1,9 +1,10 @@
 @extends('layouts.main')
 @section('container')
-    <form method="POST" action="{{ route('booking.show', $data->id_film) }}">
+    <form method="POST" action="{{ route('booklater.show', $data->id_film) }}">
         @csrf
         <h2>{{ $data->user_id }}</h2>
     
+
 
         <div class="row" >
                 
@@ -23,30 +24,14 @@
                             </div>
 
                             @if ($data->jenis_studio === 'Regular')
-
-                            <div>form 1:
-                                <div class="totalchecked">0 selected</div>
-                                <div>
-                                  <input type="checkbox" class="class" name="1">
-                                  <input type="checkbox" class="class" name="2">
-                                  <input type="checkbox" class="class" name="3">
-                                </div>
-                              </div>
-
-                              <div>
-
-                                
-                              </div>
-
                                 <div class="seats" id="seats" name="harga">
-                                        
                                     <div class="row  g-0 mx-0 ">
                                         <div class="col-4 col-lg-4  col-sm-4 col-md-4 px-0">
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H1" {{  ($data->kursi == 1 ? 'disabled' : '') }}
-                                                class="class"  name="kursi">
+                                                  name="kursi" >
                                             </label>
     
-                                            <label><input type="checkbox" value="{{ $data->harga }}" data-value="H2" 
+                                            <label><input type="checkbox" value="{{ $data->harga }}" data-value="H2"  {{  ($data->kursi == 1 ? 'disabled' : '') }}
                                                    name="kursi"></label> <br>
     
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="G1"
@@ -201,25 +186,11 @@
                                                     name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="A9"
                                                     name="kursi"></label>
+    
                                         </div>
                                     </div>
                                 </div>
-
-                                @else
-                @foreach(range('A',$data->jumlah_row) as $v)
-                <div class="row">
-                        <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                <nav class="nav flex-column">               
-                                        <a class="nav-link text-dark" href="#">{{ $v }}</a>
-                                      </nav>
-                        </div>
-                        <div class="col-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                @for($i = 0; $i<$data->jumlah_kursi_perrow; $i++)
-                                <input type="checkbox" value="  ">
-                                 @endfor
-                        </div>
-                </div>
-                    @endforeach  
+                                
                             @endif
                         
                         </div>
@@ -254,10 +225,10 @@
     
                                     <div class="row ">
                                         <div class="col-6 col-lg-6 col-sm-6 col-md-6">
-                                            <p>haii</p>
+                                            <p>Date & Month :</p>
                                         </div>
                                         <div class="col-6"> <b>
-                                                <p>haii</p>
+                                                <p>{{ \Carbon\Carbon::tomorrow()->format('l,d,M') }}</p>
                                             </b></div>
                                     </div>
     
@@ -282,11 +253,6 @@
                                                 {{-- <span class="badge rounded-pill text-bg-info" disabled>Info</span> --}}
                                             </div>
                 
-                                            <div class="pt-3" class="totalchecked">
-                                                <input class="form-control" type="text" placeholder="Jumlah Kursi Yang Anda Pilih"
-                                                name="jumlah_kursi" aria-label="Disabled input example" class="totalchecked"   id="count_seat">
-                                            </div>
-
                                             <div class="pt-3">
                                                 <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
                                                 name="harga" aria-label="Disabled input example"  id="price">
@@ -310,21 +276,21 @@
                 </div>
             </div>
    
+   
     </form>
 
     <script>
-        
         $(document).ready(function() {
+
             $('.seats').click(function() {
                 var test = new Array();
                 var book ="H1";
                 $("input[name='kursi']:checked").each(function() {
-                                test.push($(this).data('value'));          
+                       
+                                test.push($(this).data('value'));
+                        
                 }); 
-                var check =    $(":checkbox:checked").length;
-           document.getElementById('seat').value = test ;
-           document.getElementById('count_seat').value=  check;
-  
+           document.getElementById('seat').value = test;
                 var input = document.getElementsByName("kursi");
                 var total = 0;
                 for (var i = 0; i < input.length; i++) {

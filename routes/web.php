@@ -55,6 +55,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('AddProduct/{id_jadwal}', [BookingController::class, 'store'])->name('cart.store');
     Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
+    Route::get('/BookLater/{id_film}', [MovieController::class, 'booklater'])->name('booklater.show');
+    Route::get('/BookNow/{id_film}', [MovieController::class, 'booknow'])->name('booknow.show');;
+
 });
 
 

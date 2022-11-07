@@ -44,7 +44,6 @@ class BookingController extends Controller
             "active" => "mycgv"
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
