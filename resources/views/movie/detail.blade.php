@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
+
     <form method="POST" action="{{ route('movie.detail', $data->id_film) }}">
         @csrf
         <div class="container d-flex justify-content-center">
@@ -116,18 +117,15 @@
                     <span class="badge rounded-pill text-bg-danger btn btn-lg">Today</span>
                 </div>
             </div>
-            <div class="row ">
 
+            <div class="row ">
                 <div class="col-4 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
                     <a href="/BookNow" class="link-dark">{{ \Carbon\Carbon::now()->format('l') }}</a>
-
                     <div class="row ">
                         <div class="col-5 col-lg-5 col-sm-5 col-xs-5 mb-3">
                             <a href="/BookNow" class="link-danger">{{ \Carbon\Carbon::now()->format('d,M') }}</a>
-
                         </div>
                     </div>
-
                 </div>
 
                 <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
@@ -147,7 +145,7 @@
 
 
 
-        <div class="container pt-3" style="padding-bottom: 60%">
+        <div class="container" style="padding-bottom: 60%">
             <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
@@ -183,3 +181,4 @@
         );
     </script>
 @endsection
+

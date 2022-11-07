@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -51,8 +50,8 @@ Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/mycgv', [CgvController::class, 'index']);
-    Route::get('/booking/show/{id_film}', [BookingController::class, 'index'])->name('booking.show');
-    Route::post('AddProduct/{id_film}', [BookingController::class, 'store'])->name('cart.store');
+    Route::get('/booking/show/{id_jadwal}', [BookingController::class, 'index'])->name('booking.show');
+    Route::post('AddProduct/{id_jadwal}', [BookingController::class, 'store'])->name('cart.store');
     Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
 });
@@ -128,7 +127,9 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 });
 
-Route::get('/film', [AdminFilmController::class, 'index'])->middleware('auth');
+Route::resource('/ticket', RticketController::class);
+Route::get('/ticket/show/{id_jadwal}', [RticketController::class, 'show'])->name('ticket.show');
+
 
 Route::resource('/ticket', RticketController::class);
 Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('ticket.show');
@@ -145,5 +146,3 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
     Route::get('/payment', [CrudPaymentController::class, 'customer']);
 });
-
-
