@@ -108,11 +108,23 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="jumlah_kursi" class="form-label @error('jumlah_kursi') is-invalid @enderror">jumlah
-                        kursi</label>
-                    <input type="number" class="form-control" name="jumlah_kursi" required
-                        value="{{ old('jumlah_kursi') }}">
-                    @error('jumlah_kursi')
+                    <label for="jumlah_row" class="form-label @error('jumlah_row') is-invalid @enderror">jumlah
+                        row</label>
+                    <input type="number" class="form-control" name="jumlah_row" required value="{{ old('jumlah_row') }}">
+                    @error('jumlah_row')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="jumlah_kursi_perrow"
+                        class="form-label @error('jumlah_kursi_perrow') is-invalid @enderror">jumlah
+                        kursi perrow</label>
+                    <input type="number" class="form-control" name="jumlah_kursi_perrow" required
+                        value="{{ old('jumlah_kursi_perrow') }}">
+                    @error('jumlah_kursi_perrow')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

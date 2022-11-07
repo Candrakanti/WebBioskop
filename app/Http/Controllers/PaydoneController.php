@@ -15,21 +15,12 @@ class PaydoneController extends Controller
      */
     public function index()
     {
-        $listproducts['listproducts'] = cart::where('user_id', '=', Auth::user()->id)
-            ->Paginate(7)
-            ->onEachSide(2);
-        $listproducts['listproducts'] = cart::join('film', 'film.id_film', '=', 'cart.id_film')->get(['cart.*', 'film.*'])->where('user_id', '=', Auth::user()->id);
+
+        $listproducts['listproducts'] = cart::join('film', 'film.id_film', '=', 'cart.id_film')->get(['cart.', 'film.'])->where('user_id', '=', Auth::user()->id);
         return view('profil.paydone', [
             'title' => 'Mycgv',
             'active' => 'Mycgv'
         ])->with($listproducts);
-        
-        // return view('profil.paydone', [
-        //     'title' => 'Mycgv',
-        //     'active' => 'Mycgv'
-        // ]);
-        
-       
     }
 
     /**

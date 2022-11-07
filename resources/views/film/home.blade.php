@@ -3,39 +3,6 @@
 @section('container')
     <!DOCTYPE html>
     <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ $title }}</title>
-
-<body>
-
-  <div class="card text-bg-dark">
-    <img src="{{asset('img/movie.png')}}" class="card-img" alt="...">
-    <div class="card-img-overlay">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small>Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  
-<div class="container pb-3">
-  <a href="/crudFilm/create" class="btn btn-info">Create Data Film</a>
-   
-<div class="container pt-3">
-  @if (session()->has('success'))
-  <div class="alert alert-success " role="alert">
-     {{session('success')}}
-    </div>
-  @endif
-</div>
-       
-
-    </head>
-
-
     <body>
         <div class="container pb-3">
             <a href="/crudFilm/create" class="btn btn-info">Create Data Film</a>

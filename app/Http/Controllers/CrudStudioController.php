@@ -42,7 +42,7 @@ class CrudStudioController extends Controller
     public function create()
     {
         $jenis_studio = jenis_studio::all();
-  
+
         return view('studio.crud.input',  compact('jenis_studio'), [
             // 'jenis_studio' => jenis_studio::all(),
             'title' => 'Admin Studio',
@@ -64,7 +64,8 @@ class CrudStudioController extends Controller
             'id_studio' => 'required|min:5|max:225|unique:studio',
             'id_jenis_studio' => 'required',
             'audiotori' => 'required',
-            'jumlah_kursi' => 'required',
+            'jumlah_row' => 'required',
+            'jumlah_kursi_perrow' => 'required',
         ]);
 
         studio::create($validatedData);
@@ -117,7 +118,8 @@ class CrudStudioController extends Controller
                 'id_studio' => $request->id_studio,
                 'id_jenis_studio' => $request->id_jenis_studio,
                 'audiotori' => $request->audiotori,
-                'jumlah_kursi' => $request->jumlah_kursi,
+                'jumlah_row' => $request->jumlah_row,
+                'jumlah_kursi_perrow' => $request->jumlah_kursi_perrow,
 
             ]);
 

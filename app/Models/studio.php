@@ -16,8 +16,7 @@ class studio extends Model
         'id_studio',
         'id_jenis_studio',
         'audiotori',
-        'jumlah_kursi',
+        'jumlah_row',
+        'jumlah_kursi_perrow',
     ];
-
-   
 }
