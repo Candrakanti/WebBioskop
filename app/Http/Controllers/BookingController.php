@@ -74,21 +74,21 @@ class BookingController extends Controller
         // die();
 
         // dd($request);
-        // cart::insert([
-        //     'id_film' => $id_film,
-        //     'user_id' => Auth::user()->id,
-        //     'harga' => $request->harga,
-        //     'kursi' =>   $request->kursi,
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
-        detail_booking::insert([
+        cart::insert([
             'id_film' => $id_film,
             'user_id' => Auth::user()->id,
             'harga' => $request->harga,
+            'kursi' =>   $request->kursi,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        // detail_booking::insert([
+        //     'id_film' => $id_film,
+        //     'user_id' => Auth::user()->id,
+        //     'harga' => $request->harga,
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
         return redirect('/movie')->with('success', 'success adding to cart !');
     }
 
