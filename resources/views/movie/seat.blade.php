@@ -240,10 +240,10 @@
     
                                     <div class="row ">
                                         <div class="col-6 col-lg-6 col-sm-6 col-md-6">
-                                            <p>haii</p>
+                                            <p>Date & Month :</p>
                                         </div>
                                         <div class="col-6"> <b>
-                                                <p>haii</p>
+                                                <p>{{ \Carbon\Carbon::now()->format('l,d,M') }}</p>
                                             </b></div>
                                     </div>
     
@@ -262,19 +262,19 @@
                                 <div class="book" id="gap_form">
                                         @csrf
                                         <div class="pt-3">
-                                                <input class="form-control btn btn-secondary text-dark" type="text"
+                                                <input class="form-control rounded-pill btn btn-secondary text-dark" type="text"
                                                     placeholder="harga Yang Anda Pilih" aria-label="Disabled input example" readonly
                                                  name="kursi" id="seat">
                                                 {{-- <span class="badge rounded-pill text-bg-info" disabled>Info</span> --}}
                                             </div>
                 
                                             <div class="pt-3" class="totalchecked">
-                                                <input class="form-control" type="text" placeholder="Jumlah Kursi Yang Anda Pilih"
-                                                name="jumlah_kursi" aria-label="Disabled input example" class="totalchecked"   id="count_seat">
+                                                <input class="form-control rounded-pill text-bg-primary btn btn-lg"  type="text" placeholder="Jumlah Kursi Yang Anda Pilih"
+                                                name="jumlah_kursi" aria-label="Disabled input example" class="totalchecked"  readonly id="count_seat">
                                             </div>
 
                                             <div class="pt-3">
-                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" readonly
                                                 name="harga" aria-label="Disabled input example"  id="price">
                                             </div>
                 

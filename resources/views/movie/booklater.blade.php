@@ -5,7 +5,6 @@
         <h2>{{ $data->user_id }}</h2>
     
 
-
         <div class="row" >
                 
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
@@ -24,14 +23,16 @@
                             </div>
 
                             @if ($data->jenis_studio === 'Regular')
+
                                 <div class="seats" id="seats" name="harga">
+                                        
                                     <div class="row  g-0 mx-0 ">
                                         <div class="col-4 col-lg-4  col-sm-4 col-md-4 px-0">
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H1" {{  ($data->kursi == 1 ? 'disabled' : '') }}
-                                                  name="kursi" >
+                                                class="class"  name="kursi">
                                             </label>
     
-                                            <label><input type="checkbox" value="{{ $data->harga }}" data-value="H2"  {{  ($data->kursi == 1 ? 'disabled' : '') }}
+                                            <label><input type="checkbox" value="{{ $data->harga }}" data-value="H2" 
                                                    name="kursi"></label> <br>
     
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="G1"
@@ -186,11 +187,25 @@
                                                     name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="A9"
                                                     name="kursi"></label>
-    
                                         </div>
                                     </div>
                                 </div>
-                                
+
+                                @else
+                @foreach(range('A',$data->jumlah_row) as $v)
+                <div class="row">
+                        <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <nav class="nav flex-column">               
+                                        <a class="nav-link text-dark" href="#">{{ $v }}</a>
+                                      </nav>
+                        </div>
+                        <div class="col-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                @for($i = 0; $i<$data->jumlah_kursi_perrow; $i++)
+                                <input type="checkbox" value="  ">
+                                 @endfor
+                        </div>
+                </div>
+                    @endforeach  
                             @endif
                         
                         </div>
@@ -228,7 +243,7 @@
                                             <p>Date & Month :</p>
                                         </div>
                                         <div class="col-6"> <b>
-                                                <p>{{ \Carbon\Carbon::tomorrow()->format('l,d,M') }}</p>
+                                                <p>{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</p>
                                             </b></div>
                                     </div>
     
@@ -247,14 +262,19 @@
                                 <div class="book" id="gap_form">
                                         @csrf
                                         <div class="pt-3">
-                                                <input class="form-control btn btn-secondary text-dark" type="text"
+                                                <input class="form-control rounded-pill btn btn-secondary text-dark" type="text"
                                                     placeholder="harga Yang Anda Pilih" aria-label="Disabled input example" readonly
                                                  name="kursi" id="seat">
                                                 {{-- <span class="badge rounded-pill text-bg-info" disabled>Info</span> --}}
                                             </div>
                 
+                                            <div class="pt-3" class="totalchecked">
+                                                <input class="form-control rounded-pill text-bg-primary btn btn-lg"  type="text" placeholder="Jumlah Kursi Yang Anda Pilih"
+                                                name="jumlah_kursi" aria-label="Disabled input example" class="totalchecked"  readonly id="count_seat">
+                                            </div>
+
                                             <div class="pt-3">
-                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" readonly
                                                 name="harga" aria-label="Disabled input example"  id="price">
                                             </div>
                 
@@ -276,21 +296,21 @@
                 </div>
             </div>
    
-   
     </form>
 
     <script>
+        
         $(document).ready(function() {
-
             $('.seats').click(function() {
                 var test = new Array();
                 var book ="H1";
                 $("input[name='kursi']:checked").each(function() {
-                       
-                                test.push($(this).data('value'));
-                        
+                                test.push($(this).data('value'));          
                 }); 
-           document.getElementById('seat').value = test;
+                var check =    $(":checkbox:checked").length;
+           document.getElementById('seat').value = test ;
+           document.getElementById('count_seat').value=  check;
+  
                 var input = document.getElementsByName("kursi");
                 var total = 0;
                 for (var i = 0; i < input.length; i++) {
@@ -318,27 +338,8 @@
                         document.getElementById("book").disabled = true;
                     }
                 });
-                // alert("My favourite programming languages are: " + test);
             });
         });
-        // $('document').ready(function() {
-        //     $('.addToCartBtn').click(function(e) {
-        //         e.preventDefault();
-        //         var product_id = $(this).closest('.product_data').find('.prod_id').val();
-        //         var product_qty = $(this).closest('.product_data').find('.qty-input').val();
-        //         alert(product_id);
-        //         alert(product_qty);
-        //         $.ajax({
-        //             method: "POST",
-        //             url: "/AddToCart",
-        //             data: {
-        //                 'product_id': product_id,
-        //                 'product_qty': product_qty,
-        //             },
-        //             success: function(response) {
-        //             }
-        //         })
-        //     });
-        // });
+     
     </script>
 @endsection
