@@ -45,13 +45,16 @@ use App\Http\Controllers\CrudPaymentController;
 //     ]);
 // });
 
+Route::get('/home', function () {
+    return view('error');
+});
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/mycgv', [CgvController::class, 'index']);
-    Route::get('/booking/show/{id_film}', [BookingController::class, 'index'])->name('booking.show');
+    Route::get('/booking/show/{id_jadwal}', [BookingController::class, 'index'])->name('booking.show');
     Route::post('AddProduct/{id_jadwal}', [BookingController::class, 'store'])->name('cart.store');
     Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');

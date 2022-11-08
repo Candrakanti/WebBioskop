@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('container')
-    <form method="POST" action="{{ route('booking.show', $data->id_film) }}">
+    <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
         @csrf
         <h2>{{ $data->user_id }}</h2>
     
@@ -28,7 +28,7 @@
                                         
                                     <div class="row  g-0 mx-0 ">
                                         <div class="col-4 col-lg-4  col-sm-4 col-md-4 px-0">
-                                            <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H1" {{  ($data->kursi == 1 ? 'disabled' : '') }}
+                                            <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H1" {{  ($data->id_jadwal == "H5" ? 'disabled' : '') }}
                                                 class="class"  name="kursi">
                                             </label>
     
@@ -265,16 +265,15 @@
                                                 <input class="form-control btn btn-secondary text-dark" type="text"
                                                     placeholder="harga Yang Anda Pilih" aria-label="Disabled input example" readonly
                                                  name="kursi" id="seat">
-                                                {{-- <span class="badge rounded-pill text-bg-info" disabled>Info</span> --}}
                                             </div>
                 
                                             <div class="pt-3" class="totalchecked">
                                                 <input class="form-control" type="text" placeholder="Jumlah Kursi Yang Anda Pilih"
-                                                name="jumlah_kursi" aria-label="Disabled input example" class="totalchecked"   id="count_seat">
+                                                name="jumlah_kursi" aria-label="Disabled input example" class="totalchecked"  readonly id="count_seat">
                                             </div>
 
                                             <div class="pt-3">
-                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" readonly
                                                 name="harga" aria-label="Disabled input example"  id="price">
                                             </div>
                 
@@ -285,9 +284,6 @@
                                              
                                             </div>
                                 </div>
-                             
-
-                                {{-- </form> --}}
                             </div>
     
                         </div>

@@ -57,8 +57,6 @@ class User extends Authenticatable
     //     public static function boot()
     // {
     //     parent::boot();
-    //     // DB::statement("ALTER TABLE users AUTO_INCREMENT = id;");
-    //     // DB::table('users')->truncate();
     //     // self::creating(function ($model) {
     //     //     $model->akun= IdGenerator::generate(['table' => 'users', 'length' => 11, 'prefix' =>'CST-'.date('dmy')]);
     //     // });
