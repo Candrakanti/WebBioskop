@@ -2,8 +2,8 @@
 
 @section('container')
 
-<div class="row justify-content-center">>
-    <div class="col-lg-10 col-md-10 col-xs-10  ">
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-md-10 col-xs-10">
 
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -36,7 +36,7 @@
 </div>
 
 
-<section class="marketing"  >
+<section class="marketing">
   
   <div class="row align-items-center pt-5">
     <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">

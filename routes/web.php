@@ -59,7 +59,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
     Route::get('/BookLater/{id_film}', [MovieController::class, 'booklater'])->name('booklater.show');
-    Route::get('/BookNow/{id_film}', [MovieController::class, 'booknow'])->name('booknow.show');;
+    Route::get('/BookNow/{id_film}', [MovieController::class, 'booknow'])->name('booknow.show');
+    Route::get('/pay/{id_jadwal}', [MovieController::class, 'gateway'])->name('payment.now');
 
 });
 
