@@ -19,12 +19,14 @@ use App\Http\Controllers\CrudStudioController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\CrudFilmController;
 
+
 use App\Http\Controllers\CrudJadwalController;
 use App\Http\Controllers\RticketController;
 use App\Http\Controllers\SeatController;
 use App\Models\studio;
 
 use App\Http\Controllers\CrudPaymentController;
+use App\Http\Controllers\JenisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +97,8 @@ Route::group(["middleware" => 'ceklevel:admin_film'], function () {
     Route::get('/crudFilm/edit/{id_film}', [CrudFilmController::class, 'edit'])->name('crudFilm.edit');
     Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
 });
+
+Route::resource('/tampil', JenisController::class);
 
 Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::get('/beranda', function () {
