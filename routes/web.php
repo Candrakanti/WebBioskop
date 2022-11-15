@@ -46,6 +46,9 @@ use App\Http\Controllers\JenisController;
 //     ]);
 // });
 
+Route::get('/home', function () {
+    return view('error');
+});
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
@@ -56,6 +59,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('AddProduct/{id_jadwal}', [BookingController::class, 'store'])->name('cart.store');
     Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
+    Route::get('/BookLater/{id_film}', [MovieController::class, 'booklater'])->name('booklater.show');
+    Route::get('/BookNow/{id_film}', [MovieController::class, 'booknow'])->name('booknow.show');
+    Route::get('/pay/{id_jadwal}', [MovieController::class, 'gateway'])->name('payment.now');
+
 });
 
 
