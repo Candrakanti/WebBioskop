@@ -157,3 +157,5 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
     Route::get('/payment', [CrudPaymentController::class, 'customer']);
 });
+
+// Route::get('/cudFilm/search', [CrudFilmController::class, 'search']);

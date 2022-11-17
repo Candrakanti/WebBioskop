@@ -3,6 +3,7 @@
     {{-- <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
         @csrf --}}
        
+        
     
 
         <div class="row" >
@@ -290,15 +291,10 @@
                                             </div>
                 
                                             <div class="container text-center mt-3">
-                                              
-                                                    <button type="submit" class="btn btn-primary" id="pay-button" disabled>BOOK
-                                                        NOW</button>
-                                            </div>
-                                          
+                                                    <button type="submit" class="btn btn-primary" id="pay-button" disabled>BOOK NOW </button>
+                                            </div>    
                                 </div>
-                           
-                            </div>
-    
+                            </div>    
                         </div>
                     </div>
     

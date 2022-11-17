@@ -48,7 +48,7 @@ class BookingController extends Controller
                  'first_name' => Auth::user()->name,
                 //  'last_name' => 'pratama',
                  'email' => Auth::user()->email,
-                 'phone' => Auth::user()->phone,
+                 'phone' => Auth::user()->phone
              ),
          );
          
