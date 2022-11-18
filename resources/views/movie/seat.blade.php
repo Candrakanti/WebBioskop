@@ -261,6 +261,8 @@
                                               
                                                     <button type="submit" class="btn btn-primary" id="book" disabled>BOOK
                                                         NOW</button>
+                                                        <a href="/tampil" style="color:#0000FF;" class="border border-0 "
+                                id="book">menu coba</a>
                                              
                                             </div>
                                 </div>

@@ -173,6 +173,66 @@
                 </div>
             </div>
 
+            <br>
+            <div class="container" style="padding-bottom: 60%">
+                <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                <div class="col-4 col-lg-4 col-md-4 col-sm-6">
+                                    <img src="/img/logo.png" class="card-img-top" alt="" style="width: 30%">
+                                </div>
+                                <div class="col-8 ">
+                                    <p><b>PARIS VAN JAVA</b></p>
+                                </div>
+                            </button>
+    
+    
+                        </h2>
+    
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <span class="badge rounded-pill bg-light text-dark">
+                                    {{ $data->jam_tayang }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="container" style="padding-bottom: 60%">
+                    <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    <div class="col-4 col-lg-4 col-md-4 col-sm-6">
+                                        <img src="/img/logo.png" class="card-img-top" alt="" style="width: 30%">
+                                    </div>
+                                    <div class="col-8">
+                                        <p><b>23 PASKAL</b></p>
+                                    </div>
+                                </button>
+        
+        
+                            </h2>
+        
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <span class="badge rounded-pill bg-light text-dark">
+                                        {{ $data->jam_tayang }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+
+                
     </form>
 
     <script>
