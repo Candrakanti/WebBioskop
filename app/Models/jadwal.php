@@ -50,10 +50,10 @@ class jadwal extends Model
         return $this->belongsTo('App\Models\jenis_studio');
     }
 
-    protected $casts = [
-        'jam_tayang' => 'array',
+    // protected $casts = [
+    //     'jam_tayang' => 'array',
 
-    ];
+    // ];
 
     public function Film()
     {

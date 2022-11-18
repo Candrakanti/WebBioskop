@@ -125,6 +125,7 @@ class BookingController extends Controller
             'jumlah_kursi' => $request->jumlah_kursi,
             'tanggal_booking' => now(),
             'harga' => $request->harga,
+            'status_bayar' => $request->status_bayar,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

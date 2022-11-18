@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\jadwal;
 use App\Models\Film;
 use App\Models\studio;
-use App\Models\payment;
+
 use Illuminate\Support\Facades\DB;
 
 
@@ -31,7 +32,7 @@ class CrudPaymentController extends Controller
     public function customer()
     {
 
-        $data = payment::all();
+        $data = Booking::all();
 
         return view('payment.crud.LayoutPayment',  compact('data'), [
             'title' => 'Admin Payment',

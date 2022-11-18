@@ -53,6 +53,8 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/unpaid', [UnpaidController::class, 'index']);
+Route::resource('/paydone', PaydoneController::class);
     Route::get('/mycgv', [CgvController::class, 'index']);
     Route::get('/booking/show/{id_jadwal}', [BookingController::class, 'index'])->name('booking.show');
     Route::post('AddProduct/{id_jadwal}', [BookingController::class, 'store'])->name('cart.store');
@@ -60,6 +62,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
     Route::get('/BookLater/{id_jadwal}', [MovieController::class, 'booklater'])->name('booklater.show');
     Route::get('/BookNow/{id_jadwal}', [MovieController::class, 'booknow'])->name('booknow.show');
+    Route::get('/BookLaterSeat/{id_jadwal}', [MovieController::class, 'bookLaterSeat'])->name('bookLaterSeat.show');
     Route::get('/pay/{id_jadwal}', [MovieController::class, 'gateway'])->name('payment.now');
 
 });
@@ -86,9 +89,6 @@ Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking']
 
 
 
-Route::get('/unpaid', [UnpaidController::class, 'index']);
-Route::resource('/paydone', PaydoneController::class);
-
 Route::group(["middleware" => 'ceklevel:admin_film'], function () {
     Route::get('/film', function () {
         return view('film.template.index', [
@@ -97,7 +97,6 @@ Route::group(["middleware" => 'ceklevel:admin_film'], function () {
             'active' => 'Admin Film'
         ]);
     });
-
     Route::resource('/crudFilm', CrudFilmController::class);
     Route::delete('/crudFilm/delete/{id_film}', [CrudFilmController::class, 'destroy'])->name('crudFilm.delete');
     Route::get('/crudFilm/edit/{id_film}', [CrudFilmController::class, 'edit'])->name('crudFilm.edit');
@@ -114,7 +113,6 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     });
 
     Route::get('/crudJadwal', function () {
-
         return view('studio.crudJadwal.LayoutJadwal', [
             'title' => 'Admin Studio',
             'pages' => 'Table Jadwal',

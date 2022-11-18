@@ -48,9 +48,9 @@
                             <a class="nav-link {{ request()->is('*movie') ? ' active' : '' }}" href="/movie">MOVIE</a>
                         </li>
                         {{-- $request->route()->named('articles.index') ? ' active' : '' --}}
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
             <a class="nav-link"  href="/ticket">TICKET</a>  
-          </li>
+          </li> --}}
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('mycgv') ? ' active' : '' }}" href="/mycgv">MYSEENEMA</a>
                         </li>

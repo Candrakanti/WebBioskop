@@ -120,11 +120,11 @@
         <div class="row ">
 
             <div class="col-4 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
-                <a href="/BookNow/{{ $data->id_jadwal }}" class="link-dark">{{ \Carbon\Carbon::now()->format('l') }}</a>
+                <a href="/movie/detail/{{ $data->id_jadwal }}" class="link-dark">{{ \Carbon\Carbon::now()->format('l') }}</a>
 
                 <div class="row ">
                     <div class="col-5 col-lg-5 col-sm-5 col-xs-5 mb-3">
-                        <a href="/BookNow/{{ $data->id_jadwal }}" class="link-danger">{{ \Carbon\Carbon::now()->format('d,M') }}</a>
+                        <a href="/movie/detail/{{ $data->id_jadwal }}" class="link-danger">{{ \Carbon\Carbon::now()->format('d,M') }}</a>
 
                     </div>
                 </div>
@@ -132,11 +132,12 @@
             </div>
 
             <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
-                <a href="/BookLater/{{ $data->id_film }}" class="link-dark">{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
+                <a href="/BookLater/{{ $data->id_jadwal }}" class="link-dark"   >{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
 
                 <div class="row ">
                     <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3">
-                        <a href="/BookLater/{{ $data->id_film }}" class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a>
+                        <a href="/BookLater/{{ $data->id_jadwal }}" id="day" class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a>
+                        {{-- <a  onclick='check();' class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a> --}}
 
                     </div>
                 </div>
@@ -147,44 +148,70 @@
 
 
 
-
-    <div class="container pt-3" style="padding-bottom: 60%">
-        <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        <div class="col-4 col-lg-4 col-md-4 col-sm-6">
-                            <img src="/img/logo.png" class="card-img-top" alt="" style="width: 30%">
+        <section id="Time">
+            <div class="container pt-3" style="padding-bottom: 60%">
+                <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                <div class="col-4 col-lg-4 col-md-4 col-sm-6">
+                                    <img src="/img/logo.png" class="card-img-top" alt="" style="width: 30%">
+                                </div>
+                                <div class="col-8">
+                                    <p><b>KINGS PLAZA</b></p>
+                                </div>
+                            </button>
+        
+        
+                        </h2>
+        
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                {{-- <a href="{{ route('booklater.show', $data->id_film) }}" class="btn btn-outline-danger">
+                                    {{ $data->jam_tayang }}
+                                </a> --}}
+                                {{-- @if ($data->jam_tayang <= $data->jam_tayang)
+                                <a href="/booking/show/{{ $data->id_jadwal }}"  class="btn btn-outline-danger disabled">
+                                    {{ $data->jam_tayang }}
+                                </a>  
+                                @else --}}
+                                <a href="/booking/show/{{ $data->id_jadwal }}"  class="btn btn-outline-danger ">
+                                    {{ $data->jam_tayang }}
+                                </a>  
+                                {{-- @endif --}}
+                              
+                             
+                            </div>
                         </div>
-                        <div class="col-8">
-                            <p><b>KINGS PLAZA</b></p>
-                        </div>
-                    </button>
-
-
-                </h2>
-
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                    data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        <a href="{{ route('booklater.show', $data->id_film) }}" class="btn btn-outline-danger">
-                            {{ $data->jam_tayang }}
-                        </a>
-                        {{-- <a href="/BookNow/{{ $data->id_jadwal }}" class="btn btn-outline-danger">
-                            {{ $data->jam_tayang }}
-                        </a> --}}
-                     
                     </div>
                 </div>
-            </div>
-        </div>
-
+        
+        </section>
+   
     {{-- </form> --}}
 
     <script>
-        $('#gap_form').wrap(
-            '<form id="Form2" action="{{ route('booking.show', $data->id_film) }} " method="POST" ></form>'
-        );
+//           function check()
+//         {
+//             alert("Hello! I am an alert box!!");
+//         }
+
+//         $(document).ready(function() {
+//     $('a').click(function(event) {
+//         event.preventDefault(); // Prevent the default link navigation
+
+//         // This is the point where you could fetch content (for instance
+//         // from the href of the clicked link). For this example we just
+//         // generate a string containing the href.
+//         var content = 'Content for ' + $(this).html();
+
+//         $('#time').html(content); // Inject the content
+//     });
+// });
+//         $('#gap_form').wrap(
+//             '<form id="Form2" action="{{ route('booking.show', $data->id_film) }} " method="POST" ></form>'
+//         );
     </script>
 @endsection

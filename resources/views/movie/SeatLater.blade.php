@@ -257,7 +257,7 @@
                                         </p>
                                         </div>
                                         <div class="col-6"> <b>
-                                                <p> {{ \Carbon\Carbon::now()->format('l d M ,') }}  {!! $data->jam_tayang !!}</p>
+                                                <p> {{ \Carbon\Carbon::tomorrow()->format('l d M ,') }}  {!! $data->jam_tayang !!}</p>
                                             </b></div>
                                     </div>
     
@@ -286,10 +286,6 @@
                                                 name="jumlah_kursi" aria-label="Disabled input example" class="totalchecked"  readonly id="count_seat">
                                             </div>
 
-                                            <div class="pt-3">
-                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" 
-                                                name="status_bayar" value="0" id="status_bayar">
-                                            </div>
                                             <div class="pt-3">
                                                 <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" readonly
                                                 name="harga" aria-label="Disabled input example"  id="price">
@@ -327,9 +323,7 @@
     <script>
         
         $(document).ready(function() {
-                $('#kursi').wrap(
-                            '@foreach($data2 as $d) @endforeach'
-                        );
+              
 
             $('.seats').click(function() {
                 var test = new Array();
