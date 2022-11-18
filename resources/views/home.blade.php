@@ -3,12 +3,11 @@
 @section('container')
 
 <div class="row justify-content-center">
-<<<<<<< HEAD
+
     <div class="col-lg-10 col-md-10 col-xs-10 ">
-=======
+
     <div class="col-lg-10 col-md-10 col-xs-10">
 
->>>>>>> 051595d0c98f2081f28e8cd3b89f6bff19199567
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

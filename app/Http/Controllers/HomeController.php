@@ -27,11 +27,7 @@ class HomeController extends Controller
     //     ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
     //     ->get(['bioskop.*', 'jadwal.*', 'film.*', 'studio.*']);
 
-        return view('home', compact('data'), )
-    
-
-        return view('home',compact('data'),)
-
+        return view('home', compact('data'), [
             'title' => 'Home',
             'active' => 'Home'
         ]);

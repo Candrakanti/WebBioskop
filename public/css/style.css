@@ -54,12 +54,6 @@ margin-left: 100px;
   opacity: none;
 }
 
-  opacity: none;
-}
-
-  opacity: none;
-}
-
 .bg {
  background-image: url("{{asset('img/movie.png')}}");
 }
