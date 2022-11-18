@@ -4,7 +4,12 @@
         @csrf --}}
        
     
-
+        @if(url()->previous() == route('booklater.show', $data->id_jadwal))
+        HI
+                @else
+                HUU
+        @endif
+        
         <div class="row" >
             
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
@@ -16,7 +21,7 @@
                                     class="rounded d-flex justify-content-center">
                             </div>
     
-                            <p class="card-text text-center pt-1"> SCREEN </p>
+                            <p class="card-text text-center pt-1"> SCREEN d </p>
                            
     
                             <div class="alert alert-danger" role="alert">
@@ -30,16 +35,17 @@
                                <h1>{{ $d->kursi }}</h1>
                                @endforeach
                         </div> --}}
+                
 
                                 <div class="seats" id="seats" name="harga">
 
                                     <div class="row  g-0 mx-0 ">
                                         <div class="col-4 col-lg-4  col-sm-4 col-md-4 px-0">
                                      
-                                        <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="H1"  {{  ($data->kursi == 6 ? 'disabled' : '') }}
-                                                class="class"  name="kursi"    @if($data->id_jadwal === $data->id_jadwal)  @endif>
-                                            </label>
-                                     
+                                                <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="H1" 
+                                                         class="class"  name="kursi" {{ ($data->kursi === 'C8' ? 'disabled' : '') }} >
+                                                    </label>
+            
                                             <label><input type="checkbox" value="{!! $data->harga !!}" data-value="H2" 
                                                    name="kursi"></label> <br>
     
@@ -356,18 +362,10 @@
                     }
                     if (counter >= 1) {
                         document.getElementById("pay-button").disabled = false;
-                        // $('#gap_form').wrap(
-                        //     '<form id="Form2"  action="{{ route('cart.store', $data->id_jadwal) }}" method="POST" ></form>'
-                        // );
+                        $('#gap_form').wrap(
+                            '<form id="Form2"  action="{{ route('cart.store', $data->id_jadwal) }}" method="POST" ></form>'
+                        );
                         // MASUKIN SCRIPT MINDTRANS DISINI !
-
-                        // For example trigger on button clicked, or any time you need
-        var payButton = document.getElementById('pay-button');
-        payButton.addEventListener('click', function () {
-          // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-          window.snap.pay('{{ $snapToken }}');
-          // customer will be redirected after completing payment pop-up
-        });
                     } else {
                         document.getElementById("pay-button").disabled = true;
                     }
