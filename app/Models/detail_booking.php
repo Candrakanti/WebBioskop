@@ -14,7 +14,9 @@ class detail_booking extends Model
     protected $table = "detail_booking";
     protected $fillable = [
         'id_booking',
-        'row',
-        'seat',
+        // 'row',
+        // 'seat',
+        'kursi',
+        'harga',
     ];
 }

@@ -11,10 +11,13 @@ use App\Models\jadwal;
 // use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\cart;
+use App\Models\detail_kota;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 
 use Illuminate\Support\Facades\Auth;
+
+
 
 class BookingController extends Controller
 {
@@ -23,18 +26,43 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id_film)
-    {
-        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
 
+   
+    public function index(Request $request, $id_jadwal)
+    {
+        //         // Set your Merchant Server Key
+        //  \Midtrans\Config::$serverKey = 'SB-Mid-server-HifKik2bJqkbyshlP0mbufdu';
+        //  // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        //  \Midtrans\Config::$isProduction = false;
+        //  // Set sanitization on (default)
+        //  \Midtrans\Config::$isSanitized = true;
+        //  // Set 3DS transaction for credit card to true
+        //  \Midtrans\Config::$is3ds = true;
+         
+        //  $params = array(
+        //      'transaction_details' => array(
+        //          'order_id' => rand(),
+        //          'gross_amount' => 10000,
+        //      ),
+        //      'customer_details' => array(
+        //          'first_name' => 'budi',
+        //          'last_name' => 'pratama',
+        //          'email' => 'budi.pra@example.com',
+        //          'phone' => '08111222333',
+        //      ),
+        //  );
+         
+        //  $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*' ])->where('id_jadwal',$id_jadwal)->first();
+
+        $data2 = detail_booking::all();
      
-        return view('movie.seat', compact('data' ), [
+        return view('movie.seat', compact('data','data2' ), [
+            // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'
         ]);
-
-
-           // $data2 = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->join('cart','cart.id_film' , 'jadwal.id_film')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*' , 'cart.*'])->where('kursi', $kursi)->first();
     }
 
 
@@ -46,7 +74,6 @@ class BookingController extends Controller
             "active" => "mycgv"
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -68,29 +95,44 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id_film)
+    public function store(Request $request, $id_jadwal)
     {
         // echo request()->ip();
         // die();
 
         // dd($request);
-        cart::insert([
-            'id_film' => $id_film,
-            'user_id' => Auth::user()->id,
-            'harga' => $request->harga,
-            'kursi' =>   $request->kursi,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        // detail_booking::insert([
+
+        // cart::insert([
         //     'id_film' => $id_film,
         //     'user_id' => Auth::user()->id,
         //     'harga' => $request->harga,
+        //     'kursi' =>   $request->kursi,
         //     'created_at' => now(),
         //     'updated_at' => now(),
         // ]);
+
+        detail_booking::insert([
+            'kursi' => $request->kursi,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+       Booking::insert([
+       
+            'id_customer' => Auth::user()->id,
+            'id_jadwal' => $id_jadwal,
+            'kursi' => $request->kursi,
+            'jumlah_kursi' => $request->jumlah_kursi,
+            'tanggal_booking' => now(),
+            'harga' => $request->harga,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         return redirect('/movie')->with('success', 'success adding to cart !');
+        // return redirect()->route('payment.now',$id_jadwal)->with('success', 'success adding to cart !');
     }
+
+    
 
     public function addToCart(Request $request)
     {
@@ -103,14 +145,6 @@ class BookingController extends Controller
             $product->image
         );
         return redirect('/movie')->with('success', 'success adding to cart !');
-
-        // \Cart::add([
-        //     'id' => $request->id,
-        //     'id_film' => $request->name,
-        // ]);
-        // session()->flash('success', 'Product is Added to Cart Successfully !');
-
-        // return redirect()->route('cart.list');
     }
     /**
      * Display the specified resource.

@@ -18,7 +18,7 @@ class Film extends Model
         'id_jadwal',
         'judul_film',
         'jenis_film',
-        'produser',
+        'producer',
         'sutradara',
         'penulis',
         'cast',

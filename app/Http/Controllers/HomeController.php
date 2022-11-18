@@ -10,6 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+
         // $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')
         // ->join('bioskop', 'bioskop.id_bioskop', '=', 'jadwal.id_bioskop')
         // ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
@@ -20,26 +21,20 @@ class HomeController extends Controller
         ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
         ->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
 
+
     // $data = jadwal::join('bioskop', 'bioskop.id_bioskop', '=', 'jadwal.id_bioskop')
     //     ->join('film', 'film.id_film', '=', 'jadwal.id_film')
     //     ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
     //     ->get(['bioskop.*', 'jadwal.*', 'film.*', 'studio.*']);
 
-        return view('home', compact('data'), [
+        return view('home', compact('data'), )
+    
+
+        return view('home',compact('data'),)
+
             'title' => 'Home',
             'active' => 'Home'
         ]);
     }
 
-    // public function detail($tgl_tayang_awal)
-    // { 
-    //     $data = Film::join('jadwal', 'jadwal.id_film', '=', 'film.id_film')
-    //     ->get(['jadwal.*', 'film.*'])
-    //     ->where('tgl_tayang_awal', $tgl_tayang_awal)->first();
-
-    //     return view('home', compact('data'), [
-    //         "title" => "Home Detail Film",
-    //         "active" =>'Home Film',
-    //     ]);
-    // }
 }

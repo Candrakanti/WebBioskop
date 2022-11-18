@@ -45,6 +45,9 @@ use App\Http\Controllers\CrudPaymentController;
 //     ]);
 // });
 
+Route::get('/home', function () {
+    return view('error');
+});
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
@@ -55,6 +58,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('AddProduct/{id_jadwal}', [BookingController::class, 'store'])->name('cart.store');
     Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
+    Route::get('/BookLater/{id_jadwal}', [MovieController::class, 'booklater'])->name('booklater.show');
+    Route::get('/BookNow/{id_jadwal}', [MovieController::class, 'booknow'])->name('booknow.show');
+    Route::get('/pay/{id_jadwal}', [MovieController::class, 'gateway'])->name('payment.now');
+
 });
 
 
@@ -73,7 +80,7 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 Route::get('/tampil', [PaymentController::class, 'index']);
 Route::get('/ticket/seat', [SeatController::class, 'index']);
 Route::get('/movie', [MovieController::class, 'index']);
-Route::get('/movie/detail/{id_film}', [MovieController::class, 'detail'])->name('movie.detail');
+Route::get('/movie/detail/{id_jadwal}', [MovieController::class, 'detail'])->name('movie.detail');
 Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking'])->name('movie.detbooking');
 // Route::get('/movie/kota/{id_kota}', [MovieController::class, 'detkota'])->name('movie.detkota');
 

@@ -13,7 +13,9 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.10"
+        "livewire/livewire": "^2.10",
+        "midtrans/midtrans-php": "^2.5",
+        "xendit/xendit-php-clients": "^2.19"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",

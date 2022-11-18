@@ -27,6 +27,7 @@
             </div>
         </section>
 
+        @if($exp == $exp)
         <section id="movie">
             @if (session()->has('success'))
             <div class="alert alert-success " role="alert">
@@ -39,52 +40,30 @@
               <div class="card" style="width: 17rem;">
                 @if ($film->image)
                 <div class="rounded">
-                <a href="/movie/detail/{{ $film->id_film }}">
+                <a href="/movie/detail/{{ $film->id_jadwal}}">
                 <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
                 </a>
               </div>
                 @endif
                 <br>
-                {{-- <input type="hidden" value="{{ $film->judul_film }}" class="prod_id"> --}}
-                <a href="/movie/detail/{{ $film->id_film }}">
+                {{-- <input type="hidden" value="{{ $film->judul_jadwal}}" class="prod_id"> --}}
+                <a href="/movie/detail/{{ $film->id_jadwal}}">
                     <h6 class="text-center" style="color: black">
-                       <b> {{ $film->judul_film }}</b>
+                       <b> {{ $film->judul_film}}</b>
                     </h6>
                 </a>
                 <div class="card-body text-center"> 
-                    <a href="/booking/show/{{ $film->id_film }}" class="btn btn-danger">BOOK NOW</a>
+                    <a href="/movie/detail/{{ $film->id_jadwal }}" class="btn btn-danger">BOOK NOW</a>
+                 
+                    {{-- <a href="/booking/show/{{ $film->id_jadwal}}" class="btn btn-danger">BOOK NOW</a> --}}
                 </div>
               </div>
               @endforeach
             </div>
           </div>
         </section>
+        @endif
 
-        {{-- <div class="container">
-            <div class="row ">
-
-                @foreach ($data as $film)
-                    <div class="card product_data" style="width: 15rem;">
-                        @if ($film->image)
-                            <div class="shadow mb-5">
-                                <a href="/movie/detail/{{ $film->id_film }}">
-                                    <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top" alt="">
-                                </a>
-                            </div>
-                        @endif
-                        <input type="hidden" value="{{ $film->judul_film }}" class="prod_id">
-                        <a href="/movie/detail/{{ $film->id_film }}">
-                            <h6 class="text-center ">
-                                {{ $film->judul_film }}
-                            </h6>
-                        </a>
-                        <div class="card-body">
-                            <a href="/booking/show/{{ $film->id_film }}" class="btn btn-primary">BOOK NOW</a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div> --}}
 
         <script>
             $('document').ready(function() {
@@ -103,5 +82,10 @@
                     })
                 });
             });
+
         </script>
 @endsection
+
+
+
+

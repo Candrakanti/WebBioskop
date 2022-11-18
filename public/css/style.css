@@ -50,6 +50,13 @@ margin-left: 100px;
 }
 
 .hr.mb-5 {
+
+  opacity: none;
+}
+
+  opacity: none;
+}
+
   opacity: none;
 }
 
@@ -60,3 +67,4 @@ margin-left: 100px;
 .list-group-item+.list-group-item {
   border-top-width: none;
 }
+
