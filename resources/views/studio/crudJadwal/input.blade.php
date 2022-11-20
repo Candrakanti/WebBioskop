@@ -83,20 +83,20 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-3">
+                    <div class="mb-3">
                     <label for="jam_tayang" class="form-label">Jam Tayang</label>
 
 
-                    <input type="text" class="form-control @error('jam_tayang') is-invalid @enderror" name="jam_tayang[]"
+                    <input type="time" class="form-control @error('jam_tayang') is-invalid @enderror" name="jam_tayang"
                         required value="{{ old('jam_tayang') }}">
                     @error('jam_tayang')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
-                </div> --}}
+                </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="jam_tayang">jam_tayang</label>
                         <div class="row">
                             <div class="col-md-2">
@@ -117,7 +117,7 @@
                         </div>
                         @endfor
                     </div>
-                    <div>
+                    <div> --}}
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-success">Save</button>

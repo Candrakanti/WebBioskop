@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cart1;
-use App\Models\Film;
+use App\Models\booking;
 use App\Models\kota;
 use App\Models\jadwal;
 use App\Models\studio;
-use App\Models\user;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -82,7 +80,9 @@ class MovieController extends Controller
         ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
         ->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_jadwal', $id_jadwal)->first();
 
-        return view('movie.booklater', compact('data'), [ 
+      
+
+        return view('movie.booklater', compact('data' ), [ 
             "title" => "seat",
             "active" => 'Movie',
         ]);
@@ -91,7 +91,8 @@ class MovieController extends Controller
     public function booknow(Request $request, $id_jadwal){
 
         $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_jadwal', $id_jadwal)->first();
-        return view('movie.booknow',  compact('data'), [
+        $cek = booking::all();
+        return view('movie.booknow',  compact('data' ,'cek'), [
             "title" => "seat",
             "active" => 'Movie',
         ]);

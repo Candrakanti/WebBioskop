@@ -28,6 +28,11 @@ class Booking extends Model
     
     ];
 
+     protected $casts = [
+        'kursi' => 'array',
+
+    ];
+
         public static function boot()
     {
         parent::boot();
