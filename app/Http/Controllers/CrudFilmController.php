@@ -15,10 +15,16 @@ class CrudFilmController  extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Request $request)
     {
+        if($request->has('search')) {
+            $films = Film::where('judul_film', 'LIKE', '%' .$request->search. '%')->get();
+            // $films = Film::where('id_film','LIKE','%' .$request->search.'%' );
+        } else {
+            $films = Film::all();
+        }
 
-        $films = Film::all();
+        // $films = Film::all();
         return view('film.home', compact('films'), [
             'title' => 'Admin Film',
             'active' => 'Admin Film',
@@ -214,13 +220,13 @@ class CrudFilmController  extends Controller
     // public function search(Request $request)
     // {
     //     if ($request->has('search')) {
-    //         $data = Film::where('nama', 'LIKE', '%' .$request->search. '%')->get();
+    //         $film = Film::where('id_film', 'LIKE', '%' .$request->search. '%')->get();
     //     }
 
     //     else {
-    //         $data = Film::all();
+    //         $film = Film::all();
     //     }
 
-    //     return view('film.home', ['film' => $data]);
+    //     return view('film.home', ['film' => $film]);
     // }
 }

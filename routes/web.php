@@ -147,7 +147,7 @@ Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('
 
 Route::resource('/booking', BookingController::class)->middleware('auth');
 
-Route::get('add-to-cart/{id_film}', [BookingController::class, 'store'])->name('add.to.cart')->middleware('auth');
+Route::get('paydone/{id_film}', [BookingController::class, 'store'])->name('paydone')->middleware('auth');
 // Route::get('/booking', [CartController::class, 'index'])->name('booking.cart')->middleware('auth');
 // Route::post('/cart', [CartController::class, 'store'])->name('booking.add')->middleware('auth');
 // Route::get('/ticket', [TicketController::class, 'index']);
@@ -158,4 +158,5 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'customer']);
 });
 
-// Route::get('/cudFilm/search', [CrudFilmController::class, 'search']);
+
+// Route::get('/crudFilm/search/{id_film}', [CrudFilmController::class, 'search'])->name('crudFilm.search');

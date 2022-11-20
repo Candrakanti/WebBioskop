@@ -3,9 +3,6 @@
     {{-- <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
         @csrf --}}
        
-        
-    
-
         <div class="row" >
             
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
@@ -17,7 +14,7 @@
                                     class="rounded d-flex justify-content-center">
                             </div>
     
-                            <p class="card-text text-center pt-1"> SCREEN </p>
+                            <p class="card-text text-center pt-1">SCREEN</p>
                            
     
                             <div class="alert alert-danger" role="alert">
@@ -290,9 +287,46 @@
                                                 name="harga" aria-label="Disabled input example"  id="price">
                                             </div>
                 
-                                            <div class="container text-center mt-3">
+                                            {{-- <div class="container text-center mt-3">
                                                     <button type="submit" class="btn btn-primary" id="pay-button" disabled>BOOK NOW </button>
-                                            </div>    
+                                            </div>   --}}
+                                            
+                                            <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body" style="padding: 0;">
+                                                        <ul class="list-group">
+                                                                <li class="list-group-item">
+                                                                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
+                                                                  <label class="form-check-label" for="firstRadio">BNI</label>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="secondRadio">
+                                                                  <label class="form-check-label" for="secondRadio">BCA</label>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="thirdRadio">
+                                                                  <label class="form-check-label" for="thirdRadio">BRI</label>
+                                                                </li>
+                                                              </ul>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" role="button"  id="pay-button" disabled>Next</button>
+                                                    </div>
+
+                                                  </div>
+                                                </div>
+                                              </div>
+                                             
+
+                                              <div class="container text-center mt-3">
+                                              <button class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">BOOK NOW</button>
+                                              </div>
                                 </div>
                             </div>    
                         </div>
@@ -352,18 +386,12 @@
                     }
                     if (counter >= 1) {
                         document.getElementById("pay-button").disabled = false;
-                        // $('#gap_form').wrap(
-                        //     '<form id="Form2"  action="{{ route('cart.store', $data->id_jadwal) }}" method="POST" ></form>'
-                        // );
+                        $('#gap_form').wrap(
+                            '<form id="Form2" action="{{ route('cart.store', $data->id_jadwal) }}" method="POST" ></form>'
+                        );
                         // MASUKIN SCRIPT MINDTRANS DISINI !
 
-                        // For example trigger on button clicked, or any time you need
-        var payButton = document.getElementById('pay-button');
-        payButton.addEventListener('click', function () {
-          // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-          window.snap.pay('{{ $snapToken }}');
-          // customer will be redirected after completing payment pop-up
-        });
+      
                     } else {
                         document.getElementById("pay-button").disabled = true;
                     }

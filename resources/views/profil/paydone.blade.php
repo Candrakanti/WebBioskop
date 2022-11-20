@@ -7,6 +7,8 @@
 
 
     @foreach ($listproducts as $item)
+        {{-- <h1>{{ $item->judul_film }}</h1>
+        <p>Hi</p> --}}
         <div class="container">
             <hr class="border border-dark border-2 opacity-100" width="30%" style="margin-bottom: 50px; margin-left:35%">
             <div class="row">
