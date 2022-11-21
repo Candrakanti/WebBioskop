@@ -92,20 +92,20 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-3">
+                    <div class="mb-3">
                     <label for="jam_tayang" class="form-label">Jam Tayang</label>
 
 
-                    <input type="text" class="form-control @error('jam_tayang') is-invalid @enderror" name="jam_tayang[]"
+                    <input type="time" class="form-control @error('jam_tayang') is-invalid @enderror" name="jam_tayang"
                         required value="{{ old('jam_tayang') }}">
                     @error('jam_tayang')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
-                </div> --}}
+                </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="jam_tayang">jam_tayang</label>
                         <div class="row">
                             <div class="col-md-2">
@@ -115,25 +115,18 @@
                                 Value:
                             </div>
                         </div>
-                        {{-- @for ($i = 0; $i <= 1; $i++) --}}
-
+                        @for ($i=0; $i <= 1; $i++)
                         <div class="row">
-
-                            <div class="input-group mb-2" id="main">
-                                <!-- <button class="btn btn-outline-danger" type="button" id="button-addon1">Button</button> -->
-                            </div>
                             <div class="col-md-2">
-                                <input type="text" name="jam_tayang[key]" class="form-control"
-                                    value="{{ old('jam_tayang[key]') }}">
+                                <input type="text" name="jam_tayang[{{ $i }}][key]" class="form-control" value="{{ old('jam_tayang['.$i.'][key]') }}">
                             </div>
                             <div class="col-md-4">
-                                <input type="text" name="jam_tayang[value]" class="form-control"
-                                    value="{{ old('jam_tayang[value]') }}">
+                                <input type="text" name="jam_tayang[{{ $i }}][value]" class="form-control" value="{{ old('jam_tayang['.$i.'][value]') }}">
                             </div>
                         </div>
-                        {{-- @endfor --}}
+                        @endfor
                     </div>
-                    <div>
+                    <div> --}}
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-success">Save</button>

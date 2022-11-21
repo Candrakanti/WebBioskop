@@ -45,18 +45,18 @@ class BookingController extends Controller
         //          'gross_amount' => 10000,
         //      ),
         //      'customer_details' => array(
-        //          'first_name' => Auth::user()->name,
-        //         //  'last_name' => 'pratama',
-        //          'email' => Auth::user()->email,
-        //          'phone' => Auth::user()->phone
+        //          'first_name' => 'budi',
+        //          'last_name' => 'pratama',
+        //          'email' => 'budi.pra@example.com',
+        //          'phone' => '08111222333',
         //      ),
         //  );
          
         //  $snapToken = \Midtrans\Snap::getSnapToken($params);
 
-        $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*'])->where('id_jadwal',$id_jadwal)->first();
+        $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*' ])->where('id_jadwal',$id_jadwal)->first();
 
-        $data2 = detail_booking::all();
+        $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->get(['jadwal.*' ,'booking.*']);
      
         return view('movie.seat', compact('data','data2' ), [
             // 'snapToken' =>$snapToken,
@@ -125,6 +125,7 @@ class BookingController extends Controller
             'jumlah_kursi' => $request->jumlah_kursi,
             'tanggal_booking' => now(),
             'harga' => $request->harga,
+            'status_bayar' => $request->status_bayar,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

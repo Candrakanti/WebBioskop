@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\cart;
+
 
 class PaydoneController extends Controller
 {
@@ -23,8 +23,8 @@ class PaydoneController extends Controller
         //     'active' => 'Mycgv'
         // ])->with($listproducts);
 
-    
-        $listproducts['listproducts'] = cart::join('film', 'film.id_film', '=', 'cart.id_film')->get(['cart.*', 'film.*'])->where('user_id', '=', Auth::user()->id);
+
+        $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->get(['booking.*', 'jadwal.*' ,'film.*'])->where('id_customer', '=', Auth::user()->id);
         return view('profil.paydone', [
             'title' => 'Mycgv',
             'active' => 'Mycgv'

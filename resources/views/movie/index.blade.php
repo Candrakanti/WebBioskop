@@ -2,6 +2,8 @@
 
 @section('container')
 
+{{-- <h2>{{  \Carbon\Carbon::now()->timezone('asia/jakarta')->format('h:i:s') }}</h2> --}}
+
         <section id="kota">
             <div class="container mb-4">
                 <div class="row">
@@ -27,6 +29,7 @@
             </div>
         </section>
 
+        @if($exp == $exp)
         <section id="movie">
             @if (session()->has('success'))
             <div class="alert alert-success " role="alert">
@@ -39,26 +42,30 @@
               <div class="card" style="width: 17rem;">
                 @if ($film->image)
                 <div class="rounded">
-                <a href="/movie/detail/{{ $film->id_film }}">
+                <a href="/movie/detail/{{ $film->id_jadwal}}">
                 <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
                 </a>
               </div>
                 @endif
                 <br>
-                {{-- <input type="hidden" value="{{ $film->judul_film }}" class="prod_id"> --}}
-                <a href="/movie/detail/{{ $film->id_film }}">
+                {{-- <input type="hidden" value="{{ $film->judul_jadwal}}" class="prod_id"> --}}
+                <a href="/movie/detail/{{ $film->id_jadwal}}">
                     <h6 class="text-center" style="color: black">
-                       <b> {{ $film->judul_film }}</b>
+                       <b> {{ $film->judul_film}}</b>
                     </h6>
                 </a>
                 <div class="card-body text-center"> 
-                    <a href="/booking/show/{{ $film->id_jadwal}}" class="btn btn-danger">BOOK NOW</a>
+                    <a href="/movie/detail/{{ $film->id_jadwal }}" class="btn btn-danger">BOOK NOW</a>
+                 
+                    {{-- <a href="/booking/show/{{ $film->id_jadwal}}" class="btn btn-danger">BOOK NOW</a> --}}
                 </div>
               </div>
               @endforeach
             </div>
           </div>
         </section>
+        @endif
+
 
         <script>
             $('document').ready(function() {
