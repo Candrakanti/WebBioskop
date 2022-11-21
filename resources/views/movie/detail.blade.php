@@ -147,8 +147,6 @@
         </div>
 
 
-
-
         <div class="container" style="padding-bottom: 60%">
             <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
                 <div class="accordion-item">

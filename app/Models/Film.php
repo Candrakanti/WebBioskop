@@ -51,4 +51,9 @@ class Film extends Model
     {
         return $this->hasMany('App\Models\jadwal');
     }
+
+    public function JenisFilm()
+    {
+        return $this->hasOne(JenisFilm::class, 'id_jenis', 'JenisFilm');
+    }
 }

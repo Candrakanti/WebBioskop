@@ -210,4 +210,17 @@ class CrudFilmController  extends Controller
         return redirect('/crudFilm')->with('success', 'Film has been deleted!');
         // return redirect('/crudFilm')->with('success', 'Data Berhasil Di Hapus');
     }
+
+    // public function search(Request $request)
+    // {
+    //     if ($request->has('search')) {
+    //         $data = Film::where('nama', 'LIKE', '%' .$request->search. '%')->get();
+    //     }
+
+    //     else {
+    //         $data = Film::all();
+    //     }
+
+    //     return view('film.home', ['film' => $data]);
+    // }
 }

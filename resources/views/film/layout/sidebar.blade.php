@@ -21,6 +21,7 @@
   <link id="pagestyle" href="{{ asset('assetsSoft/css/soft-ui-dashboard.css?v=1.0.3') }}"
   rel="stylesheet" />
   <link rel="stylesheet" href="https://fontawesome.com/icons/pen-to-square?s=duotone">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 
   <!-- Trix Editor -->
   <link rel="stylesheet" type="text/css" href="/css/trix.css">
@@ -88,7 +89,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/movie">
+          <a class="nav-link  {{Request:: is('tampil*') ? 'active' : ''}}" href="/tampil">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>
@@ -104,7 +105,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Movie</span>
+            <span class="nav-link-text ms-1">Jenis Film</span>
           </a>
         </li>
        
@@ -347,6 +348,14 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('assetsSoft/js/soft-ui-dashboard.min.js?v=1.0.3') }}"></script>
+
+  {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script>
+     $(document).ready( function () {
+   $('#myDataTable').DataTable();
+} );
+    </script> --}}
 </body>
 
 </html>

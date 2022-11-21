@@ -3,12 +3,9 @@
 @section('container')
     <!DOCTYPE html>
     <html lang="en">
-    <head>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">  
-    </head>
     <body>
         <div class="container pb-3">
-            <a href="/crudFilm/create" class="btn btn-info">Create Data Film</a>
+            <a href="/crudFilm/create" class="btn btn-info">Create Data Jenis Film</a>
 
             <div class="container pt-3">
                 @if (session()->has('success'))
@@ -22,13 +19,13 @@
             <div class="container-fluid py-4">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card-header pb-0">
-                            <h6 class="text-center">Data Film</h6>
-                        </div>
                         <div class="card mb-4">
+                            <div class="card-header pb-0">
+                                <h6 class="text-center">Data Jenis Film</h6>
+                            </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
-                                    <table id="myDataTable" class="table align-items-center mb-0">
+                                    <table class="table align-items-center mb-0" id="myTable">
                                         <thead>
                                             <tr>
                                                 <th
@@ -36,17 +33,11 @@
                                                     No</th>
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                    id_film</th>
+                                                    id_jenis</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    judul</th>
-                                                <th
-                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    jenis</th>
-                                                <th
-                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Action</th>
-                                                @foreach ($films as $key => $film)
+                                                    Jenis Film</th>
+                                                @foreach ($data as $key => $Jfilm)
                                             </tr>
                                         </thead>
 
@@ -66,32 +57,25 @@
                                                 </td>
 
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $film->id_film }}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $Jfilm->id_jenis }}</p>
                                                 </td>
 
                                                 <td class="align-middle text-center">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $film->judul_film }}</span>
-                                                </td>
-
-                                                <td class="align-middle text-center">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $film->jenis_film }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $Jfilm->jenis_film }}</span>
                                                 </td>
 
                                                 <td class="align-middle text-center text-sm">
                                                     <a class="badge badge-sm bg-gradient-warning"
-                                                        href="/crudFilm/{{ $film->id_film }}/edit">Edit</a>
-                                                    <a class="badge badge-sm bg-gradient-warning"
-                                                        href="{{ route('crudFilm.show', $film->id_film) }}">Detail</a>
-
-                                                    <form method="POST" action="/crudFilm/{{ $film->id_film }}"
+                                                        href="">Edit</a>
+                                                   
+                                                    <form method="POST" action=""
                                                         class="d-inline">
                                                         @csrf
                                                         <input name="_method" type="hidden" value="DELETE">
                                                         <button type="submit"
                                                             class="badge badge-sm bg-gradient-danger  border-0 show_confirm"
-                                                            data-id="{{ $film->id_film }}" data-toggle="tooltip"
+                                                            data-id="" data-toggle="tooltip"
                                                             title='Delete'>Delete</button>
                                                     </form>
 
@@ -136,24 +120,6 @@
         });
     </script>
 
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<script>
-    $(document).ready(function(){
-        $('#myDataTable').DataTable();
-    });
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
-{{-- <script>
-    $(document).ready(function(){
-        $('#myDataTable').DataTable();
-    });
-</script> --}}
-{{-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> --}}
-
-    
     </html>
 @endsection

@@ -3,11 +3,12 @@
     {{-- <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
         @csrf --}}
        
+        
     
         @if(url()->previous() == route('booklater.show', $data->id_jadwal))
-        HI
+        
                 @else
-                HUU
+                
         @endif
         
         <div class="row" >
@@ -21,7 +22,7 @@
                                     class="rounded d-flex justify-content-center">
                             </div>
     
-                            <p class="card-text text-center pt-1"> SCREEN d </p>
+                            <p class="card-text text-center pt-1"> SCREEN </p>
                            
     
                             <div class="alert alert-danger" role="alert">
@@ -302,12 +303,9 @@
                                                         <a href="/tampil" style="color:#0000FF;" class="border border-0 "
                                 id="book">menu coba</a>
                                              
-                                            </div>
-                                          
+                                            </div>                                               
                                 </div>
-                           
-                            </div>
-    
+                            </div>    
                         </div>
                     </div>
     

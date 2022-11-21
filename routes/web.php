@@ -19,6 +19,7 @@ use App\Http\Controllers\CrudStudioController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\CrudFilmController;
 
+
 use App\Http\Controllers\CrudJadwalController;
 use App\Http\Controllers\RticketController;
 use App\Http\Controllers\SeatController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\PaymentController;
 use App\Models\studio;
 
 use App\Http\Controllers\CrudPaymentController;
+use App\Http\Controllers\JenisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +107,8 @@ Route::group(["middleware" => 'ceklevel:admin_film'], function () {
     Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
 });
 
+Route::resource('/tampil', JenisController::class);
+
 Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::get('/beranda', function () {
         return view('studio.index', [
@@ -155,3 +159,5 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
     Route::get('/payment', [CrudPaymentController::class, 'customer']);
 });
+
+// Route::get('/cudFilm/search', [CrudFilmController::class, 'search']);
