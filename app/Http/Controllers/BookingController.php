@@ -11,6 +11,7 @@ use App\Models\jadwal;
 // use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\cart;
+use App\Models\detail_kota;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 
@@ -23,11 +24,10 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id_film)
+    public function index(Request $request, $id_jadwal)
     {
-        // $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_film', $id_film)->first();
 
-        $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*'])->where('id_film',$id_film)->first();
+        $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*'])->where('id_jadwal',$id_jadwal)->first();
      
         return view('movie.seat', compact('data' ), [
             'title' => 'Seat',
@@ -71,6 +71,7 @@ class BookingController extends Controller
         // die();
 
         // dd($request);
+
         // cart::insert([
         //     'id_film' => $id_film,
         //     'user_id' => Auth::user()->id,
@@ -79,10 +80,14 @@ class BookingController extends Controller
         //     'created_at' => now(),
         //     'updated_at' => now(),
         // ]);
+
+        // detail_booking::create($request->except('answer_content'));
+
        Booking::insert([
-        'id_booking' => Auth::user()->id,
+       
             'id_customer' => Auth::user()->id,
             'id_jadwal' => $id_jadwal,
+            'kursi' => $request->kursi,
             'jumlah_kursi' => $request->jumlah_kursi,
             'tanggal_booking' => now(),
             'harga' => $request->harga,
@@ -103,14 +108,6 @@ class BookingController extends Controller
             $product->image
         );
         return redirect('/movie')->with('success', 'success adding to cart !');
-
-        // \Cart::add([
-        //     'id' => $request->id,
-        //     'id_film' => $request->name,
-        // ]);
-        // session()->flash('success', 'Product is Added to Cart Successfully !');
-
-        // return redirect()->route('cart.list');
     }
     /**
      * Display the specified resource.

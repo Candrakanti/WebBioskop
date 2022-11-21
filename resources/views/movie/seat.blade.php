@@ -1,6 +1,13 @@
 @extends('layouts.main')
 @section('container')
-    <form method="POST" action="{{ route('booking.show', $data->id_film) }}">
+
+<style>
+        .padding-0{
+    padding-right:0;
+    padding-left:0;
+        }
+</style>
+    <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
         @csrf
         <h2>{{ $data->user_id }}</h2>
     
@@ -27,13 +34,14 @@
                                 <div class="seats" id="seats" name="harga">
                                         
                                     <div class="row  g-0 mx-0 ">
-                                        <div class="col-4 col-lg-4  col-sm-4 col-md-4 px-0">
-                                            <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H1" {{  ($data->kursi == 1 ? 'disabled' : '') }}
+                                        <div class="col-4 col-lg-4  col-sm-4 col-md-4 px-0 padding-0" style="padding-right:0; padding-left:0;">
+                                         <div class="border" style="widht:30%; height:%;">
+                                           <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H1" {{  ($data->id_jadwal == "H5" ? 'disabled' : '') }}
                                                 class="class"  name="kursi">
-                                            </label>
-    
+                                        </label></div>
+                                        <div class="border">
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="H2" 
-                                                   name="kursi"></label> <br>
+                                                   name="kursi"></label> <br></div>
     
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="G1"
                                                     name="kursi"></label>
@@ -86,7 +94,7 @@
     
                                         </div>
     
-                                        <div class="col-4 col-lg-4 col-sm-4 col-md-4 px-0">
+                                        <div class="col-4 col-lg-4 col-sm-4 col-md-4 px-0 padding-0">
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H3"
                                                     name="kursi"></label>
                                             <label><input type="checkbox" value="{{ $data->harga }}" data-value="H4"
@@ -139,7 +147,7 @@
     
                                         </div>
     
-                                        <div class="col-4 col-lg-4 col-sm-4 col-md-4 px-0">
+                                        <div class="col-4 col-lg-4 col-sm-4 col-md-4 px-0 padding-0">
                                             <label> <input type="checkbox" value="{{ $data->harga }}" data-value="H6"
                                                     name="kursi"> </label>
     
@@ -265,7 +273,6 @@
                                                 <input class="form-control rounded-pill btn btn-secondary text-dark" type="text"
                                                     placeholder="harga Yang Anda Pilih" aria-label="Disabled input example" readonly
                                                  name="kursi" id="seat">
-                                                {{-- <span class="badge rounded-pill text-bg-info" disabled>Info</span> --}}
                                             </div>
                 
                                             <div class="pt-3" class="totalchecked">
@@ -285,9 +292,6 @@
                                              
                                             </div>
                                 </div>
-                             
-
-                                {{-- </form> --}}
                             </div>
     
                         </div>

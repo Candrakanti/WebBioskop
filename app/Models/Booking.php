@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class Booking extends Model
 {
@@ -19,8 +20,18 @@ class Booking extends Model
         // 'id_payment',
         'id_jadwal',
         'tanggal_booking',
+        'kursi',
         'jumlah_kursi',
-        // 'qr_tiket',
         'harga',
+        // 'qr_tiket',
+    
     ];
+
+        public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->id_booking= IdGenerator::generate(['table' => 'booking', 'length' => 11, 'prefix' =>'BKL-']);
+        });
+    }
 }
