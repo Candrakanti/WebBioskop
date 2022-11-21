@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 
-use App\Models\detail_booking;
+use App\Models\payment;
 use App\Models\kota;
 use App\Models\jadwal;
 // use Illuminate\Http\Request;
@@ -111,10 +111,13 @@ class BookingController extends Controller
         //     'updated_at' => now(),
         // ]);
 
-        detail_booking::insert([
-            'kursi' => $request->kursi,
-            'created_at' => now(),
-            'updated_at' => now(),
+        payment::insert([
+            'id_payment' => $request->id_payment,
+            'id_booking' => $request->id_booking,
+            'id_bank' => $request->id_bank,
+            'jumlah_bayar' => $request->jumlah_bayar,
+            'status' => $request->status,
+            'image' => $request->image,
         ]);
 
        Booking::insert([

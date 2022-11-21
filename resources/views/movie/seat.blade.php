@@ -502,7 +502,7 @@
                     <div class="card border border-5">
                         <div class="card-body">
     
-                            <div class="row  g-0">
+                            <div class="row g-0">
     
     
                                 <div class="col-4 col-lg-4 col-sm-4 col-md-4">
@@ -539,7 +539,8 @@
                                         </div>
                                         <div class="col-6 col-lg-6 col-sm-6 col-md-6"> <b>
                                                 <p class="text-center">{{ $data->jenis_studio }}</p>
-                                            </b></div>
+                                            </b>
+                                        </div>
                                     </div>
     
     
@@ -574,8 +575,7 @@
                                             {{-- <div class="container text-center mt-3">
                                                     <button type="submit" class="btn btn-primary" id="pay-button" disabled>BOOK NOW </button>
                                             </div>   --}}
-                                            <div class="book" id="gap_form">
-                                            @csrf
+                                           
                                             <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                   <div class="modal-content">
@@ -586,15 +586,26 @@
                                                     <div class="modal-body" style="padding: 0;">
                                                         <ul class="list-group">
 
-                                                                    <div class="pt-3">
-                                                                        <input class="form-control btn btn-secondary text-dark" type="text"
+                                                                <div class="card" >
+                                                                        <img src="/img/movie.png" class="card-img-top" alt="...">
+                                                                        <div class="card-body">
+                                                                          {{-- <div class="ratio ratio-16x9" style="background: red;"> --}}
+                                                                                <h2 class="modal-title fs-5" id="exampleModalToggleLabel"><b>Total</b></h2>
+                                                                                     <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                                                     name="harga" aria-label="Disabled input example" readonly  id="price2">
+                                                                          {{-- </div>                                                                       --}}
+                                                                        </div>
+                                                                </div>
+                                                
+                                                                <div class="pt-3">
+                                                                        <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                                             placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
-                                                                         name="kursi" id="seat">
+                                                                         name="kursi" id="seat2">
                                                                     </div>
                                         
                                                                     <div class="pt-3" class="totalchecked">
-                                                                        <input class="form-control" type="text" placeholder="Jumlah Kursi Yang Anda Pilih"
-                                                                        name="jumlah_kursi" aria-label="Disabled input example" class="totalchecked"  readonly id="count_seat">
+                                                                        <input class="form-control" type="hidden" placeholder="Jumlah Kursi Yang Anda Pilih"
+                                                                        name="jumlah_kursi" aria-label="Disabled input example" readonly class="totalchecked"  id="count_seat2">
                                                                     </div>
                         
                                                                     <div class="pt-3">
@@ -602,13 +613,16 @@
                                                                         name="status_bayar" value="0" id="status_bayar">
                                                                     </div>
                                                                     <div class="pt-3">
-                                                                        <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" readonly
-                                                                        name="harga" aria-label="Disabled input example"  id="price">
-                                                                    </div>                                                                    
-                                        
+                                                                        <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
+                                                                        name="harga" aria-label="Disabled input example" readonly  id="price2">
+                                                                    </div>  
+                                                                
+                                                                    <div class="container">
+                                                                        <h3>Select Method</h3>
+                                                                </div>
                                                                 <li class="list-group-item" style="padding: 0.75rem 5rem;">
                                                                   <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
-                                                                  <label class="form-check-label" for="firstRadio">BNI</label>
+                                                                  <label class="form-check-label" for="firstRadio" id="BNI" >BNI</label>
                                                                 </li>
                                                                 <li class="list-group-item" style="padding: 0.75rem 5rem;">
                                                                   <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="secondRadio">
@@ -618,10 +632,54 @@
                                                                   <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="thirdRadio">
                                                                   <label class="form-check-label" for="thirdRadio">BRI</label>
                                                                 </li>
+                                                       
                                                        </ul>
                                                     </div>
+                                                   
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" role="button"  id="pay-button" disabled>Next</button>
+                                                        <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Next</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+
+                                              <div class="book" id="gap_form">
+                                                @csrf
+                                              <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Detail Pembayaran</h1>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                                <input class="form-control btn btn-secondary text-dark" type="text"
+                                                                readonly name="BNI" id="BNI">
+                                                        </div>
+                                                        <div class="pt-3">
+                                                                <input class="form-control btn btn-secondary text-dark" type="hidden"
+                                                                    placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
+                                                                 name="kursi" id="seat3">
+                                                            </div>
+                                
+                                                            <div class="pt-3" class="totalchecked">
+                                                                <input class="form-control" type="hidden" placeholder="Jumlah Kursi Yang Anda Pilih"
+                                                                name="jumlah_kursi" aria-label="Disabled input example" readonly class="totalchecked"  id="count_seat3">
+                                                            </div>
+                
+                                                            <div class="pt-3">
+                                                                <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
+                                                                name="status_bayar" value="0" id="status_bayar">
+                                                            </div>
+                                                            <div class="pt-3">
+                                                                <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
+                                                                name="harga" aria-label="Disabled input example" readonly id="price3">
+                                                            </div>
+                                                            
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="submit" class="btn btn-primary" data-bs-toggle="modal" role="button"  id="pay-button" disabled>Done</button>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -664,7 +722,13 @@
 
                 var check =    $(":checkbox:checked").length;
            document.getElementById('seat').value = test ;
+           document.getElementById('seat2').value = test ;
+           document.getElementById('seat3').value = test ;
+
            document.getElementById('count_seat').value=  check;
+           document.getElementById('count_seat2').value=  check;
+           document.getElementById('count_seat3').value=  check;
+         
   
                 var input = document.getElementsByName("kursi");
                 var total = 0;
@@ -674,6 +738,8 @@
                     }
                 }
                 document.getElementById("price").value =  total.toFixed(2).replace(/\.00/g, '');
+                document.getElementById("price2").value =  total.toFixed(2).replace(/\.00/g, '');
+                document.getElementById("price3").value =  total.toFixed(2).replace(/\.00/g, '');
 
                 document.querySelector('#seats').addEventListener('change', () => {
                     var seat = document.getElementById("seats");
