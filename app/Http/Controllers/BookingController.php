@@ -109,8 +109,10 @@ class BookingController extends Controller
             'id_bank' => $request->id_bank,
             'harga' => $request->harga,
             'status' => $request->status,
-            'image' => $request->image,
+            'image' =>   $request->file('image')->store('booking-images')
+          
         ]);
+
 
        Booking::insert([
        
@@ -124,6 +126,8 @@ class BookingController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+
         return redirect('/movie')->with('success', 'success adding to cart !');
         // return redirect()->route('payment.now',$id_jadwal)->with('success', 'success adding to cart !');
     }

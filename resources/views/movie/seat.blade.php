@@ -654,7 +654,7 @@
                                                 </div>
                                               </div>
 
-                                              <div class="book" id="gap_form">
+                                              <div class="book" id="gap_form" >
                                                 @csrf
                                               <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">
@@ -706,6 +706,23 @@
                                                                 <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
                                                                 name="harga" aria-label="Disabled input example" readonly id="price3">
                                                             </div>
+
+                                                            {{-- <div class="input-group mb-3">
+                                                                <input type="file" class="form-control" id="inputGroupFile02">
+                                                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                                              </div>   --}}
+                                                              
+                                                              <div class="mb-3">
+                                                                <label for="image" class="form-label">Post Image</label>
+                                                                <img class="img-preview img-fluid mb-3 col-sm-5">
+                                                                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
+                                                                    name="image" onchange="previewImage()">
+                                                                @error('image')
+                                                                    <div class="invalid-feedback">
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div>  
                            
                                                             
                                                     </div>
@@ -784,7 +801,7 @@
                     if (counter >= 1) {
                         document.getElementById("pay-button").disabled = false;
                         $('#gap_form').wrap(
-                            '<form id="Form2"  action="{{ route('cart.store', $data->id_jadwal) }}" method="POST" ></form>'
+                            '<form id="Form2" enctype="multipart/form-data"  action="{{ route('cart.store', $data->id_jadwal) }}" method="POST" ></form>'
                         );
                         // MASUKIN SCRIPT MINDTRANS DISINI !
                     } else {
