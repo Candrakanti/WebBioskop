@@ -46,35 +46,29 @@
 
                              
                                                 <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="H1" 
-                                                         class="class"  name="kursi[]"
+                                                         class="class"  name=""
                                                          @if($data->id_jadwal == $data->id_jadwal)
                                                          @foreach($data2 as $d)
-                                                         @if($d->id_jadwal === $data->id_jadwal )
-
-                                                         @if(is_array(old('kursi[]')) && ('H1'==old('kursi[]')))
-                                                          disabled
-                                                           @endif
-                                                    
-                                                         @endif
+                                                         @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'H1')
+                                                         disabled
+                                                          @endif
                                                          @endforeach
                                                            @endif>
                                                     </label>
             
                                                     <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="H2"
-                                                        name="kursi[]"
+                                                        name=""
                                                         @if($data->id_jadwal == $data->id_jadwal)
                                                         @foreach($data2 as $d)
-                                                        @if($d->id_jadwal === $data->id_jadwal )
-    
-                                                        @if( old('kursi[]') || (!old('submit') && $voucher->active) ) checked='checked' @endif
-
+                                                        @if($d->id_jadwal == $data->id_jadwal)
+                                                        @if(is_array(old('kursi')) && in_array('H1', old('kursi'))) checked @endif
                                                         @endif
                                                         @endforeach
                                                           @endif
                                                         ></label> <br>
     
                                             <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="G1"
-                                                    name="kursi[]"
+                                                    name="kursi"
                                                     @if($data->id_jadwal == $data->id_jadwal)
                                                     @foreach($data2 as $d)
                                                     @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'G1')
@@ -478,6 +472,19 @@
                                 @else
 
                                 <div class="seats" id="seats" name="harga">
+
+                                        <h1>contoh</h1>
+                            
+                                        @if($data->id_jadwal == $data->id_jadwal)
+                                      @foreach($data2 as $d)
+                                      @if($d->id_jadwal === $data->id_jadwal)
+                                <h1>{{ $d->kursi }}</h1>
+                                      @endif
+                                      @endforeach
+                                        @endif
+         
+                                     <H1>Selesai</H1>
+
                                         @foreach(range('A',$data->jumlah_row) as $v)
                                         <div class="row">
                                                 <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -487,10 +494,23 @@
                                                 </div>
                                                 <div class="col-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
                                                         @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
-                                                        <input type="checkbox"   name="kursi"  data-value=" {{ $v }}{{$i }}" value="{{ $data->harga }}"
+                                                        <input type="checkbox"   name="kursi"  data-value="{{ $v }}{{$i }}" value="{{ $data->harga }}"
+                                                        {{-- {{old('name[$i])' ?  'active' :''}} --}}
+                                                    
+                                                        @if($data->id_jadwal == $data->id_jadwal)
+                                                        @foreach($data2 as $d)
+                                                       @if($d->id_jadwal == $data->id_jadwal and $d->kursi ==  $v.$i )
+                                                     disabled
+                                                       @endif
+                                                        @endforeach
+                                                          @endif
                                                         >
                                                          @endfor
                                                 </div>
+
+                                                {{-- @if($d->id_jadwal == $data->id_jadwal and $d->kursi == {{ $i }})
+                                                       disabled
+                                                        @endif --}}
                                         </div>
                                             @endforeach  
                                 </div>
@@ -608,7 +628,7 @@
             $('.seats').click(function() {
                 var test = new Array();
                 var book ="H1";
-                $("input[name='kursi[]']:checked").each(function() {
+                $("input[name='kursi']:checked").each(function() {
                                 test.push($(this).data('value'));          
                 }); 
 
@@ -616,7 +636,7 @@
            document.getElementById('seat').value = test ;
            document.getElementById('count_seat').value=  check;
   
-                var input = document.getElementsByName("kursi[]");
+                var input = document.getElementsByName("kursi");
                 var total = 0;
                 for (var i = 0; i < input.length; i++) {
                     if (input[i].checked) {

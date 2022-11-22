@@ -121,8 +121,8 @@ class BookingController extends Controller
        
             'id_customer' => Auth::user()->id,
             'id_jadwal' => $id_jadwal,
-            'kursi' => $request->kursi,
-            'jumlah_kursi' => $request->jumlah_kursi,
+            'kursi' =>$request->kursi,
+            'jumlah_kursi' =>  $request->jumlah_kursi,
             'tanggal_booking' => now(),
             'harga' => $request->harga,
             'status_bayar' => $request->status_bayar,
@@ -166,10 +166,6 @@ class BookingController extends Controller
         ]);
     }
 
-    public function form()
-    {
-        return "hi";
-    }
 
     /**
      * Show the form for editing the specified resource.

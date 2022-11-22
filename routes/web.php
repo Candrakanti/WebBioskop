@@ -68,6 +68,8 @@ Route::resource('/paydone', PaydoneController::class);
 });
 
 
+Route::get('/playing', [HomeController::class, 'playing']);
+
 //   ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
