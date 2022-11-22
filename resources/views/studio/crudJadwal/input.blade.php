@@ -37,16 +37,26 @@
                     </select>
 
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="id_film" class="form-label">Id Film</label>
-                    {{-- <input type="tect" class="form-control" name="id_jadwal" autofocus> --}}
                     <select class="form-select form-select-lg mb-3" name="id_film">
 
                         @foreach ($data1 as $js)
                             <option value="{{ $js->id_film }}" selected>{{ $js->judul_film }}</option>
                         @endforeach
                     </select>
+                </div> --}}
+
+                <div class="mb-3">
+                    <label for="id_film" class="form-label">Id Film</label>
+                    <input class="form-control" list="judul_film" id="id_film" name="id_film" placeholder="Type to search...">
+                        <datalist id="judul_film">
+                        @foreach ($data1 as $js)
+                            <option value="{{ $js->id_film }}" selected>{{ $js->judul_film }}</option>
+                        @endforeach
+                        </datalist>
                 </div>
+                
 
                 <div class="mb-3">
                     <label for="id_kota" class="form-label"> Kota</label>
@@ -58,7 +68,6 @@
                         @endforeach
                     </select>
                 </div>
-
                
 
                     <div class="mb-3">

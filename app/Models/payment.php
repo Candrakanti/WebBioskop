@@ -16,8 +16,15 @@ class payment extends Model
 
         'id_payment',
         'id_booking',
-        'jenis_payment',
-        'jumlah_bayar',
+        'id_bank',
+        'harga',
         'status',
+        'image'
     ];
+
+
+    public function bank()
+    {
+        return $this->hasMany('App\Models\bank');
+    }
 }

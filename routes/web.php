@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -20,12 +19,14 @@ use App\Http\Controllers\CrudStudioController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\CrudFilmController;
 
+
 use App\Http\Controllers\CrudJadwalController;
 use App\Http\Controllers\RticketController;
 use App\Http\Controllers\SeatController;
 use App\Models\studio;
 
 use App\Http\Controllers\CrudPaymentController;
+use App\Http\Controllers\JenisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +106,8 @@ Route::group(["middleware" => 'ceklevel:admin_film'], function () {
     Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
 });
 
+Route::resource('/tampil', JenisController::class);
+
 Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::get('/beranda', function () {
         return view('studio.index', [
@@ -144,7 +147,7 @@ Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('
 
 Route::resource('/booking', BookingController::class)->middleware('auth');
 
-Route::get('add-to-cart/{id_film}', [BookingController::class, 'store'])->name('add.to.cart')->middleware('auth');
+Route::get('paydone/{id_film}', [BookingController::class, 'store'])->name('paydone')->middleware('auth');
 // Route::get('/booking', [CartController::class, 'index'])->name('booking.cart')->middleware('auth');
 // Route::post('/cart', [CartController::class, 'store'])->name('booking.add')->middleware('auth');
 // Route::get('/ticket', [TicketController::class, 'index']);
@@ -155,3 +158,5 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'customer']);
 });
 
+
+// Route::get('/crudFilm/search/{id_film}', [CrudFilmController::class, 'search'])->name('crudFilm.search');

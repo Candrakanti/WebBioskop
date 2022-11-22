@@ -23,7 +23,7 @@ class Booking extends Model
         'kursi',
         'jumlah_kursi',
         'harga',
-        'status_bayar',
+        // 'status_bayar',
         // 'qr_tiket',
     
     ];

@@ -14,8 +14,12 @@ class CreatePaymentTable extends Migration
     public function up()
     {
         Schema::create('payment', function (Blueprint $table) {
-            $table->string('id_payment', 225)->primary();
-            $table->string('nama_bank', 225);
+            $table->increments('id_payment' ,255);
+            $table->string('id_booking', 225);
+            $table->string('id_bank', 225);
+            $table->double('harga');
+            $table->char('status')->default('0');
+            $table->string('image', 225);
             $table->timestamps();
         });
     }

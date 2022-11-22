@@ -5,11 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JenisFilm extends Model
+class bank extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = "Jfilm";
+    protected $table = "bank";
+    protected $primaryKey = 'id_bank';
+    protected $keyType = 'string';
     protected $fillable = [
-    'id_jenis', 'jenis_film'];
+
+        'id_bank',
+        'nama_bank'
+    ];
 }

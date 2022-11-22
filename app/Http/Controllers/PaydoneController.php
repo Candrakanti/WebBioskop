@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\booking;
+
 
 class PaydoneController extends Controller
 {
@@ -15,6 +16,13 @@ class PaydoneController extends Controller
      */
     public function index()
     {
+
+        // $listproducts['listproducts'] = Booking::join('film', 'film.id_film', '=', 'booking.id_film')->get(['booking.', 'film.'])->where('user_id', '=', Auth::user()->id);
+        // return view('profil.paydone', [
+        //     'title' => 'Mycgv',
+        //     'active' => 'Mycgv'
+        // ])->with($listproducts);
+
 
         $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->get(['booking.*', 'jadwal.*' ,'film.*'])->where('id_customer', '=', Auth::user()->id);
         return view('profil.paydone', [

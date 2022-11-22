@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\bank;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 
-use App\Models\detail_booking;
+use App\Models\payment;
 use App\Models\kota;
 use App\Models\jadwal;
 // use Illuminate\Http\Request;
@@ -97,24 +98,14 @@ class BookingController extends Controller
      */
     public function store(Request $request, $id_jadwal)
     {
-        // echo request()->ip();
-        // die();
-
-        // dd($request);
-
-        // cart::insert([
-        //     'id_film' => $id_film,
-        //     'user_id' => Auth::user()->id,
-        //     'harga' => $request->harga,
-        //     'kursi' =>   $request->kursi,
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
-
-        detail_booking::insert([
-            'kursi' => $request->kursi,
-            'created_at' => now(),
-            'updated_at' => now(),
+ 
+        payment::insert([
+            'id_payment' => $request->id_payment,
+            'id_booking' => $request->id_booking,
+            // 'id_bank' => $request->id_bank,
+            'harga' => $request->harga,
+            'status' => $request->status,
+            'image' =>   $request->file('image')->store('booking-images')
         ]);
 
        Booking::insert([
@@ -125,7 +116,7 @@ class BookingController extends Controller
             'jumlah_kursi' =>  $request->jumlah_kursi,
             'tanggal_booking' => now(),
             'harga' => $request->harga,
-            'status_bayar' => $request->status_bayar,
+         
             'created_at' => now(),
             'updated_at' => now(),
         ]);

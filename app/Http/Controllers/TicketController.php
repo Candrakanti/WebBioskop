@@ -46,7 +46,6 @@ class TicketController extends Controller
         //     ->join('film', 'film.id_film', '=', 'jadwal.id_film')
         //     ->get(['studio.*', 'jadwal.*', 'film.*', 'detail_jenis_studio.*']);
 
-
         ]);
     }
 }

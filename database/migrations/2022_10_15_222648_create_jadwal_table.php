@@ -21,7 +21,7 @@ class CreateJadwalTable extends Migration
             $table->string('id_bioskop');
             $table->date('tgl_tayang_awal');
             $table->date('tgl_tayang_akhir');
-            $table->json('jam_tayang');
+            $table->date('jam_tayang');
         });
     }
 

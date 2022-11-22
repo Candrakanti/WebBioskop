@@ -3,7 +3,7 @@
 @section('container')
 
 <div class="row justify-content-center">
-    <div class="col-lg-10 col-md-10 col-xs-10">
+    <div class="col-lg-10 col-md-10 col-xs-10 ">
 
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -73,15 +73,13 @@
                   <h1  style="color: red"><b>
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                       aria-expanded="false" style="padding: none !important;">
-                      Movies in Bandung
+                      Movies in 
                   </a>
-                  <ul class="dropdown-menu">
+                  {{-- <ul class="dropdown-menu">
                       @foreach ($data as $dt)
-                          @foreach ($dt->detail_kota as $dt)
-                              <p>{{ $dt['value'] }}</p>
-                          @endforeach
+                              <p>{{ $dt->id_studio }}</p>
                       @endforeach
-                  </ul>
+                  </ul> --}}
                   </b></h1>
                 
               </li>
