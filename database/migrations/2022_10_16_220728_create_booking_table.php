@@ -24,6 +24,7 @@ class CreateBookingTable extends Migration
             $table->double('jumlah_kursi');
             $table->double('total_harga');
             $table->string('qr_tiket');
+            $table->char('qr_tiket')->default('0');
             $table->timestamps();
         });
     }

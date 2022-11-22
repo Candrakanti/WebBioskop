@@ -1,20 +1,20 @@
-@extends('studio.templateDashboard.sidebar')
+@extends('film.layout.sidebar')
 
 @section('container')
     <div class="container">
         <div class=" text-end">
-            <a href="/kota" class="btn btn-danger">Back</a>
+            <a href="/tampil" class="btn btn-danger">Back</a>
         </div>
     </div>
 
-    <form method="post" action="/kota">
+    <form method="post" action="/tampil">
         @csrf
 
         <div class="mb-3">
-            <label for="id_kota" class="form-label">Id Kota</label>
-            <input type="text" class="form-control @error('id_kota') is-invalid @enderror" name="id_kota" autofocus
-                required value="{{ old('id_kota') }}">
-            @error('id_kota')
+            <label for="id_jenis" class="form-label">Id Jenis Film</label>
+            <input type="text" class="form-control @error('id_jenis') is-invalid @enderror" name="id_jenis" autofocus
+                required value="{{ old('id_jenis') }}">
+            @error('id_jenis')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

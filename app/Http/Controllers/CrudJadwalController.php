@@ -72,6 +72,7 @@ class CrudJadwalController extends Controller
             'id_studio' => 'required',
             'id_film' => 'required',
             'id_kota' => 'required',
+            // 'id_bioskop' => 'required',
             'tgl_tayang_awal' => 'required',
             'tgl_tayang_akhir' => 'required',
             'jam_tayang' => 'required',
