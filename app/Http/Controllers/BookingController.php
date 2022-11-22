@@ -108,7 +108,7 @@ class BookingController extends Controller
             // 'id_booking' => $request->id_booking,
             'id_bank' => $request->id_bank,
             'harga' => $request->harga,
-            'status' => $request->status,
+            'status' => $request->status,  
             'image' =>   $request->file('image')->store('booking-images')
           
         ]);
