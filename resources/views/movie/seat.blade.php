@@ -597,22 +597,22 @@
                                                                         </div>
                                                                 </div>
                                                 
-                                                                <div class="pt-3">
+                                                                <div class="">
                                                                         <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                                             placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
                                                                          name="kursi" id="seat2">
                                                                     </div>
                                         
-                                                                    <div class="pt-3" class="totalchecked">
+                                                                    <div class="" class="totalchecked">
                                                                         <input class="form-control" type="hidden" placeholder="Jumlah Kursi Yang Anda Pilih"
                                                                         name="jumlah_kursi" aria-label="Disabled input example" readonly class="totalchecked"  id="count_seat2">
                                                                     </div>
                         
-                                                                    <div class="pt-3">
+                                                                    <div class="">
                                                                         <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
                                                                         name="status_bayar" value="0" id="status_bayar">
                                                                     </div>
-                                                                    <div class="pt-3">
+                                                                    <div class="">
                                                                         <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
                                                                         name="harga" aria-label="Disabled input example" readonly  id="price2">
                                                                     </div>  
@@ -620,6 +620,17 @@
                                                                     <div class="container">
                                                                         <h3>Select Method</h3>
                                                                 </div>
+
+                                                                {{-- <div class="mb-3">
+                                                                        <label for="id_film" class="form-label">Id Film</label>
+                                                                        <input class="form-control" list="judul_film" id="id_film" name="id_film" placeholder="Type to search...">
+                                                                            <datalist id="judul_film">
+                                                                            @foreach ($data1 as $js)
+                                                                                <option value="{{ $js->id_film }}" selected>{{ $js->judul_film }}</option>
+                                                                            @endforeach
+                                                                            </datalist>
+                                                                    </div> --}}
+
                                                                 <li class="list-group-item" style="padding: 0.75rem 5rem;">
                                                                   <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
                                                                   <label class="form-check-label" for="firstRadio" id="BNI" >BNI</label>
@@ -653,29 +664,49 @@
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="container">
-                                                                <input class="form-control btn btn-secondary text-dark" type="text"
-                                                                readonly name="BNI" id="BNI">
+                                                        <div class="card" >
+                                                                <img src="/img/movie.png" class="card-img-top" alt="...">
+                                                                <div class="card-body">
+                                                                  {{-- <div class="ratio ratio-16x9" style="background: red;"> --}}
+                                                                        <h2 class="modal-title fs-5" id="exampleModalToggleLabel"><b>Total</b></h2>
+                                                                             {{-- <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                                             name="harga" aria-label="Disabled input example" readonly  id="price3"> --}}
+                                                                  {{-- </div>                                                                       --}}
+                                                                </div>
                                                         </div>
-                                                        <div class="pt-3">
+
+                                                        <div class="">
                                                                 <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                                     placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
                                                                  name="kursi" id="seat3">
                                                             </div>
                                 
-                                                            <div class="pt-3" class="totalchecked">
+                                                            <div class="" class="totalchecked">
                                                                 <input class="form-control" type="hidden" placeholder="Jumlah Kursi Yang Anda Pilih"
                                                                 name="jumlah_kursi" aria-label="Disabled input example" readonly class="totalchecked"  id="count_seat3">
                                                             </div>
                 
-                                                            <div class="pt-3">
+                                                            <div class="">
                                                                 <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
                                                                 name="status_bayar" value="0" id="status_bayar">
                                                             </div>
-                                                            <div class="pt-3">
-                                                                <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
+
+                                                            <div class="" class="totalchecked">
+                                                               <h5>Virtual account number</h5>
+                                                               <input class="form-control" type="text"
+                                                               name="id_payment" aria-label="Disabled input example" value="AAA{{ auth()->user()->phone }}" readonly id="id_payment">
+                                                            </div>
+
+                                                            <div class="">
+                                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" 
+                                                                name="status" aria-label="Disabled input example" readonly  value="0" id="status_bayar">
+                                                            </div>
+
+                                                            <div class="">
+                                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
                                                                 name="harga" aria-label="Disabled input example" readonly id="price3">
                                                             </div>
+                           
                                                             
                                                     </div>
                                                     <div class="modal-footer">

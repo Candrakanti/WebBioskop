@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\bank;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 
@@ -97,25 +98,16 @@ class BookingController extends Controller
      */
     public function store(Request $request, $id_jadwal)
     {
-        // echo request()->ip();
-        // die();
-
-        // dd($request);
-
-        // cart::insert([
-        //     'id_film' => $id_film,
-        //     'user_id' => Auth::user()->id,
-        //     'harga' => $request->harga,
-        //     'kursi' =>   $request->kursi,
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
+        // payment::insert([
+        //     'id_bank' => $request->id_bank,
+        //     'nama_bank' => $request->nama_bank
         // ]);
 
         payment::insert([
             'id_payment' => $request->id_payment,
-            'id_booking' => $request->id_booking,
+            // 'id_booking' => $request->id_booking,
             'id_bank' => $request->id_bank,
-            'jumlah_bayar' => $request->jumlah_bayar,
+            'harga' => $request->harga,
             'status' => $request->status,
             'image' => $request->image,
         ]);
