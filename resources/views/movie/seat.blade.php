@@ -586,55 +586,63 @@
                                                     <div class="modal-body" style="padding: 0;">
                                                         <ul class="list-group">
 
-                                                                <div class="card" >
+                                                                <div class="card"style="margin-bottom:30%;" >
                                                                         <img src="/img/movie.png" class="card-img-top" alt="...">
                                                                         <div class="card-body">
                                                                           {{-- <div class="ratio ratio-16x9" style="background: red;"> --}}
-                                                                                <div class="accordion" id="accordionExample">
-                                                                                        <div class="accordion-item">
-                                                                                          <h2 class="accordion-header" id="headingOne">
-                                                                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                                               <p class="pt-3"><strong> Total </strong> </p> &nbsp;
-                                                                                               <p class="pt-3"> Rp 230.000</p>
-                                                                                            </button>
-
-                                                                                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                                                            <div class="accordion-body">
-
-                                                                                                <div class="row">
-                                                                                                 <div class="col-6">
-                                                                                                  <p class="" id="exampleModalToggleLabel">{{ auth()->user()->name }}</p>
-                                                                                                </div>
-
-                                                                                                <div class="col-6">
-                                                                                                   <p class="" id="exampleModalToggleLabel">{{ auth()->user()->email }}</p>
+                                                                                <div class="container " style="padding-bottom: 0%">
+                                                                                        <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
+                                                                                            <div class="accordion-item">
+                                                                                                <h2 class="accordion-header" id="flush-headingOne">
+                                                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                                                                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                                                                                        <p class="pt-3"><strong> Total </strong> </p> &nbsp;
+                                                                                                            {{-- <p class="pt-3"> Rp <input class="form-control" type="text" readonly
+                                                                                                             name="harga" aria-label="Disabled input example"  id="price2" style=" background: transparent; border: none; color:black;"></p> --}}
+                                                                                                         <div class="container pt-3">
+                                                                                                                <div class="row">
+                                                                                                                <div class="col-6">
+                                                                                                                        
+                                                                                                                </div>
+                                                                                                           <p>Rp. <input class="form-control" type="text" readonly name="harga" aria-label="Disabled input example"  id="price2" style=" background: transparent; border: none; color:black;"></p> 
+                                                                                                         </div>
+                                                                                                        </div>
+                                                                                                    </button>
+                                                                                
+                                                                                
+                                                                                                </h2>
+                                                                                
+                                                                                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                                                                                                    data-bs-parent="#accordionFlushExample">
+                                                                                                    <div class="accordion-body">
+                                                                                                       
+                                                                                                        
+                                                                                                       
+                                                                                                      
+                                                                                                     
+                                                                                                    </div>
                                                                                                 </div>
                                                                                             </div>
-                                                                                                
-                                                                                                
-                                                                                            </div>
-                                                                                          </div>
-                                                                                        </div>
-                                                                          {{-- </div>                                                                       --}}
+                                                                                        </div>                                                          
                                                                         </div>
                                                                 </div>
                                                 
-                                                                <div class="pt-3">
+                                                                <div class="">
                                                                         <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                                             placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
                                                                          name="kursi" id="seat2">
                                                                     </div>
                                         
-                                                                    <div class="pt-3" class="totalchecked">
+                                                                    <div class="" class="totalchecked">
                                                                         <input class="form-control" type="hidden" placeholder="Jumlah Kursi Yang Anda Pilih"
                                                                         name="jumlah_kursi" aria-label="Disabled input example" readonly class="totalchecked"  id="count_seat2">
                                                                     </div>
                         
-                                                                    <div class="pt-3">
+                                                                    <div class="">
                                                                         <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
                                                                         name="status_bayar" value="0" id="status_bayar">
                                                                     </div>
-                                                                    <div class="pt-3">
+                                                                    <div class="">
                                                                         <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
                                                                         name="harga" aria-label="Disabled input example" readonly  id="price2">
                                                                     </div>  
@@ -642,6 +650,17 @@
                                                                     <div class="container">
                                                                         <h3>Select Method</h3>
                                                                 </div>
+
+                                                                {{-- <div class="mb-3">
+                                                                        <label for="id_film" class="form-label">Id Film</label>
+                                                                        <input class="form-control" list="judul_film" id="id_film" name="id_film" placeholder="Type to search...">
+                                                                            <datalist id="judul_film">
+                                                                            @foreach ($data1 as $js)
+                                                                                <option value="{{ $js->id_film }}" selected>{{ $js->judul_film }}</option>
+                                                                            @endforeach
+                                                                            </datalist>
+                                                                    </div> --}}
+
                                                                 <li class="list-group-item" style="padding: 0.75rem 5rem;">
                                                                   <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
                                                                   <label class="form-check-label" for="firstRadio" id="BNI" >BNI</label>
@@ -665,7 +684,7 @@
                                                 </div>
                                               </div>
 
-                                              <div class="book" id="gap_form">
+                                              <div class="book" id="gap_form" >
                                                 @csrf
                                               <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">
@@ -675,29 +694,66 @@
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="container">
-                                                                <input class="form-control btn btn-secondary text-dark" type="text"
-                                                                readonly name="BNI">
+                                                        <div class="card" >
+                                                                <img src="/img/movie.png" class="card-img-top" alt="...">
+                                                                <div class="card-body">
+                                                                  {{-- <div class="ratio ratio-16x9" style="background: red;"> --}}
+                                                                        <h2 class="modal-title fs-5" id="exampleModalToggleLabel"><b>Total</b></h2>
+                                                                             {{-- <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                                             name="harga" aria-label="Disabled input example" readonly  id="price3"> --}}
+                                                                  {{-- </div>                                                                       --}}
+                                                                </div>
                                                         </div>
-                                                        <div class="pt-3">
+
+                                                        <div class="">
                                                                 <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                                     placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
                                                                  name="kursi" id="seat3">
                                                             </div>
                                 
-                                                            <div class="pt-3" class="totalchecked">
+                                                            <div class="" class="totalchecked">
                                                                 <input class="form-control" type="hidden" placeholder="Jumlah Kursi Yang Anda Pilih"
                                                                 name="jumlah_kursi" aria-label="Disabled input example" readonly class="totalchecked"  id="count_seat3">
                                                             </div>
                 
-                                                            <div class="pt-3">
+                                                            <div class="">
                                                                 <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
                                                                 name="status_bayar" value="0" id="status_bayar">
                                                             </div>
-                                                            <div class="pt-3">
-                                                                <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
+
+                                                            <div class="" class="totalchecked">
+                                                               <h5>Virtual account number</h5>
+                                                               <input class="form-control" type="text"
+                                                               name="id_payment" aria-label="Disabled input example" value="AAA{{ auth()->user()->phone }}" readonly id="id_payment">
+                                                            </div>
+
+                                                            <div class="">
+                                                                <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
+                                                                name="status" aria-label="Disabled input example" readonly  value="0" id="status_bayar">
+                                                            </div>
+
+                                                            <div class="">
+                                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
                                                                 name="harga" aria-label="Disabled input example" readonly id="price3">
                                                             </div>
+
+                                                            {{-- <div class="input-group mb-3">
+                                                                <input type="file" class="form-control" id="inputGroupFile02">
+                                                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                                              </div>   --}}
+                                                              
+                                                              <div class="mb-3">
+                                                                <label for="image" class="form-label">Post Image</label>
+                                                                <img class="img-preview img-fluid mb-3 col-sm-5">
+                                                                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
+                                                                    name="image" onchange="previewImage()">
+                                                                @error('image')
+                                                                    <div class="invalid-feedback">
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div>  
+                           
                                                             
                                                     </div>
                                                     <div class="modal-footer">
@@ -775,7 +831,7 @@
                     if (counter >= 1) {
                         document.getElementById("pay-button").disabled = false;
                         $('#gap_form').wrap(
-                            '<form id="Form2"  action="{{ route('cart.store', $data->id_jadwal) }}" method="POST" ></form>'
+                            '<form id="Form2" enctype="multipart/form-data"  action="{{ route('cart.store', $data->id_jadwal) }}" method="POST" ></form>'
                         );
                         // MASUKIN SCRIPT MINDTRANS DISINI !
                     } else {
