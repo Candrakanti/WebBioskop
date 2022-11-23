@@ -2,6 +2,8 @@
 @section('container')
     {{-- <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
         @csrf --}}
+
+  
         <div class="row" >
             
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">

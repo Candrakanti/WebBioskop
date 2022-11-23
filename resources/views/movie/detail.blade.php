@@ -3,6 +3,7 @@
 @section('container')
     {{-- <form method="POST" action="{{ route('movie.detail', $data->id_film) }}">
         @csrf --}}
+        <h1>{{  \Carbon\Carbon::now()->format('Y-m-d') }}</h1>
 
     <div class="container d-flex justify-content-center">
         <div class="row d-flex justify-content-center">

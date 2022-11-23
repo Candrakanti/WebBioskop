@@ -80,8 +80,7 @@ class MovieController extends Controller
         ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
         ->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*'])->where('id_jadwal', $id_jadwal)->first();
 
-      
-
+    
         return view('movie.booklater', compact('data' ), [ 
             "title" => "seat",
             "active" => 'Movie',
@@ -102,7 +101,7 @@ class MovieController extends Controller
 
         $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*' ])->where('id_jadwal',$id_jadwal)->first();
 
-        $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->get(['jadwal.*' ,'booking.*']);
+        $data2 = jadwal::join('booking_later', 'booking_later.id_jadwal', '=','jadwal.id_jadwal')->get(['jadwal.*' ,'booking_later.*']);
 
         return view('movie.SeatLater',  compact('data' , 'data2'), [
             "title" => "seat",
