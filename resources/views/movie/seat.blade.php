@@ -585,7 +585,6 @@
                                                     </div>
                                                     <div class="modal-body" style="padding: 0;">
                                                         <ul class="list-group">
-
                                                                 <div class="card"style="margin-bottom:30%;" >
                                                                         <img src="/img/movie.png" class="card-img-top" alt="...">
                                                                         <div class="card-body">
@@ -596,15 +595,9 @@
                                                                                                 <h2 class="accordion-header" id="flush-headingOne">
                                                                                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                                                                                         data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                                                                                        <p class="pt-3"><strong> Total </strong> </p> &nbsp;
-                                                                                                            {{-- <p class="pt-3"> Rp <input class="form-control" type="text" readonly
-                                                                                                             name="harga" aria-label="Disabled input example"  id="price2" style=" background: transparent; border: none; color:black;"></p> --}}
-                                                                                                         <div class="container pt-3">
-                                                                                                                <div class="row">
-                                                                                                                <div class="col-6">
-                                                                                                                        
-                                                                                                                </div>
-                                                                                                           <p>Rp. <input class="form-control" type="text" readonly name="harga" aria-label="Disabled input example"  id="price2" style=" background: transparent; border: none; color:black;"></p> 
+                                                                                                        <p class="pt-3"><strong> Total</strong> &nbsp; Rp. </p> 
+                                                                                                            <p class="pt-3"><input class="form-control" type="text" readonly
+                                                                                                             name="harga" aria-label="Disabled input example"  id="price2" style=" background: transparent; border: none; color:black;"></p>
                                                                                                          </div>
                                                                                                         </div>
                                                                                                     </button>
@@ -614,19 +607,33 @@
                                                                                 
                                                                                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                                                                                                     data-bs-parent="#accordionFlushExample">
-                                                                                                    <div class="accordion-body">
-                                                                                                       
+                                                                                                    <div class="accordion-body pt-2">
+                                                                                                       <div class="row">
+                                                                                                        <div class="col-6">
+                                                                                                                <p class="" id="exampleModalToggleLabel">{{ auth()->user()->name }}</p>
+                                                                                                        </div>
+                                                                                                        <div class="col-6">
+                                                                                                                <p class="" id="exampleModalToggleLabel">{{ auth()->user()->email}}</p>
+                                                                                                        </div>
+                                                                                                       </div>
                                                                                                         
                                                                                                        
-                                                                                                      
-                                                                                                     
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>                                                          
+
+                                                                {{-- <div class="card" >
+                                                                        <img src="/img/movie.png" class="card-img-top" alt="...">
+                                                                        <div class="card-body">
+                                                                                <h2 class="modal-title fs-5" id="exampleModalToggleLabel"><b>Total</b></h2>
+                                                                                     <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                                                     name="harga" aria-label="Disabled input example" readonly  id="price2">
+
                                                                         </div>
                                                                 </div>
-                                                
+                                                 --}}
+
                                                                 <div class="">
                                                                         <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                                             placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
@@ -648,7 +655,7 @@
                                                                     </div>  
                                                                 
                                                                     <div class="container">
-                                                                        <h3>Select Method</h3>
+                                                                        <h4>Select Method</h4>
                                                                 </div>
 
                                                                 {{-- <div class="mb-3">
@@ -664,6 +671,8 @@
                                                                 <li class="list-group-item" style="padding: 0.75rem 5rem;">
                                                                   <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
                                                                   <label class="form-check-label" for="firstRadio" id="BNI" >BNI</label>
+                                                                  {{-- <img src="/img/bni-logo.png" class="card-img-top" alt="" style="width: 30%"> --}}
+
                                                                 </li>
                                                                 <li class="list-group-item" style="padding: 0.75rem 5rem;">
                                                                   <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="secondRadio">
@@ -693,17 +702,10 @@
                                                       <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Detail Pembayaran</h1>
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <div class="card" >
+                                                    <div class="modal-body" >
+                                                     
                                                                 <img src="/img/movie.png" class="card-img-top" alt="...">
-                                                                <div class="card-body">
-                                                                  {{-- <div class="ratio ratio-16x9" style="background: red;"> --}}
-                                                                        <h2 class="modal-title fs-5" id="exampleModalToggleLabel"><b>Total</b></h2>
-                                                                             {{-- <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
-                                                                             name="harga" aria-label="Disabled input example" readonly  id="price3"> --}}
-                                                                  {{-- </div>                                                                       --}}
-                                                                </div>
-                                                        </div>
+                                                        {{-- </div> --}}
 
                                                         <div class="">
                                                                 <input class="form-control btn btn-secondary text-dark" type="hidden"
