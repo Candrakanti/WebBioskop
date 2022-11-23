@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\bank;
+
 use Illuminate\Http\Request;
 use App\Models\Booking;
 
 use App\Models\payment;
+use App\Models\bank;
 use App\Models\kota;
 use App\Models\jadwal;
 // use Illuminate\Http\Request;
@@ -58,8 +59,10 @@ class BookingController extends Controller
         $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*' ])->where('id_jadwal',$id_jadwal)->first();
 
         $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->get(['jadwal.*' ,'booking.*']);
+
+        $data3 = bank::all();
      
-        return view('movie.seat', compact('data','data2' ), [
+        return view('movie.seat', compact('data','data2', 'data3'), [
             // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'
@@ -98,19 +101,14 @@ class BookingController extends Controller
      */
     public function store(Request $request, $id_jadwal)
     {
-        // payment::insert([
-        //     'id_bank' => $request->id_bank,
-        //     'nama_bank' => $request->nama_bank
-        // ]);
-
+ 
         payment::insert([
             'id_payment' => $request->id_payment,
-            // 'id_booking' => $request->id_booking,
-            'id_bank' => $request->id_bank,
+            'id_booking' => $request->id_booking,
+            'nama_bank' => $request->nama_bank,
             'harga' => $request->harga,
-            'status' => $request->status,  
+            'status' => $request->status,
             'image' =>   $request->file('image')->store('booking-images')
-          
         ]);
 
 
@@ -118,11 +116,11 @@ class BookingController extends Controller
        
             'id_customer' => Auth::user()->id,
             'id_jadwal' => $id_jadwal,
-            'kursi' => $request->kursi,
-            'jumlah_kursi' => $request->jumlah_kursi,
+            'kursi' =>$request->kursi,
+            'jumlah_kursi' =>  $request->jumlah_kursi,
             'tanggal_booking' => now(),
             'harga' => $request->harga,
-            'status_bayar' => $request->status_bayar,
+         
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -165,10 +163,6 @@ class BookingController extends Controller
         ]);
     }
 
-    public function form()
-    {
-        return "hi";
-    }
 
     /**
      * Show the form for editing the specified resource.

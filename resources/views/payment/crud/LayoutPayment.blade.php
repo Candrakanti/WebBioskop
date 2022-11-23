@@ -63,38 +63,33 @@
                   </td>
 
                   <td>
-                    {{-- <p class="text-xs font-weight-bold mb-0">{{$data->id_payment}}</p> --}}
+                    <p class="text-xs font-weight-bold mb-0">{{$data->name}}</p>
                   </td>
 
                   <td class="align-middle text-center">
                     {{-- <span class="text-secondary text-xs font-weight-bold">{{$data->id_booking}}</span> --}}
                   </td>
                   <td class="align-middle text-center">
-                    {{-- <span class="text-secondary text-xs font-weight-bold">{{$data->jenis_payment}}</span> --}}
+                    <span class="text-secondary text-xs font-weight-bold">
+
+                      @if ($data->image)
+                      <div class="rounded">
+                      <img src="{{ asset('storage/' . $data->image) }}" class="card-img-top rounded-3" alt="" style="width:100px">
+                      </a>
+                    </div>
+                      @endif
+
+                    </span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->jumlah_bayar}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->harga}}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->status_bayar}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->status}}</span>
                   </td>
 
-                     {{-- <td class="align-middle text-center text-sm">
-                    <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Edit</a>
-                   
-                    {{-- <form id="delete-user-form" action="/CrudStudio/{{ $data->id_studio }}" method="POST" class="d-inline">
-                      @csrf
-                      @method('DELETE')
-                    <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" data-id="{{$data->id_studio}}"  data-name="{{$data->id_studio}}"  > delete</a>
-                    </form> --}}
-
-                    {{-- <form method="POST" action="{{ route('CrudStudio.delete', $data->id_studio) }}" class="d-inline">
-                      @csrf
-                      <input name="_method" type="hidden" value="DELETE">
-                      <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$data->id_studio}}" data-toggle="tooltip" title='Delete'>Delete</button>
-                  </form> --}}
-
-                    {{-- <a href="/CrudStudio/{{ $data->id_studio }}" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
+                      <td class="align-middle text-center text-sm">
+                    <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Accept</a>
                   </td>
                  
                 </tr>

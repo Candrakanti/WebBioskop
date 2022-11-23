@@ -32,8 +32,8 @@ class CrudPaymentController extends Controller
     public function customer()
     {
 
-        $data = Booking::all();
-
+        $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_customer' ,'=','booking.id_customer')->get(['booking.*','payment.*' ,'users.*']);
+    
         return view('payment.crud.LayoutPayment',  compact('data'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'

@@ -474,8 +474,20 @@
                                 </div>
 
                                 @else
-
                                 <div class="seats" id="seats" name="harga">
+
+                                        <h1>contoh</h1>
+                                    
+                                        @if($data->id_jadwal == $data->id_jadwal)
+                                      @foreach($data2 as $d)
+                                      @if($d->id_jadwal === $data->id_jadwal)
+                                    <h1>{{ $d->kursi }}</h1>
+                                      @endif
+                                      @endforeach
+                                        @endif
+                                    
+                                     <H1>Selesai</H1>
+                                    
                                         @foreach(range('A',$data->jumlah_row) as $v)
                                         <div class="row">
                                                 <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -485,13 +497,24 @@
                                                 </div>
                                                 <div class="col-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
                                                         @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
-                                                        <input type="checkbox"   name="kursi"  data-value=" {{ $v }}{{$i }}" value="{{ $data->harga }}"
+                                                        <input type="checkbox"   name="kursi"  data-value="{{ $v }}{{$i }}" value="{{ $data->harga }}"
+                                                        @if($data->id_jadwal == $data->id_jadwal)
+                                                        @foreach($data2 as $d)
+                                                       @if($d->id_jadwal == $data->id_jadwal and $d->kursi ==  $v.$i )
+                                                     disabled
+                                                       @endif
+                                                        @endforeach
+                                                          @endif
                                                         >
                                                          @endfor
                                                 </div>
+                                    
+                                                {{-- @if($d->id_jadwal == $data->id_jadwal and $d->kursi == {{ $i }})
+                                                       disabled
+                                                        @endif --}}
                                         </div>
                                             @endforeach  
-                                </div>
+                                    </div>
                             @endif
                         </div>
                     </div>
@@ -567,15 +590,11 @@
                                                 <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" readonly
                                                 name="harga" aria-label="Disabled input example"  id="price">
                                             </div>
-                                            
-                                            <div class="container text-center mt-3">
-                                                <button class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">BOOK NOW</button>
-                                            </div>
-                
-                                            {{-- <div class="container text-center mt-3">
-                                                    <button type="submit" class="btn btn-primary" id="pay-button" disabled>BOOK NOW </button>
-                                            </div>   --}}
                                            
+                                            <div class="container text-center mt-3">
+                                                    <button type="submit" class="btn btn-primary" id="pay-button" disabled data-bs-toggle="modal" href="#exampleModalToggle" role="button">BOOK NOW </button>
+                                            </div>  
+                                {{-- </div> --}}
                                             <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                   <div class="modal-content">
@@ -605,7 +624,7 @@
                                                                           <h2 class="accordion-header" id="headingOne">
                                                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                                                                <p class="pt-3"><strong> Total </strong> </p> &nbsp;
-                                                                               <p class="pt-3"> <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                                               <p class="pt-3" > <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
                                                                                      name="harga" aria-label="Disabled input example" readonly  id="price2"></p>
                                                                             </button>
 
@@ -663,18 +682,19 @@
                                                                             </datalist>
                                                                     </div> --}}
 
-                                                                <li class="list-group-item" style="padding: 0.75rem 5rem;">
-                                                                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
-                                                                  <label class="form-check-label" for="firstRadio" id="BNI" >BNI</label>
-                                                                </li>
-                                                                <li class="list-group-item" style="padding: 0.75rem 5rem;">
-                                                                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="secondRadio">
-                                                                  <label class="form-check-label" for="secondRadio">BCA</label>
-                                                                </li>
-                                                                <li class="list-group-item" style="padding: 0.75rem 5rem;">
-                                                                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="thirdRadio">
-                                                                  <label class="form-check-label" for="thirdRadio">BRI</label>
-                                                                </li>
+                                                                    <div class="checkout" id="checkout">
+                                                                        @foreach ($data3 as $b)
+                                                                        <li class="list-group-item" style="padding: 0.75rem 5rem;">
+                                                                          <input class="form-check-input me-1" type="radio" name="nama_bank" value="{{$b->nama_bank}}"  >
+                                                                          <label class="form-check-label" for="firstRadio">{{ $b->nama_bank }}</label>
+                                                                        </li>
+                                                                        @endforeach
+                                                                    </div>
+
+                                                                <div class="">
+                                                                        <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                                        aria-label="Disabled input example" disabled id="bank" >
+                                                                </div> 
                                                        
                                                        </ul>
                                                     </div>
@@ -699,6 +719,10 @@
                                                      
                                                                 <img src="/img/movie.png" class="card-img-top" alt="...">
                                                         {{-- </div> --}}
+                                                        <div class="">
+                                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                                name="nama_bank" aria-label="Disabled input example" value="{{ $b->nama_bank }}" readonly  id="bank2">
+                                                           </div> 
 
                                                         <div class="">
                                                                 <input class="form-control btn btn-secondary text-dark" type="hidden"
@@ -715,11 +739,11 @@
                                                                 <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
                                                                 name="status_bayar" value="0" id="status_bayar">
                                                             </div>
-
+    
                                                             <div class="" class="totalchecked">
                                                                <h5>Virtual account number</h5>
                                                                <input class="form-control" type="text"
-                                                               name="id_payment" aria-label="Disabled input example" value="AAA{{ auth()->user()->phone }}" readonly id="id_payment">
+                                                               name="id_payment" aria-label="Disabled input example" value="AAA{{ auth()->user()->phone }}" readonly id="id_payment">`
                                                             </div>
 
                                                             <div class="">
@@ -732,14 +756,9 @@
                                                                 name="harga" aria-label="Disabled input example" readonly id="price3">
                                                             </div>
 
-                                                            {{-- <div class="input-group mb-3">
-                                                                <input type="file" class="form-control" id="inputGroupFile02">
-                                                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                                              </div>   --}}
-                                                              
                                                               <div class="mb-3">
                                                                 <label for="image" class="form-label">Post Image</label>
-                                                                <img class="img-preview img-fluid mb-3 col-sm-5">
+                                                                <img class="img-preview img-fluid mb-3 col-sm-5" style="width: 100%">
                                                                 <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
                                                                     name="image" onchange="previewImage()">
                                                                 @error('image')
@@ -752,7 +771,7 @@
                                                             
                                                     </div>
                                                     <div class="modal-footer">
-                                                      <button type="submit" class="btn btn-primary" data-bs-toggle="modal" role="button"  id="pay-button" disabled>Done</button>
+                                                      <button type="submit" class="btn btn-primary" data-bs-toggle="modal" role="button"  id="final-pay" >Done</button>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -779,30 +798,56 @@
         // });
       </script> --}}
 
+      <script>
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
+
     <script>
-        
+
         $(document).ready(function() {
+
                 $('#kursi').wrap(
                             '@foreach($data2 as $d) @endforeach'
                         );
 
             $('.seats').click(function() {
-                var test = new Array();
-                var book ="H1";
+                var test = new Array();  
                 $("input[name='kursi']:checked").each(function() {
                                 test.push($(this).data('value'));          
                 }); 
 
-                var check =    $(":checkbox:checked").length;
            document.getElementById('seat').value = test ;
            document.getElementById('seat2').value = test ;
            document.getElementById('seat3').value = test ;
 
+           $('.checkout').click(function() {
+                var bank = $('input[name="nama_bank"]:checked').val();
+           
+                document.getElementById('bank').value = bank;
+                document.getElementById('bank2').value = bank;
+
+                });
+
+           var check =    $(":checkbox:checked").length;
            document.getElementById('count_seat').value=  check;
            document.getElementById('count_seat2').value=  check;
            document.getElementById('count_seat3').value=  check;
-         
-  
                 var input = document.getElementsByName("kursi");
                 var total = 0;
                 for (var i = 0; i < input.length; i++) {

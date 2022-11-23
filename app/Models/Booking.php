@@ -23,15 +23,15 @@ class Booking extends Model
         'kursi',
         'jumlah_kursi',
         'harga',
-        'status_bayar',
+        // 'status_bayar',
         // 'qr_tiket',
     
     ];
 
-     protected $casts = [
-        'kursi' => 'array',
+    //  protected $casts = [
+    //     'kursi' => 'array',
 
-    ];
+    // ];
 
         public static function boot()
     {

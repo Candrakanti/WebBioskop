@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBioskopTable extends Migration
+class CreateBankTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateBioskopTable extends Migration
      */
     public function up()
     {
-        Schema::create('bioskop', function (Blueprint $table) {
-            $table->string('id_bioskop', 225)->primary();
-            $table->string('nama_bioskop');
+        Schema::create('bank', function (Blueprint $table) {
+            $table->string('id_bank', 225)->primary();
+            $table->string('nama_bank', 225);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateBioskopTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bioskop');
+        Schema::dropIfExists('bank');
     }
 }
