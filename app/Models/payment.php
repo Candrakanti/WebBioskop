@@ -16,8 +16,7 @@ class payment extends Model
 
         'id_payment',
         'id_booking',
-        'id_bank',
-        'id_customer',
+        'nama_bank',
         'harga',
         'status',
         'image'
@@ -27,6 +26,11 @@ class payment extends Model
     public function bank()
     {
         return $this->hasMany('App\Models\bank');
+    }
+
+    public function Booking()
+    {
+        return $this->hasMany('App\Models\Booking');
     }
 
     

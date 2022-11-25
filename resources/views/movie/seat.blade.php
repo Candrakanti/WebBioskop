@@ -2,6 +2,8 @@
 @section('container')
     {{-- <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
         @csrf --}}
+
+  
         <div class="row" >
             
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
@@ -645,7 +647,7 @@
                                                                             </div>
                                                                           </div>
                                                                         </div>
-                                                          {{-- </div>                                                                       --}}
+                
                                                         </div>
                                                 </div>
                                                                 <div class="">
@@ -718,10 +720,10 @@
                                                     <div class="modal-body" >
                                                      
                                                                 <img src="/img/movie.png" class="card-img-top" alt="...">
-                                                        {{-- </div> --}}
+                                                        
                                                         <div class="">
-                                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
-                                                                name="nama_bank" aria-label="Disabled input example" value="{{ $b->nama_bank }}" readonly  id="bank2">
+                                                                <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
+                                                                name="nama_bank" aria-label="Disabled input example" readonly  id="bank2">
                                                            </div> 
 
                                                         <div class="">
@@ -755,6 +757,8 @@
                                                                 <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
                                                                 name="harga" aria-label="Disabled input example" readonly id="price3">
                                                             </div>
+
+                                                            
 
                                                               <div class="mb-3">
                                                                 <label for="image" class="form-label">Post Image</label>

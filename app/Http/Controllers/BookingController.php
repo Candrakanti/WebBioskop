@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
-
+use App\Models\BookingLater;
 use App\Models\payment;
 use App\Models\bank;
 use App\Models\kota;
@@ -13,7 +13,7 @@ use App\Models\jadwal;
 // use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\cart;
-use App\Models\detail_kota;
+
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 
@@ -59,7 +59,6 @@ class BookingController extends Controller
         $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*' ])->where('id_jadwal',$id_jadwal)->first();
 
         $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->get(['jadwal.*' ,'booking.*']);
-
         $data3 = bank::all();
      
         return view('movie.seat', compact('data','data2', 'data3'), [
@@ -120,7 +119,6 @@ class BookingController extends Controller
             'jumlah_kursi' =>  $request->jumlah_kursi,
             'tanggal_booking' => now(),
             'harga' => $request->harga,
-         
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -129,6 +127,31 @@ class BookingController extends Controller
         return redirect('/movie')->with('success', 'success adding to cart !');
         // return redirect()->route('payment.now',$id_jadwal)->with('success', 'success adding to cart !');
     }
+
+    public function Later(Request $request, $id_jadwal){
+        payment::insert([
+            'id_payment' => $request->id_payment,
+            'id_booking' => $request->id_booking,
+            // 'id_bank' => $request->id_bank,
+            'harga' => $request->harga,
+            'status' => $request->status,
+            'image' =>   $request->file('image')->store('booking-images')
+        ]);
+
+        BookingLater::insert([
+       
+            'id_customer' => Auth::user()->id,
+            'id_jadwal' => $id_jadwal,
+            'kursi' =>$request->kursi,
+            'jumlah_kursi' =>  $request->jumlah_kursi,
+            'tanggal_booking' => $request->tanggal_booking,
+            'harga' => $request->harga,
+         
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        return redirect('/movie')->with('success', 'success adding to cart !');
+}
 
     
 
