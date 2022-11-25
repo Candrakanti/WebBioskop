@@ -49,25 +49,20 @@
                                                          class="class"  name="kursi"
                                                          @if($data->id_jadwal == $data->id_jadwal)
                                                          @foreach($data2 as $d)
-                                                         @if($d->id_jadwal === $data->id_jadwal )
-
-                                                         @if(is_array(old('kursi')) && ('H1'==old('kursi')))
-                                                          disabled
-                                                           @endif
-                                                    
+                                                         @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'H1')
+                                                        disabled
                                                          @endif
                                                          @endforeach
-                                                           @endif>
+                                                           @endif
+                                                       >
                                                     </label>
             
                                                     <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="H2"
                                                         name="kursi"
                                                         @if($data->id_jadwal == $data->id_jadwal)
                                                         @foreach($data2 as $d)
-                                                        @if($d->id_jadwal === $data->id_jadwal )
-    
-                                                        {{-- @if( old('kursi') || (!old('submit') && $voucher->active) ) checked='checked' @endif --}}
-
+                                                        @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'H2')
+                                                       disabled
                                                         @endif
                                                         @endforeach
                                                           @endif
@@ -478,7 +473,7 @@
                                 @else
                                 <div class="seats" id="seats" name="harga">
 
-                                        <h1>contoh</h1>
+                                        {{-- <h1>contoh</h1>
                                     
                                         @if($data->id_jadwal == $data->id_jadwal)
                                       @foreach($data2 as $d)
@@ -488,7 +483,7 @@
                                       @endforeach
                                         @endif
                                     
-                                     <H1>Selesai</H1>
+                                     <H1>Selesai</H1> --}}
                                     
                                         @foreach(range('A',$data->jumlah_row) as $v)
                                         <div class="row">
@@ -701,6 +696,22 @@
                                                                     placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
                                                                  name="kursi" id="seat3">
                                                             </div>
+                                                        <div class="">
+                                                             @if($generatePY == $generatePY)
+                                                                <input class="form-control btn btn-secondary text-dark" type="text"
+                                                                    placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" value=" {{ $generatePY }} " readonly
+                                                                 name="id_payment">
+                                                                 @endif
+                                                                
+                                                            </div>
+                                                        <div class="">
+                                                             @if($generateBK == $generateBK)
+                                                                <input class="form-control btn btn-secondary text-dark" type="text"
+                                                                    placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" value=" {{ $generateBK }} " readonly
+                                                                 name="id_booking" id="id_booking">
+                                                                 @endif
+                                                                
+                                                            </div>
                                 
                                                             <div class="" class="totalchecked">
                                                                 <input class="form-control" type="hidden" placeholder="Jumlah Kursi Yang Anda Pilih"
@@ -714,8 +725,8 @@
 
                                                             <div class="" class="totalchecked">
                                                                <h5>Virtual account number</h5>
-                                                               <input class="form-control" type="text"
-                                                               name="id_payment" aria-label="Disabled input example" value="AAA{{ auth()->user()->phone }}" readonly id="id_payment">
+                                                               {{-- <input class="form-control" type="text"
+                                                               name="id_payment" aria-label="Disabled input example" value="AAA{{ auth()->user()->phone }}" readonly id="id_payment"> --}}
                                                             </div>
 
                                                             <div class="">
@@ -783,6 +794,7 @@
                                 test.push($(this).data('value'));          
                 }); 
 
+
                 var check =    $(":checkbox:checked").length;
            document.getElementById('seat').value = test ;
            document.getElementById('seat2').value = test ;
@@ -791,8 +803,8 @@
            document.getElementById('count_seat').value=  check;
            document.getElementById('count_seat2').value=  check;
            document.getElementById('count_seat3').value=  check;
-         
-  
+
+
                 var input = document.getElementsByName("kursi");
                 var total = 0;
                 for (var i = 0; i < input.length; i++) {

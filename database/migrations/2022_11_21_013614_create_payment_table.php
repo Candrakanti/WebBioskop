@@ -14,8 +14,9 @@ class CreatePaymentTable extends Migration
     public function up()
     {
         Schema::create('payment', function (Blueprint $table) {
-            $table->increments('id_payment' ,255);
-            $table->string('id_booking', 225);
+            $table->string('id_payment' ,255);
+            $table->string('id_booking');
+            $table->foreign('id_booking')->references('id_booking')->on('booking')->onDelete('cascade');;        
             $table->string('id_bank', 225);
             $table->double('harga');
             $table->char('status')->default('0');
@@ -31,6 +32,8 @@ class CreatePaymentTable extends Migration
      */
     public function down()
     {
+     
         Schema::dropIfExists('payment');
+        
     }
 }

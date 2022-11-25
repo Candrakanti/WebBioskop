@@ -12,7 +12,7 @@ use App\Models\jadwal;
 // use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\cart;
-
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 
@@ -59,9 +59,10 @@ class BookingController extends Controller
 
         $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->get(['jadwal.*' ,'booking.*']);
 
-        $seatExp = booking::where('kursi' , '<=' ,  Carbon::now())->delete();
+        $generateBK =  IdGenerator::generate(['table' => 'booking', 'field' => 'id_booking', 'length' => 10, 'prefix' => 'BK'.Auth::user()->id]);
+    $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 10, 'prefix' =>'PY-'.Auth::user()->phone]);
      
-        return view('movie.seat', compact('data','data2' ,'seatExp' ), [
+        return view('movie.seat', compact('data','data2' , 'generateBK' ,'generatePY' ), [
             // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'
@@ -100,18 +101,10 @@ class BookingController extends Controller
      */
     public function store(Request $request, $id_jadwal)
     {
- 
-        payment::insert([
-            'id_payment' => $request->id_payment,
-            'id_booking' => $request->id_booking,
-            // 'id_bank' => $request->id_bank,
-            'harga' => $request->harga,
-            'status' => $request->status,
-            'image' =>   $request->file('image')->store('booking-images')
-        ]);
 
        Booking::insert([
-       
+            'id_booking' =>  $request->id_booking,
+            'id_payment' => $request->id_payment,
             'id_customer' => Auth::user()->id,
             'id_jadwal' => $id_jadwal,
             'kursi' =>$request->kursi,
@@ -121,20 +114,22 @@ class BookingController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        return redirect('/movie')->with('success', 'success adding to cart !');
-        // return redirect()->route('payment.now',$id_jadwal)->with('success', 'success adding to cart !');
-    }
 
-    public function Later(Request $request, $id_jadwal){
         payment::insert([
             'id_payment' => $request->id_payment,
-            'id_booking' => $request->id_booking,
+            'id_booking' => $request->id_booking ,
             // 'id_bank' => $request->id_bank,
             'harga' => $request->harga,
             'status' => $request->status,
             'image' =>   $request->file('image')->store('booking-images')
         ]);
+        return redirect('/movie')->with('success', 'success adding to cart !');
+        // return redirect()->route('payment.now',$id_jadwal)->with('success', 'success adding to cart !');
+    }
 
+    public function Later(Request $request, $id_jadwal){
+     
+    
         BookingLater::insert([
        
             'id_customer' => Auth::user()->id,
@@ -147,6 +142,16 @@ class BookingController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        payment::insert([
+            'id_payment' => IdGenerator::generate(['table' => 'payment', 'length' => 7, 'prefix' =>'INV-']),
+            // 'id_booking' => $request->id_booking,
+            // 'id_bank' => $request->id_bank,
+            'harga' => $request->harga,
+            'status' => $request->status,
+            'image' =>   $request->file('image')->store('booking-images')
+        ]);
+
         return redirect('/movie')->with('success', 'success adding to cart !');
 }
 

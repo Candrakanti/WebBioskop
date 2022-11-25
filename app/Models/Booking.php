@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use App\Models\payment;
 
 class Booking extends Model
 {
@@ -17,7 +18,7 @@ class Booking extends Model
     protected $fillable = [
         'id_booking',
         'id_customer',
-        // 'id_payment',
+        'id_payment',
         'id_jadwal',
         'tanggal_booking',
         'kursi',
@@ -32,6 +33,10 @@ class Booking extends Model
     //     'kursi' => 'array',
 
     // ];
+
+    public function p(){
+        return $this->belongsTo('App\Models\Booking', 'id_booking');
+    }
 
         public static function boot()
     {

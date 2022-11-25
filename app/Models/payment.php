@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class payment extends Model
 {
@@ -16,15 +17,22 @@ class payment extends Model
 
         'id_payment',
         'id_booking',
+       
         'id_bank',
         'harga',
         'status',
         'image'
     ];
 
-
-    public function bank()
+    public function payment(){
+        return $this->belongsTo('booking', 'id_booking');
+    }
+    public static function boot()
     {
-        return $this->hasMany('App\Models\bank');
+        parent::boot();
+    
+        self::creating(function ($model) {
+            $model->id_payment= IdGenerator::generate(['table' => 'payment', 'length' => 10, 'prefix' =>'INV-']);
+        });
     }
 }
