@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\bank;
+
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\BookingLater;
 use App\Models\payment;
+use App\Models\bank;
 use App\Models\kota;
 use App\Models\jadwal;
 // use Illuminate\Http\Request;
@@ -15,10 +16,9 @@ use App\Models\cart;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
-
 use Illuminate\Support\Facades\Auth;
-
-
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 
 class BookingController extends Controller
 {
@@ -46,38 +46,115 @@ class BookingController extends Controller
         //          'gross_amount' => 10000,
         //      ),
         //      'customer_details' => array(
-        //          'first_name' => 'budi',
-        //          'last_name' => 'pratama',
-        //          'email' => 'budi.pra@example.com',
-        //          'phone' => '08111222333',
+        //          'first_name' => Auth::user()->name,
+        //          'email' => Auth::user()->email,
+        //          'phone' => Auth::user()->phone,
         //      ),
+             
+        //      "item_details" => array(
+        //         [
+        //           'id' => 'a1',
+        //           'price' => '6000',
+        //           'quantity' => 1,
+        //           'name' => 'aku bukan harimau',
+        //         ]
+        //         ),
+                
         //  );
          
         //  $snapToken = \Midtrans\Snap::getSnapToken($params);
 
         $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*' ])->where('id_jadwal',$id_jadwal)->first();
 
-        $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->get(['jadwal.*' ,'booking.*']);
+            $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->get(['jadwal.*' ,'booking.*']);
 
         $generateBK =  IdGenerator::generate(['table' => 'booking', 'field' => 'id_booking', 'length' => 10, 'prefix' => 'BK'.Auth::user()->id]);
-    $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 10, 'prefix' =>'PY-'.Auth::user()->phone]);
-     
-        return view('movie.seat', compact('data','data2' , 'generateBK' ,'generatePY' ), [
+
+        $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 10, 'prefix' =>'PY'.Auth::user()->id]);
+
+        // $data3 = bank::all();
+
+        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY' ), [
             // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'
         ]);
     }
 
-
-    public function count()
+    public function mindtrans(Request $request)
     {
-        $count = \DB::table('cart')->where(Auth::user()->id)->count();
-        return view('partials.navbarNew', compact('count'), [
+         // Set your Merchant Server Key
+         \Midtrans\Config::$serverKey = env('MINDTRANS_SERVER_KEY');
+         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+         \Midtrans\Config::$isProduction = false;
+         // Set sanitization on (default)
+         \Midtrans\Config::$isSanitized = true;
+         // Set 3DS transaction for credit card to true
+         \Midtrans\Config::$is3ds = true;
+         
+         $params = array(
+             'transaction_details' => array(
+                 'order_id' => rand(),
+                //  'order_id' => $request->get('id_booking'),
+                 'gross_amount' =>$request->get('harga'),
+             ),
+             'customer_details' => array(
+                 'first_name' => Auth::user()->name,
+                 'email' => Auth::user()->email,
+                 'phone' => Auth::user()->phone,
+             ),
+             
+             "item_details" => array(
+                [
+                  'id' => $request->get('id_film'),
+                  'price' =>$request->get('harga'),
+                  'quantity' => $request->get('jumlah_kursi'),
+                  'name' => $request->get('judul_film'),
+                ]
+                ),
+                
+         );
+         
+         $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        return view('movie.mindtrans', [
+            'snapToken' =>$snapToken,
             "title" => "mycgv",
             "active" => "mycgv"
         ]);
+
     }
+
+    public function mindtrans_post(Request $request)
+    {
+        // return $request;
+            $json = json_decode($request->get('json'));
+            $booking = new booking();
+            $booking->id_booking = $json->order_id;
+            $booking->id_customer =  $request->get('id_customer');
+            $booking->id_payment =   $json->transaction_id;
+            $booking->id_jadwal = $request->get('id_jadwal');
+            $booking->tanggal_booking =  $json->transaction_time;
+            $booking->kursi = $request->get('kursi');
+            $booking->jumlah_kursi = $request->get('jumlah_kursi');
+            $booking->harga =  $request->get('harga');
+            $booking->save();
+
+            $payment = new payment;
+            $payment->id_payment = $json->transaction_id;
+            $payment->id_booking = $json->order_id;
+            $payment->payment_code = isset($json->payment_code) ? $json->payment_code : null;
+            $payment->payment_type =$json->payment_type;
+            $payment->harga = $request->get('harga');
+            $payment->status_bayar = $json->transaction_status;
+            $payment->save();
+
+            return redirect('/movie')->with('success', 'success adding to cart !');
+            
+            // return $booking->save() ? redirect('/movie')->with('success', 'success adding to cart !') : redirect('/movie')->with('alert-failed', 'error');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -111,17 +188,19 @@ class BookingController extends Controller
             'jumlah_kursi' =>  $request->jumlah_kursi,
             'tanggal_booking' => now(),
             'harga' => $request->harga,
+            'qr_tiket'=> QrCode::format('png')->generate('hi')->store('booking-images'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+    
 
         payment::insert([
             'id_payment' => $request->id_payment,
             'id_booking' => $request->id_booking ,
-            // 'id_bank' => $request->id_bank,
+            'nama_bank' => $request->nama_bank,
             'harga' => $request->harga,
-            'status' => $request->status,
-            'image' =>   $request->file('image')->store('booking-images')
+            'status_bayar' => $request->status_bayar,
+            'bukti_bayar' => $request->file('bukti_bayar')->store('booking-images')
         ]);
         return redirect('/movie')->with('success', 'success adding to cart !');
         // return redirect()->route('payment.now',$id_jadwal)->with('success', 'success adding to cart !');

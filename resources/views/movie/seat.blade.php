@@ -2,10 +2,8 @@
 @section('container')
     {{-- <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
         @csrf --}}
-
-  
+        {!! QrCode::generate('Make me into a QrCode!'); !!}
         <div class="row" >
-            
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
     
                     <div class="card border border-5">
@@ -521,9 +519,7 @@
     
                     <div class="card border border-5">
                         <div class="card-body">
-    
                             <div class="row g-0">
-    
     
                                 <div class="col-4 col-lg-4 col-sm-4 col-md-4">
                                     <img src="{{ asset('storage/' . $data->image) }}" class="card-img-top" alt=""
@@ -566,245 +562,149 @@
     
                                 </div>
     
-                                {{-- <div class="book" id="gap_form">
-                                        @csrf --}}
+                                <div class="book" id="gap_form">
+                                        @csrf
                                            <div class="pt-3">
                                                 <input class="form-control btn btn-secondary text-dark" type="text"
                                                     placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
                                                  name="kursi" id="seat">
                                             </div>
-                
+
+                                            <div class="pt-3">
+                                                <input class="form-control btn btn-secondary text-dark" type="text"
+                                                  readonly value="{{ Auth::user()->id }}"
+                                                 name="id_customer" id="seat">
+                                            </div>
+                                               
                                             <div class="pt-3" class="totalchecked">
                                                 <input class="form-control" type="text" placeholder="Jumlah Kursi Yang Anda Pilih"
                                                 name="jumlah_kursi" aria-label="Disabled input example" class="totalchecked"  readonly id="count_seat">
                                             </div>
 
                                             <div class="pt-3">
-                                                <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
+                                                <input class="form-control" type="hidden" 
                                                 name="status_bayar" value="0" id="status_bayar">
                                             </div>
+
                                             <div class="pt-3">
-                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" readonly
+                                                <input class="form-control" type="text" 
+                                                name="judul_film" value="{{ $data->judul_film }}">
+                                            </div>
+
+                                            <div class="pt-3">
+                                                <input class="form-control" type="text" 
+                                                name="id_jadwal" value="{{ $data->id_jadwal}}">
+                                            </div>
+
+                                            <div class="pt-3">
+                                                <input class="form-control" type="text" readonly
                                                 name="harga" aria-label="Disabled input example"  id="price">
                                             </div>
                                            
                                             <div class="container text-center mt-3">
-                                                    <button type="submit" class="btn btn-primary" id="pay-button" disabled data-bs-toggle="modal" href="#exampleModalToggle" role="button">BOOK NOW </button>
+                                                    <button type="submit" class="btn btn-primary" id="pay-button" >BOOK NOW </button>
                                             </div>  
-                                {{-- </div> --}}
-                                            <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel">{{ auth()->user()->name }}</h1>
-                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body" style="padding: 0;">
-                                                        <ul class="list-group">
 
-                                                                <div class="card" >
-                                                                        <img src="/img/movie.png" class="card-img-top" alt="...">
-                                                                        <div class="card-body">
-                                                                          {{-- <div class="ratio ratio-16x9" style="background: red;"> --}}
-                                                                                <h2 class="modal-title fs-5" id="exampleModalToggleLabel"><b>Total</b></h2>
-                                                                                     <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
-                                                                                     name="harga" aria-label="Disabled input example" readonly  id="price2">
-                                                                          {{-- </div>                                                                       --}}
-                                                                        </div>
-                                                                </div>
-                                                
-                                                                <div class="">
-                                                                        <input class="form-control btn btn-secondary text-dark" type="hidden"
-                                                                            placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
-                                                                         name="kursi" id="seat2">
-                                                                    </div>
-                                        
-                                                                    <div class="" class="totalchecked">
-                                                                        <input class="form-control" type="hidden" placeholder="Jumlah Kursi Yang Anda Pilih"
-                                                                        name="jumlah_kursi" aria-label="Disabled input example" readonly class="totalchecked"  id="count_seat2">
-                                                                    </div>
-                        
-                                                                    <div class="">
-                                                                        <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
-                                                                        name="status_bayar" value="0" id="status_bayar">
-                                                                    </div>
-                                                                    <div class="">
-                                                                        <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
-                                                                        name="harga" aria-label="Disabled input example" readonly  id="price2">
-                                                                    </div>  
-                                                                
-                                                                    <div class="container">
-                                                                        <h3>Select Method</h3>
-                                                                </div>
+                                         
+                                </div>
 
-                                                                {{-- <div class="mb-3">
-                                                                        <label for="id_film" class="form-label">Id Film</label>
-                                                                        <input class="form-control" list="judul_film" id="id_film" name="id_film" placeholder="Type to search...">
-                                                                            <datalist id="judul_film">
-                                                                            @foreach ($data1 as $js)
-                                                                                <option value="{{ $js->id_film }}" selected>{{ $js->judul_film }}</option>
-                                                                            @endforeach
-                                                                            </datalist>
-                                                                    </div> --}}
 
-                                                                <li class="list-group-item" style="padding: 0.75rem 5rem;">
-                                                                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
-                                                                  <label class="form-check-label" for="firstRadio" id="BNI" >BNI</label>
-                                                                </li>
-                                                                <li class="list-group-item" style="padding: 0.75rem 5rem;">
-                                                                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="secondRadio">
-                                                                  <label class="form-check-label" for="secondRadio">BCA</label>
-                                                                </li>
-                                                                <li class="list-group-item" style="padding: 0.75rem 5rem;">
-                                                                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="thirdRadio">
-                                                                  <label class="form-check-label" for="thirdRadio">BRI</label>
-                                                                </li>
-                                                       
-                                                       </ul>
-                                                    </div>
-                                                   
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Next</button>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
 
-                                              <div class="book" id="gap_form">
-                                                @csrf
-                                              <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Detail Pembayaran</h1>
-                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="card" >
-                                                                <img src="/img/movie.png" class="card-img-top" alt="...">
-                                                                <div class="card-body">
-                                                                  {{-- <div class="ratio ratio-16x9" style="background: red;"> --}}
-                                                                        <h2 class="modal-title fs-5" id="exampleModalToggleLabel"><b>Total</b></h2>
-                                                                             {{-- <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
-                                                                             name="harga" aria-label="Disabled input example" readonly  id="price3"> --}}
-                                                                  {{-- </div>                                                                       --}}
-                                                                </div>
-                                                        </div>
-
-                                                        <div class="">
-                                                                <input class="form-control btn btn-secondary text-dark" type="hidden"
-                                                                    placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
-                                                                 name="kursi" id="seat3">
-                                                            </div>
-                                                        <div class="">
-                                                             @if($generatePY == $generatePY)
-                                                                <input class="form-control btn btn-secondary text-dark" type="text"
-                                                                    placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" value=" {{ $generatePY }} " readonly
-                                                                 name="id_payment">
-                                                                 @endif
-                                                                
-                                                            </div>
-                                                        <div class="">
-                                                             @if($generateBK == $generateBK)
-                                                                <input class="form-control btn btn-secondary text-dark" type="text"
-                                                                    placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" value=" {{ $generateBK }} " readonly
-                                                                 name="id_booking" id="id_booking">
-                                                                 @endif
-                                                                
-                                                            </div>
-                                
-                                                            <div class="" class="totalchecked">
-                                                                <input class="form-control" type="hidden" placeholder="Jumlah Kursi Yang Anda Pilih"
-                                                                name="jumlah_kursi" aria-label="Disabled input example" readonly class="totalchecked"  id="count_seat3">
-                                                            </div>
-                
-                                                            <div class="">
-                                                                <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
-                                                                name="status_bayar" value="0" id="status_bayar">
-                                                            </div>
-
-                                                            <div class="" class="totalchecked">
-                                                               <h5>Virtual account number</h5>
-                                                               {{-- <input class="form-control" type="text"
-                                                               name="id_payment" aria-label="Disabled input example" value="AAA{{ auth()->user()->phone }}" readonly id="id_payment"> --}}
-                                                            </div>
-
-                                                            <div class="">
-                                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" 
-                                                                name="status" aria-label="Disabled input example" readonly  value="0" id="status_bayar">
-                                                            </div>
-
-                                                            <div class="">
-                                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
-                                                                name="harga" aria-label="Disabled input example" readonly id="price3">
-                                                            </div>
-                           
-                                                            <div class="mb-3">
-                                                                <label for="image" class="form-label">Post Image</label>
-                                                                <img class="img-preview img-fluid mb-3 col-sm-5">
-                                                                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
-                                                                    name="image" onchange="previewImage()">
-                                                                @error('image')
-                                                                    <div class="invalid-feedback">
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                            
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                      <button type="submit" class="btn btn-primary" data-bs-toggle="modal" role="button"  id="final-pay" >Done</button>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                              
-                            </div>    
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
+                                       {{-- MODAL PEMBAYARAN MANUAL DARI SINI --}}
+                                       
+                                       {{-- SAMPE SINI  --}}
    
     {{-- </form> --}}
 
     {{-- <script type="text/javascript">
        
-        //                  // For example trigger on button clicked, or any time you need
-        // var payButton = document.getElementById('pay-button');
-        // payButton.addEventListener('click', function () {
-        //   // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-        //   window.snap.pay('{{ $snapToken }}');
-        //   // customer will be redirected after completing payment pop-up
-        // });
+                         // For example trigger on button clicked, or any time you need
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function () {
+          // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+          window.snap.pay('{{ $snapToken }}');
+          // customer will be redirected after completing payment pop-up
+        });
+
+// MINDTRANS YANG BARU YANG INI
+
+//                         var payButton = document.getElementById('pay-button');
+//       payButton.addEventListener('click', function () {
+//         // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+//         window.snap.pay('{{ $snapToken }}', {
+//           onSuccess: function(result){
+//             /* You may add your own implementation here */
+//             alert("payment success!"); console.log(result);
+//           },
+//           onPending: function(result){
+//             /* You may add your own implementation here */
+//             alert("wating your payment!"); console.log(result);
+//           },
+//           onError: function(result){
+//             /* You may add your own implementation here */
+//             alert("payment failed!"); console.log(result);
+//           },
+//           onClose: function(){
+//             /* You may add your own implementation here */
+//             alert('you closed the popup without finishing the payment');
+//           }
+//         })
+//       });
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-J2rfx6Vxst6_Ivc_"></script>
       </script> --}}
 
+      <script>
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+           
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
+
     <script>
-        
+
         $(document).ready(function() {
+
                 $('#kursi').wrap(
                             '@foreach($data2 as $d) @endforeach'
                         );
 
             $('.seats').click(function() {
-                var test = new Array();
-                var book ="H1";
+                var test = new Array();  
                 $("input[name='kursi']:checked").each(function() {
                                 test.push($(this).data('value'));          
                 }); 
 
-
                 var check =    $(":checkbox:checked").length;
+
            document.getElementById('seat').value = test ;
-           document.getElementById('seat2').value = test ;
-           document.getElementById('seat3').value = test ;
+        //    document.getElementById('seat2').value = test ;
+        //    document.getElementById('seat3').value = test ;
 
+           $('.checkout').click(function() {
+                var bank = $('input[name="nama_bank"]:checked').val();
+           
+                document.getElementById('bank').value = bank;
+                document.getElementById('bank2').value = bank;
+
+                });
+
+           var check =    $(":checkbox:checked").length;
            document.getElementById('count_seat').value=  check;
-           document.getElementById('count_seat2').value=  check;
-           document.getElementById('count_seat3').value=  check;
-
-
+        //    document.getElementById('count_seat2').value=  check;
+        //    document.getElementById('count_seat3').value=  check;
                 var input = document.getElementsByName("kursi");
                 var total = 0;
                 for (var i = 0; i < input.length; i++) {
@@ -813,8 +713,8 @@
                     }
                 }
                 document.getElementById("price").value =  total.toFixed(2).replace(/\.00/g, '');
-                document.getElementById("price2").value =  total.toFixed(2).replace(/\.00/g, '');
-                document.getElementById("price3").value =  total.toFixed(2).replace(/\.00/g, '');
+                // document.getElementById("price2").value =  total.toFixed(2).replace(/\.00/g, '');
+                // document.getElementById("price3").value =  total.toFixed(2).replace(/\.00/g, '');
 
                 document.querySelector('#seats').addEventListener('change', () => {
                     var seat = document.getElementById("seats");
@@ -828,9 +728,10 @@
                     if (counter >= 1) {
                         document.getElementById("pay-button").disabled = false;
                         $('#gap_form').wrap(
-                            '<form id="Form2" enctype="multipart/form-data"  action="{{ route('cart.store', $data->id_jadwal) }}" method="POST" ></form>'
+                            '<form id="Form2"  action="/mindtrans" method="GET" ></form>'
                         );
                         // MASUKIN SCRIPT MINDTRANS DISINI !
+
                     } else {
                         document.getElementById("pay-button").disabled = true;
                     }
@@ -839,4 +740,6 @@
         });
      
     </script>
+
+
 @endsection

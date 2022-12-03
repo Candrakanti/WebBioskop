@@ -24,8 +24,7 @@ class Booking extends Model
         'kursi',
         'jumlah_kursi',
         'harga',
-        // 'status_bayar',
-        // 'qr_tiket',
+        'qr_tiket',
     
     ];
 
@@ -34,15 +33,4 @@ class Booking extends Model
 
     // ];
 
-    public function p(){
-        return $this->belongsTo('App\Models\Booking', 'id_booking');
-    }
-
-        public static function boot()
-    {
-        parent::boot();
-        self::creating(function ($model) {
-            $model->id_booking= IdGenerator::generate(['table' => 'booking', 'length' => 11, 'prefix' =>'BKL-']);
-        });
-    }
 }

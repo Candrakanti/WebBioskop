@@ -17,22 +17,12 @@ class payment extends Model
 
         'id_payment',
         'id_booking',
-       
-        'id_bank',
+        'nama_bank',
         'harga',
-        'status',
-        'image'
+        'status_bayar',
+        'bukti_bayar'
     ];
 
-    public function payment(){
-        return $this->belongsTo('booking', 'id_booking');
-    }
-    public static function boot()
-    {
-        parent::boot();
-    
-        self::creating(function ($model) {
-            $model->id_payment= IdGenerator::generate(['table' => 'payment', 'length' => 10, 'prefix' =>'INV-']);
-        });
-    }
 }
+
+

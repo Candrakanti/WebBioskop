@@ -12,6 +12,14 @@
             @endif
         </div>
 
+        <div class="row 9-3 align-items-center mt-2">
+            <div class="col-auto">
+              <form action="/kota" method="GET">
+              <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan Kota">
+            </form>
+            </div>
+        </div>
+
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">

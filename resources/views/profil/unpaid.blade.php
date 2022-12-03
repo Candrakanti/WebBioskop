@@ -7,11 +7,17 @@
 
 @foreach ($listproducts as $item)
 
-    @if($item->bayar === "0")
-    
+    @if($item->status_bayar === "pending")
+
+    <div class="container">
+        <div class="col-4">hi</div>
+        <div class="col-4">hi</div>
+        <div class="col-4">hi</div>
+    </div>
+{{--     
     <div class="container">
         <hr class="border border-dark border-2 opacity-100" width="30%" style="margin-bottom: 50px; margin-left:35%">
-        <h1>{{ $item->bayar }}</h1>
+        <h1>{{ $item->qr_tiket }}</h1>
         <div class="row">
             <div class="col-6 col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                 <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top" alt="" style="width: 60%">
@@ -28,7 +34,7 @@
                 <button class="btn btn-danger rounded  badge rounded-pill" type="button">Cetak Pdf</button>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     @else
     

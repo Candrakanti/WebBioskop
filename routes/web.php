@@ -27,6 +27,7 @@ use App\Models\studio;
 
 use App\Http\Controllers\CrudPaymentController;
 use App\Http\Controllers\JenisController;
+use App\Http\Controllers\ApiMindtrasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,9 +69,12 @@ Route::resource('/paydone', PaydoneController::class);
     Route::get('/BookNow/{id_jadwal}', [MovieController::class, 'booknow'])->name('booknow.show');
     Route::get('/BookLaterSeat/{id_jadwal}', [MovieController::class, 'bookLaterSeat'])->name('bookLaterSeat.show');
     Route::get('/pay/{id_jadwal}', [MovieController::class, 'gateway'])->name('payment.now');
+    Route::get('/mindtrans', [BookingController::class, 'mindtrans']);
+    Route::post('/mindtrans', [BookingController::class, 'mindtrans_post']);
 
+
+    
 });
-
 
 Route::get('/playing', [HomeController::class, 'playing']);
 
@@ -158,7 +162,10 @@ Route::get('paydone/{id_film}', [BookingController::class, 'store'])->name('payd
 
 Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
-    Route::get('/payment', [CrudPaymentController::class, 'customer']);
+    Route::get('/CrudPayment', [CrudPaymentController::class, 'customer']);
+    Route::get('/CrudPayment/edit/{id_payment}',[CrudPaymentController::class,'edit'])->name('CrudPayment.edit');
+    Route::post('/CrudPayment/update',[CrudPaymentController::class,'update']);
+
 });
 
 
