@@ -9,7 +9,7 @@ class JenisFilm extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = "JenisFilm";
+    protected $table = "Jfilm";
     protected $fillable = [
-    'jenis_film'];
+    'id_jenis', 'jenis_film'];
 }

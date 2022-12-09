@@ -18,6 +18,7 @@ class jadwal extends Model
         'id_studio',
         'id_film',
         'id_kota',
+        'id_bioskop',
         'tgl_tayang_awal',
         'tgl_tayang_akhir',
         'jam_tayang',
@@ -50,10 +51,10 @@ class jadwal extends Model
         return $this->belongsTo('App\Models\jenis_studio');
     }
 
-    protected $casts = [
-        'jam_tayang' => 'array',
+    // protected $casts = [
+    //     'jam_tayang' => 'array',
 
-    ];
+    // ];
 
     public function Film()
     {

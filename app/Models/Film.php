@@ -18,7 +18,7 @@ class Film extends Model
         'id_jadwal',
         'judul_film',
         'jenis_film',
-        'produser',
+        'producer',
         'sutradara',
         'penulis',
         'cast',
@@ -50,5 +50,10 @@ class Film extends Model
     public function jadwal()
     {
         return $this->hasMany('App\Models\jadwal');
+    }
+
+    public function JenisFilm()
+    {
+        return $this->hasOne(JenisFilm::class, 'id_jenis', 'JenisFilm');
     }
 }

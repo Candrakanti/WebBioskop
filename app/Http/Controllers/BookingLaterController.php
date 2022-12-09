@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cart;
+use App\Models\BookingLater;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class BookingLaterController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $req)
+    public function index()
     {
-        return "heloo";
+        //
     }
 
     /**
@@ -41,10 +41,10 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\BookingLater  $bookingLater
      * @return \Illuminate\Http\Response
      */
-    public function show(cart $cart)
+    public function show(BookingLater $bookingLater)
     {
         //
     }
@@ -52,10 +52,10 @@ class CartController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\BookingLater  $bookingLater
      * @return \Illuminate\Http\Response
      */
-    public function edit(cart $cart)
+    public function edit(BookingLater $bookingLater)
     {
         //
     }
@@ -64,10 +64,10 @@ class CartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\BookingLater  $bookingLater
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cart $cart)
+    public function update(Request $request, BookingLater $bookingLater)
     {
         //
     }
@@ -75,10 +75,10 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\BookingLater  $bookingLater
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cart $cart)
+    public function destroy(BookingLater $bookingLater)
     {
         //
     }

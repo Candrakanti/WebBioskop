@@ -16,6 +16,14 @@
         <div class="container pb-3">
             <a href="/crudJadwal/create" class="btn btn-info"> Create Data Jadwal</a>
 
+            <div class="row 9-3 align-items-center mt-2">
+                <div class="col-auto">
+                  <form action="/crudJadwal" method="GET">
+                  <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan id jadwal">
+                </form>
+                </div>
+            </div>
+
             <div class="container pt-3">
                 @if (session()->has('success'))
                     <div class="alert alert-success " role="alert">

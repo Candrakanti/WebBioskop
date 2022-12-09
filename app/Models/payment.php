@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class payment extends Model
 {
@@ -16,8 +17,12 @@ class payment extends Model
 
         'id_payment',
         'id_booking',
-        'jenis_payment',
-        'jumlah_bayar',
-        'status',
+        'nama_bank',
+        'harga',
+        'status_bayar',
+        'bukti_bayar'
     ];
+
 }
+
+

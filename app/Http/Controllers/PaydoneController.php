@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\cart;
+
 
 class PaydoneController extends Controller
 {
@@ -16,7 +17,14 @@ class PaydoneController extends Controller
     public function index()
     {
 
-        $listproducts['listproducts'] = cart::join('film', 'film.id_film', '=', 'cart.id_film')->get(['cart.', 'film.'])->where('user_id', '=', Auth::user()->id);
+        // $listproducts['listproducts'] = Booking::join('film', 'film.id_film', '=', 'booking.id_film')->get(['booking.', 'film.'])->where('user_id', '=', Auth::user()->id);
+        // return view('profil.paydone', [
+        //     'title' => 'Mycgv',
+        //     'active' => 'Mycgv'
+        // ])->with($listproducts);
+
+
+        $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->join('payment','payment.id_payment' ,'=','booking.id_payment')->join('studio', 'studio.id_studio', '=' ,'jadwal.id_studio')->join('detail_jenis_studio' ,'detail_jenis_studio.id_jenis_studio','=' ,'studio.id_jenis_studio')->get(['booking.*', 'jadwal.*' ,'film.*' ,'payment.*' ,'studio.*' ,'detail_jenis_studio.*'])->where('id_customer', '=', Auth::user()->id);
         return view('profil.paydone', [
             'title' => 'Mycgv',
             'active' => 'Mycgv'

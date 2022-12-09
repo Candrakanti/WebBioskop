@@ -2,12 +2,14 @@
 
 @section('container')
 
+{{-- <h2>{{  \Carbon\Carbon::now()->timezone('asia/jakarta')->format('h:i:s') }}</h2> --}}
+
         <section id="kota">
             <div class="container mb-4">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-4 col-lg-8 col-sm-8 col-md-8">
                         <li class="nav-item dropdown" style="list-style-type: none !important;">
-                            <h1  style="color: red"><b>
+                            <H5  style="color: red"><b>
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false" style="padding: none !important;">
                                 Movies in Bandung
@@ -19,7 +21,7 @@
                                     @endforeach
                                 @endforeach
                             </ul>
-                            </b></h1>
+                            </b></H5>
                           
                         </li>
                     </div>
@@ -27,6 +29,7 @@
             </div>
         </section>
 
+        @if($exp == $exp)
         <section id="movie">
             @if (session()->has('success'))
             <div class="alert alert-success " role="alert">
@@ -36,83 +39,35 @@
         <div class="container">
             <div class="row">
               @foreach ($data as $film)
-              <div class="card" style="width: 17rem;">
-                @if ($film->image)
-                <div class="rounded">
-                <a href="/movie/detail/{{ $film->id_film }}">
-                <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
-                </a>
-              </div>
-                @endif
-                <br>
-                {{-- <input type="hidden" value="{{ $film->judul_film }}" class="prod_id"> --}}
-                <a href="/movie/detail/{{ $film->id_film }}">
-                    <h6 class="text-center" style="color: black">
-                       <b> {{ $film->judul_film }}</b>
-                    </h6>
-                </a>
-                <div class="card-body text-center"> 
-                    <a href="/booking/show/{{ $film->id_film }}" class="btn btn-danger">BOOK NOW</a>
-                </div>
+              <div class="col-6 col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <div class="card">
+                    @if ($film->image)
+                    <div class="rounded">
+                    <a href="/movie/detail/{{ $film->id_jadwal}}">
+                    <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
+                    </a>
+                  </div>
+                    @endif
+                    <br>
+                    {{-- <input type="hidden" value="{{ $film->judul_jadwal}}" class="prod_id"> --}}
+                    <a href="/movie/detail/{{ $film->id_jadwal}}">
+                        <h6 class="text-center" style="color: black">
+                           <b> {{ $film->judul_film}}</b>
+                        </h6>
+                    </a>
+                    <div class="card-body text-center"> 
+                        <a href="/movie/detail/{{ $film->id_jadwal }}" class="btn btn-danger">BOOK NOW</a>
+                     
+                        {{-- <a href="/booking/show/{{ $film->id_jadwal}}" class="btn btn-danger">BOOK NOW</a> --}}
+                    </div>
+                  </div>
+                 
               </div>
               @endforeach
             </div>
           </div>
         </section>
-
-        {{-- <div class="container">
-            <div class="row ">
-
-                @foreach ($data as $film)
-                    <div class="card product_data" style="width: 15rem;">
-                        @if ($film->image)
-                            <div class="shadow mb-5">
-                                <a href="/movie/detail/{{ $film->id_film }}">
-                                    <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top" alt="">
-                                </a>
-                            </div>
-                        @endif
-                        <input type="hidden" value="{{ $film->judul_film }}" class="prod_id">
-                        <a href="/movie/detail/{{ $film->id_film }}">
-                            <h6 class="text-center ">
-                                {{ $film->judul_film }}
-                            </h6>
-                        </a>
-                        <div class="card-body">
-                            <a href="/booking/show/{{ $film->id_film }}" class="btn btn-primary">BOOK NOW</a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div> --}}
-
-
-        
-       
-
-        <div class="container">
-
-            <h4><b>Pesanan Saya</b></h4>
-
-            <h4 class="text-center"> Selesai</h4>
-            
-            <hr class="border border-secondary border-2 opacity-100" style="margin-bottom: 50px;">
-
-            <div class="row">
-                <div class="col-6 col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                    <img src="/img/bk10.jpg" class="card-img-top" alt="" style="width: 60%">
-                </div>
-    
-                <div class="col-3 col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <p class="text-center" style="padding-top:35%;"> Black Adam</p>
-                </div>
-    
-                <div class="col-3 col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                    <p class="" style="padding-top:30%;"> Selesai</p>
-                    <button type="button" class="rounded-pill"> cetak pdf</button>
-                </div>
-            </div>
-         </div>
+        @endif
 
 
         <script>
@@ -132,9 +87,5 @@
                     })
                 });
             });
-
-
-    </script>
+        </script>
 @endsection
-
-
