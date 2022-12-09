@@ -111,7 +111,7 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="row">`
             <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3">
                 <span class="badge rounded-pill text-bg-danger btn btn-lg">Today</span>
             </div>
