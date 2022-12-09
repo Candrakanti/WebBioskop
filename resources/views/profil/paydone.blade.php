@@ -41,7 +41,9 @@
                       <h5 class="card-title" >{{ $item->judul_film }}</h5>
                       <p class="card-text">Tanggal Tayang : {{ $item->tanggal_booking}}</p>
                       <p class="card-text">Studio : {{ $item->jenis_studio }}</p>
-                      <p class="card-text">Tempat Duduk : {{ $item->kursi }}</p>
+                      <p class="card-text">kode booking : {{ $item->id_booking }}</p>
+                      
+                      {{-- <p class="card-text">Tempat Duduk : {{ $item->kursi }}</p> --}}
                       <p class="card-text"><small class="text-muted">NOTE: USAHAKAN SAMPAI DI BIOSKOP 10 MENIT SEBELUM FILM DITAYANGKAN !</small></p>
                     </div>
                   </div>

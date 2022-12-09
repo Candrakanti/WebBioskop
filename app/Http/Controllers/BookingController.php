@@ -138,6 +138,8 @@ class BookingController extends Controller
             $booking->kursi = $request->get('kursi');
             $booking->jumlah_kursi = $request->get('jumlah_kursi');
             $booking->harga =  $request->get('harga');
+            $booking->created_at = now();
+            $booking->updated_at = now();
             $booking->save();
 
             $payment = new payment;
@@ -147,13 +149,14 @@ class BookingController extends Controller
             $payment->payment_type =$json->payment_type;
             $payment->harga = $request->get('harga');
             $payment->status_bayar = $json->transaction_status;
+            $payment->created_at = now();
+            $payment->updated_at = now();
             $payment->save();
 
             return redirect('/movie')->with('success', 'success adding to cart !');
             
             // return $booking->save() ? redirect('/movie')->with('success', 'success adding to cart !') : redirect('/movie')->with('alert-failed', 'error');
     }
-
 
     /**
      * Show the form for creating a new resource.

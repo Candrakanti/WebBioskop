@@ -1,7 +1,23 @@
 @extends('layouts.main')
+
 @section('container')
     {{-- <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
         @csrf --}}
+        
+      
+        <div class="container">
+                <div class="border border-success p-2 mb-2" style="width:50px; height:50px;">
+                        <div class="row">
+                                   <div class="col-12 col-md-12 col-lg-12 col-sm-12 g-0 text-center">
+                                     hi
+                                </div>
+                                   <div class="col-12  col-md-12 col-lg-12 col-sm-12 text-center pb-5">
+                                        <input type="checkbox">
+                                </div>
+                        </div>
+                    
+                </div>
+        </div>
         {!! QrCode::generate('Make me into a QrCode!'); !!}
         <div class="row" >
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
@@ -471,7 +487,7 @@
                                 @else
                                 <div class="seats" id="seats" name="harga">
 
-                                        {{-- <h1>contoh</h1>
+                                        <h1>contoh</h1>
                                     
                                         @if($data->id_jadwal == $data->id_jadwal)
                                       @foreach($data2 as $d)
@@ -481,29 +497,63 @@
                                       @endforeach
                                         @endif
                                     
-                                     <H1>Selesai</H1> --}}
-                                    
+                                     <H1>Selesai</H1>
+
+                              
+
+
                                         @foreach(range('A',$data->jumlah_row) as $v)
                                         <div class="row">
                                                 <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                                         <nav class="nav flex-column">               
-                                                                <a class="nav-link text-dark border-0" href="#">{{ $v }} </a>
+                                                                <a class="nav-link text-dark border-0" href="#">{{ $v}} </a>
                                                               </nav>
                                                 </div>
                                                 <div class="col-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                                        @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
-                                                        <input type="checkbox"   name="kursi"  data-value="{{ $v }}{{$i }}" value="{{ $data->harga }}"
-                                                        @if($data->id_jadwal == $data->id_jadwal)
-                                                        @foreach($data2 as $d)
-                                                       @if($d->id_jadwal == $data->id_jadwal and $d->kursi ==  $v.$i )
-                                                     disabled
-                                                       @endif
-                                                        @endforeach
-                                                          @endif
-                                                        >
-                                                         @endfor
+                                                    
+                                                     <div class="container">
+                                                        {{-- <input type="checkbox" class="border border-success p-2 mb-2" placeholder="hi" style="width:50px; height:50px;"> --}}
+                                                      
+
+                                                            
+                                                                <div class="container">
+                                                                        <div class="row">
+                                                                             
+                                                                                @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
+                                                                                <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{  $i}}" value="{{ $data->harga }}"  style="width:40px; height:25px;"
+                                                                                @if($data->id_jadwal == $data->id_jadwal)
+                                                                                @foreach($data2 as $key=>$d)
+                                                                               {{-- @if($d->id_jadwal == $data->id_jadwal and $d->kursi ==  $v.$i ) --}}
+                                                                               @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
+                                                                               @php
+                                                                                   $kurArray = array($d->kursi);
+                                                                               @endphp
+                                                                               @if (in_array($kurArray , $kurArray))
+                                                                               disabled
+                                                                               @endif
+                                                                        
+                                                                               @endif
+                                                                                @endforeach
+                                                                                  @endif
+                                                                                >
+                                                                                @endfor
+                                                                        </div>
+                                                                              
+                                                                        <div class="row">
+                                                                                @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
+                                                                                <input type="text" class="border border-0 p-2 mb-2 ms-1 " disabled placeholder="{{ $v }} {{ $i }}" style="width:40px; height:25px;">
+                                                                                @endfor
+                                                                        </div>
+
+                                                                </div>                                                                                                                  
+                                                     </div>
+                                                            
+                                                      {{-- TARO SINI VELVET SEAT --}}
+                                                      {{-- SAMPE SINI --}}
+                                                 
                                                 </div>
-                                    
+                                            
+                                
                                                 {{-- @if($d->id_jadwal == $data->id_jadwal and $d->kursi == {{ $i }})
                                                        disabled
                                                         @endif --}}
@@ -567,7 +617,7 @@
                                            <div class="pt-3">
                                                 <input class="form-control btn btn-secondary text-dark" type="text"
                                                     placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
-                                                 name="kursi" id="seat">
+                                                 name="kursi[]" id="seat">
                                             </div>
 
                                             <div class="pt-3">
@@ -683,7 +733,7 @@
 
             $('.seats').click(function() {
                 var test = new Array();  
-                $("input[name='kursi']:checked").each(function() {
+                $("input[name='kursi[]']:checked").each(function() {
                                 test.push($(this).data('value'));          
                 }); 
 
@@ -705,7 +755,7 @@
            document.getElementById('count_seat').value=  check;
         //    document.getElementById('count_seat2').value=  check;
         //    document.getElementById('count_seat3').value=  check;
-                var input = document.getElementsByName("kursi");
+                var input = document.getElementsByName("kursi[]");
                 var total = 0;
                 for (var i = 0; i < input.length; i++) {
                     if (input[i].checked) {

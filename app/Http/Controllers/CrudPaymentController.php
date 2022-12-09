@@ -93,4 +93,22 @@ class CrudPaymentController extends Controller
         ]);
         // return view('studio.LayoutStudio')->with('studio', $studio);
     }
+
+    public function print(){
+        return view('payment.crud.print', [
+            'title' => 'Admin Payment',
+            'pages' => 'Table Payment'
+        ]);
+    }
+
+    public function cetakPertanggal($tglawal,$tglakhir){
+        // dd(["Tanggal Awal : ".$tglawal, "Tanggal Akhir :".$tglakhir]);
+
+        $cetak = Booking::with('id_customer')->whereBetween('tanggal_booking',[$tglawal, $tglakhir]); 
+          return view('payment.crud.PrintPayment', compact('cetak'), [
+            'title' => 'Admin Payment',
+            'pages' => 'Table Payment'
+        ]);
+
+    }
 }

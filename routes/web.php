@@ -165,6 +165,8 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/CrudPayment', [CrudPaymentController::class, 'customer']);
     Route::get('/CrudPayment/edit/{id_payment}',[CrudPaymentController::class,'edit'])->name('CrudPayment.edit');
     Route::post('/CrudPayment/update',[CrudPaymentController::class,'update']);
+    Route::get('/PrintData', [CrudPaymentController::class, 'print']);
+    Route::get('/CetakDataPertanggal/{tglawal}/{tglakhir}', [CrudPaymentController::class, 'cetakPertanggal']);
 
 });
 
