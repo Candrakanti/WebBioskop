@@ -12,7 +12,7 @@
 
     <div class="col-lg-8 col-md-8">
 
-        <form method="POST" action="{{ route('CrudPayment.update', $data->id_payment) }}">
+        <form method="POST" action="{{ route('CrudPayment.update', $data->id_payment) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -37,17 +37,17 @@
 
             <div class="form-group">
                 <label for="nama_bank">Nama Bank</label>
-                <input type="text" name="nama_bank" id="nama_bank" class="form-control" value="{{$film->nama_bank }}" required="">
+                <input type="text" name="nama_bank" id="nama_bank" class="form-control" value="{{$data->nama_bank }}" required="">
             </div>
 
             <div class="form-group">
                 <label for="harga">Harga</label>
-                <input type="text" name="harga" id="harga" class="form-control" value="{{$film->harga }}" required="">
+                <input type="text" name="harga" id="harga" class="form-control" value="{{$data->harga }}" required="">
             </div>
 
             <div class="form-group">
                 <label for="status">Status Pembayaran</label>
-                <input type="text" name="status" id="status" class="form-control" value="{{$film->status }}" required="">
+                <input type="text" name="status" id="status" class="form-control" value="{{$data->status }}" required="">
             </div>
 
             <button class="btn btn-info" type="submit">Save</button>

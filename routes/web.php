@@ -27,6 +27,7 @@ use App\Models\studio;
 
 use App\Http\Controllers\CrudPaymentController;
 use App\Http\Controllers\JenisController;
+use App\Http\Controllers\BankController;
 
 /*
 |--------------------------------------------------------------------------
@@ -151,6 +152,8 @@ Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('
 Route::resource('/booking', BookingController::class)->middleware('auth');
 
 Route::get('paydone/{id_film}', [BookingController::class, 'store'])->name('paydone')->middleware('auth');
+Route::get('/bank',[ BankController::class , 'index']);
+
 // Route::get('/booking', [CartController::class, 'index'])->name('booking.cart')->middleware('auth');
 // Route::post('/cart', [CartController::class, 'store'])->name('booking.add')->middleware('auth');
 // Route::get('/ticket', [TicketController::class, 'index']);
@@ -160,8 +163,7 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
     Route::get('/CrudPayment', [CrudPaymentController::class, 'customer']);
     Route::get('/CrudPayment/edit/{id_payment}',[CrudPaymentController::class,'edit'])->name('CrudPayment.edit');
-    Route::post('/CrudPayment/update',[CrudPaymentController::class,'update']);
-
+    Route::put('/CrudPayment/update/{id_payment}',[CrudPaymentController::class,'update'])->name('CrudPayment.update');
 });
 
 

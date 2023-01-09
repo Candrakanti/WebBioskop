@@ -48,10 +48,12 @@
                 </div>
             </div>
 
+            
 
+            
             <div class="row text-center g-0 mt-3">
 
-                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-4">
                     <img src="img/wallet.png" width="5%" alt="...">
 
                     <div class="row g-0">
@@ -61,7 +63,20 @@
                     </div>
 
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+
+                <div class="col-lg-4 col-md-6 col-sm-6 col-4">
+                    <img src="img/wallet.png" width="5%" alt="...">
+
+                    <div class="row g-0">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">
+                            <a href="/bank" class="text-decoration-none link-dark">Bank Saya</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-4 col-md-6 col-sm-6 col-4">
                     <img href="/paydone" src="img/cekl.png" width="5%" alt="...">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">

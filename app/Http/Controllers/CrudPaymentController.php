@@ -68,10 +68,10 @@ class CrudPaymentController extends Controller
 
     public function update(Request $request,  $id_payment)
     {
-        $data1 = payment::where('id_payment', $request->id_payment)
+        $data = payment::where('id_payment', $request->id_payment)
             ->update([
                 'id_payment' => $request->id_payment,
-                // 'id_booking' => $request->id_booking,
+                'id_booking' => $request->id_booking,
                 'nama_bank' => $request->nama_bank,
                 'harga' => $request->harga,
                 'status' => $request->status,

@@ -23,7 +23,7 @@
     </div>
   @endif
 </div>
-       
+
 
 <div class="container-fluid py-4">
   <div class="row">
@@ -90,7 +90,7 @@
 
                       <td class="align-middle text-center text-sm">
                         <a class="badge badge-sm bg-gradient-warning"
-                        href="{{ route('CrudPayment.edit'. $data->id_payment) }}">Accept</a>
+                        href="{{ route('CrudPayment.edit', $data->id_payment) }}">Accept</a>
                   </td>
                  
                 </tr>
