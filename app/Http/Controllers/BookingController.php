@@ -72,9 +72,9 @@ class BookingController extends Controller
 
         $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 10, 'prefix' =>'PY'.Auth::user()->id]);
 
-        // $data3 = bank::all();
+        $data3 = bank::all();
 
-        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY' ), [
+        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY' , 'data3'), [
             // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'
@@ -181,7 +181,7 @@ class BookingController extends Controller
      */
     public function store(Request $request, $id_jadwal)
     {
-
+//    return $request;
        Booking::insert([
             'id_booking' =>  $request->id_booking,
             'id_payment' => $request->id_payment,
@@ -190,8 +190,9 @@ class BookingController extends Controller
             'kursi' =>$request->kursi,
             'jumlah_kursi' =>  $request->jumlah_kursi,
             'tanggal_booking' => now(),
+            'tenggat_bayar' =>now()->addMinutes(30),
             'harga' => $request->harga,
-            'qr_tiket'=> QrCode::format('png')->generate('hi')->store('booking-images'),
+            'qr_tiket'=> $request->harga,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -200,10 +201,12 @@ class BookingController extends Controller
         payment::insert([
             'id_payment' => $request->id_payment,
             'id_booking' => $request->id_booking ,
-            'nama_bank' => $request->nama_bank,
+            'payment_type' => $request->payment_type,
             'harga' => $request->harga,
             'status_bayar' => $request->status_bayar,
-            'bukti_bayar' => $request->file('bukti_bayar')->store('booking-images')
+            'created_at' => now(),
+            'updated_at' => now(),
+            // 'bukti_bayar' => $request->file('bukti_bayar')->store('booking-images')
         ]);
         return redirect('/movie')->with('success', 'success adding to cart !');
         // return redirect()->route('payment.now',$id_jadwal)->with('success', 'success adding to cart !');
@@ -220,7 +223,7 @@ class BookingController extends Controller
             'jumlah_kursi' =>  $request->jumlah_kursi,
             'tanggal_booking' => $request->tanggal_booking,
             'harga' => $request->harga,
-         
+            'tenggat_bayar' =>now()->addMinutes(30),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -229,6 +232,7 @@ class BookingController extends Controller
             'id_payment' => IdGenerator::generate(['table' => 'payment', 'length' => 7, 'prefix' =>'INV-']),
             // 'id_booking' => $request->id_booking,
             // 'id_bank' => $request->id_bank,
+          
             'harga' => $request->harga,
             'status' => $request->status,
             'image' =>   $request->file('image')->store('booking-images')

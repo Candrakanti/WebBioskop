@@ -7,7 +7,7 @@
 
     @foreach ($listproducts as $item)
 
-        @if($item->status_bayar === "settlement")
+        @if($item->status_bayar === "1")
 {{--         
         <div class="container">
             <hr class="border border-dark border-2 opacity-100" width="30%" style="margin-bottom: 50px; margin-left:35%">

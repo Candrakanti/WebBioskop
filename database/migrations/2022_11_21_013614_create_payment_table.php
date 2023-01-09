@@ -14,9 +14,10 @@ class CreatePaymentTable extends Migration
     public function up()
     {
         Schema::create('payment', function (Blueprint $table) {
-            $table->string('id_payment' ,255)->primary();
+            $table->string('id_payment');
+            $table->foreign('id_payment')->references('id_payment')->on('booking')->onUpdate('cascade')->onDelete('cascade');
             $table->string('id_booking');
-            $table->foreign('id_booking')->references('id_booking')->on('booking')->onDelete('cascade');;        
+            $table->foreign('id_booking')->references('id_booking')->on('booking')->onUpdate('cascade')->onDelete('cascade');       
             $table->string('id_bank', 225);
             $table->double('harga');
             $table->char('status_bayar')->default('0');

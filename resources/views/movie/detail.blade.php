@@ -64,10 +64,10 @@
                         <a style="color:#0000FF;" href="{{ $data->link_trailer }}">Wacth Trailer</a>&nbsp&nbsp&nbsp
 
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <a type="button" class="" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             Launch demo modal
-                        </button>
+                        </a>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
