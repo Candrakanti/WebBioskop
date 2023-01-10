@@ -1,11 +1,6 @@
 @extends('layouts.main')
 
 @section('container')
-   
-
-
-
-
 <table class="table">
     <thead>
       <tr>
@@ -37,6 +32,7 @@
 <input type="hidden" name="status_bayar" value="1">
 <input type="text" name="id_payment" value="{{ $d->id_payment }}">
 <input type="text" name="id_booking" value="{{ $d->id_booking}}">
+<input type="text" name="payment_type" value="{{ $d->payment_type}}">
 <input type="text" name="payment_type" value="{{ $d->payment_type}}">
 <input type="text" name="tenggat_bayar" value="done">
 

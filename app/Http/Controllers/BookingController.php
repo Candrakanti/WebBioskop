@@ -17,6 +17,7 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 
@@ -74,7 +75,10 @@ class BookingController extends Controller
 
         $data3 = bank::all();
 
-        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY' , 'data3'), [
+        $exp  =  DB::table('booking')->where('tenggat_bayar', '<=', Carbon::now()->format('Y-m-d H:i:s'))->update(['tenggat_bayar' => 'expired']);
+        // Booking::where('tenggat_bayar', '<=', Carbon::now()->format('Y-m-d H:i:s'))->delete();
+        
+        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY' , 'data3' , 'exp'), [
             // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'
@@ -165,8 +169,8 @@ class BookingController extends Controller
      */
     public function create(Request $request)
     {
-
-        return view('profil.checkout', [
+        $exp  =  Booking::where('tenggat_bayar', '==', Carbon::now())->delete();
+        return view('profil.checkout', compact('exp'), [
             "title" => "mycgv",
             "active" => "mycgv"
         ]);
@@ -181,6 +185,7 @@ class BookingController extends Controller
      */
     public function store(Request $request, $id_jadwal)
     {
+   
 //    return $request;
        Booking::insert([
             'id_booking' =>  $request->id_booking,

@@ -7,6 +7,7 @@
       
         <div class="container">
                 <h1>  {{ Carbon\Carbon::now()->format('Y-m-d') }}</h1>
+                <h1>  {{ Carbon\Carbon::now()->format('Y-m-d H:i:s') }}</h1>
                 <div class="border border-success p-2 mb-2" style="width:50px; height:50px;">
                         <div class="row">
                                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 g-0 text-center">
@@ -787,6 +788,8 @@
                                                 <div class="">
                                                         <input class="form-control" type="hidden"
                                                         name="payment_type" aria-label="Disabled input example" readonly  id="bank2">
+                                                        {{-- <input class="form-control" type="hidden"
+                                                        name="id_bank" aria-label="Disabled input example" readonly  id="id_bank"> --}}
                                                    </div> 
 
                                                 <div class="">
