@@ -3,7 +3,7 @@
 @section('container')
     {{-- <form method="POST" action="{{ route('movie.detail', $data->id_film) }}">
         @csrf --}}
-        <h1>{{  \Carbon\Carbon::now()->format('Y-m-d') }}</h1>
+        {{-- <h1>{{  \Carbon\Carbon::now()->format('Y-m-d') }}</h1> --}}
 
     <div class="container d-flex justify-content-center">
         <div class="row d-flex justify-content-center">
@@ -63,11 +63,11 @@
 
                         <a style="color:#0000FF;" href="{{ $data->link_trailer }}">Wacth Trailer</a>&nbsp&nbsp&nbsp
 
-                        {{-- <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <!-- Button trigger modal -->
+                        <a type="button" class="" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             Launch demo modal
-                        </button>
+                        </a>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -80,14 +80,12 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <iframe width="100%" height="100%"
-                                            src="https://www.youtube.com/watch?v=wlp9yv33nWA&feature=youtu.be"
-                                            frameborder="0" allowfullscreen></iframe>
+                                        <iframe width="450" height="315" src="{{  $data->link_trailer }}" frameborder="0" allowfullscreen></iframe>
                                     </div>
 
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
 
                         <a href="/booking/show/{{ $data->id_jadwal }}" style="color:#0000FF;" class="border border-0 "
@@ -113,7 +111,7 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="row">`
             <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3">
                 <span class="badge rounded-pill text-bg-danger btn btn-lg">Today</span>
             </div>
@@ -194,25 +192,9 @@
     {{-- </form> --}}
 
     <script>
-//           function check()
-//         {
-//             alert("Hello! I am an alert box!!");
-//         }
-
-//         $(document).ready(function() {
-//     $('a').click(function(event) {
-//         event.preventDefault(); // Prevent the default link navigation
-
-//         // This is the point where you could fetch content (for instance
-//         // from the href of the clicked link). For this example we just
-//         // generate a string containing the href.
-//         var content = 'Content for ' + $(this).html();
-
-//         $('#time').html(content); // Inject the content
-//     });
-// });
-//         $('#gap_form').wrap(
-//             '<form id="Form2" action="{{ route('booking.show', $data->id_film) }} " method="POST" ></form>'
-//         );
+var modal = $('.modal-dialog');
+modal.find('.btn-close').click(function() {
+   modal.remove();
+});
     </script>
 @endsection

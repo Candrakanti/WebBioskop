@@ -73,7 +73,7 @@
                   <h1  style="color: red"><b>
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                       aria-expanded="false" style="padding: none !important;">
-                      Movies in 
+                      Movies in Bandung
                   </a>
                   {{-- <ul class="dropdown-menu">
                       @foreach ($data as $dt)
@@ -86,13 +86,13 @@
           </div>
       </div>
   </div>
-
+{{-- 
 <section id="movie">
   <div class="row text-center">
     <div class="col-4"><a href="/playing">Playing</a></div>
     <div class="col-4"><a>Upcoming</a></div>
   </div>
-</section>
+</section> --}}
   
 
 </section>

@@ -29,6 +29,9 @@ use App\Http\Controllers\CrudPaymentController;
 use App\Http\Controllers\JenisController;
 use App\Http\Controllers\BankController;
 
+use App\Http\Controllers\ApiMindtrasController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,12 +55,12 @@ Route::get('/home', function () {
 });
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/mycgv', [CgvController::class, 'index'])->middleware('auth');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/unpaid', [UnpaidController::class, 'index']);
 Route::resource('/paydone', PaydoneController::class);
-    Route::get('/mycgv', [CgvController::class, 'index']);
+Route::get('/mycgv', [CgvController::class, 'index']);
     Route::get('/booking/show/{id_jadwal}', [BookingController::class, 'index'])->name('booking.show');
     Route::post('AddProduct/{id_jadwal}', [BookingController::class, 'store'])->name('cart.store');
 
@@ -67,10 +70,15 @@ Route::resource('/paydone', PaydoneController::class);
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
     Route::get('/BookLater/{id_jadwal}', [MovieController::class, 'booklater'])->name('booklater.show');
     Route::get('/BookNow/{id_jadwal}', [MovieController::class, 'booknow'])->name('booknow.show');
+
     Route::get('/BookLaterSeat/{id_jadwal}', [MovieController::class, 'bookLaterSeat'])->name('bookLaterSeat.show');
+
     Route::get('/pay/{id_jadwal}', [MovieController::class, 'gateway'])->name('payment.now');
+    Route::get('/mindtrans', [BookingController::class, 'mindtrans']);
+    Route::post('/mindtrans', [BookingController::class, 'mindtrans_post']);
 
 });
+
 
 
 Route::get('/playing', [HomeController::class, 'playing']);
@@ -81,6 +89,7 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
@@ -93,7 +102,17 @@ Route::get('/movie/detail/{id_jadwal}', [MovieController::class, 'detail'])->nam
 Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking'])->name('movie.detbooking');
 // Route::get('/movie/kota/{id_kota}', [MovieController::class, 'detkota'])->name('movie.detkota');
 
+//  LOGIN REGISTER BUAT BANK 
+Route::middleware(['auth'])->group(function () {
 
+   // BUAT BANK checkout MANUAL
+   Route::get('/mybank', [BankController::class , 'index']);
+   Route::get('/checkout', [BankController::class , 'show']);
+   Route::put('/checkout/update', [BankController::class, 'update'])->name('checkout.update');
+
+
+});
+// SELESAI 
 
 
 Route::group(["middleware" => 'ceklevel:admin_film'], function () {
@@ -163,7 +182,10 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
     Route::get('/CrudPayment', [CrudPaymentController::class, 'customer']);
     Route::get('/CrudPayment/edit/{id_payment}',[CrudPaymentController::class,'edit'])->name('CrudPayment.edit');
-    Route::put('/CrudPayment/update/{id_payment}',[CrudPaymentController::class,'update'])->name('CrudPayment.update');
+    Route::post('/CrudPayment/update',[CrudPaymentController::class,'update']);
+    // Route::get('/PrintData', [CrudPaymentController::class, 'print']);
+    Route::get('/CetakDataPertanggal/{tglawal}/{tglakhir}', [CrudPaymentController::class, 'cetakPertanggal']);
+    Route::get('/PrintData', [CrudPaymentController::class, 'CetakPdf']);
 });
 
 

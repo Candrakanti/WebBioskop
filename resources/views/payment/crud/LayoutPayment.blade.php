@@ -14,7 +14,8 @@
 
 <body>
 <div class="container pb-3">
-  <a href="/CrudStudio/create" class="btn btn-info">  Create Data Payment</a>
+  {{-- <a href="{{ route('LayoutPayment.export') }}" class="btn btn-info">print data</a> --}}
+  <a href="/PrintData" class="btn btn-info">print data</a>
    
 <div class="container pt-3">
   @if (session()->has('success'))
@@ -23,7 +24,7 @@
     </div>
   @endif
 </div>
-
+       
 
 <div class="container-fluid py-4">
   <div class="row">
@@ -43,6 +44,7 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Payment</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Bayar</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                   @foreach($data as $key => $data ) 
                 </tr>
               </thead>
@@ -62,35 +64,28 @@
                     </div>
                   </td>
 
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">{{$data->name}}</p>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_payment}}</span>
                   </td>
 
                   <td class="align-middle text-center">
-                    {{-- <span class="text-secondary text-xs font-weight-bold">{{$data->id_booking}}</span> --}}
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_booking}}</span>
                   </td>
+
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">
-
-                      @if ($data->image)
-                      <div class="rounded">
-                      <img src="{{ asset('storage/' . $data->image) }}" class="card-img-top rounded-3" alt="" style="width:100px">
-                      </a>
-                    </div>
-                      @endif
-
-                    </span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->nama_bank}}</span>
                   </td>
+
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$data->harga}}</span>
                   </td>
+
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$data->status}}</span>
                   </td>
 
                       <td class="align-middle text-center text-sm">
-                        <a class="badge badge-sm bg-gradient-warning"
-                        href="{{ route('CrudPayment.edit', $data->id_payment) }}">Accept</a>
+                    <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Accept</a>
                   </td>
                  
                 </tr>
