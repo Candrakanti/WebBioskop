@@ -60,7 +60,7 @@ class BankController extends Controller
      */
     public function show( Request $request)
     {
-        $exp  =  Booking::where('tenggat_bayar', '=', Carbon::now())->delete();
+        $exp  =  Booking::where('tenggat_bayar', '<=', Carbon::now()->format('H:i:s'))->delete();
         
         //  return $request;
         if($request->has('search')) {
