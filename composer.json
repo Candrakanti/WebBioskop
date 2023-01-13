@@ -16,7 +16,7 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.10",
         "midtrans/midtrans-php": "^2.5",
-        "simplesoftwareio/simple-qrcode": "^4.2",
+    
         "xendit/xendit-php-clients": "^2.19"
     },
     "require-dev": {
