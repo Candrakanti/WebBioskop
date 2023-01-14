@@ -67,7 +67,7 @@ class BookingController extends Controller
 
         $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*' ])->where('id_jadwal',$id_jadwal)->first();
 
-            $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->get(['jadwal.*' ,'booking.*']);
+            $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->join('payment' ,'payment.id_booking' , '=' ,'booking.id_booking')->get(['jadwal.*' ,'booking.*' ,'payment.*']);
 
         $generateBK =  IdGenerator::generate(['table' => 'booking', 'field' => 'id_booking', 'length' => 10, 'prefix' => 'BK'.Auth::user()->id]);
 
@@ -75,8 +75,9 @@ class BookingController extends Controller
 
         $data3 = bank::all();
 
-        $exp  =  DB::table('booking')->where('tenggat_bayar', '<=', Carbon::now()->format('Y-m-d H:i:s'))->update(['tenggat_bayar' => 'expired']);
-        // Booking::where('tenggat_bayar', '<=', Carbon::now()->format('Y-m-d H:i:s'))->delete();
+        // $exp  =   booking::where('tenggat_bayar', '<',Carbon::now())->delete();
+        $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
+        // DB::table('booking')->where('tenggat_bayar', '<', carbon::now())->update(['tenggat_bayar' => 'expired']);
         
         return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY' , 'data3' , 'exp'), [
             // 'snapToken' =>$snapToken,
@@ -169,7 +170,7 @@ class BookingController extends Controller
      */
     public function create(Request $request)
     {
-        $exp  =  Booking::where('tenggat_bayar', '==', Carbon::now())->delete();
+        $exp  =  Booking::where('tenggat_bayar', '<=', Carbon::now())->delete();
         return view('profil.checkout', compact('exp'), [
             "title" => "mycgv",
             "active" => "mycgv"
@@ -195,7 +196,7 @@ class BookingController extends Controller
             'kursi' =>$request->kursi,
             'jumlah_kursi' =>  $request->jumlah_kursi,
             'tanggal_booking' => now(),
-            'tenggat_bayar' =>now()->addMinutes(30),
+            'tenggat_bayar' =>now()->addMinutes(1),
             'harga' => $request->harga,
             'qr_tiket'=> $request->harga,
             'created_at' => now(),

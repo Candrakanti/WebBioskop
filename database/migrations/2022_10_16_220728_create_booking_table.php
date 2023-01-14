@@ -14,13 +14,12 @@ class CreateBookingTable extends Migration
     public function up()
     {
         Schema::create('booking', function (Blueprint $table) {
-        
             $table->string('id_booking' ,255)->primary();
             $table->string('id_customer');
             $table->string('id_payment')->unique();
             $table->string('id_jadwal');
             $table->date('tanggal_booking');
-            $table->strng('tenggat_bayar');
+            $table->string('tenggat_bayar');
             $table->string('kursi');
             $table->double('jumlah_kursi');
             $table->double('harga');

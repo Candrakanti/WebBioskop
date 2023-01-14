@@ -86,33 +86,36 @@
           </div>
       </div>
   </div>
-{{-- 
-<section id="movie">
-  <div class="row text-center">
-    <div class="col-4"><a href="/playing">Playing</a></div>
-    <div class="col-4"><a>Upcoming</a></div>
-  </div>
-</section> --}}
-  
-
 </section>
 
-<section id="upcoming">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-sm-4 col-md-4 col-4">
+      <a class="text-decoration-none link-danger" href="#playing"><h1>PLAYING</h1></a>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-3">
+      <a class="text-decoration-none link-danger" href="/upcoming"><h1>UPCOMING</h1></a>
+    </div>
+  </div>
+</div>
+
+<section id="playing">
   <div class="container">
     <div class="row">
       @foreach ($data as $film)
+      @if($film->tgl_tayang_awal <=  Carbon\Carbon::now()->format('Y-m-d') )
       <div class="col-6 col-lg-3 col-md-3 col-sm-6 col-xs-6">
         <div class="card" style="width: 17rem;">
           @if ($film->image)
           <div class="rounded">
-          <a href="/movie/detail/{{ $film->id_film }}">
+            <a href="/movie/detail/{{ $film->id_jadwal}}">
           <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
           </a>
         </div>
           @endif
           <br>
           {{-- <input type="hidden" value="{{ $film->judul_film }}" class="prod_id"> --}}
-          <a href="/movie/detail/{{ $film->id_film }}">
+            <a href="/movie/detail/{{ $film->id_jadwal}}">
               <h6 class="text-center" style="color: black">
                   <b>{{ $film->judul_film }}</b>
               </h6>
@@ -123,9 +126,10 @@
         </div>
       </div>
 
-      
+      @endif
       @endforeach
     </div>
   </div>
+
   </section>
 @endsection

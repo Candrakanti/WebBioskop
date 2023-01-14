@@ -1,14 +1,13 @@
 @extends('layouts.main')
-
 @section('container')
 
 <h4><b>Pesanan Saya</b></h4>
-<h4 class="text-center"> Belum Selesai</h4>
+<h4 class="text-center"> Pembatalan Pesanan </h4>
 
 
 @foreach ($listproducts as $item)
 
-    @if($item->status_bayar === "0")
+    @if($item->status_bayar == 2)
 
     <div class="container">
         <div class="container d-flex" >
@@ -25,7 +24,7 @@
                     
                       <p class="card-text">Studio : {{ $item->jenis_studio }}</p>
                       <p class="card-text">Payment Code : {{ $item->id_payment }}</p>
-                      <p class="card-text fw-bolder">Selesaikan Pembayaran  dalam  {{ $item->tenggat_bayar }}</p>
+                     
                       
                       {{-- <p class="card-text">Tempat Duduk : {{ $item->kursi }}</p> --}}
                       <p class="card-text"><small class="text-muted">NOTE: USAHAKAN SAMPAI DI BIOSKOP 10 MENIT SEBELUM FILM DITAYANGKAN !</small></p>

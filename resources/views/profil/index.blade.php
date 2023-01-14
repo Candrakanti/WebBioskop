@@ -64,6 +64,11 @@
                         <a href="/mybank" class="text-decoration-none link-dark">Bank Saya</a>
                     </div>
 
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">
+                        <a href="/exp" class="text-decoration-none link-dark">Pembatalan Pesanan</a>
+                    </div>
+                    
+
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                     <img href="/paydone" src="img/cekl.png" width="5%" alt="...">

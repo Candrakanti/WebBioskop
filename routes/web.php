@@ -57,6 +57,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/unpaid', [UnpaidController::class, 'index']);
+    Route::get('/exp', [UnpaidController::class, 'exp']);
 Route::resource('/paydone', PaydoneController::class);
 Route::get('/mycgv', [CgvController::class, 'index']);
     Route::get('/booking/show/{id_jadwal}', [BookingController::class, 'index'])->name('booking.show');
@@ -96,6 +97,7 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 
 Route::get('/ticket/seat', [SeatController::class, 'index']);
 Route::get('/movie', [MovieController::class, 'index']);
+Route::get('/upcoming', [MovieController::class, 'upcoming']);    
 Route::get('/movie/detail/{id_jadwal}', [MovieController::class, 'detail'])->name('movie.detail');
 Route::get('/movie/detbooking/{id_film}', [MovieController::class, 'detbooking'])->name('movie.detbooking');
 // Route::get('/movie/kota/{id_kota}', [MovieController::class, 'detkota'])->name('movie.detkota');

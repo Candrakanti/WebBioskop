@@ -6,8 +6,9 @@
         
       
         <div class="container">
-                <h1>  {{ Carbon\Carbon::now()->format('Y-m-d') }}</h1>
-                <h1>  {{ Carbon\Carbon::now()->format('Y-m-d H:i:s') }}</h1>
+                {{-- <h1>  {{ Carbon\Carbon::now()->format('Y-m-d') }}</h1> --}}
+                <h1>  {{ Carbon\Carbon::now()->format('H:i:s') }}</h1>
+                {{-- <h1>  {{ Carbon\Carbon::now()->format('Y-m-d H:i:s') }}</h1> --}}
                 <div class="border border-success p-2 mb-2" style="width:50px; height:50px;">
                         <div class="row">
                                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 g-0 text-center">
@@ -54,437 +55,60 @@
 
                             <H1>Selesai</H1>
 
-
-
                                 <div class="seats" id="seats" name="harga">
 
-                                    <div class="row  g-0 mx-0 ">
-                                        <div class="col-4 col-lg-4  col-sm-4 col-md-4 px-0">
+                                        @foreach(range('A',$data->jumlah_row) as $v)
+                                        <div class="row">
+                                                <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                                        <nav class="nav flex-column">               
+                                                                <a class="nav-link text-dark border-0" href="#">{{ $v}} </a>
+                                                              </nav>
+                                                </div>
+                                              
+                                                 
+                                           
 
-                             
-                                                <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="H1" 
-                                                         class="class"  name="kursi"
-                                                         @if($data->id_jadwal == $data->id_jadwal)
-                                                         @foreach($data2 as $d)
-                                                         @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'H1')
-                                                        disabled
-                                                         @endif
-                                                         @endforeach
-                                                           @endif
-                                                       >
-                                                    </label>
-            
-                                                    <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="H2"
-                                                        name="kursi"
+                                                <div class="col-4">
+                                                        @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
+                                                        <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{  $i}}" value="{{ $data->harga }}"  style="width:20px; height:25px;"
                                                         @if($data->id_jadwal == $data->id_jadwal)
-                                                        @foreach($data2 as $d)
-                                                        @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'H2')
+                                                        @foreach($data2 as $key=>$d)
+        
+                                                       @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
+                                                       @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') and $d->status_bayar == "0" )
+                                                       @if($d->status_bayar == "0" )
                                                        disabled
-                                                        @endif
+                                                @endif
+                                                       @endif
+                                                       @endif
                                                         @endforeach
                                                           @endif
-                                                        ></label> <br>
-    
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="G1"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'G1')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-    
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="G2"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'G2')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-    
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="G3"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'G3')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label> <br>
-    
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="F1"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'F1')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-    
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="F2"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'F2')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-    
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="F3"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'F3')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label> <br>
-    
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="E1"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'E1')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
+                                                        >
+                                                        @endfor
+                                                </div>
+                                                <div class="col-4">
+                                                        @for($i = 6; $i<=10; $i++)
+                                                        <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{  $i}}" value="{{ $data->harga }}"  style="width:20px; height:25px;"
+                                                        @if($data->id_jadwal == $data->id_jadwal)
+                                                        @foreach($data2 as $key=>$d)
+        
+                                                       @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
+                                                       @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') )
+                                                     
+                                                       disabled
+                                                
+                                                       @endif
+                                                       @endif
+                                                        @endforeach
+                                                          @endif
+                                                        >
+                                                        @endfor
+                                                </div>
 
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="E2"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'E2')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="E3"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'E3')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label><br>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="D1"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'D1')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="D2"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'D2')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="D3"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'D3')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label><br>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="C1"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'C1')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="C2"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'C2')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="C3"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'C3')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label><br>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="B1"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'B1')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="B2"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'B2')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="B3"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'B3')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label><br>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="A1"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'A1')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="A2"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'A2')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="A3"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'A3')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-    
+                                            
                                         </div>
-    
-                                        <div class="col-4 col-lg-4 col-sm-4 col-md-4 px-0">
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="H3"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'H3')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
+                                            @endforeach  
 
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="H4"
-                                                    name="kursi" 
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'H4')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="H5"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'H5')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label><br>
-
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="G4"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'G4')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="G5"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'G5')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="G6"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'G6')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="F4"
-                                                    name="kursi"
-                                                    @if($data->id_jadwal == $data->id_jadwal)
-                                                    @foreach($data2 as $d)
-                                                    @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'F4')
-                                                   disabled
-                                                    @endif
-                                                    @endforeach
-                                                      @endif
-                                                    ></label>
-
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="F5"
-                                                    name="kursi"></label>
-
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="F6"
-                                                    name="kursi"></label><br>
-
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="E4"
-                                                    name="kursi"></label>
-
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="E5"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="E6"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="D4"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="D5"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="D6"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="C4"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="C5"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="C6"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="B4"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="B5"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="B6"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="A4"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="A5"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="A6"
-                                                    name="kursi"></label>
-    
-    
-                                        </div>
-    
-                                        <div class="col-4 col-lg-4 col-sm-4 col-md-4 px-0">
-                                            <label> <input type="checkbox" value="{!! $data->harga !!}" data-value="H6"
-                                                    name="kursi"> </label>
-    
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="H7"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="G7"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="G8"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="G9"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="F7"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="F8"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="F9"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="E7"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="E8"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="E9"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="D7"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="D8"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="D9"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="C7"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="C8"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="C9"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="B7"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="B8"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="B9"
-                                                    name="kursi"></label><br>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="A7"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="A8"
-                                                    name="kursi"></label>
-                                            <label><input type="checkbox" value="{!! $data->harga !!}" data-value="A9"
-                                                    name="kursi"></label>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 @else
@@ -516,9 +140,7 @@
                                                     
                                                      <div class="container">
                                                         {{-- <input type="checkbox" class="border border-success p-2 mb-2" placeholder="hi" style="width:50px; height:50px;"> --}}
-                                                      
 
-                                                            
                                                                 <div class="container">
                                                                         <div class="row">
                                                                              
@@ -622,14 +244,14 @@
                                             </div>
 
                                             <div class="pt-3">
-                                                <input class="form-control btn btn-secondary text-dark" type="text"
+                                                <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                   readonly value="{{ Auth::user()->id }}"
                                                  name="id_customer" id="seat">
                                             </div>
                                                
                                             <div class="pt-3" class="totalchecked">
                                                 <input class="form-control" type="text" placeholder="Jumlah Kursi Yang Anda Pilih"
-                                                name="jumlah_kursi" aria-label="Disabled input example" class="totalchecked"  readonly id="count_seat">
+                                                name="jumlah_kursi" aria-label="readonly input example" class="totalchecked"  readonly id="count_seat">
                                             </div>
 
                                             <div class="pt-3">
@@ -643,13 +265,16 @@
                                             </div>
 
                                             <div class="pt-3">
-                                                <input class="form-control" type="text" 
+                                                <input class="form-control" type="hidden" 
                                                 name="id_jadwal" value="{{ $data->id_jadwal}}">
                                             </div>
 
                                             <div class="pt-3">
+                                              
+                                             Rp. <span class="badge rounded-pill text-bg-secondary border-0">
                                                 <input class="form-control" type="text" readonly
-                                                name="harga" aria-label="Disabled input example"  id="price">
+                                                name="harga" aria-label="Disabled input example"style=" background: transparent; border: none; color:black;" id="price">
+                                                </span>  
                                             </div>
                                            
                                             <div class="container text-center mt-3">
@@ -670,50 +295,43 @@
                                             </div>
                                             <div class="modal-body" style="padding: 0;">
                                                 <ul class="list-group">
-
-                                                        {{-- <div class="card" >
-                                                                <img src="/img/movie.png" class="card-img-top" alt="...">
-                                                                <div class="card-body">
-                                                                        <h2 class="modal-title fs-5" id="exampleModalToggleLabel"><b>Total</b></h2>
-                                                                             <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
-                                                                             name="harga" aria-label="Disabled input example" readonly  id="price2">
-                                                                </div>
-                                                        </div>
-                                         --}}
-
                                          <div class="card" >
                                                 <img src="/img/movie.png" class="card-img-top" alt="...">
                                                 <div class="card-body">
-                                                  {{-- <div class="ratio ratio-16x9" style="background: red;"> --}}
-                                                        <div class="accordion" id="accordionExample">
+                                                      
+
+                                                        <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
                                                                 <div class="accordion-item">
-                                                                  <h2 class="accordion-header" id="headingOne">
-                                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                       <p class="pt-3"><strong> Total </strong> </p> &nbsp;
-                                                                       <p class="pt-3" > <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
-                                                                             name="harga" aria-label="Disabled input example" readonly  id="price2"></p>
-                                                                    </button>
-
-                                                                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                                    <div class="accordion-body">
-
+                                                                        <h2 class="accordion-header" id="flush-headingOne">
+                                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                                                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                                                                <p class="pt-3"><strong> Total</strong> &nbsp; Rp. </p> 
+                                                                                <p class="pt-3"><input class="form-control" type="text" readonly
+                                                                                name="harga" aria-label="Disabled input example"  id="price2" style=" background: transparent; border: none; color:black;"></p>
+                                                                                </div>
+                                                                                </div>
+                                                                        </button>
+                                                        
+                                                        
+                                                                        </h2>
+                                                        
+                                                                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                                                                        data-bs-parent="#accordionFlushExample">
+                                                                        <div class="accordion-body pt-2">
                                                                         <div class="row">
-                                                                         <div class="col-6">
-                                                                          <p class="" id="exampleModalToggleLabel">{{ auth()->user()->name }}</p>
+                                                                                <div class="col-6">
+                                                                                        <p class="" id="exampleModalToggleLabel">{{ auth()->user()->name }}</p>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                        <p class="" id="exampleModalToggleLabel">{{ auth()->user()->email}}</p>
+                                                                                </div>
                                                                         </div>
 
-                                                                        <div class="col-6">
-                                                                           <p class="" id="exampleModalToggleLabel">{{ auth()->user()->email }}</p>
                                                                         </div>
-                                                                    </div>
-                                                                        
-                                                                        
-                                                                    </div>
-                                                                  </div>
+                                                                        </div>
                                                                 </div>
-        
-                                                </div>
-                                        </div>
+                                                                </div>
+
                                                         <div class="">
                                                                 <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                                     placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
@@ -731,7 +349,7 @@
                                                             </div>
                                                             <div class="">
                                                                 <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
-                                                                name="harga" aria-label="Disabled input example" readonly  id="price2">
+                                                                name="harga"  style=" background: transparent; border: none; color:black;" aria-label="Disabled input example" readonly  id="price2">
                                                             </div>  
                                                         
                                                             <div class="container">
