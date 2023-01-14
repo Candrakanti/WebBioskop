@@ -3,30 +3,54 @@
 @section('container')
 
 {{-- <h2>{{  \Carbon\Carbon::now()->timezone('asia/jakarta')->format('h:i:s') }}</h2> --}}
+{{-- <div class="row 9-3 align-items-center mt-2 text-center">
+    <div class="col-auto">
+      <form action="/movie" method="GET">
+      <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan judul film">
+    </form>
+    </div>
+</div> --}}
 
         <section id="kota">
             <div class="container mb-4">
-                <div class="row">
-                    <div class="col-4 col-lg-8 col-sm-8 col-md-8">
-                        <li class="nav-item dropdown" style="list-style-type: none !important;">
-                            <H5  style="color: red"><b>
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false" style="padding: none !important;">
-                                Movies in Bandung
-                            </a>
-                            <ul class="dropdown-menu">
-                                @foreach ($data as $dt)
-                                    @foreach ($dt->detail_kota as $dt)
-                                        <p>{{ $dt['value'] }}</p>
-                                    @endforeach
-                                @endforeach
-                            </ul>
-                            </b></H5>
-                          
-                        </li>
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+
+        <li class="nav-item dropdown" style="list-style-type: none !important;">
+            <H5  style="color: red"><b>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false" >
+                Movies in Bandung
+            </a>
+            <ul class="dropdown-menu">
+                @foreach ($data as $dt)
+                    @foreach ($dt->detail_kota as $dt)
+                        <p>{{ $dt['value'] }}</p>
+                    @endforeach
+                @endforeach
+            </ul>
+            </b></H5>
+        </li>
+    </div>
+
+    <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+        <div class="row d-flex justify-content-end">
+            
+            <div class="col-md-6">
+                <form action="/movie" method="GET">
+                    <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan judul film"> 
+         </form>
             </div>
+            <div class="col-md-1">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        
+       
+    </div>
+</div>
+
+                </div>
         </section>
 
         @if($exp == $exp)

@@ -39,8 +39,8 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Telp</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pembelian</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tangga Buat Akun</th>
+                  {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th> --}}
                   @foreach($data as $key => $data ) 
                 </tr>
               </thead>
@@ -77,12 +77,12 @@
                   </td>
 
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold"></span>
+                    <span class="text-secondary text-xs font-weight-bold">{{ $data->created_at }}</span>
                   </td>
 
-                      <td class="align-middle text-center text-sm">
+                      {{-- <td class="align-middle text-center text-sm">
                     <a class="badge badge-sm bg-gradient-warning" href="">Detail</a>
-                  </td>
+                  </td> --}}
                  
                 </tr>
                 <tr>

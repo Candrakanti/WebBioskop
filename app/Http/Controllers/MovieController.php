@@ -6,6 +6,7 @@ use App\Models\booking;
 use App\Models\kota;
 use App\Models\jadwal;
 use App\Models\studio;
+use App\Models\Film;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -13,15 +14,19 @@ use Carbon\Carbon;
 
 class MovieController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('search')) {
+            $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->where('judul_film', 'LIKE', '%' .$request->search. '%')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
+            
+            // $films = Film::where('judul_film', 'LIKE', '%' .$request->search. '%')->get();
+            // $films = Film::where('id_film','LIKE','%' .$request->search.'%' );
+        } else {
+            $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
+        }
 
-        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
-        // $cart = Cart::content();
-        // dd($cart);
+          $exp  =  jadwal::where('tgl_tayang_akhir', '<=', Carbon::now())->delete();
 
-      $exp  =  jadwal::where('tgl_tayang_akhir', '<=', Carbon::now())->delete();
-     
         return view('movie.index', compact('data' , 'exp'), [
             'title' => 'movie',
             'active' => 'movie'

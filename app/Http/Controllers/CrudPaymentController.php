@@ -76,6 +76,7 @@ class CrudPaymentController extends Controller
                 'nama_bank' => $request->nama_bank,
                 'harga' => $request->harga,
                 'status' => $request->status,
+                'created_at' => $request->creted_at,
                 'image' => $request->image
 
             ]);
