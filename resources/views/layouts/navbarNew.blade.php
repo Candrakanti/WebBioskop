@@ -55,8 +55,9 @@
                             <a class="nav-link {{ request()->is('mycgv') ? ' active' : '' }}" href="/mycgv">MYSEENEMA</a>
                         </li>
                         <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Contact
-                                Us</button>
+                            <form action="/ContactUs">
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Contact Us</button>
+                            </form>
                         </li>
                     </ul>
                 </div>

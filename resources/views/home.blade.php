@@ -37,7 +37,6 @@
 
 
 <section class="marketing">
-  
   <div class="row align-items-center pt-5">
     <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
       <h3 class="m-0">Saksikan Film Kesayangan Anda <br>Di Seenema Terdekat!</h3>
@@ -70,7 +69,7 @@
       <div class="row">
           <div class="col-8">
               <li class="nav-item dropdown" style="list-style-type: none !important;">
-                  <h1  style="color: red"><b>
+                  <h2 style="color: red"><b>
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                       aria-expanded="false" style="padding: none !important;">
                       Movies in Bandung
@@ -80,39 +79,46 @@
                               <p>{{ $dt->id_studio }}</p>
                       @endforeach
                   </ul> --}}
-                  </b></h1>
+                  </b></h2>
                 
               </li>
           </div>
       </div>
   </div>
-{{-- 
-<section id="movie">
-  <div class="row text-center">
-    <div class="col-4"><a href="/playing">Playing</a></div>
-    <div class="col-4"><a>Upcoming</a></div>
-  </div>
-</section> --}}
-  
-
 </section>
 
-<section id="upcoming">
+<div class="navbar navbar-expand-lg pl-3 pl-sm-0 bg-white " style="position: sticky; box-shadow: none;" class="pb-5" >
+  <div class="container">           
+      <div class="collapse navbar-collapse navbar-menu-wrapper" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link {{ request()->is('*/') ? ' active' : '' }}" href="/"><h5><b>PLAYING</b></h5></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link {{ request()->is('*upcoming') ? ' active' : '' }}" href="/upcoming"><h5><b>UPCOMING</b></h5></a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>
+
+<section id="playing">
   <div class="container">
     <div class="row">
       @foreach ($data as $film)
+      @if($film->tgl_tayang_awal <=  Carbon\Carbon::now()->format('Y-m-d') )
       <div class="col-6 col-lg-3 col-md-3 col-sm-6 col-xs-6">
         <div class="card" style="width: 17rem;">
           @if ($film->image)
           <div class="rounded">
-          <a href="/movie/detail/{{ $film->id_film }}">
+            <a href="/movie/detail/{{ $film->id_jadwal}}">
           <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
           </a>
         </div>
           @endif
           <br>
           {{-- <input type="hidden" value="{{ $film->judul_film }}" class="prod_id"> --}}
-          <a href="/movie/detail/{{ $film->id_film }}">
+            <a href="/movie/detail/{{ $film->id_jadwal}}">
               <h6 class="text-center" style="color: black">
                   <b>{{ $film->judul_film }}</b>
               </h6>
@@ -123,9 +129,10 @@
         </div>
       </div>
 
-      
+      @endif
       @endforeach
     </div>
   </div>
+
   </section>
 @endsection

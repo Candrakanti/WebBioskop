@@ -39,6 +39,6 @@ class ExpiredPayment
     public function __invoke()
     {
         // do your task here...e.g.,
-        Booking::where('tenggat_bayar','<',Carbon::now()->format('Y-m-d H:i:s'))->update(['tenggat_bayar'=>'expired']);
+     
     }
 }

@@ -31,7 +31,7 @@
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <div class="row d-flex justify-content-end">
                     <div class="col-md-6">
-                        <form action="/movie" method="GET">
+                        <form action="/" method="GET">
                             <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan judul film"> 
                         </form>
                     </div>
@@ -44,19 +44,6 @@
         </div>
     </div>
 </section>
-
-        {{-- <div class="container">
-            <ul>
-            <div class="row">
-              <div class="col-lg-4 col-sm-4 col-md-4 col-4">
-                <a class="nav-link {{ request()->is('*movie') ? ' active' : '' }}" href="/movie"><h1>PLAYING</h1></a>
-              </div>
-              <div class="col-lg-3 col-sm-3 col-md-3 col-3">
-                <a class="nav-link {{ request()->is('*upcoming') ? ' active' : '' }}" href="/upcoming"><h1>UPCOMING</h1></a>
-              </div>
-            </div>
-           </ul>
-        </div> --}}
 
         <div class="navbar navbar-expand-lg pl-3 pl-sm-0 bg-white " style="position: sticky; box-shadow: none;" class="pb-5" >
             <div class="container">           
@@ -73,8 +60,10 @@
             </div>
         </div>
 
+        <h1>INI DI UPCOMING</h1>
+
         @if($exp == $exp)
-      
+        
 <section id="movie">
     @if (session()->has('success'))
     <div class="alert alert-success " role="alert">
@@ -82,9 +71,10 @@
     </div>
 @endif
 <div class="container">
+  
     <div class="row">
       @foreach ($data as $film)
-      @if($film->tgl_tayang_awal  <=  Carbon\Carbon::now()->format('Y-m-d'))
+      @if($film->tgl_tayang_awal >=  Carbon\Carbon::now()->format('Y-m-d'))
       <div class="col-6 col-lg-3 col-md-3 col-sm-6 col-xs-6">
         <div class="card">
             @if ($film->image)
@@ -102,7 +92,7 @@
                 </h6>
             </a>
             <div class="card-body text-center"> 
-                <a href="/movie/detail/{{ $film->id_jadwal }}" class="btn btn-danger">BOOK NOW</a>
+            <a href="/movie/detail/{{ $film->id_jadwal }}" class="btn btn-danger">BOOK NOW</a>
              
                 {{-- <a href="/booking/show/{{ $film->id_jadwal}}" class="btn btn-danger">BOOK NOW</a> --}}
             </div>
@@ -114,10 +104,7 @@
     </div>
   </div>
 </section>
-
 @endif
-
-
         <script>
             $('document').ready(function() {
                 $('.addToCartBtn').click(function(e) {

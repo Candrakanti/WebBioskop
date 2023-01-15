@@ -17,11 +17,10 @@ class jadwal extends Model
         'id_jadwal',
         'id_studio',
         'id_film',
-        'id_kota',
-        'id_bioskop',
+      
         'tgl_tayang_awal',
         'tgl_tayang_akhir',
-        'jam_tayang',
+      
     ];
 
     // public function jadwal()

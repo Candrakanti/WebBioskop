@@ -17,15 +17,12 @@ class BookingLater extends Model
     protected $fillable = [
         'id_booking',
         'id_customer',
-        // 'id_payment',
         'id_jadwal',
         'tanggal_booking',
         'kursi',
         'jumlah_kursi',
+        'tenggat_bayar',
         'harga',
-        // 'status_bayar',
-        // 'qr_tiket',
-    
     ];
 
     //  protected $casts = [

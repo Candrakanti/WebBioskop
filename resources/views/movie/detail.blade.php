@@ -1,10 +1,12 @@
 @extends('layouts.main')
 
 @section('container')
+@if($data->tgl_tayang_awal  >=  Carbon\Carbon::now()->format('Y-m-d'))
+<h4 class="fw-light text-danger">COMING SOON</h4>
+@endif
     {{-- <form method="POST" action="{{ route('movie.detail', $data->id_film) }}">
         @csrf --}}
         {{-- <h1>{{  \Carbon\Carbon::now()->format('Y-m-d') }}</h1> --}}
-
     <div class="container d-flex justify-content-center">
         <div class="row d-flex justify-content-center">
             <div class="col-4">
@@ -15,7 +17,7 @@
                     </div>
                 @endif
             </div>
-
+       
             <div class="col-8 ">
                 <div class="card-body">
                     <div class="row">
@@ -58,15 +60,15 @@
                         </div>
                     </div>
 
+                    @if($data->tgl_tayang_awal  >=  Carbon\Carbon::now()->format('Y-m-d'))
                     <div class="row-mb-3" style="margin-left:5%">
                         <hr class="border border-danger border-2 opacity-100" width="40%" style="margin-left:">
 
-                        <a style="color:#0000FF;" href="{{ $data->link_trailer }}">Wacth Trailer</a>&nbsp&nbsp&nbsp
-
+                    
                         <!-- Button trigger modal -->
-                        <a type="button" class="" data-bs-toggle="modal"
+                        <a type="button" class="link-primary text-center" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
-                            Launch demo modal
+                           Lihat Trailer
                         </a>
 
                         <!-- Modal -->
@@ -86,10 +88,14 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
 
-
+                        @if($data->tgl_tayang_awal  <=  Carbon\Carbon::now()->format('Y-m-d'))
                         <a href="/booking/show/{{ $data->id_jadwal }}" style="color:#0000FF;" class="border border-0 "
                             id="book">Book Now</a>
+                            @else
+
+                            @endif
 
                         <hr class="border border-danger border-2 opacity-100" width="40%" style="margin-left:">
                     </div>
@@ -109,6 +115,8 @@
     </div>
     </div>
     </div>
+
+    @if($data->tgl_tayang_awal  <=  Carbon\Carbon::now()->format('Y-m-d'))
 
     <div class="container">
         <div class="row">`
@@ -146,49 +154,58 @@
     </div>
 
 
-
+  
         <section id="Time">
+            @foreach ($mall as $data)  
+     
             <div class="container pt-3" style="padding-bottom: 60%">
+              
                 <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingOne">
+                         
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                 <div class="col-4 col-lg-4 col-md-4 col-sm-6">
                                     <img src="/img/logo.png" class="card-img-top" alt="" style="width: 30%">
                                 </div>
+                              
+                             
                                 <div class="col-8">
-                                    <p><b>KINGS PLAZA</b></p>
+                                  
+                                    <p><b>{{ $data->nama_bioskop}}</b></p>
+                                  
                                 </div>
+                              
                             </button>
-        
-         
+                         
                         </h2>
-        
+                      
+
+                    
                         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                             data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                                {{-- <a href="{{ route('booklater.show', $data->id_film) }}" class="btn btn-outline-danger">
-                                    {{ $data->jam_tayang }}
-                                </a> --}}
-                                {{-- @if ($data->jam_tayang <= $data->jam_tayang)
-                                <a href="/booking/show/{{ $data->id_jadwal }}"  class="btn btn-outline-danger disabled">
-                                    {{ $data->jam_tayang }}
-                                </a>  
-                                @else --}}
-                                <a href="/booking/show/{{ $data->id_jadwal }}"  class="btn btn-outline-danger ">
-                                    {{ $data->jam_tayang }}
-                                </a>  
-                                {{-- @endif --}}
-                              
                              
+                                @if($data->jam_tayang == $data->jam_tayang  and $data->id_bioskop == $data->id_bioskop)  
+                                <a href="/booking/show/{{ $data->id_jadwal }}"  class="btn btn-outline-danger ">
+                                      {{ $data->jam_tayang }} 
+                                </a>  
+        @endif
                             </div>
                         </div>
+                        
                     </div>
+                 
                 </div>
-        
+               
+
+              
+                @endforeach 
         </section>
-   
+        @else
+
+        @endif
     {{-- </form> --}}
 
     <script>
