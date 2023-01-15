@@ -20,6 +20,7 @@ class CreatePaymentTable extends Migration
             $table->foreign('id_booking')->references('id_booking')->on('booking')->onDelete('cascade');       
             $table->string('id_bank', 225);
             $table->double('harga');
+            $table->string('payment_type');
             $table->char('status_bayar')->default('0');
             $table->string('bukti_bayar', 225);
             $table->timestamps();

@@ -116,7 +116,7 @@ class BankController extends Controller
              
                 ]);
 
-            return redirect('/movie')->with('success', 'success adding to cart !');
+            return redirect('/myseenema')->with('success', 'Pembayaran Berhasil , Lihat Pada Menu Selesai!');
     }
 
     /**

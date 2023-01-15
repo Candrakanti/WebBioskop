@@ -19,6 +19,7 @@ class CreateBookingTable extends Migration
             $table->string('id_payment')->unique();
             $table->string('id_jadwal');
             $table->date('tanggal_booking');
+            $table->time('jam_booking');
             $table->string('tenggat_bayar');
             $table->string('kursi');
             $table->double('jumlah_kursi');

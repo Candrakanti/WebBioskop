@@ -1,30 +1,6 @@
 @extends('layouts.main')
 
 @section('container')
-{{-- 
-  <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">id Payment</th>
-          <th scope="col">id_customer</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      
-    <tbody>
-      @foreach($booking as $d)
-    
-    <tr>
-      <th scope="row">1</th>
-      <td>{{ $d->id_payment }}</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-  </tbody>
-
-  </table> --}}
-
 
   <div class="card mb-3" style="max-width: 540px;">
     <div class="row g-0">
@@ -79,20 +55,21 @@
 @method('PUT')
 
 <input type="hidden" name="status_bayar" value="1">
-<input type="text" name="id_payment" value="{{ $d->id_payment }}">
-<input type="text" name="id_booking" value="{{ $d->id_booking}}">
-<input type="text" name="payment_type" value="{{ $d->payment_type}}">
-<input type="text" name="tenggat_bayar" value="done">
+<input type="hidden" name="id_payment" value="{{ $d->id_payment }}">
+<input type="hidden" name="id_booking" value="{{ $d->id_booking}}">
+<input type="hidden" name="payment_type" value="{{ $d->payment_type}}">
+<input type="hidden" name="tenggat_bayar" value="done">
 
 @if($d->tenggat_bayar == 'done')
 <button class="btn btn-info" type="submit" disabled > Telah Dibayar </button>
 @endif
 
-@if($d->tenggat_bayar == '')
-<button class="btn btn-info" type="submit" > Bayar Sekarang </button>
+
 
 @if($d->tenggat_bayar == "expired")
- <button class="btn btn-danger"> HAbis</button>
+ <button class="btn btn-danger" disabled> Waktu Bayar Sudah Habis</button>
+ @else
+ <button class="btn btn-success"> Bayar Sekarang</button>
  @endif
 </form>   
 @endforeach

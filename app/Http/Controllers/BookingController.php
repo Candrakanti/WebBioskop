@@ -30,7 +30,7 @@ class BookingController extends Controller
      */
 
    
-    public function index(Request $request, $id_jadwal)
+    public function index(Request $request, $id_jadwal , $jam_tayang)
     {
         //         // Set your Merchant Server Key
         //  \Midtrans\Config::$serverKey = 'SB-Mid-server-HifKik2bJqkbyshlP0mbufdu';
@@ -65,7 +65,9 @@ class BookingController extends Controller
          
         //  $snapToken = \Midtrans\Snap::getSnapToken($params);
 
-        $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*' ])->where('id_jadwal',$id_jadwal)->first();
+        // $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*' ])->where('id_jadwal',$id_jadwal)->first();
+
+        $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->join('_detail_bioskop','_detail_bioskop.id_jadwal' ,'=' ,'jadwal.id_jadwal')->join('bioskop','bioskop.id_bioskop' ,'=' ,'_detail_bioskop.id_bioskop')->join('_detail_jam' , '_detail_jam.id_db' ,'=' ,'_detail_bioskop.id_db')->get([ 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*' ,'_detail_bioskop.*' , '_detail_jam.*' ,'bioskop.*'])->where( 'jam_tayang' ,$jam_tayang)->first();
 
             $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->join('payment' ,'payment.id_booking' , '=' ,'booking.id_booking')->get(['jadwal.*' ,'booking.*' ,'payment.*']);
 
@@ -196,6 +198,7 @@ class BookingController extends Controller
             'kursi' =>$request->kursi,
             'jumlah_kursi' =>  $request->jumlah_kursi,
             'tanggal_booking' => now(),
+            'jam_booking' =>$request->jam_booking,
             'tenggat_bayar' =>now()->addMinutes(1),
             'harga' => $request->harga,
             'qr_tiket'=> $request->harga,
@@ -214,7 +217,7 @@ class BookingController extends Controller
             'updated_at' => now(),
             // 'bukti_bayar' => $request->file('bukti_bayar')->store('booking-images')
         ]);
-        return redirect('/movie')->with('success', 'success adding to cart !');
+        return redirect('/myseenema')->with('success', 'Suksess ! Selesaikan Pembayaran Lihat Pada Menu Belum Bayar!');
         // return redirect()->route('payment.now',$id_jadwal)->with('success', 'success adding to cart !');
     }
 

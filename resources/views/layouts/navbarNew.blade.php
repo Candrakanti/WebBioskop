@@ -52,7 +52,7 @@
             <a class="nav-link"  href="/ticket">TICKET</a>  
           </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('mycgv') ? ' active' : '' }}" href="/mycgv">MYSEENEMA</a>
+                            <a class="nav-link {{ request()->is('myseenema') ? ' active' : '' }}" href="/myseenema">MYSEENEMA</a>
                         </li>
                         <li class="nav-item btn-contact-us pl-4 pl-lg-0">
                             <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Contact

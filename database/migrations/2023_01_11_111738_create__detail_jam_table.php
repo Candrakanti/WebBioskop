@@ -15,7 +15,7 @@ class CreateDetailJamTable extends Migration
     {
         Schema::create('_detail_jam', function (Blueprint $table) {
             $table->string('id_jadwal');
-            $table->foreign('id_jadwal')->references('id_jadwal')->on('_detail_bioskop')->onDelete('cascade');
+            $table->foreign('id_jadwal')->references('id_db')->on('_detail_bioskop')->onDelete('cascade');
             $table->time('jam_tayang');
             $table->timestamps();
         });
