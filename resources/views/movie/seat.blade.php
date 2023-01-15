@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    {{-- <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
+    {{-- <form method="POST" action="{{ route('booking', $data->id_jadwal) }}">
         @csrf --}}
         
       
@@ -58,6 +58,7 @@
                                 <div class="seats" id="seats" name="harga">
 
                                         @foreach(range('A',$data->jumlah_row) as $v)
+                                        {{-- <h1>{{ $d->status_bayar }}</h1> --}}
                                         <div class="row">
                                                 <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                                         <nav class="nav flex-column">               
@@ -75,10 +76,10 @@
                                                         @foreach($data2 as $key=>$d)
         
                                                        @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
-                                                       @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') and $d->status_bayar == "0" )
-                                                       @if($d->status_bayar == "0" )
+                                                       @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') )
+                                                     
                                                        disabled
-                                                @endif
+
                                                        @endif
                                                        @endif
                                                         @endforeach
@@ -94,6 +95,7 @@
         
                                                        @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
                                                        @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') )
+
                                                      
                                                        disabled
                                                 
@@ -111,6 +113,7 @@
 
                                 </div>
 
+                                {{-- BUAT VELVET STUDIO --}}
                                 @else
                                 <div class="seats" id="seats" name="harga">
 
@@ -125,10 +128,7 @@
                                         @endif
                                     
                                      <H1>Selesai</H1>
-
-                              
-
-
+<h1>{{ $data->jam_tayang }}</h1>
                                         @foreach(range('A',$data->jumlah_row) as $v)
                                         <div class="row">
                                                 <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -143,17 +143,19 @@
 
                                                                 <div class="container">
                                                                         <div class="row">
-                                                                             
+                                                                           
                                                                                 @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
                                                                                 <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{  $i}}" value="{{ $data->harga }}"  style="width:40px; height:25px;"
                                                                                 @if($data->id_jadwal == $data->id_jadwal)
                                                                                 @foreach($data2 as $key=>$d)
                                 
                                                                                @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
-                                                                               @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') )
+                                                                               @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d'))
+                                                                               @if( $d->jam_booking  == $data->jam_tayang  )
                                                                              
                                                                                disabled
                                                                         
+                                                                               @endif
                                                                                @endif
                                                                                @endif
                                                                                 @endforeach
@@ -175,11 +177,6 @@
                                                       {{-- SAMPE SINI --}}
                                                  
                                                 </div>
-                                            
-                                
-                                                {{-- @if($d->id_jadwal == $data->id_jadwal and $d->kursi == {{ $i }})
-                                                       disabled
-                                                        @endif --}}
                                         </div>
                                             @endforeach  
                                     </div>
@@ -207,18 +204,18 @@
                                             <p>Cinema</p>
                                         </div>
                                         <div class="col-6"> <b>
-                                                <p> XXI</p>
+                                                <p>{{ $data->nama_bioskop }} , {{ $data->alamat }}</p>
                                             </b></div>
                                     </div>
     
                                     <div class="row ">
                                         <div class="col-5 col-lg-5 col-sm-5 col-md-5">
-                                            <p>Date & Time
+                                            <p>Date & Time :
 
                                         </p>
                                         </div>
                                         <div class="col-6"> <b>
-                                                <p> {{ \Carbon\Carbon::now()->format('l d M ,') }}  {!! $data->jam_tayang !!}</p>
+                                                <p> {{ \Carbon\Carbon::now()->format('l d M') }}  , {{ $data->jam_tayang }}</p>
                                             </b></div>
                                     </div>
     
@@ -265,8 +262,13 @@
                                             </div>
 
                                             <div class="pt-3">
-                                                <input class="form-control" type="hidden" 
+                                                <input class="form-control" type="text" 
                                                 name="id_jadwal" value="{{ $data->id_jadwal}}">
+                                            </div>
+
+                                            <div class="pt-3">
+                                                <input class="form-control" type="text" 
+                                                name="jam_tayang" value="{{ $data->jam_tayang}}">
                                             </div>
 
                                             <div class="pt-3">
@@ -433,6 +435,11 @@
                                                     <div class="">
                                                         <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih" 
                                                         name="status_bayar" value="0" id="status_bayar">
+                                                    </div>
+
+                                                    <div class="pt-3">
+                                                        <input class="form-control" type="text" 
+                                                        name="jam_booking" value="{{ $data->jam_tayang}}">
                                                     </div>
 
                                                     <div class="" class="totalchecked">

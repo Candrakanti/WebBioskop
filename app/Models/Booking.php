@@ -22,6 +22,7 @@ class Booking extends Model
         'id_jadwal',
         'tenggat_bayar',
         'tanggal_booking',
+        'jam_booking',
         'kursi',
         'jumlah_kursi',
         'harga',

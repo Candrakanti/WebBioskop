@@ -4,7 +4,7 @@
 @if($data->tgl_tayang_awal  >=  Carbon\Carbon::now()->format('Y-m-d'))
 <h4 class="fw-light text-danger">COMING SOON</h4>
 @endif
-    {{-- <form method="POST" action="{{ route('movie.detail', $data->id_film) }}">
+    {{-- <form method="POST" action="{{ route('movie.detail', $data->id_jadwal) }}">
         @csrf --}}
         {{-- <h1>{{  \Carbon\Carbon::now()->format('Y-m-d') }}</h1> --}}
     <div class="container d-flex justify-content-center">
@@ -60,7 +60,6 @@
                         </div>
                     </div>
 
-                    @if($data->tgl_tayang_awal  >=  Carbon\Carbon::now()->format('Y-m-d'))
                     <div class="row-mb-3" style="margin-left:5%">
                         <hr class="border border-danger border-2 opacity-100" width="40%" style="margin-left:">
 
@@ -88,10 +87,9 @@
                                 </div>
                             </div>
                         </div>
-                        @endif
 
                         @if($data->tgl_tayang_awal  <=  Carbon\Carbon::now()->format('Y-m-d'))
-                        <a href="/booking/show/{{ $data->id_jadwal }}" style="color:#0000FF;" class="border border-0 "
+                        <a href="#Time" style="color:#0000FF;" class="border border-0 "
                             id="book">Book Now</a>
                             @else
 
@@ -154,12 +152,42 @@
     </div>
 
 
+  <div class="container">
   
-        <section id="Time">
-            @foreach ($mall as $data)  
-     
-            <div class="container pt-3" style="padding-bottom: 60%">
+@foreach ($bio as $d)
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            
+                {{ $d->nama_bioskop }}
               
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                @foreach($mall as $m)  
+               @if($m->id_jadwal ==  $data->id_jadwal  and $m->id_jadwal == $data->id_jadwal)
+               <a href="/booking/{{ $m->id_jadwal }}/{{ $m->jam_tayang }}"  class="btn btn-outline-danger ">
+               {{ $m->jam_tayang }}
+               </a>
+             @endif
+               @endforeach
+
+            </div>
+          </div>
+
+        </div>
+
+@endforeach
+  </div>
+   
+        <section id="Time">
+          
+        @foreach ($mall as $d)
+@if($d->id_jadwal ==  $data->id_jadwal)
+            <div class="container pt-3" style="padding-bottom: 60%">
                 <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingOne">
@@ -172,26 +200,24 @@
                               
                              
                                 <div class="col-8">
-                                  
-                                    <p><b>{{ $data->nama_bioskop}}</b></p>
-                                  
+                                
+                                    <p><b>{{ $d->nama_bioskop }}</b></p>
+                           
                                 </div>
                               
                             </button>
-                         
+                           
                         </h2>
-                      
-
-                    
+                     
+                       
                         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                             data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                             
-                                @if($data->jam_tayang == $data->jam_tayang  and $data->id_bioskop == $data->id_bioskop)  
-                                <a href="/booking/show/{{ $data->id_jadwal }}"  class="btn btn-outline-danger ">
-                                      {{ $data->jam_tayang }} 
+                       
+                                <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}"  class="btn btn-outline-danger ">
+                                      {{ $d->jam_tayang }} 
                                 </a>  
-        @endif
+
                             </div>
                         </div>
                         
@@ -200,10 +226,10 @@
                 </div>
                
 
-              
-                @endforeach 
+                @endif
+                @endforeach
         </section>
-        @else
+        {{-- @else --}}
 
         @endif
     {{-- </form> --}}

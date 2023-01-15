@@ -110,7 +110,7 @@
                 <div class="mb-3">
                     <label for="jumlah_row" class="form-label @error('jumlah_row') is-invalid @enderror">jumlah
                         row</label>
-                    <input type="number" class="form-control" name="jumlah_row" required value="{{ old('jumlah_row') }}">
+                    <input type="text" class="form-control" name="jumlah_row" required value="{{ old('jumlah_row') }}">
                     @error('jumlah_row')
                         <div class="invalid-feedback">
                             {{ $message }}

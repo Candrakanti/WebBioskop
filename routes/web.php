@@ -62,8 +62,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/unpaid', [UnpaidController::class, 'index']);
     Route::get('/exp', [UnpaidController::class, 'exp']);
 Route::resource('/paydone', PaydoneController::class);
-Route::get('/mycgv', [CgvController::class, 'index']);
-    Route::get('/booking/show/{id_jadwal}', [BookingController::class, 'index'])->name('booking.show');
+Route::get('/myseenema', [CgvController::class, 'index']);
+
+    Route::get('/booking/{id_jadwal}/{jam_tayang}', [BookingController::class, 'index'])->name('booking');
+
     Route::post('AddProduct/{id_jadwal}', [BookingController::class, 'store'])->name('cart.store');
 
     Route::post('AddProductLater/{id_jadwal}', [BookingController::class, 'Later'])->name('cart.storeLater');
