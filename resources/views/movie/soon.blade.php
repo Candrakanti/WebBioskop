@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        <h1>INI DI UPCOMING</h1>
+        {{-- <h1>INI DI UPCOMING</h1> --}}
 
         @if($exp == $exp)
         

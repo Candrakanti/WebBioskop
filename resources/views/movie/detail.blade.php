@@ -152,7 +152,7 @@
     </div>
 
 
-  <div class="container">
+  {{-- <div class="container">
   
 @foreach ($bio as $d)
 
@@ -181,7 +181,7 @@
         </div>
 
 @endforeach
-  </div>
+  </div> --}}
    
         <section id="Time">
           

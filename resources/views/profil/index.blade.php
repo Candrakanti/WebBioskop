@@ -49,57 +49,11 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
-            
 
-            
-            <div class="row text-center g-0 mt-3">
-
-                <div class="col-lg-4 col-md-6 col-sm-6 col-4">
-                    <img src="img/wallet.png" width="5%" alt="...">
-
-                    <div class="row g-0">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">
-                            <a href="/unpaid" class="text-decoration-none link-dark">Belum Bayar</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">
-                        <a href="/mybank" class="text-decoration-none link-dark">Bank Saya</a>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">
-                        <a href="/exp" class="text-decoration-none link-dark">Pembatalan Pesanan</a>
-                    </div>
-                    
-
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-6 col-4">
-                    <img src="img/wallet.png" width="5%" alt="...">
-
-                    <div class="row g-0">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">
-                            <a href="/bank" class="text-decoration-none link-dark">Bank Saya</a>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="col-lg-4 col-md-6 col-sm-6 col-4">
-                    <img href="/paydone" src="img/cekl.png" width="5%" alt="...">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">
-                            <a href="/paydone" class="text-decoration-none link-dark">Selesai</a>
-                        </div>
-                    </div>
-=======
             <div class="container">
                 @if (session()->has('success'))
                 <div class="alert alert-success " role="alert">
                     {{ session('success') }}
->>>>>>> da9822dda3a3741523556510c8157b39dead43ed
                 </div>
             @endif
             </div>

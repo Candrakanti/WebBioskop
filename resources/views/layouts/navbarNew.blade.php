@@ -55,9 +55,12 @@
                             <a class="nav-link {{ request()->is('myseenema') ? ' active' : '' }}" href="/myseenema">MYSEENEMA</a>
                         </li>
                         <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-                            <form action="/ContactUs">
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Contact Us</button>
-                            </form>
+                            {{-- <form action="/ContactUs"> --}}
+                                <a href="/#Map">
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Contact Us</button>
+                                </a>
+                               
+                            {{-- </form> --}}
                         </li>
                     </ul>
                 </div>

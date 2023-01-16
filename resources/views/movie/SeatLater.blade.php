@@ -25,7 +25,7 @@
                             @if ($data->jenis_studio === 'Regular')
 
                    
-                            <h1>contoh</h1>
+                            {{-- <h1>contoh</h1>
                             
                                @if($data->id_jadwal == $data->id_jadwal)
                              @foreach($data2 as $d)
@@ -35,7 +35,7 @@
                              @endforeach
                                @endif
 
-                            <H1>Selesai</H1>
+                            <H1>Selesai</H1> --}}
 
 
 
