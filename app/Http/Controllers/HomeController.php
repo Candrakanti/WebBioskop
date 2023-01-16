@@ -11,16 +11,12 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->has('search')) {
+
             
             $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')
             ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
-            ->where('judul_film', 'LIKE', '%' .$request->search. '%')
             ->get([ 'jadwal.*', 'film.*', 'studio.*']);
             // $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->where('judul_film', 'LIKE', '%' .$request->search. '%')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
-        } else {
-            $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
-        }        
         
         $end  =  jadwal::where('tgl_tayang_awal', '<=', Carbon::now());
         // $start  =  jadwal::where('tgl_tayang_awal', '<=', Carbon::now());
