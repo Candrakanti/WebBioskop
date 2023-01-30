@@ -16,11 +16,12 @@ class payment extends Model
 
         'id_payment',
         'id_booking',
-        'id_bank',
+        'nama_bank',
         'harga',
         'status',
         'image'
     ];
+
 
     public function bank()
     {

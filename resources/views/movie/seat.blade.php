@@ -2,6 +2,8 @@
 @section('container')
     {{-- <form method="POST" action="{{ route('booking.show', $data->id_jadwal) }}">
         @csrf --}}
+
+  
         <div class="row" >
             
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
@@ -392,7 +394,7 @@
                                             <label><input type="checkbox" value="{!! $data->harga !!}" data-value="E5"
                                                     name="kursi"></label>
                                             <label><input type="checkbox" value="{!! $data->harga !!}" data-value="E6"
-                                                    name="kursi"></label><br>
+                                                    name="kursi"></label><br>   
                                             <label><input type="checkbox" value="{!! $data->harga !!}" data-value="D4"
                                                     name="kursi"></label>
                                             <label><input type="checkbox" value="{!! $data->harga !!}" data-value="D5"
@@ -474,8 +476,20 @@
                                 </div>
 
                                 @else
-
                                 <div class="seats" id="seats" name="harga">
+
+                                        <h1>contoh</h1>
+                                    
+                                        @if($data->id_jadwal == $data->id_jadwal)
+                                      @foreach($data2 as $d)
+                                      @if($d->id_jadwal === $data->id_jadwal)
+                                    <h1>{{ $d->kursi }}</h1>
+                                      @endif
+                                      @endforeach
+                                        @endif
+                                    
+                                     <H1>Selesai</H1>
+                                    
                                         @foreach(range('A',$data->jumlah_row) as $v)
                                         <div class="row">
                                                 <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -485,13 +499,24 @@
                                                 </div>
                                                 <div class="col-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
                                                         @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
-                                                        <input type="checkbox"   name="kursi"  data-value=" {{ $v }}{{$i }}" value="{{ $data->harga }}"
+                                                        <input type="checkbox"   name="kursi"  data-value="{{ $v }}{{$i }}" value="{{ $data->harga }}"
+                                                        @if($data->id_jadwal == $data->id_jadwal)
+                                                        @foreach($data2 as $d)
+                                                       @if($d->id_jadwal == $data->id_jadwal and $d->kursi ==  $v.$i )
+                                                     disabled
+                                                       @endif
+                                                        @endforeach
+                                                          @endif
                                                         >
                                                          @endfor
                                                 </div>
+                                    
+                                                {{-- @if($d->id_jadwal == $data->id_jadwal and $d->kursi == {{ $i }})
+                                                       disabled
+                                                        @endif --}}
                                         </div>
                                             @endforeach  
-                                </div>
+                                    </div>
                             @endif
                         </div>
                     </div>
@@ -567,15 +592,11 @@
                                                 <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" readonly
                                                 name="harga" aria-label="Disabled input example"  id="price">
                                             </div>
-                                            
-                                            <div class="container text-center mt-3">
-                                                <button class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">BOOK NOW</button>
-                                            </div>
-                
-                                            {{-- <div class="container text-center mt-3">
-                                                    <button type="submit" class="btn btn-primary" id="pay-button" disabled>BOOK NOW </button>
-                                            </div>   --}}
                                            
+                                            <div class="container text-center mt-3">
+                                                    <button type="submit" class="btn btn-primary" id="pay-button" disabled data-bs-toggle="modal" href="#exampleModalToggle" role="button">BOOK NOW </button>
+                                            </div>  
+                                {{-- </div> --}}
                                             <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                   <div class="modal-content">
@@ -583,45 +604,45 @@
                                                       <h1 class="modal-title fs-5" id="exampleModalToggleLabel">{{ auth()->user()->name }}</h1>
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <div class="modal-body" style="padding: 0;">
+                                                    <div class="modal-body" style="padding: 0;                                                                          ">
                                                         <ul class="list-group">
                                                                 <div class="card"style="margin-bottom:30%;" >
                                                                         <img src="/img/movie.png" class="card-img-top" alt="...">
                                                                         <div class="card-body">
                                                                           {{-- <div class="ratio ratio-16x9" style="background: red;"> --}}
                                                                                 <div class="container " style="padding-bottom: 0%">
-                                                                                        <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
-                                                                                            <div class="accordion-item">
-                                                                                                <h2 class="accordion-header" id="flush-headingOne">
-                                                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                                                                                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                                                                                        <p class="pt-3"><strong> Total</strong> &nbsp; Rp. </p> 
-                                                                                                            <p class="pt-3"><input class="form-control" type="text" readonly
-                                                                                                             name="harga" aria-label="Disabled input example"  id="price2" style=" background: transparent; border: none; color:black;"></p>
-                                                                                                         </div>
+                                                                                                <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
+                                                                                                <div class="accordion-item">
+                                                                                                        <h2 class="accordion-header" id="flush-headingOne">
+                                                                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                                                                                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                                                                                                <p class="pt-3"><strong> Total</strong> &nbsp; Rp. </p> 
+                                                                                                                <p class="pt-3"><input class="form-control" type="text" readonly
+                                                                                                                name="harga" aria-label="Disabled input example"  id="price2" style=" background: transparent; border: none; color:black;"></p>
+                                                                                                                </div>
+                                                                                                                </div>
+                                                                                                        </button>
+                                                                                        
+                                                                                        
+                                                                                                        </h2>
+                                                                                        
+                                                                                                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                                                                                                        data-bs-parent="#accordionFlushExample">
+                                                                                                        <div class="accordion-body pt-2">
+                                                                                                        <div class="row">
+                                                                                                                <div class="col-6">
+                                                                                                                        <p class="" id="exampleModalToggleLabel">{{ auth()->user()->name }}</p>
+                                                                                                                </div>
+                                                                                                                <div class="col-6">
+                                                                                                                        <p class="" id="exampleModalToggleLabel">{{ auth()->user()->email}}</p>
+                                                                                                                </div>
                                                                                                         </div>
-                                                                                                    </button>
-                                                                                
-                                                                                
-                                                                                                </h2>
-                                                                                
-                                                                                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                                                                                                    data-bs-parent="#accordionFlushExample">
-                                                                                                    <div class="accordion-body pt-2">
-                                                                                                       <div class="row">
-                                                                                                        <div class="col-6">
-                                                                                                                <p class="" id="exampleModalToggleLabel">{{ auth()->user()->name }}</p>
-                                                                                                        </div>
-                                                                                                        <div class="col-6">
-                                                                                                                <p class="" id="exampleModalToggleLabel">{{ auth()->user()->email}}</p>
-                                                                                                        </div>
-                                                                                                       </div>
+                                                                                                                
                                                                                                         
-                                                                                                       
-                                                                                                    </div>
+                                                                                                        </div>
+                                                                                                        </div>
                                                                                                 </div>
-                                                                                            </div>
-                                                                                        </div>                                                          
+                                                                                                </div>                                                          
 
                                                                 {{-- <div class="card" >
                                                                         <img src="/img/movie.png" class="card-img-top" alt="...">
@@ -655,10 +676,10 @@
                                                                     </div>  
                                                                 
                                                                     <div class="container">
-                                                                        <h4>Select Method</h4>
+                                                                        <p><strong> Select Method</strong></p>
                                                                 </div>
 
-                                                                {{-- <div class="mb-3">
+                                                                  {{-- <div class="mb-3">
                                                                         <label for="id_film" class="form-label">Id Film</label>
                                                                         <input class="form-control" list="judul_film" id="id_film" name="id_film" placeholder="Type to search...">
                                                                             <datalist id="judul_film">
@@ -668,10 +689,22 @@
                                                                             </datalist>
                                                                     </div> --}}
 
-                                                                <li class="list-group-item" style="padding: 0.75rem 5rem;">
+                                                                    <div class="checkout" id="checkout">
+                                                                        @foreach ($data3 as $b)
+                                                                        <li class="list-group-item" style="padding: 0.75rem 5rem;">
+                                                                          <input class="form-check-input me-1" type="radio" name="nama_bank" value="{{$b->nama_bank}}"  >
+                                                                          <label class="form-check-label" for="firstRadio">{{ $b->nama_bank }}</label>
+                                                                        </li>
+                                                                        @endforeach
+                                                                    </div>
+                                                                    <div class="">
+                                                                        <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
+                                                                        aria-label="Disabled input example" disabled id="bank" >
+                                                                </div>
+
+                                                                {{-- <li class="list-group-item" style="padding: 0.75rem 5rem;">
                                                                   <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
                                                                   <label class="form-check-label" for="firstRadio" id="BNI" >BNI</label>
-                                                                  {{-- <img src="/img/bni-logo.png" class="card-img-top" alt="" style="width: 30%"> --}}
 
                                                                 </li>
                                                                 <li class="list-group-item" style="padding: 0.75rem 5rem;">
@@ -682,7 +715,7 @@
                                                                   <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="thirdRadio">
                                                                   <label class="form-check-label" for="thirdRadio">BRI</label>
                                                                 </li>
-                                                       
+                                                        --}}
                                                        </ul>
                                                     </div>
                                                    
@@ -705,8 +738,13 @@
                                                     <div class="modal-body" >
                                                      
                                                                 <img src="/img/movie.png" class="card-img-top" alt="...">
-                                                        {{-- </div> --}}
 
+                                                                <div class="">
+                                                                        <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
+                                                                        name="nama_bank" aria-label="Disabled input example" readonly  id="bank2">
+                                                                   </div>
+                                                    
+                                                                
                                                         <div class="">
                                                                 <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                                     placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
@@ -756,10 +794,10 @@
                                                                 @enderror
                                                             </div>  
                            
-                                                            
+                                                        
                                                     </div>
                                                     <div class="modal-footer">
-                                                      <button type="submit" class="btn btn-primary" data-bs-toggle="modal" role="button"  id="pay-button" disabled>Done</button>
+                                                      <button type="submit" class="btn btn-primary" data-bs-toggle="modal" role="button"  id="final-pay" >Done</button>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -786,30 +824,57 @@
         // });
       </script> --}}
 
+    
+      <script>
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
+
     <script>
-        
+
         $(document).ready(function() {
+
                 $('#kursi').wrap(
                             '@foreach($data2 as $d) @endforeach'
                         );
 
             $('.seats').click(function() {
-                var test = new Array();
-                var book ="H1";
+                var test = new Array();  
                 $("input[name='kursi']:checked").each(function() {
                                 test.push($(this).data('value'));          
                 }); 
 
-                var check =    $(":checkbox:checked").length;
            document.getElementById('seat').value = test ;
            document.getElementById('seat2').value = test ;
            document.getElementById('seat3').value = test ;
 
+           $('.checkout').click(function() {
+                var bank = $('input[name="nama_bank"]:checked').val();
+           
+                document.getElementById('bank').value = bank;
+                document.getElementById('bank2').value = bank;
+
+                });
+
+           var check =    $(":checkbox:checked").length;
            document.getElementById('count_seat').value=  check;
            document.getElementById('count_seat2').value=  check;
            document.getElementById('count_seat3').value=  check;
-         
-  
                 var input = document.getElementsByName("kursi");
                 var total = 0;
                 for (var i = 0; i < input.length; i++) {
@@ -845,3 +910,6 @@
      
     </script>
 @endsection
+
+
+

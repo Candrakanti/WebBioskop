@@ -59,6 +59,9 @@ Route::resource('/paydone', PaydoneController::class);
     Route::get('/mycgv', [CgvController::class, 'index']);
     Route::get('/booking/show/{id_jadwal}', [BookingController::class, 'index'])->name('booking.show');
     Route::post('AddProduct/{id_jadwal}', [BookingController::class, 'store'])->name('cart.store');
+
+    Route::post('AddProductLater/{id_jadwal}', [BookingController::class, 'Later'])->name('cart.storeLater');
+    
     Route::get('cart/detail', [BookingController::class, 'show'])->name('cart/detail');
     Route::get('Npayment', [BookingController::class, 'form'])->name('payment.form');
     Route::get('/BookLater/{id_jadwal}', [MovieController::class, 'booklater'])->name('booklater.show');
@@ -68,6 +71,8 @@ Route::resource('/paydone', PaydoneController::class);
 
 });
 
+
+Route::get('/playing', [HomeController::class, 'playing']);
 
 //   ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -153,7 +158,10 @@ Route::get('paydone/{id_film}', [BookingController::class, 'store'])->name('payd
 
 Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
-    Route::get('/payment', [CrudPaymentController::class, 'customer']);
+    Route::get('/CrudPayment', [CrudPaymentController::class, 'customer']);
+    // Route::get('/PrintData', [CrudPaymentController::class, 'print']);
+    // Route::get('/CetakDataPertanggal/{tglawal}/{tglakhir}', [CrudPaymentController::class, 'cetakPertanggal']);
+    // Route::post('user-export', [CrudPaymentController::class, 'export']->name('excel'));
 });
 
 

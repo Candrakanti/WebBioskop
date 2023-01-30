@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
 
+        // Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -229,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'locale'=>'id',
+        // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         // 'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],

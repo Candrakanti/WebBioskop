@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
-class Booking extends Model
+class BookingLater extends Model
 {
     use HasFactory;
-    protected $table = "booking";
+    protected $table = "booking_later";
     public $timestamps = false;
     protected $primaryKey = 'id_booking';
     protected $keyType = 'string';

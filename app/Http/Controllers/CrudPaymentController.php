@@ -19,10 +19,7 @@ class CrudPaymentController extends Controller
     }
     public function index()
     {
-
-        $data = studio::all();
-
-        return view('payment.crud.index', compact('data'), [
+        return view('Payment.crud.index', [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);
@@ -32,12 +29,30 @@ class CrudPaymentController extends Controller
     public function customer()
     {
 
-        $data = Booking::all();
-
+        $data = Booking::join('users' ,'users.id' ,'=','booking.id_booking')->join('payment','payment.id_booking' ,'=','booking.id_booking')->get(['booking.*','payment.*' ,'users.*']);
+    
         return view('payment.crud.LayoutPayment',  compact('data'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);
         // return view('studio.LayoutStudio')->with('studio', $studio);
+    }
+
+    public function print(){
+        return view('payment.crud.print', [
+            'title' => 'Admin Payment',
+            'pages' => 'Table Payment'
+        ]);
+    }
+
+    public function cetakPertanggal($tglawal,$tglakhir){
+        // dd(["Tanggal Awal : ".$tglawal, "Tanggal Akhir :".$tglakhir]);
+
+        $cetak = Booking::with('id_booking')->whereBetween('tanggal_booking',[$tglawal, $tglakhir]); 
+          return view('payment.crud.PrintPayment', compact('cetak'), [
+            'title' => 'Admin Payment',
+            'pages' => 'Table Payment'
+        ]);
+
     }
 }

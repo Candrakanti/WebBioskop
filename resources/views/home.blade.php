@@ -86,6 +86,15 @@
           </div>
       </div>
   </div>
+
+<section id="movie">
+  <div class="row text-center">
+    <div class="col-4"><a href="/playing">Playing</a></div>
+    <div class="col-4"><a>Upcoming</a></div>
+  </div>
+</section>
+  
+
 </section>
 
 <section id="upcoming">
