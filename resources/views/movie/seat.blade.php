@@ -5,23 +5,7 @@
         @csrf --}}
         
       
-        <div class="container">
-                {{-- <h1>  {{ Carbon\Carbon::now()->format('Y-m-d') }}</h1> --}}
-                <h1>  {{ Carbon\Carbon::now()->format('H:i:s') }}</h1>
-                {{-- <h1>  {{ Carbon\Carbon::now()->format('Y-m-d H:i:s') }}</h1> --}}
-                <div class="border border-success p-2 mb-2" style="width:50px; height:50px;">
-                        <div class="row">
-                                   <div class="col-12 col-md-12 col-lg-12 col-sm-12 g-0 text-center">
-                               hi
-                                </div>
-                                   <div class="col-12  col-md-12 col-lg-12 col-sm-12 text-center pb-5">
-                                        <input type="checkbox">
-                                </div>
-                        </div>
-                    
-                </div>
-        </div>
-        {!! QrCode::generate('Make me into a QrCode!'); !!}
+       
         <div class="row" >
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
     
@@ -42,7 +26,7 @@
                             @if ($data->jenis_studio === 'Regular')
 
                    
-                            <h1>contoh</h1>
+                            {{-- <h1>contoh</h1>
                        
                             
                                @if($data->id_jadwal == $data->id_jadwal)
@@ -53,7 +37,7 @@
                              @endforeach
                                @endif
 
-                            <H1>Selesai</H1>
+                            <H1>Selesai</H1> --}}
 
                                 <div class="seats" id="seats" name="harga">
 
@@ -117,7 +101,7 @@
                                 @else
                                 <div class="seats" id="seats" name="harga">
 
-                                        <h1>contoh</h1>
+                                        {{-- <h1>contoh</h1>
                                     
                                         @if($data->id_jadwal == $data->id_jadwal)
                                       @foreach($data2 as $d)
@@ -128,7 +112,7 @@
                                         @endif
                                     
                                      <H1>Selesai</H1>
-<h1>{{ $data->jam_tayang }}</h1>
+<h1>{{ $data->jam_tayang }}</h1> --}}
                                         @foreach(range('A',$data->jumlah_row) as $v)
                                         <div class="row">
                                                 <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -262,12 +246,12 @@
                                             </div>
 
                                             <div class="pt-3">
-                                                <input class="form-control" type="text" 
+                                                <input class="form-control" type="hidden" 
                                                 name="id_jadwal" value="{{ $data->id_jadwal}}">
                                             </div>
 
                                             <div class="pt-3">
-                                                <input class="form-control" type="text" 
+                                                <input class="form-control" type="hidden" 
                                                 name="jam_tayang" value="{{ $data->jam_tayang}}">
                                             </div>
 
@@ -378,7 +362,7 @@
                                                             </div>
 
                                                         <div class="">
-                                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih"
+                                                                <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
                                                                 aria-label="Disabled input example" disabled id="bank" >
                                                         </div> 
                                                
@@ -438,7 +422,7 @@
                                                     </div>
 
                                                     <div class="pt-3">
-                                                        <input class="form-control" type="text" 
+                                                        <input class="form-control" type="hidden" 
                                                         name="jam_booking" value="{{ $data->jam_tayang}}">
                                                     </div>
 

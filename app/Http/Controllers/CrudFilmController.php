@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\JenisFilm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -21,15 +22,16 @@ class CrudFilmController  extends Controller
             $films = Film::where('judul_film', 'LIKE', '%' .$request->search. '%')->get();
             // $films = Film::where('id_film','LIKE','%' .$request->search.'%' );
         } else {
-            $films = Film::all();
+              $films = Film::all();
+            // $films = Film::join('jenis_film' ,'jenis_film.id_jenis_film' ,'=','film.id_film')->get(['jenis_film.*','film.*']);
         }
-
         // $films = Film::all();
+        
         return view('film.home', compact('films'), [
             'title' => 'Admin Film',
             'active' => 'Admin Film',
             'pages' => 'Data Film',
-        ]);
+        ]); 
     }
 
     /**
@@ -149,7 +151,7 @@ class CrudFilmController  extends Controller
         $validatedData = $request->validate([
             'id_film' => 'required|max:255',
             'judul_film' => 'required|max:255',
-            'jenis_film' => 'required|max:255',
+            'jenis' => 'required|max:255',
             // 'jenis_film' => 'required',
             'producer' => 'required|max:255',
             'sutradara' => 'required|max:255',

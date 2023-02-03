@@ -62,7 +62,7 @@
                                                     judul</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    jenis</th>
+                                                    jenis Film</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     Action</th>
@@ -96,7 +96,7 @@
 
                                                 <td class="align-middle text-center">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $film->jenis_film }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $film->jenis }}</span>
                                                 </td>
 
                                                 <td class="align-middle text-center text-sm">
