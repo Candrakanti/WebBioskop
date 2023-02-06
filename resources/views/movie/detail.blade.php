@@ -1,9 +1,19 @@
 @extends('layouts.main')
 
+<style>
+.btn-outline-danger.disabled{
+    color:#black !important;
+    background-color: #fff !important;
+    outline: wheat !important;
+}
+</style>
+
 @section('container')
 @if($data->tgl_tayang_awal  >=  Carbon\Carbon::now()->format('Y-m-d'))
 <h4 class="fw-light text-danger">COMING SOON</h4>
 @endif
+
+<h1>{{ \Carbon\Carbon::now()->format('H:i:s')  }}</h1>
     {{-- <form method="POST" action="{{ route('movie.detail', $data->id_jadwal) }}">
         @csrf --}}
         {{-- <h1>{{  \Carbon\Carbon::now()->format('Y-m-d') }}</h1> --}}
@@ -151,38 +161,39 @@
         </div>
     </div>
 
-
-  {{-- <div class="container">
+  <div class="container">
+    @foreach($bio as $d)
   
-@foreach ($bio as $d)
-
+   
     <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
+          
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-            
-                {{ $d->nama_bioskop }}
-              
+               @if($data->id_jadwal == $d->id_jadwal and $data->id_bioskop == $d->id_bioskop )
+            {{ $d->nama_bioskop }}
+  @endif
             </button>
+        
           </h2>
+        
           <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
-                @foreach($mall as $m)  
-               @if($m->id_jadwal ==  $data->id_jadwal  and $m->id_jadwal == $data->id_jadwal)
-               <a href="/booking/{{ $m->id_jadwal }}/{{ $m->jam_tayang }}"  class="btn btn-outline-danger ">
-               {{ $m->jam_tayang }}
-               </a>
-             @endif
-               @endforeach
-
+                    @foreach($mall as $m)
+                @if($data->id_jadwal == $m->id_jadwal and $d->id_bioskop == $m->id_bioskop )
+              <h1 class="d-none"> hhlo</h1>
+                {{ $m->jam_tayang }}
+            
+                @endif
+                @endforeach
             </div>
           </div>
-
         </div>
+    
+        @endforeach
+       
+  </div>
 
-@endforeach
-  </div> --}}
-   
         <section id="Time">
           
         @foreach ($mall as $d)
@@ -213,10 +224,18 @@
                         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                             data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                       
-                                <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}"  class="btn btn-outline-danger ">
-                                      {{ $d->jam_tayang }} 
-                                </a>  
+                           
+                      @if( $d->jam_tayang <= Carbon\Carbon::now()->format('H:i:s') )
+                      <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}"   id="link" class="btn btn-outline-danger ">
+                        {{ $d->jam_tayang }} 
+                  </a>  
+                
+                    @else
+                    <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}" class="btn btn-outline-danger ">
+                        {{ $d->jam_tayang }} 
+                  </a>  
+@endif
+
 
                             </div>
                         </div>
@@ -239,5 +258,11 @@ var modal = $('.modal-dialog');
 modal.find('.btn-close').click(function() {
    modal.remove();
 });
+
+var d = document.getElementById("link");
+d.className = d.className + " disabled ";
+
+// $('#link').addClass('disabled' ,'btn btn-warning');
     </script>
+
 @endsection
