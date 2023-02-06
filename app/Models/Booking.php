@@ -30,8 +30,8 @@ class Booking extends Model
     
     ];
 
-     protected $casts = [
-        'kursi' => 'array',
-    ];
+    //  protected $casts = [
+    //     'kursi' => 'array',
+    // ];
 
 }

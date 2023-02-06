@@ -18,7 +18,7 @@ class CreateStudioTable extends Migration
             $table->string('id_jenis_studio', 225);
             $table->string('audiotori');
             $table->char('jumlah_row');
-            $table->dou('jumlah_kursi_perrow');
+            $table->double('jumlah_kursi_perrow');
         });
     }
 

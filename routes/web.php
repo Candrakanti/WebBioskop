@@ -81,6 +81,10 @@ Route::get('/myseenema', [CgvController::class, 'index']);
     Route::get('/mindtrans', [BookingController::class, 'mindtrans']);
     Route::post('/mindtrans', [BookingController::class, 'mindtrans_post']);
 
+    Route::get('paydone/{id_film}', [BookingController::class, 'store'])->name('paydone');
+
+    Route::get('qrcode/{id_booking}', [PaydoneController::class, 'generate'])->name('generate');
+
 });
 
 
@@ -175,7 +179,6 @@ Route::get('/ticket/show/{id_film}', [RticketController::class, 'show'])->name('
 
 Route::resource('/booking', BookingController::class)->middleware('auth');
 
-Route::get('paydone/{id_film}', [BookingController::class, 'store'])->name('paydone')->middleware('auth');
 Route::get('/bank',[ BankController::class , 'index']);
 
 // Route::get('/booking', [CartController::class, 'index'])->name('booking.cart')->middleware('auth');
