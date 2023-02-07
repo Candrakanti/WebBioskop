@@ -75,7 +75,6 @@ class CrudJadwalController extends Controller
             'id_jadwal' => 'required|min:5|max:10|unique:jadwal',
             'id_studio' => 'required',
             'id_film' => 'required',
-       
             'tgl_tayang_awal' => 'required',
             'tgl_tayang_akhir' => 'required',
          

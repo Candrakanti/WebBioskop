@@ -12,6 +12,7 @@ class _detail_bioskop extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id_db',
         'id_bioskop',
         'id_jadwal',
     
