@@ -149,4 +149,6 @@ class CrudStudioController extends Controller
         DB::table('studio')->where('id_studio', $id_studio)->delete();
         return redirect('/CrudStudio')->with('success', 'Data Berhasil Di Hapus');
     }
+
+
 }

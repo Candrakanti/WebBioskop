@@ -25,6 +25,8 @@ use App\Http\Controllers\RticketController;
 use App\Http\Controllers\SeatController;
 use App\Models\studio;
 
+use App\Http\Controllers\CrudBioskopController;
+
 use App\Http\Controllers\CrudPaymentController;
 use App\Http\Controllers\JenisController;
 use App\Http\Controllers\BankController;
@@ -197,4 +199,11 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
 });
 
 
-// Route::get('/crudFilm/search/{id_film}', [CrudFilmController::class, 'search'])->name('crudFilm.search');
+Route::resource('/crudBioskop', CrudBioskopController::class);
+Route::delete('/crudBioskop/delete/{id_bioskop}', [CrudBioskopController::class, 'destroy'])->name('crudBioskop.delete');
+Route::post('/crudBioskop/update', [CrudBioskopController::class, 'update']);
+Route::get('/crudBioskop/edit{id_bioskop}', [CrudBioskopController::class, 'edit'])->name('crudBioskop.edit');
+
+
+
+// Route::get('/crudFilm/search/{id_film}', [CrudFilmController::class, 'search'])->name('crudFilm.search')
