@@ -163,26 +163,27 @@
 
   <div class="container">
     @foreach($bio as $d)
-  
+ 
    
     <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
           
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-               @if($data->id_jadwal == $d->id_jadwal and $data->id_bioskop == $d->id_bioskop )
-            {{ $d->nama_bioskop }}
-  @endif
+               @if( $data->id_jadwal == $d->id_jadwal )
+
+            {{ $d->id_bioskop}}
+
             </button>
         
           </h2>
-        
+        @endif
           <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                     @foreach($mall as $m)
-                @if($data->id_jadwal == $m->id_jadwal and $d->id_bioskop == $m->id_bioskop )
-              <h1 class="d-none"> hhlo</h1>
-                {{ $m->jam_tayang }}
+                @if($data->id_jadwal == $m->id_jadwal and $d->id_bioskop == $m->id_bioskop)
+
+                   {{ $m->jam_tayang }}
             
                 @endif
                 @endforeach
