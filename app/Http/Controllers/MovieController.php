@@ -57,7 +57,12 @@ class MovieController extends Controller
 
      $mall = Bioskop::join('_detail_bioskop' ,'_detail_bioskop.id_bioskop' ,'=' ,'bioskop.id_bioskop')->join('_detail_jam' ,'_detail_jam.id_bioskop' , '=' ,'_detail_bioskop.id_bioskop')->join('jadwal' ,'jadwal.id_jadwal' ,'=' ,'_detail_bioskop.id_jadwal')->join('studio' , 'studio.id_studio' , '=' , 'jadwal.id_studio')->join('detail_jenis_studio' ,'detail_jenis_studio.id_jenis_studio' ,'=' ,'studio.id_jenis_studio')->get(['jadwal.*' ,'bioskop.*' ,'_detail_bioskop.*' ,'_detail_jam.*' ,'detail_jenis_studio.*']);
 
-     $bio = bioskop::join('_detail_bioskop' ,'_detail_bioskop.id_bioskop' ,'=' ,'bioskop.id_bioskop')->get(['bioskop.*' , '_detail_bioskop.*' ]);
+    //  $bio = _detail_bioskop::join('bioskop' ,'bioskop.id_bioskop' ,'=','_detail_bioskop.id_bioskop')->join('_detail_jam' ,'_detail_jam.id_bioskop' ,'=' ,'_detail_bioskop.id_bioskop')->get(['_detail_bioskop.*' ,'bioskop.*' ,'_detail_jam.*']);
+
+    // $bio = Bioskop::join('_detail_jam' ,'_detail_jam.id_bioskop','=','bioskop.id_bioskop')->get(['_detail_jam.*' ,'bioskop.*']);
+
+     $b = Bioskop::join('_detail_jam', 'detail_jam');
+    $bio = _detail_jam::join('_detail_bioskop', '_detail_bioskop.id_bioskop' ,'=' ,'_detail_jam.id_bioskop')->get(['_detail_jam.*' ,'_detail_bioskop.*']);
 
         $time = _detail_jam::where('jam_tayang', '<=', Carbon::now()->timezone('asia/jakarta')->format('h:i'))->get();
         return view('movie.detail', compact('data' ,'time' ,'mall' ,'bio' ), [

@@ -90,7 +90,7 @@
             @if ($film->image)
             <div class="rounded">
             <a href="/movie/detail/{{ $film->id_jadwal}}">
-            <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
+            <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">    
             </a>
           </div>
             @endif
