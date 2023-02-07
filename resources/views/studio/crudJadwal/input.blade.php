@@ -56,10 +56,7 @@
                         @endforeach
                         </datalist>
                 </div>
-                
-
-               
-
+            
                     <div class="mb-3">
                         <label for="tgl_tayang_awal" class="form-label">Tanggal Tayang Awal</label>
                         <input type="date" class="form-control @error('tgl_tayang_awal') is-invalid @enderror"

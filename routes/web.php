@@ -16,6 +16,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CrudStudioController;
+use App\Http\Controllers\CrudDetBioskopController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\CrudFilmController;
 
@@ -161,6 +162,11 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::get('/CrudStudio/edit{id_studio}', [CrudStudioController::class, 'edit'])->name('CrudStudio.edit');
     Route::post('/CrudStudio/update', [CrudStudioController::class, 'update']);
     Route::delete('/CrudStudio/delete/{id_studio}', [CrudStudioController::class, 'destroy'])->name('CrudStudio.delete');
+
+    Route::resource('/detbioskop', CrudDetBioskopController::class);
+    Route::get('detbioskop/edit{id_db}', [CrudDetBioskopController::class, 'edit'])->name('detbioskop.edit');
+    Route::post('/detbioskop/update', [CrudDetBioskopController::class, 'update']);
+    Route::delete('/detbioskop/delete/{id_db}', [CrudDetBioskopController::class, 'destroy'])->name('detbioskop.delete');
 
     Route::resource('/kota', KotaController::class);
 

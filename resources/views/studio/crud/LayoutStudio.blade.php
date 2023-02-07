@@ -1,18 +1,7 @@
 @extends('studio.templateDashboard.sidebar')
 
 @section('container')
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ $title }}</title>
-
-    </head>
-
-    <body>
         <div class="container pb-3">
             <a href="/CrudStudio/create" class="btn btn-info"> Create Data Studio</a>
 
@@ -110,7 +99,7 @@
 
                                                 <td class="align-middle text-center text-sm">
                                                     <a class="badge badge-sm bg-gradient-warning"
-                                                        href="/CrudStudio/{{ $data->id_studio }}/edit">Edit</a>
+                                                    href="/CrudStudio/{{ $data->id_studio }}/edit">Edit</a>
 
                                                     {{-- <form id="delete-user-form" action="/CrudStudio/{{ $data->id_studio }}" method="POST" class="d-inline">
                       @csrf
@@ -147,7 +136,6 @@
                     </div>
                 </div>
 
-    </body>
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
@@ -178,5 +166,5 @@
     </script>
 
 
-    </html>
+
 @endsection
