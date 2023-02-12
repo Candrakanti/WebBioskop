@@ -27,6 +27,7 @@ use App\Http\Controllers\SeatController;
 use App\Models\studio;
 
 use App\Http\Controllers\CrudBioskopController;
+use App\Http\Controllers\CrudDetJamController;
 
 use App\Http\Controllers\CrudPaymentController;
 use App\Http\Controllers\JenisController;
@@ -210,6 +211,16 @@ Route::delete('/crudBioskop/delete/{id_bioskop}', [CrudBioskopController::class,
 Route::post('/crudBioskop/update', [CrudBioskopController::class, 'update']);
 Route::get('/crudBioskop/edit{id_bioskop}', [CrudBioskopController::class, 'edit'])->name('crudBioskop.edit');
 
+Route::resource('/crudDetjam', CrudDetJamController::class);
+
+Route::get('/get-procedure', function() {
+    $id = 1;
+
+    $post = DB::select("CALL JumlahPembelian (".$id.")");
+    dd($post);
+
+});
 
 
-// Route::get('/crudFilm/search/{id_film}', [CrudFilmController::class, 'search'])->name('crudFilm.search')
+
+// Route::get('/crudFilm/search/{id_film}', [CrudFilmController::class, 'search'])->name('crudFilm.search');

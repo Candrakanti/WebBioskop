@@ -14,6 +14,7 @@ class _detail_jam extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
+        
         'id_jadwal',
         'jam_tayang',
     

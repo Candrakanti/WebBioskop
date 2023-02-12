@@ -2,16 +2,46 @@
 
 @section('container')
 
-<h4><b>Pesanan Saya</b></h4>
-<h4 class="text-center"> Belum Selesai</h4>
+{{-- <h4><b>Pesanan Saya</b></h4>
+<h4 class="text-center"> Belum Selesai</h4> --}}
+
+<div class="container mb-4">
+  <div class="row">
+
+      <div class="col-6 col-xs-6 col-md-6 col-sm-6 col-lg-6">
+          <a class="text-danger" href="#" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false" >
+          <h3><b>Pesanan Saya</b></h3>
+          </a>
+      </div>
+
+      <div class="col-6 col-xs-6 col-md-6 col-sm-6 col-lg-6">
+          <div class="row d-flex justify-content-end">
+              <div class="col-md-6 col-6 col-sm-6 col-lg-6">
+                  <form action="/unpaid" method="GET">
+                      <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan judul film"> 
+                  </form>
+              </div>
+              <div class="col-md-1 col-1 col-sm-1 col-lg-1">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+          </div>
+      </div>
+      
+  </div>
+</div>
+
+<h4 class="text-center"> Belum Selesai </h4>
 
 
 @foreach ($listproducts as $item)
 
     @if($item->status_bayar === "0")
+    
 
     <div class="container">
         <div class="container d-flex" >
+          
 
             <div class="card mb-3 border border-2" style="max-width: 600px;"   >
                 <div class="row g-0">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Film;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -14,18 +15,18 @@ class PaydoneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Booking $id_booking)
+
+    public function index( Request $request)
     {
+        if($request->has('search')) {
+            $listproducts = Film::where('judul_film', 'LIKE', '%' .$request->search. '%')->get();
+        } else {
+            $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->join('payment','payment.id_payment' ,'=','booking.id_payment')->join('studio', 'studio.id_studio', '=' ,'jadwal.id_studio')->join('detail_jenis_studio' ,'detail_jenis_studio.id_jenis_studio','=' ,'studio.id_jenis_studio')->join('_detail_bioskop' ,'_detail_bioskop.id_jadwal', '=' ,'jadwal.id_jadwal' )->join('bioskop' ,'bioskop.id_bioskop' ,'=' ,'_detail_bioskop.id_bioskop')->get(['booking.*', 'jadwal.*' ,'film.*' ,'payment.*' ,'studio.*' ,'detail_jenis_studio.*' ,'bioskop.*'])->where('id_customer', '=', Auth::user()->id);        }
 
-        $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->join('payment','payment.id_payment' ,'=','booking.id_payment')->join('studio', 'studio.id_studio', '=' ,'jadwal.id_studio')->join('detail_jenis_studio' ,'detail_jenis_studio.id_jenis_studio','=' ,'studio.id_jenis_studio')->join('_detail_bioskop' ,'_detail_bioskop.id_jadwal', '=' ,'jadwal.id_jadwal' )->join('bioskop' ,'bioskop.id_bioskop' ,'=' ,'_detail_bioskop.id_bioskop')->get(['booking.*', 'jadwal.*' ,'film.*' ,'payment.*' ,'studio.*' ,'detail_jenis_studio.*' ,'bioskop.*'])->where('id_customer', '=', Auth::user()->id);
-
-
-        return view('profil.paydone', [
+        return view('profil.paydone', compact('listproducts'), [
             'title' => 'Mycgv',
             'active' => 'Mycgv'
-        ])->with($listproducts);
-
-        // ->with($listproducts);
+            ])->with($listproducts);
     }
 
     public function generate($id_booking)
