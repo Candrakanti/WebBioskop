@@ -1,5 +1,6 @@
 @extends('layouts.main')
 
+
 @section('container')
 
 {{-- <h2>{{  \Carbon\Carbon::now()->timezone('asia/jakarta')->format('h:i:s') }}</h2> --}}
@@ -84,6 +85,7 @@
 <div class="container">
     <div class="row">
       @foreach ($data as $film)
+      
       @if($film->tgl_tayang_awal  <=  Carbon\Carbon::now()->format('Y-m-d'))
       <div class="col-6 col-lg-3 col-md-3 col-sm-6 col-xs-6">
         <div class="card">

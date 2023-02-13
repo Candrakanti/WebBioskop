@@ -73,6 +73,7 @@ class BookingController extends Controller
 
         $generateBK =  IdGenerator::generate(['table' => 'booking', 'field' => 'id_booking', 'length' => 10, 'prefix' => 'BK'.Auth::user()->id]);
 
+    
         $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 10, 'prefix' =>'PY'.Auth::user()->id]);
 
         $data3 = bank::all();

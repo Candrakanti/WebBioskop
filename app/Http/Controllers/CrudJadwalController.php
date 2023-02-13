@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\jadwal;
 use App\Models\Film;
 use App\Models\studio;
+use App\Models\history_jadwal;
 use App\Models\kota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -79,8 +80,9 @@ class CrudJadwalController extends Controller
             'tgl_tayang_akhir' => 'required',
          
         ]);
-
+        
         jadwal::create($validatedData);
+        // history_jadwal::create($validatedData);
         return redirect('/crudJadwal')->with('success', 'Berhasil Data Telah Ditambahkan!');
     }
 

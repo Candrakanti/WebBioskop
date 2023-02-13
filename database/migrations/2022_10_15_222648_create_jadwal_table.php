@@ -22,6 +22,7 @@ class CreateJadwalTable extends Migration
             $table->date('tgl_tayang_akhir');
         
         });
+
     }
 
     /**
@@ -32,5 +33,6 @@ class CreateJadwalTable extends Migration
     public function down()
     {
         Schema::dropIfExists('jadwal');
+      
     }
 }

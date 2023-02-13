@@ -2,17 +2,6 @@
 
 @section('container')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
-    
-</head>
-
-<body>
 <div class="container pb-3">
   {{-- <a href="{{ route('LayoutPayment.export') }}" class="btn btn-info">print data</a> --}}
   <a href="/PrintData" class="btn btn-info">print data</a>
@@ -102,8 +91,7 @@
       </div>
     </div>
   </div>
-    
-</body>
+
 {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
@@ -134,6 +122,4 @@ $('.show_confirm').click(function(event) {
 
 </script>
 
-
-</html>
 @endsection

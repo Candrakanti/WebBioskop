@@ -5,6 +5,15 @@
 <h4><b>Pesanan Saya</b></h4>
 <h4 class="text-center"> Belum Selesai</h4>
 
+<h1>{{ $cst }}</h1>
+
+<div class="row 9-3 align-items-center mt-2">
+  <div class="col-auto">
+    <form action="/unpaid" method="GET">
+    <input type="search"  name="search"  class="form-control"  placeholder="Masukan Judul Film">
+  </form>
+  </div>
+</div>
 
 @foreach ($listproducts as $item)
 

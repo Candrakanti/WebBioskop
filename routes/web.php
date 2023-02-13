@@ -21,10 +21,10 @@ use App\Http\Controllers\KotaController;
 use App\Http\Controllers\CrudFilmController;
 
 
+use App\Http\Controllers\HistoryJadwalController;
 use App\Http\Controllers\CrudJadwalController;
 use App\Http\Controllers\RticketController;
 use App\Http\Controllers\SeatController;
-use App\Models\studio;
 
 use App\Http\Controllers\CrudPaymentController;
 use App\Http\Controllers\JenisController;
@@ -117,7 +117,7 @@ Route::middleware(['auth'])->group(function () {
 
    // BUAT BANK checkout MANUAL
    Route::get('/mybank', [BankController::class , 'index']);
-   Route::get('/checkout', [BankController::class , 'show']);
+   Route::get('/checkout', [BankController::class , 'show'])->name('checkout.show');
    Route::put('/checkout/update', [BankController::class, 'update'])->name('checkout.update');
 
 
@@ -134,12 +134,17 @@ Route::group(["middleware" => 'ceklevel:admin_film'], function () {
         ]);
     });
     Route::resource('/crudFilm', CrudFilmController::class);
+    
     Route::delete('/crudFilm/delete/{id_film}', [CrudFilmController::class, 'destroy'])->name('crudFilm.delete');
     Route::get('/crudFilm/edit/{id_film}', [CrudFilmController::class, 'edit'])->name('crudFilm.edit');
     Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
+    Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
+
+  
+
 });
 
-Route::resource('/tampil', JenisController::class);
+
 
 Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::get('/beranda', function () {
@@ -157,6 +162,11 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
             'active' => 'Admin Studio'
         ]);
     });
+
+    Route::resource('/history', HistoryJadwalController::class);
+    Route::delete('/history/delete/{id_jadwal}', [HistoryJadwalController::class, 'destroy'])->name('history.delete');
+    Route::get('/history/edit{id_jadwal}', [HistoryJadwalController::class, 'edit'])->name('history.edit');
+    Route::post('/history/update', [HistoryJadwalController::class, 'update']);
 
     Route::resource('/CrudStudio', CrudStudioController::class);
     Route::get('/CrudStudio/edit{id_studio}', [CrudStudioController::class, 'edit'])->name('CrudStudio.edit');

@@ -4,9 +4,10 @@
     {{-- <form method="POST" action="{{ route('booking', $data->id_jadwal) }}">
         @csrf --}}
         
-        {!! QrCode::generate('Make me into a QrCode!'); !!}
+        {{-- {!! QrCode::generate('Make me into a QrCode!'); !!}
        
         <div> <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate('Generate any QR Code!')) !!} " download>Downloads</a></div>
+         --}}
         <div class="row" >
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
     

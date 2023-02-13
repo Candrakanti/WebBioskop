@@ -1,5 +1,5 @@
 @extends('studio.templateDashboard.sidebar')
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
 
         <div class="container pb-3">
@@ -107,25 +107,26 @@
                     <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" data-id="{{$data->id_studio}}"  data-name="{{$data->id_studio}}"  > delete</a>
                     </form> --}}
 
-                                                    <form method="POST"
-                                                        action="{{ route('CrudStudio.delete', $data->id_studio) }}"
-                                                        class="d-inline">
-                                                        @csrf
-                                                        <input name="_method" type="hidden" value="DELETE">
-                                                        <button type="submit"
-                                                            class="badge badge-sm bg-gradient-danger  border-0 show_confirm"
-                                                            data-id="{{ $data->id_studio }}" data-toggle="tooltip"
-                                                            title='Delete'>Delete</button>
-                                                    </form>
+                       
+
+                        <form method="POST"
+                        action="{{ route('CrudStudio.delete', $data->id_studio) }}"
+                        class="d-inline">
+                        @csrf
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit"
+                            class="badge badge-sm bg-gradient-danger  border-0 show_confirm"
+                            data-id="{{ $data->id_studio }}" data-toggle="tooltip"
+                            title='Delete'>Delete</button>
+                    </form>
+
+                                               
 
                                                     {{-- <a href="/CrudStudio/{{ $data->id_studio }}" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
                                                 </td>
 
                                             </tr>
-                                            <tr>
-                                                <td>
-
-
+                                         
                                             </tr>
                                         </tbody>
                                         @endforeach
@@ -165,6 +166,13 @@
         });
     </script>
 
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 
+<script>
+  $(document).ready( function () {
+$('#myTable').DataTable();
+} );
+</script>
 
 @endsection
