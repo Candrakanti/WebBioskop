@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\jadwal;
 use App\Models\Film;
 use App\Models\payment;
+use App\Models\User;
 use App\Models\studio;
 use DB;
 use PDF;
+use Illuminate\Support\Facades\Auth;
 
 // use Illuminate\Support\Facades\DB;
 
@@ -20,12 +22,29 @@ class CrudPaymentController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {
-        return view('Payment.crud.index', [
+        // $data = User::join('booking' ,'booking.id_customer' ,'=','users.id')->get(['booking.*','users.*']);
+
+        // return view('Payment.crud.index', compact('data'), [
+        //     'title' => 'Admin Payment',
+        //     'pages' => 'Table Payment'
+        // ]);
+
+
+        if($request->has('search')) {
+            $data = User::where('id', 'LIKE', '%' .$request->search. '%')->get();
+          
+        } else {
+            $data = User::all();
+        }
+
+
+        return view('Payment.crud.index', compact('data'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);
+
         // return view('studio.LayoutStudio')->with('studio', $studio);
     }
 
@@ -86,10 +105,12 @@ class CrudPaymentController extends Controller
 
     public function customer()
     {
-
         $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->get(['booking.*','payment.*' ,'users.*']);
-     
-        return view('payment.crud.datauser',  compact('data'), [
+
+   
+        $post = DB::select("CALL buy()");
+
+        return view('payment.crud.datauser',  compact('data' , 'post'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);

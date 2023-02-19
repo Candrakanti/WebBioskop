@@ -26,6 +26,9 @@ use App\Http\Controllers\CrudJadwalController;
 use App\Http\Controllers\RticketController;
 use App\Http\Controllers\SeatController;
 
+use App\Http\Controllers\CrudBioskopController;
+use App\Http\Controllers\CrudDetJamController;
+
 use App\Http\Controllers\CrudPaymentController;
 use App\Http\Controllers\JenisController;
 use App\Http\Controllers\BankController;
@@ -139,11 +142,7 @@ Route::group(["middleware" => 'ceklevel:admin_film'], function () {
     Route::get('/crudFilm/edit/{id_film}', [CrudFilmController::class, 'edit'])->name('crudFilm.edit');
     Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
     Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
-
-  
-
 });
-
 
 
 Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
@@ -178,12 +177,19 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::post('/detbioskop/update', [CrudDetBioskopController::class, 'update']);
     Route::delete('/detbioskop/delete/{id_db}', [CrudDetBioskopController::class, 'destroy'])->name('detbioskop.delete');
 
-    Route::resource('/kota', KotaController::class);
-
     Route::resource('/crudJadwal', CrudJadwalController::class);
     Route::get('/crudJadwal/edit{id_jadwal}', [CrudJadwalController::class, 'edit'])->name('crudJadwal.edit');
 
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
+
+    Route::resource('/crudDetjam', CrudDetJamController::class);
+    Route::delete('/crudDetjam/delete/{id_jadwal}', [ CrudDetJamController::class, 'destroy'])->name('crudDetjam.delete');
+
+    Route::resource('/crudBioskop', CrudBioskopController::class);
+    Route::delete('/crudBioskop/delete/{id_bioskop}', [CrudBioskopController::class, 'destroy'])->name('crudBioskop.delete');
+    Route::post('/crudBioskop/update', [CrudBioskopController::class, 'update']);
+    Route::get('/crudBioskop/edit{id_bioskop}', [CrudBioskopController::class, 'edit'])->name('crudBioskop.edit');
+
 });
 
 Route::resource('/ticket', RticketController::class);
@@ -204,7 +210,7 @@ Route::get('/bank',[ BankController::class , 'index']);
 
 Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
-    Route::get('/CrudPayment', [CrudPaymentController::class, 'customer']);
+    Route::get('/CrudPayment/{$id}', [CrudPaymentController::class, 'customer']);
     Route::get('/CrudPayment/edit/{id_payment}',[CrudPaymentController::class,'edit'])->name('CrudPayment.edit');
     Route::post('/CrudPayment/update',[CrudPaymentController::class,'update']);
     Route::get('/datauser', [CrudPaymentController::class, 'customer']);
@@ -213,4 +219,13 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
 });
 
 
-// Route::get('/crudFilm/search/{id_film}', [CrudFilmController::class, 'search'])->name('crudFilm.search');
+Route::get('/get-procedure', function() {
+    $id = 1;
+
+    $post = DB::select("CALL JumlahPembelian (".$id.")");
+    dd($post);
+
+});
+
+
+

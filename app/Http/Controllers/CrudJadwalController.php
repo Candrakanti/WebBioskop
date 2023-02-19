@@ -57,8 +57,8 @@ class CrudJadwalController extends Controller
         $data =  studio::all();
         $data1 =  Film::all();
         $data2 =  jadwal::all();
-        $data3 =  kota::all();
-        return view('studio.crudJadwal.input', compact('data', 'data1', 'data2', 'data3'),  [
+
+        return view('studio.crudJadwal.input', compact('data', 'data1', 'data2'),  [
             'title' => 'Admin Studio',
             'pages' => 'Input Jadwal'
         ]);

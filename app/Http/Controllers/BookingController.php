@@ -67,7 +67,7 @@ class BookingController extends Controller
 
         // $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*' ])->where('id_jadwal',$id_jadwal)->first();
 
-        $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->join('_detail_bioskop','_detail_bioskop.id_jadwal' ,'=' ,'jadwal.id_jadwal')->join('bioskop','bioskop.id_bioskop' ,'=' ,'_detail_bioskop.id_bioskop')->join('_detail_jam' , '_detail_jam.id_bioskop' ,'=' ,'_detail_bioskop.id_bioskop')->get([ 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*' ,'_detail_bioskop.*' , '_detail_jam.*' ,'bioskop.*'])->where( 'jam_tayang' ,$jam_tayang)->first();
+        $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->join('detail_bioskop','detail_bioskop.id_jadwal' ,'=' ,'jadwal.id_jadwal')->join('bioskop','bioskop.id_bioskop' ,'=' ,'detail_bioskop.id_bioskop')->join('detail_jam' , 'detail_jam.id_db' ,'=' ,'detail_bioskop.id_db')->get([ 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*' ,'detail_bioskop.*' , 'detail_jam.*' ,'bioskop.*' ])->where( 'jam_tayang' ,$jam_tayang)->first();
 
             $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->join('payment' ,'payment.id_booking' , '=' ,'booking.id_booking')->get(['jadwal.*' ,'booking.*' ,'payment.*']);
 
@@ -76,13 +76,13 @@ class BookingController extends Controller
     
         $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 10, 'prefix' =>'PY'.Auth::user()->id]);
 
-        $data3 = bank::all();
 
         // $exp  =   booking::where('tenggat_bayar', '<',Carbon::now())->delete();
         $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
-        // DB::table('booking')->where('tenggat_bayar', '<', carbon::now())->update(['tenggat_bayar' => 'expired']);
-        
-        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY' , 'data3' , 'exp'), [
+    
+        $book = booking::join('payment' ,'payment.id_payment' ,'=' ,'booking.id_payment')->get();
+
+        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY'  , 'exp' ,'book'), [
             // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'

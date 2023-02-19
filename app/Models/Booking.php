@@ -26,6 +26,7 @@ class Booking extends Model
         'kursi',
         'jumlah_kursi',
         'harga',
+        'jumlah',
         'qr_tiket',
     
     ];

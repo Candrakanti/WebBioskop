@@ -8,6 +8,11 @@
 }
 </style>
 
+
+@foreach($nb as $n)
+{{ $n }}
+@endforeach
+
 @section('container')
 @if($data->tgl_tayang_awal  >=  Carbon\Carbon::now()->format('Y-m-d'))
 <h4 class="fw-light text-danger">COMING SOON</h4>
@@ -17,6 +22,7 @@
     {{-- <form method="POST" action="{{ route('movie.detail', $data->id_jadwal) }}">
         @csrf --}}
         {{-- <h1>{{  \Carbon\Carbon::now()->format('Y-m-d') }}</h1> --}}
+
 
     <div class="container d-flex justify-content-center">
         <div class="row d-flex justify-content-center">
@@ -29,6 +35,7 @@
                 @endif
             </div>
        
+          
             <div class="col-8 ">
                 <div class="card-body">
                     <div class="row">
@@ -162,37 +169,6 @@
         </div>
     </div>
 
-    <div class="container">
-      
-        <div class="accordion accordion-flush" id="accordionFlushExample">
-          
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingOne">
-             
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-         
-            @foreach($mall as $m)
-        
-            @if($data->id_jadwal ==  $m->id_jadwal)
-
-            {{ $m->id_db }}
-            @endif
-    
-            @endforeach
-                </button>
-           
-              </h2>
-              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-<h1>hi</h1>
-                </div>
-              </div>
-           
-            </div>
-
-            </div>
-            
-    </div>
 
         <section id="Time">
           

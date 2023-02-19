@@ -20,6 +20,7 @@ class payment extends Model
         'payment_type',
         'harga',
         'status_bayar',
+       
         // 'bukti_bayar'
     ];
 

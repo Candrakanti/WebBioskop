@@ -16,13 +16,12 @@ class CreateJadwalTable extends Migration
         Schema::create('jadwal', function (Blueprint $table) {
             $table->string('id_jadwal', 225)->primary();
             $table->string('id_studio');
+            $table->foreign('id_studio')->references('id_studio')->on('studio')->onDelete('cascade');       
             $table->string('id_film');
-        
+            $table->foreign('id_film')->references('id_film')->on('film')->onDelete('cascade');       
             $table->date('tgl_tayang_awal');
             $table->date('tgl_tayang_akhir');
-        
         });
-
     }
 
     /**
@@ -33,6 +32,5 @@ class CreateJadwalTable extends Migration
     public function down()
     {
         Schema::dropIfExists('jadwal');
-      
     }
 }

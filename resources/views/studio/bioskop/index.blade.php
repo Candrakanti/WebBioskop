@@ -1,11 +1,28 @@
-@extends('film.layout.sidebar')
+@extends('studio.templateDashboard.sidebar')
 
 @section('container')
     <!DOCTYPE html>
     <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ $title }}</title>
+
+    </head>
+
     <body>
         <div class="container pb-3">
-            <a href="/crudFilm/create" class="btn btn-info">Create Data Jenis Film</a>
+            <a href="/crudBioskop/create" class="btn btn-info"> Create Data Bioskop </a>
+
+            <div class="row 9-3 align-items-center mt-2">
+                <div class="col-auto">
+                  <form action="/crudBioskop" method="GET">
+                  <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan nama Bioskop">
+                </form>
+                </div>
+            </div>
 
             <div class="container pt-3">
                 @if (session()->has('success'))
@@ -21,24 +38,27 @@
                     <div class="col-12">
                         <div class="card mb-4">
                             <div class="card-header pb-0">
-                                <h6 class="text-center">Data Jenis Film</h6>
+                                <h6 class="text-center">Data Bioskop</h6>
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
-                                    <table class="table align-items-center mb-0" id="myTable">
+                                    <table class="table mb-0" id="myTable">
                                         <thead>
                                             <tr>
-                                                
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     No</th>
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                    Id Jenis Film</th>
+                                                    Id Bioskop </th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Jenis Film</th>
-                                                @foreach ($data as $key => $Jfilm)
+                                                    Nama Bioksop</th>
+                                                <th
+                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Alamat </th>
+
+                                                @foreach ($data as $key => $bioskop)
                                             </tr>
                                         </thead>
 
@@ -57,30 +77,46 @@
                                                     </div>
                                                 </td>
 
+
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $Jfilm->id_jenis_film }}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $bioskop->id_bioskop }}</p>
                                                 </td>
+
+                                                {{-- <td class="align-middle text-center pt-1">
+                                                    <p class="text-secondary text-xs font-weight-bold">
+                                                        {{ $bioskop->id_studio }}</p>
+                                                </td> --}}
 
                                                 <td class="align-middle text-center">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $Jfilm->jenis_film}}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $bioskop->nama_bioskop }}</span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold">{{ $bioskop->alamat }}</span>
                                                 </td>
 
                                                 <td class="align-middle text-center text-sm">
                                                     <a class="badge badge-sm bg-gradient-warning"
-                                                        href="">Edit</a>
-                                                   
-                                                    <form method="POST" action=""
+                                                        href="/crudBioskop/{{ $bioskop->id_bioskop }}/edit">Edit</a>
+
+
+                                                        <form method="POST"
+                                                        action="{{ route('crudBioskop.delete', $bioskop->id_bioskop) }}"
                                                         class="d-inline">
                                                         @csrf
                                                         <input name="_method" type="hidden" value="DELETE">
                                                         <button type="submit"
                                                             class="badge badge-sm bg-gradient-danger  border-0 show_confirm"
-                                                            data-id="" data-toggle="tooltip"
+                                                            data-id="{{ $bioskop->id_bioskop }}" data-toggle="tooltip"
                                                             title='Delete'>Delete</button>
                                                     </form>
 
                                                 </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
                                             </tr>
                                         </tbody>
                                         @endforeach
@@ -104,11 +140,11 @@
         $('.show_confirm').click(function(event) {
             var form = $(this).closest("form");
             var name = $(this).data("name");
-            var id_film = $(this).attr('data-id');
+            var id_studio = $(this).attr('data-id');
             event.preventDefault();
             swal({
                     title: "APA ANDA YAKIN ?",
-                    text: "Anda Akan Menghapus ID FIlm " + id_film + "",
+                    text: "Anda Akan Menghapus ID Studio " + id_studio + "",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,

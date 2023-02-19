@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailJamTable extends Migration
+class CreateDetailBioskopTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateDetailJamTable extends Migration
      */
     public function up()
     {
-        Schema::create('_detail_jam', function (Blueprint $table) {
+        Schema::create('detail_bioskop', function (Blueprint $table) {
+            $table->string('id_db' , 255)->primary();
             $table->string('id_bioskop');
-            $table->foreign('id_bioskop')->references('id_bioskop')->on('_detail_bioskop')->onDelete('cascade');
+            $table->foreign('id_bioskop')->references('id_bioskop')->on('bioskop')->onDelete('cascade');
             $table->string('id_jadwal');
-            $table->foreign('id_jadwal')->references('id_jadwal')->on('_detail_bioskop')->onDelete('cascade');
-            $table->time('jam_tayang');
+            $table->foreign('id_jadwal')->references('id_jadwal')->on('jadwal')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateDetailJamTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_detail_jam');
+        Schema::dropIfExists('detail_bioskop');
     }
 }

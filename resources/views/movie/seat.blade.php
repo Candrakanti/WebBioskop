@@ -22,24 +22,10 @@
                            
     
                             <div class="alert alert-danger" role="alert">
-                                <p class="text-center"> {!! $data->jenis_studio !!} : RP. {!! $data->harga !!}</p>
+                                <p class="text-center"> {{ $data->jenis_studio }} : RP. {!! $data->harga !!}</p>
                             </div>
 
                             @if ($data->jenis_studio === 'Regular')
-
-                   
-                            {{-- <h1>contoh</h1>
-                       
-                            
-                               @if($data->id_jadwal == $data->id_jadwal)
-                             @foreach($data2 as $d)
-                             @if($d->id_jadwal === $data->id_jadwal)
-                       <h1>{{ $d->kursi }}</h1>
-                             @endif
-                             @endforeach
-                               @endif
-
-                            <H1>Selesai</H1> --}}
 
                                 <div class="seats" id="seats" name="harga">
 
@@ -64,8 +50,14 @@
                                                        @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
                                                        @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') )
                                                      
+                                                       @foreach($book as $p)
+                                                     
+                                                       @if($p->status_bayar == "1" or $p->status_bayar == "0")
                                                        disabled
+                                                       @endif
+                                                       @endforeach
 
+                                                     
                                                        @endif
                                                        @endif
                                                         @endforeach
@@ -86,7 +78,7 @@
                                                         @foreach($data2 as $key=>$d)
         
                                                        @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
-                                                       @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') )
+                                                       @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') and $p )
 
                                                      
                                                        disabled
@@ -364,12 +356,12 @@
                                                             </div> --}}
 
                                                             <div class="checkout" id="checkout">
-                                                                @foreach ($data3 as $b)
+                                                                {{-- @foreach ($data3 as $b) --}}
                                                                 <li class="list-group-item" style="padding: 0.75rem 5rem;">
-                                                                  <input class="form-check-input me-1" type="radio" name="payment_type" value="{{$b->nama_bank}}"  >
-                                                                  <label class="form-check-label" for="firstRadio">{{ $b->nama_bank }}</label>
+                                                                  <input class="form-check-input me-1" type="radio" name="payment_type" value="{{"mandiri"}}"  >
+                                                                  <label class="form-check-label" for="firstRadio">{{ "mandiri" }}</label>
                                                                 </li>
-                                                                @endforeach
+                                                                {{-- @endforeach --}}
                                                             </div>
 
                                                         <div class="">

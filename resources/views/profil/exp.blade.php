@@ -2,18 +2,20 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
 
-<h4><b>Pesanan Saya</b></h4>
+<div class="container mb-4">
+  <div class="row">
+
+      <div class="col-6 col-xs-6 col-md-6 col-sm-6 col-lg-6">
+          <a class="text-danger" href="#" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false" >
+          <h3><b>Pesanan Saya</b></h3>
+          </a>
+      </div>
+
+
 <h4 class="text-center"> Pembatalan Pesanan </h4>
 
 <h6 class="text-muted text-end">Total Pembatalan : {{ $cst }}</h6>
-
-<div class="row 9-3 align-items-center mt-2">
-  <div class="col-auto">
-    <form action="/exp" method="GET">
-    <input type="search"  name="search"  class="form-control"  placeholder="Masukan Judul Film">
-  </form>
-  </div>
-</div>
 
 
 @foreach ($listproducts as $item)

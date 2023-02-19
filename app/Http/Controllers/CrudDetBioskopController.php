@@ -31,7 +31,7 @@ class CrudDetBioskopController extends Controller
             $data = _detail_bioskop::all();
         }
 
-        $db = Bioskop::join('_detail_bioskop' , '_detail_bioskop.id_bioskop' ,'=' , 'bioskop.id_bioskop')->get(['_detail_bioskop.*' ,'bioskop.*']);
+        $db = Bioskop::join('detail_bioskop' , 'detail_bioskop.id_bioskop' ,'=' , 'bioskop.id_bioskop')->get(['detail_bioskop.*' ,'bioskop.*']);
         return view('studio.CrudDetBioskop.index', compact('db' ,'data'), [
             'title' => 'Admin Studio',
             'pages' => 'Table Detail Bioskop'
@@ -63,7 +63,7 @@ class CrudDetBioskopController extends Controller
     {
         $validatedData =  $request->validate([
           
-            'id_db' => 'required|min:5|max:225|unique:_detail_bioskop',
+            'id_db' => 'required|min:5|max:225|unique:detail_bioskop',
             'id_bioskop' => 'required',
             'id_jadwal' => 'required',
         ]);
