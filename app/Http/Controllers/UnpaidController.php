@@ -12,12 +12,13 @@ class UnpaidController extends Controller
     public function index( Request $request)
     {
         if($request->has('search')) {
-            $listproducts = Film::where('judul_film', 'LIKE', '%' .$request->search. '%')->get();
+            $data = booking::where('id_payment', 'LIKE', '%' .$request->search. '%')->get();
         } else {
-            $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->join('payment','payment.id_payment' ,'=','booking.id_payment')->get(['booking.*', 'jadwal.*' ,'film.*' ,'payment.*'])->where('id_customer', '=', Auth::user()->id);
+            booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->join('payment','payment.id_payment' ,'=','booking.id_payment')->get(['booking.*', 'jadwal.*' ,'film.*' ,'payment.*']);
         }
 
-        return view('profil.unpaid', compact('listproducts'), [
+        $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->join('payment','payment.id_payment' ,'=','booking.id_payment')->get(['booking.*', 'jadwal.*' ,'film.*' ,'payment.*'])->where('id_customer', '=', Auth::user()->id);
+        return view('profil.unpaid', compact('data'), [
             'title' => 'Mycgv',
             'active' => 'Mycgv'
             ])->with($listproducts);
