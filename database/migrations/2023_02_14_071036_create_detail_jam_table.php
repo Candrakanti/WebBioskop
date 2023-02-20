@@ -13,9 +13,11 @@ class CreateDetailJamTable extends Migration
      */
     public function up()
     {
-        Schema::create('_detail_jam', function (Blueprint $table) {
+        Schema::create('detail_jam', function (Blueprint $table) {
+            $table->string('id_db');
+            $table->foreign('id_db')->references('id_db')->on('detail_bioskop')->onDelete('cascade');
             $table->string('id_jadwal');
-            $table->foreign('id_jadwal')->references('id_db')->on('_detail_bioskop')->onDelete('cascade');
+            $table->foreign('id_jadwal')->references('id_jadwal')->on('detail_bioskop')->onDelete('cascade');
             $table->time('jam_tayang');
             $table->timestamps();
         });
@@ -28,6 +30,6 @@ class CreateDetailJamTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_detail_jam');
+        Schema::dropIfExists('detail_jam');
     }
 }

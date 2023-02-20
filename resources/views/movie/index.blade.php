@@ -1,48 +1,42 @@
 @extends('layouts.main')
 
+
 @section('container')
 
 {{-- <h2>{{  \Carbon\Carbon::now()->timezone('asia/jakarta')->format('h:i:s') }}</h2> --}}
 
 <section id="kota">
     <div class="container mb-4">
-        <div class="row">
-            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
 
-             <li class="nav-item dropdown" style="list-style-type: none !important;">
-              <H2 style="color: red">
-                <b>
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+        <div class="row">
+
+            <div class="col-6 col-xs-6 col-md-6 col-sm-6 col-lg-6">
+
+                <a class="text-danger" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false" >
-                Movies in Bandung
+                <h1>   Movies in Bandung</h1>
+             
                 </a>
-                  <ul class="dropdown-menu">
-                    {{-- @foreach ($data as $dt)
-                        @foreach ($dt->detail_kota as $dt)
-                            <p>{{ $dt['value'] }}</p>
-                        @endforeach
-                    @endforeach --}}
-                  </ul>
-               </b>
-              </H2>
-             </li>
+ 
             </div>
 
-            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+            <div class="col-6 col-xs-6 col-md-6 col-sm-6 col-lg-6">
                 <div class="row d-flex justify-content-end">
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-6 col-sm-6 col-lg-6">
                         <form action="/movie" method="GET">
                             <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan judul film"> 
                         </form>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1 col-1 col-sm-1 col-lg-1">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
             </div>
             
         </div>
+
     </div>
+
 </section>
 
         {{-- <div class="container">
@@ -73,6 +67,13 @@
             </div>
         </div>
 
+        {{-- <div class="container">
+            <div class="row">
+                <div class="col-4 text-danger"> <b>PLAYING</b></div>
+                <div class="col-4"><b>UPCOMING</b></div>   
+            </div>
+        </div> --}}
+
         @if($exp == $exp)
       
 <section id="movie">
@@ -84,13 +85,14 @@
 <div class="container">
     <div class="row">
       @foreach ($data as $film)
+      
       @if($film->tgl_tayang_awal  <=  Carbon\Carbon::now()->format('Y-m-d'))
       <div class="col-6 col-lg-3 col-md-3 col-sm-6 col-xs-6">
         <div class="card">
             @if ($film->image)
             <div class="rounded">
             <a href="/movie/detail/{{ $film->id_jadwal}}">
-            <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
+            <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">    
             </a>
           </div>
             @endif

@@ -26,7 +26,7 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="jenis_film" class="form-label">Jenis Film</label>
                 <select id="jenis_film" class="form-select @error('jenis_film') is-invalid @enderror" name="jenis_film"
                     required autocomplete="current-jenis_film">
@@ -36,6 +36,22 @@
                     <option>Thriller</option>
                     <option>Comedy</option>
                 </select>
+                @error('jenis_film')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div> --}}
+
+            {{-- <div class="mb-3">
+                <label for="jenis_film">Jenis Film</label>
+                <input type="text" name="jenis_film" id="jenis_film" class="form-control" value="{{$film->jenis_film }}" required="">
+            </div> --}}
+
+            <div class="mb-3">
+                <label for="jenis_film" class="form-label">Jenis Film</label>
+                <input type="text" class="form-control @error('jenis_film') is-invalid @enderror" id="jenis_film"
+                    name="jenis_film" required autofocus value="{{ old('jenis_film') }}">
                 @error('jenis_film')
                     <div class="invalid-feedback">
                         {{ $message }}

@@ -15,7 +15,6 @@
 
          <div class="row">
           <div class="col-6">
-           
               <h6  class="card-title">Nama Film : </h6> 
           </div>
           <div class="col-4">
@@ -60,13 +59,12 @@
 <input type="hidden" name="payment_type" value="{{ $d->payment_type}}">
 <input type="hidden" name="tenggat_bayar" value="done">
 
-@if($d->tenggat_bayar == 'done')
+@if($d->status_bayar == '1')
 <button class="btn btn-info" type="submit" disabled > Telah Dibayar </button>
 @endif
 
 
-
-@if($d->tenggat_bayar == "expired")
+@if($d->status_bayar == "2")
  <button class="btn btn-danger" disabled> Waktu Bayar Sudah Habis</button>
  @else
  <button class="btn btn-success"> Bayar Sekarang</button>

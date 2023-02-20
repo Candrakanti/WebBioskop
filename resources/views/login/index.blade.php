@@ -54,9 +54,6 @@
             <form action="/login" method="post">
                 @csrf
 
-
-    
-
               <div class="form-floating mb-3">
                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
                 <label for="email" >Email address</label>

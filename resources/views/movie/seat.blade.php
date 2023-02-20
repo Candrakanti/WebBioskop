@@ -4,8 +4,10 @@
     {{-- <form method="POST" action="{{ route('booking', $data->id_jadwal) }}">
         @csrf --}}
         
-      
+        {{-- {!! QrCode::generate('Make me into a QrCode!'); !!}
        
+        <div> <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate('Generate any QR Code!')) !!} " download>Downloads</a></div>
+         --}}
         <div class="row" >
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
     
@@ -20,24 +22,10 @@
                            
     
                             <div class="alert alert-danger" role="alert">
-                                <p class="text-center"> {!! $data->jenis_studio !!} : {!! $data->harga !!}</p>
+                                <p class="text-center"> {{ $data->jenis_studio }} : RP. {!! $data->harga !!}</p>
                             </div>
 
                             @if ($data->jenis_studio === 'Regular')
-
-                   
-                            {{-- <h1>contoh</h1>
-                       
-                            
-                               @if($data->id_jadwal == $data->id_jadwal)
-                             @foreach($data2 as $d)
-                             @if($d->id_jadwal === $data->id_jadwal)
-                       <h1>{{ $d->kursi }}</h1>
-                             @endif
-                             @endforeach
-                               @endif
-
-                            <H1>Selesai</H1> --}}
 
                                 <div class="seats" id="seats" name="harga">
 
@@ -53,32 +41,44 @@
                                                  
                                            
 
-                                                <div class="col-4">
+                                                <div class="col-4 col-lg-4 col-sm-4">
                                                         @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
-                                                        <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{  $i}}" value="{{ $data->harga }}"  style="width:20px; height:25px;"
+                                                        <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{  $i}}" value="{{ $data->harga }}"  style="width:32px; height:25px;"
                                                         @if($data->id_jadwal == $data->id_jadwal)
                                                         @foreach($data2 as $key=>$d)
         
                                                        @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
                                                        @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') )
                                                      
+                                                       @foreach($book as $p)
+                                                     
+                                                       @if($p->status_bayar == "1" or $p->status_bayar == "0")
                                                        disabled
+                                                       @endif
+                                                       @endforeach
 
+                                                     
                                                        @endif
                                                        @endif
                                                         @endforeach
                                                           @endif
                                                         >
                                                         @endfor
+
+                                                        <div class="row ms-1 ">
+                                                            @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
+                                                            <input type="text" class="border border-0 p-2 mb-2 text-bg-light"  disabled placeholder="{{ $v }}{{ $i }}" style="width:40px; height:20px;">
+                                                            @endfor
+                                                    </div>
                                                 </div>
                                                 <div class="col-4">
                                                         @for($i = 6; $i<=10; $i++)
-                                                        <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{  $i}}" value="{{ $data->harga }}"  style="width:20px; height:25px;"
+                                                        <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{$i}}" value="{{ $data->harga }}"  style="width:32px; height:25px;"
                                                         @if($data->id_jadwal == $data->id_jadwal)
                                                         @foreach($data2 as $key=>$d)
         
                                                        @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
-                                                       @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') )
+                                                       @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') and $p )
 
                                                      
                                                        disabled
@@ -89,6 +89,11 @@
                                                           @endif
                                                         >
                                                         @endfor
+                                                        <div class="row ms-1">
+                                                            @for($i = 6; $i<=10; $i++)
+                                                            <input type="text" class="border border-0 p-2 mb-2 ms1 text-bg-light"  disabled placeholder="{{ $v }}{{ $i }}" style="width:40px; height:25px;">
+                                                            @endfor
+                                                    </div>
                                                 </div>
 
                                             
@@ -123,8 +128,6 @@
                                                 <div class="col-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
                                                     
                                                      <div class="container">
-                                                        {{-- <input type="checkbox" class="border border-success p-2 mb-2" placeholder="hi" style="width:50px; height:50px;"> --}}
-
                                                                 <div class="container">
                                                                         <div class="row">
                                                                            
@@ -359,12 +362,12 @@
                                                             </div> --}}
 
                                                             <div class="checkout" id="checkout">
-                                                                @foreach ($data3 as $b)
+                                                                {{-- @foreach ($data3 as $b) --}}
                                                                 <li class="list-group-item" style="padding: 0.75rem 5rem;">
-                                                                  <input class="form-check-input me-1" type="radio" name="payment_type" value="{{$b->nama_bank}}"  >
-                                                                  <label class="form-check-label" for="firstRadio">{{ $b->nama_bank }}</label>
+                                                                  <input class="form-check-input me-1" type="radio" name="payment_type" value="{{"mandiri"}}"  >
+                                                                  <label class="form-check-label" for="firstRadio">{{ "mandiri" }}</label>
                                                                 </li>
-                                                                @endforeach
+                                                                {{-- @endforeach --}}
                                                             </div>
 
                                                         <div class="">
@@ -417,6 +420,10 @@
                                                         
                                                     </div>
                         
+                                                    {{-- <div class="" class="bukti_bayar">
+                                                        <img name="bukti_bayar" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(50)->generate('Generate any QR Code!')) !!} ">
+                                                    </div> --}}
+
                                                     <div class="" class="totalchecked">
                                                         <input class="form-control" type="hidden"
                                                         name="jumlah_kursi" aria-label="Disabled input example" readonly class="totalchecked"  id="count_seat3">

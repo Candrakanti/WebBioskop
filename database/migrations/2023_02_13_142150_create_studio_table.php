@@ -15,10 +15,11 @@ class CreateStudioTable extends Migration
     {
         Schema::create('studio', function (Blueprint $table) {
             $table->string('id_studio', 225)->primary();
-            $table->string('id_jenis_studio', 225);
+            $table->string('id_jenis_studio');
+            $table->foreign('id_jenis_studio')->references('id_jenis_studio')->on('detail_jenis_studio')->onDelete('cascade'); 
             $table->string('audiotori');
             $table->char('jumlah_row');
-            $table->dou('jumlah_kursi_perrow');
+            $table->double('jumlah_kursi_perrow');
         });
     }
 

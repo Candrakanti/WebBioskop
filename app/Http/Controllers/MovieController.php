@@ -14,6 +14,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+
 use Illuminate\Support\Facades\DB;
 
 class MovieController extends Controller
@@ -21,16 +22,21 @@ class MovieController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')) {
+
+            // $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->where('judul_film', 'LIKE', '%' .$request->search. '%')->get([ 'jadwal.*', 'film.*', 'studio.*']);
+
             $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->where('judul_film', 'LIKE', '%' .$request->search. '%')->get([ 'jadwal.*', 'film.*', 'studio.*']);
-            // $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->where('judul_film', 'LIKE', '%' .$request->search. '%')->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
         } else {
+
             $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')
             ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
             ->get([ 'jadwal.*', 'film.*', 'studio.*']);
-        }
-            $exp  =  jadwal::where('tgl_tayang_akhir', '<=', Carbon::now())->delete();
 
-        return view('movie.index', compact('data' , 'exp'), [
+      
+        }
+            $exp  =  jadwal::where('tgl_tayang_akhir', '<', Carbon::now())->delete();
+
+        return view('movie.index', compact('data' , 'exp' ), [
             'title' => 'movie',
             'active' => 'movie'
         ]);
@@ -49,25 +55,27 @@ class MovieController extends Controller
         ]);
     }
 
-    public function detail($id_jadwal)
+    public function detail($id_jadwal  )
     {
 
 
-        $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->join('_detail_bioskop','_detail_bioskop.id_jadwal' ,'=' ,'jadwal.id_jadwal')->join('bioskop','bioskop.id_bioskop' ,'=' ,'_detail_bioskop.id_bioskop')->join('_detail_jam' , '_detail_jam.id_db' ,'=' ,'_detail_bioskop.id_db')->get([ 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*' ,'_detail_bioskop.*' , '_detail_jam.*' ,'bioskop.*'])->where('id_jadwal', $id_jadwal)->first();
+        $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->join('detail_bioskop','detail_bioskop.id_jadwal' ,'=' ,'jadwal.id_jadwal')->join('bioskop','bioskop.id_bioskop' ,'=' ,'detail_bioskop.id_bioskop')->join('detail_jam' , 'detail_jam.id_db' ,'=' ,'detail_bioskop.id_db')->get([ 'jadwal.*', 'film.*', 'studio.*', 'detail_jenis_studio.*' ,'detail_bioskop.*' , 'detail_jam.*' ,'bioskop.*'])->where('id_jadwal', $id_jadwal)->first();
 
-     $mall = Bioskop::join('_detail_bioskop' ,'_detail_bioskop.id_bioskop' ,'=' ,'bioskop.id_bioskop')->join('_detail_jam' ,'_detail_jam.id_db' , '=' ,'_detail_bioskop.id_db')->join('jadwal' ,'jadwal.id_jadwal' ,'=' ,'_detail_bioskop.id_jadwal')->join('studio' , 'studio.id_studio' , '=' , 'jadwal.id_studio')->join('detail_jenis_studio' ,'detail_jenis_studio.id_jenis_studio' ,'=' ,'studio.id_jenis_studio')->get(['jadwal.*' ,'bioskop.*' ,'_detail_bioskop.*' ,'_detail_jam.*' ,'detail_jenis_studio.*']);
+     $mall = Bioskop::join('detail_bioskop' ,'detail_bioskop.id_bioskop' ,'=' ,'bioskop.id_bioskop')->join('detail_jam' ,'detail_jam.id_db' , '=' ,'detail_bioskop.id_db')->join('jadwal' ,'jadwal.id_jadwal' ,'=' ,'detail_bioskop.id_jadwal')->join('studio' , 'studio.id_studio' , '=' , 'jadwal.id_studio')->join('detail_jenis_studio' ,'detail_jenis_studio.id_jenis_studio' ,'=' ,'studio.id_jenis_studio')->get(['jadwal.*' ,'bioskop.*' ,'detail_bioskop.*' ,'detail_jam.*' ,'detail_jenis_studio.*']) ;
 
-     $bio = bioskop::all();
+     $c = Bioskop::join('detail_bioskop' ,'detail_bioskop.id_bioskop' ,'=' ,'bioskop.id_bioskop')->join('detail_jam' ,'detail_jam.id_db' , '=' ,'detail_bioskop.id_db')->join('jadwal' ,'jadwal.id_jadwal' ,'=' ,'detail_bioskop.id_jadwal')->join('studio' , 'studio.id_studio' , '=' , 'jadwal.id_studio')->join('detail_jenis_studio' ,'detail_jenis_studio.id_jenis_studio' ,'=' ,'studio.id_jenis_studio')->get(['jadwal.*' ,'bioskop.*' ,'detail_bioskop.*' ,'detail_jam.*' ,'detail_jenis_studio.*']) ;
 
-     $db = DB::table('_detail_bioskop')->select('id_bioskop')->get();
+    //  $nb =   DB::select('SELECT date_movie() as s');
+
 
         $time = _detail_jam::where('jam_tayang', '<=', Carbon::now()->timezone('asia/jakarta')->format('h:i'))->get();
-        return view('movie.detail', compact('data' ,'time' ,'mall' ,'bio' ,'db'), [
+        return view('movie.detail', compact('data' ,'time' ,'mall' ,'c'   ), [
             "title" => "Detail movie",
             "active" => 'Movie',
         ]);
     }
-  
+
+
     public function gateway($id_jadwal){
         $data = jadwal::join('film' ,'film.id_film','=','jadwal.id_film')->join('studio','studio.id_studio','=','jadwal.id_studio')->join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')->get(['film.*','studio.*','jadwal.*','detail_jenis_studio.*'])->where('id_jadwal',$id_jadwal)->first();
         return view('movie.gateway',compact('data') ,[

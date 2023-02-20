@@ -13,9 +13,8 @@ class CreateDetailBioskopTable extends Migration
      */
     public function up()
     {
-        Schema::create('_detail_bioskop', function (Blueprint $table) {
-          
-            $table->string('id_db', 255)->primary();
+        Schema::create('detail_bioskop', function (Blueprint $table) {
+            $table->string('id_db' , 255)->primary();
             $table->string('id_bioskop');
             $table->foreign('id_bioskop')->references('id_bioskop')->on('bioskop')->onDelete('cascade');
             $table->string('id_jadwal');
@@ -31,6 +30,6 @@ class CreateDetailBioskopTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_detail_bioskop');
+        Schema::dropIfExists('detail_bioskop');
     }
 }

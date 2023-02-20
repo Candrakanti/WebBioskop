@@ -8,12 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class _detail_jam extends Model
 {
     use HasFactory;
-    protected $table = "_detail_jam";
+    protected $table = "detail_jam";
     public $timestamps = false;
     protected $primaryKey = 'id_jadwal';
     protected $keyType = 'string';
 
     protected $fillable = [
+        
+        'id_dj',
+        'id_bioskop',
         'id_jadwal',
         'jam_tayang',
     

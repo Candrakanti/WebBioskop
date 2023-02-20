@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class CekLevel
 {
     /**
@@ -19,8 +19,10 @@ class CekLevel
 
         if ($request->user()->is_admin != 'admin_film') {
             return abort(403, "No access here, sorry!");
+           
         }
-
+     
+      
         return $next($request);
 
 

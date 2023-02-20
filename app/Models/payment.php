@@ -20,7 +20,8 @@ class payment extends Model
         'nama_bank',
         'harga',
         'status_bayar',
-        'bukti_bayar'
+       
+        // 'bukti_bayar'
     ];
 
 }

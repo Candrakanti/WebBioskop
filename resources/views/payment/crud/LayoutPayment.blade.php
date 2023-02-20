@@ -2,17 +2,6 @@
 
 @section('container')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
-    
-</head>
-
-<body>
 <div class="container pb-3">
 <<<<<<< HEAD
   <a href="" class="btn btn-info">print data</a>
@@ -87,7 +76,7 @@
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$data->status}}</span>
                   </td>
-
+          
                       <td class="align-middle text-center text-sm">
                     <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Accept</a>
                   </td>
@@ -106,8 +95,7 @@
       </div>
     </div>
   </div>
-    
-</body>
+
 {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
@@ -138,6 +126,4 @@ $('.show_confirm').click(function(event) {
 
 </script>
 
-
-</html>
 @endsection
