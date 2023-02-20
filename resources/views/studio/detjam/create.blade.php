@@ -13,13 +13,25 @@
             <form method="post" action="/crudDetjam">
                 @csrf
 
-                <div class="mb-3">
-                    <label for="id_bioskop" class="form-label">Id Bioskop</label>
-                    {{-- <input type="tect" class="form-control" name="id_jadwal" autofocus> --}}
-                    <select class="form-select form-select-lg mb-3" name="id_bioskop">
 
-                        @foreach ($bioskop as $std)
-                            <option value="{{ $std->id_bioskop }}" selected>{{ $std->id_bioskop }}</option>
+                <div class="mb-3">
+                    <label for="id_det_jam" class="form-label">Id Detail Jam</label>
+                    <input type="text" class="form-control @error('id_det_jam') is-invalid @enderror"
+                        name="id_det_jam" required value="{{ old('id_det_jam') }}">
+                    @error('id_det_jam')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_db" class="form-label">Id DB</label>
+                    {{-- <input type="tect" class="form-control" name="id_jadwal" autofocus> --}}
+                    <select class="form-select form-select-lg mb-3" name="id_db">
+
+                        @foreach ($_detail_bioskop as $std)
+                            <option value="{{ $std->id_db }}" selected>{{ $std->id_db }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -34,6 +46,8 @@
                         @endforeach
                     </select>
                 </div>
+
+              
 
                 <div class="mb-3">
                     <label for="jam_tayang" class="form-label">Jam Tayang</label>
