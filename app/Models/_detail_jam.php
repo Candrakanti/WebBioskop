@@ -15,7 +15,8 @@ class _detail_jam extends Model
 
     protected $fillable = [
         
-        'id_dj',
+        'id_det_jam',
+        'id_db',
         'id_bioskop',
         'id_jadwal',
         'jam_tayang',

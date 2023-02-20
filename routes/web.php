@@ -183,7 +183,10 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 
     Route::resource('/crudDetjam', CrudDetJamController::class);
-    Route::delete('/crudDetjam/delete/{id_jadwal}', [ CrudDetJamController::class, 'destroy'])->name('crudDetjam.delete');
+    Route::delete('/crudDetjam/delete/{id_det_jam}', [ CrudDetJamController::class, 'destroy'])->name('crudDetjam.delete');
+    Route::post('/crudDetjam/update', [CrudDetJamController::class, 'update']);
+    Route::get('/crudDetjam/edit{id_det_jam}', [CrudDetJamController::class, 'edit'])->name('crudDetjam.edit');
+
 
     Route::resource('/crudBioskop', CrudBioskopController::class);
     Route::delete('/crudBioskop/delete/{id_bioskop}', [CrudBioskopController::class, 'destroy'])->name('crudBioskop.delete');

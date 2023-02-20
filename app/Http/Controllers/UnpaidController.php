@@ -16,6 +16,7 @@ class UnpaidController extends Controller
     {
 
         if($request->has('search')) {
+
         $ho = Film::where('judul_film', 'LIKE', '%' .$request->search. '%')->get();
             // $data = Film::where('id_film','LIKE','%' .$request->search.'%' );
         } else {

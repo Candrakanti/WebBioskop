@@ -106,8 +106,9 @@ class CrudPaymentController extends Controller
     public function customer()
     {
         $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->get(['booking.*','payment.*' ,'users.*']);
-
-   
+        // $data = DB::table('booking')->join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->select('CALL JumlahPembeliann()')->get(['booking.*','payment.*' ,'users.*']);
+     // $post = DB::select("CALL JumlahPembelian");
+     // $post = DB::select("CALL JumlahPembeliann ($id)");
         $post = DB::select("CALL buy()");
 
         return view('payment.crud.datauser',  compact('data' , 'post'), [

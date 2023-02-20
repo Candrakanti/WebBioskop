@@ -6,8 +6,12 @@
         
         {{-- {!! QrCode::generate('Make me into a QrCode!'); !!}
        
+<<<<<<< HEAD
+        <div> <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate('Generate any QR Code!')) !!} " download>Downloads</a></div> --}}
+=======
         <div> <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate('Generate any QR Code!')) !!} " download>Downloads</a></div>
          --}}
+>>>>>>> f9a303d909348ea77d655958d7e95dda4d94ef5d
         <div class="row" >
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
     

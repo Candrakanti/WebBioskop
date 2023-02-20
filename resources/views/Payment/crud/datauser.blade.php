@@ -43,7 +43,11 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tangga Buat Akun</th>
                   {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th> --}}
 
+<<<<<<< HEAD
+                 
+=======
  
+>>>>>>> f9a303d909348ea77d655958d7e95dda4d94ef5d
                  
                   @foreach($data as $key => $data ) 
                 </tr>
@@ -80,8 +84,16 @@
                     <span class="text-secondary text-xs font-weight-bold">{{$data->phone}}</span>
                   </td>
 
-             
+                  {{-- <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->jumlah}}</span>
+                  </td> --}}
 
+                  @foreach($post as $d)
+                  <td class="align-middle text-center">
+                   <span class="text-secondary text-xs font-weight-bold">{{$d->jumlah}}</span>
+                 </td>
+                 @endforeach
+             
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{ $data->created_at }}</span>
                   </td>
