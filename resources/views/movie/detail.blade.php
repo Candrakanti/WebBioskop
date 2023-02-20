@@ -8,15 +8,22 @@
 }
 </style>
 
+
+@foreach($nb as $n)
+{{ $n }}
+@endforeach
+
 @section('container')
 @if($data->tgl_tayang_awal  >=  Carbon\Carbon::now()->format('Y-m-d'))
 <h4 class="fw-light text-danger">COMING SOON</h4>
 @endif
 
-<h1>{{ \Carbon\Carbon::now()->format('H:i:s')  }}</h1>
+{{-- <h1>{{ \Carbon\Carbon::now()->format('H:i:s')  }}</h1> --}}
     {{-- <form method="POST" action="{{ route('movie.detail', $data->id_jadwal) }}">
         @csrf --}}
         {{-- <h1>{{  \Carbon\Carbon::now()->format('Y-m-d') }}</h1> --}}
+
+
     <div class="container d-flex justify-content-center">
         <div class="row d-flex justify-content-center">
             <div class="col-4">
@@ -28,6 +35,7 @@
                 @endif
             </div>
        
+          
             <div class="col-8 ">
                 <div class="card-body">
                     <div class="row">
@@ -161,44 +169,11 @@
         </div>
     </div>
 
-  <div class="container">
-    @foreach($bio as $d)
- 
-   
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-          
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-               @if( $data->id_jadwal == $d->id_jadwal )
-
-            {{ $d->id_bioskop}}
-
-            </button>
-        
-          </h2>
-        @endif
-          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-                    @foreach($mall as $m)
-                @if($data->id_jadwal == $m->id_jadwal and $d->id_bioskop == $m->id_bioskop)
-
-                   {{ $m->jam_tayang }}
-            
-                @endif
-                @endforeach
-            </div>
-          </div>
-        </div>
-    
-        @endforeach
-       
-  </div>
 
         <section id="Time">
           
         @foreach ($mall as $d)
-@if($d->id_jadwal ==  $data->id_jadwal)
+@if($data->id_jadwal ==  $d->id_jadwal)
             <div class="container pt-3" style="padding-bottom: 60%">
                 <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
                     <div class="accordion-item">
@@ -226,19 +201,21 @@
                             data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
                            
+                             <h1> {{ $d->jam_tayang }}</h1>  
                       @if( $d->jam_tayang <= Carbon\Carbon::now()->format('H:i:s') )
-                      <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}"   id="link" class="btn btn-outline-danger ">
+                      <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}"  class="btn btn-outline-danger btn disabled">
                         {{ $d->jam_tayang }} 
                   </a>  
+
+                  @else
+                    <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}"  class="btn btn-outline-danger ">
+                    {{ $d->jam_tayang }} 
+              </a>  
                 
-                    @else
-                    <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}" class="btn btn-outline-danger ">
-                        {{ $d->jam_tayang }} 
-                  </a>  
+                  
 @endif
 
-
-                            </div>
+                           </div>
                         </div>
                         
                     </div>
@@ -262,6 +239,9 @@ modal.find('.btn-close').click(function() {
 
 var d = document.getElementById("link");
 d.className = d.className + " disabled ";
+
+var d = document.getElementById("test");
+d.className = d.className + " d-none ";
 
 // $('#link').addClass('disabled' ,'btn btn-warning');
     </script>

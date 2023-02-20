@@ -96,7 +96,7 @@
 
                                                 <td class="align-middle text-center">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $film->jenis }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $film->jenis_film }}</span>
                                                 </td>
 
                                                 <td class="align-middle text-center text-sm">

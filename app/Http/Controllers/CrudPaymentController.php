@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\studio;
 use DB;
 use PDF;
+use Illuminate\Support\Facades\Auth;
 
 // use Illuminate\Support\Facades\DB;
 
@@ -106,13 +107,11 @@ class CrudPaymentController extends Controller
     {
         $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->get(['booking.*','payment.*' ,'users.*']);
         // $data = DB::table('booking')->join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->select('CALL JumlahPembeliann()')->get(['booking.*','payment.*' ,'users.*']);
+     // $post = DB::select("CALL JumlahPembelian");
+     // $post = DB::select("CALL JumlahPembeliann ($id)");
+        $post = DB::select("CALL buy()");
 
-        // $post = DB::select("CALL JumlahPembelian");
-        // $post = DB::select("CALL JumlahPembeliann ($id)");
-        
-        $post = DB::select('CALL JumlahPembeliann ("jumlah ")');
-     
-        return view('payment.crud.datauser',  compact('data' , 'post' ), [
+        return view('payment.crud.datauser',  compact('data' , 'post'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);

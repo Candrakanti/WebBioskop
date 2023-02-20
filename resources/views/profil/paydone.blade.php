@@ -12,21 +12,7 @@
           </a>
       </div>
 
-      <div class="col-6 col-xs-6 col-md-6 col-sm-6 col-lg-6">
-          <div class="row d-flex justify-content-end">
-              <div class="col-md-6 col-6 col-sm-6 col-lg-6">
-                  <form action="/paydone" method="GET">
-                      <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan judul film"> 
-                  </form>
-              </div>
-              <div class="col-md-1 col-1 col-sm-1 col-lg-1">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-              </div>
-          </div>
-      </div>
-      
-  </div>
-</div>
+     
 
 <h4 class="text-center"> Selesai </h4>
 

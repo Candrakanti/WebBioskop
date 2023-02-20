@@ -63,7 +63,7 @@
 
                                                 <td class="align-middle text-center">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $Jfilm->jenis }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $Jfilm->jenis_film}}</span>
                                                 </td>
 
                                                 <td class="align-middle text-center text-sm">

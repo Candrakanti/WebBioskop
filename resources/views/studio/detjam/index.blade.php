@@ -1,18 +1,7 @@
 @extends('studio.templateDashboard.sidebar')
 
 @section('container')
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ $title }}</title>
-
-    </head>
-
-    <body>
+   
         <div class="container pb-3">
             <a href="/crudDetjam/create" class="btn btn-info"> Create Data Detail Jam </a>
 
@@ -50,6 +39,10 @@
                                                     No</th>
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    Id Detail Jam </th>
+                                               
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                     Id Bioskop </th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -79,7 +72,10 @@
 
 
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $detjam->id_bioskop }}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $detjam->id_det_jam }}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $detjam->id_db }}</p>
                                                 </td>
 
                                                 {{-- <td class="align-middle text-center pt-1">
@@ -96,23 +92,23 @@
                                                         class="text-secondary text-xs font-weight-bold">{{ $detjam->jam_tayang }}</span>
                                                 </td>
 
-                                                {{-- <td class="align-middle text-center text-sm">
+                                                <td class="align-middle text-center text-sm">
                                                     <a class="badge badge-sm bg-gradient-warning"
-                                                        href="/crudDetjam/{{ $detjam->id_jadwal }}/edit">Edit</a>
+                                                        href="/crudDetjam/{{ $detjam->id_det_jam }}/edit">Edit</a>
 
 
-                                                        <form method="POST"
-                                                        action="{{ route('crudBioskop.delete', $bioskop->id_bioskop) }}"
+                                                    <form method="POST"
+                                                        action="{{ route('crudDetjam.delete', $detjam->id_det_jam) }}"
                                                         class="d-inline">
                                                         @csrf
                                                         <input name="_method" type="hidden" value="DELETE">
                                                         <button type="submit"
                                                             class="badge badge-sm bg-gradient-danger  border-0 show_confirm"
-                                                            data-id="{{ $bioskop->id_bioskop }}" data-toggle="tooltip"
+                                                            data-id="{{$detjam->id_det_jam }}" data-toggle="tooltip"
                                                             title='Delete'>Delete</button>
                                                     </form>
 
-                                                </td> --}}
+                                                </td>
 
                                             </tr>
                                             <tr>
@@ -127,7 +123,6 @@
                     </div>
                 </div>
 
-    </body>
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
@@ -140,11 +135,11 @@
         $('.show_confirm').click(function(event) {
             var form = $(this).closest("form");
             var name = $(this).data("name");
-            var id_studio = $(this).attr('data-id');
+            var id_det_jam = $(this).attr('data-id');
             event.preventDefault();
             swal({
                     title: "APA ANDA YAKIN ?",
-                    text: "Anda Akan Menghapus ID Studio " + id_studio + "",
+                    text: "Anda Akan Menghapus ID dj " + id_det_jam + "",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -157,6 +152,4 @@
         });
     </script>
 
-
-    </html>
 @endsection

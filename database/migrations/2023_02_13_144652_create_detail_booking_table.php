@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRolesTable extends Migration
+class CreateDetailBookingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('redirect_to');
+        Schema::create('detail_booking', function (Blueprint $table) {
+            $table->string('id_booking');
+            $table->foreign('id_booking')->references('id_booking')->on('booking')->onDelete('cascade');
+            $table->string('row', 10);
+            $table->double('seat');
             $table->timestamps();
         });
     }
@@ -28,8 +29,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-
-        // Schema::drop('roles');
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('detail_booking');
     }
 }

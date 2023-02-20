@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\_detail_jam;
 use App\Models\Bioskop;
 use App\Models\_detail_bioskop;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class CrudDetJamController extends Controller
@@ -62,7 +62,8 @@ class CrudDetJamController extends Controller
     public function store(Request $request)
     {
         $validatedData =  $request->validate([
-            'id_bioskop' => 'required',
+            'id_det_jam' => 'required',
+            'id_db' => 'required',
             'id_jadwal' => 'required',
             'jam_tayang' => 'required',
         ]);
@@ -87,9 +88,18 @@ class CrudDetJamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_det_jam)
     {
-        //
+        $_detail_jam = _detail_jam::all();
+        $bioskop = Bioskop::all();
+        $_detail_bioskop = _detail_bioskop::all();
+
+        $data = _detail_jam::where('id_det_jam', $id_det_jam)->first();
+
+        return view('studio.detjam.edit', compact('_detail_jam' , 'bioskop' , '_detail_bioskop', 'data') , [
+            'title' => 'Admin Studio',
+            'pages' => 'Edit Data Detail Jam'
+        ]);
     }
 
     /**
@@ -99,9 +109,18 @@ class CrudDetJamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_det_jam)
     {
-        //
+        $_detail_jam = _detail_jam::where('id_det_jam', $request->id_det_jam)
+            ->update([
+                
+                'id_db' => $request->id_db,
+                'id_jadwal' => $request->id_jadwal,
+                'jam_tayang' => $request->jam_tayang
+
+            ]);
+
+        return redirect('/crudDetjam')->with('success', 'Data Berhasil Diubah!');
     }
 
     /**
@@ -110,8 +129,9 @@ class CrudDetJamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_det_jam)
     {
-        //
+        DB::table('detail_jam')->where('id_det_jam', $id_det_jam)->delete();
+        return redirect('/crudDetjam')->with('success', 'Data Berhasil Di Hapus');
     }
 }
