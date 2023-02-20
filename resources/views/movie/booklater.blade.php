@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('container')
-    <form method="POST" action="{{ route('movie.detail', $data->id_jadwal) }}">
-        @csrf
+    {{-- <form method="POST" action="{{ route('movie.detail', $data->id_film) }}">
+        @csrf --}}
 
     <div class="container d-flex justify-content-center">
         <div class="row d-flex justify-content-center">
@@ -89,7 +89,7 @@
                         </div> --}}
 
 
-                        <a href="/booking/show/{{ $data->id_film }}" style="color:#0000FF;" class="border border-0 "
+                        <a href="/booking/show/{{ $data->id_jadwal }}" style="color:#0000FF;" class="border border-0 "
                             id="book">Book Now</a>
 
                         <hr class="border border-danger border-2 opacity-100" width="40%" style="margin-left:">
@@ -99,7 +99,7 @@
                         <label class="col-md-4 col-form-label text-md-start">
                             <h5><b>Sinopsis</b></h5>
                         </label>
-                        <span id="sinopsis">{{  $data->sinopsis }}</span></p>
+                        <span id="sinopsis">{!! $data->sinopsis !!}</span></p>
                     </div>
 
                 </div>
@@ -132,11 +132,11 @@
             </div>
 
             <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
-                <a href="/BookLater/{{ $data->id_film }}" class="link-dark">{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
+                <a href="/BookLater/{{ $data->id_jadwal }}" class="link-dark"  >{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
 
                 <div class="row ">
                     <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3">
-                        <a href="/BookLater/{{ $data->id_film }}" class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a>
+                        <a href="/BookLater/{{ $data->id_jadwal }}" class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a>
 
                     </div>
                 </div>
@@ -168,10 +168,10 @@
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                     data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
-                        <a href="{{ route('booklater.show', $data->id_jadwal) }}" class="btn btn-outline-danger">
+                        <a href="{{ route('bookLaterSeat.show', $data->id_jadwal) }}" class="btn btn-outline-danger">
                             {{ $data->jam_tayang }}
                         </a>
-                        {{-- <a href="/booking/show/{{ $data->id_jadwal }}" class="btn btn-outline-danger">
+                        {{-- <a href="/BookNow/{{ $data->id_jadwal }}" class="btn btn-outline-danger">
                             {{ $data->jam_tayang }}
                         </a> --}}
                      
@@ -179,9 +179,15 @@
                 </div>
             </div>
         </div>
-    </form>
+
+    {{-- </form> --}}
 
     <script>
+          function check()
+        {
+            alert("Hello! I am an alert box!!");
+        }
+
         $('#gap_form').wrap(
             '<form id="Form2" action="{{ route('booking.show', $data->id_film) }} " method="POST" ></form>'
         );

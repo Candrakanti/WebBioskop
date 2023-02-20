@@ -37,16 +37,26 @@
                     </select>
 
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="id_film" class="form-label">Id Film</label>
-                    {{-- <input type="tect" class="form-control" name="id_jadwal" autofocus> --}}
                     <select class="form-select form-select-lg mb-3" name="id_film">
 
                         @foreach ($data1 as $js)
                             <option value="{{ $js->id_film }}" selected>{{ $js->judul_film }}</option>
                         @endforeach
                     </select>
+                </div> --}}
+
+                <div class="mb-3">
+                    <label for="id_film" class="form-label">Id Film</label>
+                    <input class="form-control" list="judul_film" id="id_film" name="id_film" placeholder="Type to search...">
+                        <datalist id="judul_film">
+                        @foreach ($data1 as $js)
+                            <option value="{{ $js->id_film }}" selected>{{ $js->judul_film }}</option>
+                        @endforeach
+                        </datalist>
                 </div>
+                
 
                 <div class="mb-3">
                     <label for="id_kota" class="form-label"> Kota</label>
@@ -82,20 +92,20 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-3">
+                    <div class="mb-3">
                     <label for="jam_tayang" class="form-label">Jam Tayang</label>
 
 
-                    <input type="text" class="form-control @error('jam_tayang') is-invalid @enderror" name="jam_tayang[]"
+                    <input type="time" class="form-control @error('jam_tayang') is-invalid @enderror" name="jam_tayang"
                         required value="{{ old('jam_tayang') }}">
                     @error('jam_tayang')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
-                </div> --}}
+                </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="jam_tayang">jam_tayang</label>
                         <div class="row">
                             <div class="col-md-2">
@@ -116,7 +126,7 @@
                         </div>
                         @endfor
                     </div>
-                    <div>
+                    <div> --}}
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-success">Save</button>

@@ -63,20 +63,20 @@
                   </td>
 
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">{{$data->id_payment}}</p>
+                    {{-- <p class="text-xs font-weight-bold mb-0">{{$data->id_payment}}</p> --}}
                   </td>
 
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_booking}}</span>
+                    {{-- <span class="text-secondary text-xs font-weight-bold">{{$data->id_booking}}</span> --}}
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->jenis_payment}}</span>
+                    {{-- <span class="text-secondary text-xs font-weight-bold">{{$data->jenis_payment}}</span> --}}
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$data->jumlah_bayar}}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->status}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->status_bayar}}</span>
                   </td>
 
                      {{-- <td class="align-middle text-center text-sm">

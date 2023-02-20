@@ -2,6 +2,8 @@
 
 @section('container')
 
+{{-- <h2>{{  \Carbon\Carbon::now()->timezone('asia/jakarta')->format('h:i:s') }}</h2> --}}
+
         <section id="kota">
             <div class="container mb-4">
                 <div class="row">
