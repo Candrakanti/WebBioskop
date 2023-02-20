@@ -9,10 +9,6 @@
 </style>
 
 
-@foreach($nb as $n)
-{{ $n }}
-@endforeach
-
 @section('container')
 @if($data->tgl_tayang_awal  >=  Carbon\Carbon::now()->format('Y-m-d'))
 <h4 class="fw-light text-danger">COMING SOON</h4>
@@ -154,17 +150,7 @@
 
             </div>
 
-            <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3 ">
-                <a href="/BookLater/{{ $data->id_jadwal }}" class="link-dark"   >{{ \Carbon\Carbon::tomorrow()->format('l') }}</a>
-
-                <div class="row ">
-                    <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3">
-                        <a href="/BookLater/{{ $data->id_jadwal }}" id="day" class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a>
-                        {{-- <a  onclick='check();' class="link-danger">{{ \Carbon\Carbon::tomorrow()->format('d,M') }}</a> --}}
-
-                    </div>
-                </div>
-            </div>
+         
 
         </div>
     </div>
@@ -201,7 +187,7 @@
                             data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
                            
-                             <h1> {{ $d->jam_tayang }}</h1>  
+            
                       @if( $d->jam_tayang <= Carbon\Carbon::now()->format('H:i:s') )
                       <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}"  class="btn btn-outline-danger btn disabled">
                         {{ $d->jam_tayang }} 
