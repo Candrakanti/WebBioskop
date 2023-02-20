@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class payment extends Model
 {
@@ -18,13 +19,10 @@ class payment extends Model
         'id_booking',
         'nama_bank',
         'harga',
-        'status',
-        'image'
+        'status_bayar',
+        'bukti_bayar'
     ];
 
-
-    public function bank()
-    {
-        return $this->hasMany('App\Models\bank');
-    }
 }
+
+

@@ -52,11 +52,15 @@
             <a class="nav-link"  href="/ticket">TICKET</a>  
           </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('mycgv') ? ' active' : '' }}" href="/mycgv">MYSEENEMA</a>
+                            <a class="nav-link {{ request()->is('myseenema') ? ' active' : '' }}" href="/myseenema">MYSEENEMA</a>
                         </li>
                         <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Contact
-                                Us</button>
+                            {{-- <form action="/ContactUs"> --}}
+                                <a href="/#Map">
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Contact Us</button>
+                                </a>
+                               
+                            {{-- </form> --}}
                         </li>
                     </ul>
                 </div>
@@ -74,6 +78,7 @@
     <script src="{{ asset('landingPage/vendors/owl-carousel/js/owl.carousel.min.js') }} "></script>
     <script src="{{ asset('landingPage/vendors/aos/js/aos.js') }} "></script>
     <script src="{{ asset('landingPage/js/landingpage.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </body>
 
 </html>

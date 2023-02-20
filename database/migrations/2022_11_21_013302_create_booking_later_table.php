@@ -21,7 +21,7 @@ class CreateBookingLaterTable extends Migration
             $table->date('tanggal_booking');
             $table->string('kursi');
             $table->double('jumlah_kursi');
-            $table->double('total_harga');
+            $table->double('harga');
             $table->string('qr_tiket')->default('0');
             $table->timestamps();
         });

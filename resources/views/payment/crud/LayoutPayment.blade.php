@@ -14,7 +14,12 @@
 
 <body>
 <div class="container pb-3">
+<<<<<<< HEAD
   <a href="" class="btn btn-info">print data</a>
+=======
+  {{-- <a href="{{ route('LayoutPayment.export') }}" class="btn btn-info">print data</a> --}}
+  <a href="/PrintData" class="btn btn-info">print data</a>
+>>>>>>> ecb25e9e7a139e7e36caf00afe601539578f5cbf
    
 <div class="container pt-3">
   @if (session()->has('success'))

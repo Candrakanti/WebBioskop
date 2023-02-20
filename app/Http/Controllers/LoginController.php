@@ -17,7 +17,7 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required ',
+ 
             'email' => 'required|email:dns',
             'password' => 'required'
         ]);
@@ -41,6 +41,9 @@ class LoginController extends Controller
 
         request()->session()->regenerateToken();
 
-        return redirect('/mycgv');
+        return redirect('/myseenema');
     }
+
+
+    
 }

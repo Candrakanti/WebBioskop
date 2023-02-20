@@ -20,17 +20,21 @@ class CrudJadwalController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index( Request $request)
     {
+        if($request->has('search')) {
+            $data = jadwal::where('id_jadwal', 'LIKE', '%' .$request->search. '%')->get();
+            // $data = Film::where('id_film','LIKE','%' .$request->search.'%' );
+        } else {
+            $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
+            ->join('film', 'film.id_film', '=', 'jadwal.id_film')
+            ->get(['studio.*', 'jadwal.*', 'film.*']);
+        }
         // $data = studio::with(relations: 'studio')->get();
         // $data1 = film::with(relations: 'film')->get();
         // $data = jadwal::with('jadwals')->get();
         // $data = \App\Models\jadwal::with(['studio', 'Film'])->get();
-
-        $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
-            ->join('film', 'film.id_film', '=', 'jadwal.id_film')
-            ->get(['studio.*', 'jadwal.*', 'film.*']);
-
+        
         return view('studio.crudJadwal.LayoutJadwal', compact('data'), [
 
             'title' => 'Admin Studio',
@@ -71,11 +75,10 @@ class CrudJadwalController extends Controller
             'id_jadwal' => 'required|min:5|max:10|unique:jadwal',
             'id_studio' => 'required',
             'id_film' => 'required',
-            'id_kota' => 'required',
-            // 'id_bioskop' => 'required',
+       
             'tgl_tayang_awal' => 'required',
             'tgl_tayang_akhir' => 'required',
-            'jam_tayang' => 'required',
+         
         ]);
 
         jadwal::create($validatedData);

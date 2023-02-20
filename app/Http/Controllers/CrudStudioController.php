@@ -21,12 +21,19 @@ class CrudStudioController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {
 
-        // $std = studio::all();
-        $std = studio::join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
+        if($request->has('search')) {
+            $std = studio::where('id_studio', 'LIKE', '%' .$request->search. '%')->get();
+            // $std = Film::where('id_film','LIKE','%' .$request->search.'%' );
+        } else {
+            $std = studio::join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
             ->get(['studio.*', 'detail_jenis_studio.*']);
+        }
+
+        // $std = studio::all();
+       
         return view('studio.crud.LayoutStudio', compact('std'), [
             'title' => 'Admin Studio',
             'pages' => 'Table Studio'

@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "barryvdh/laravel-dompdf": "^2.0",
         "bumbummen99/shoppingcart": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -15,7 +16,11 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.10",
         "midtrans/midtrans-php": "^2.5",
+<<<<<<< HEAD
         "phpoffice/phpspreadsheet": "dev-NumberFormatMask-Helpers",
+=======
+    
+>>>>>>> ecb25e9e7a139e7e36caf00afe601539578f5cbf
         "xendit/xendit-php-clients": "^2.19"
     },
     "require-dev": {

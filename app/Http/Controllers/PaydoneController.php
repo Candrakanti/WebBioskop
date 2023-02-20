@@ -24,7 +24,7 @@ class PaydoneController extends Controller
         // ])->with($listproducts);
 
 
-        $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->get(['booking.*', 'jadwal.*' ,'film.*'])->where('id_customer', '=', Auth::user()->id);
+        $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->join('payment','payment.id_payment' ,'=','booking.id_payment')->join('studio', 'studio.id_studio', '=' ,'jadwal.id_studio')->join('detail_jenis_studio' ,'detail_jenis_studio.id_jenis_studio','=' ,'studio.id_jenis_studio')->join('_detail_bioskop' ,'_detail_bioskop.id_jadwal', '=' ,'jadwal.id_jadwal' )->join('bioskop' ,'bioskop.id_bioskop' ,'=' ,'_detail_bioskop.id_bioskop')->get(['booking.*', 'jadwal.*' ,'film.*' ,'payment.*' ,'studio.*' ,'detail_jenis_studio.*' ,'bioskop.*'])->where('id_customer', '=', Auth::user()->id);
         return view('profil.paydone', [
             'title' => 'Mycgv',
             'active' => 'Mycgv'

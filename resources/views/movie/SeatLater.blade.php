@@ -25,7 +25,7 @@
                             @if ($data->jenis_studio === 'Regular')
 
                    
-                            <h1>contoh</h1>
+                            {{-- <h1>contoh</h1>
                             
                                @if($data->id_jadwal == $data->id_jadwal)
                              @foreach($data2 as $d)
@@ -35,7 +35,7 @@
                              @endforeach
                                @endif
 
-                            <H1>Selesai</H1>
+                            <H1>Selesai</H1> --}}
 
 
 
@@ -64,10 +64,8 @@
                                                         name="kursi"
                                                         @if($data->id_jadwal == $data->id_jadwal)
                                                         @foreach($data2 as $d)
-                                                        @if($d->id_jadwal === $data->id_jadwal )
-    
-                                                        {{-- @if( old('kursi') || (!old('submit') && $voucher->active) ) checked='checked' @endif --}}
-
+                                                        @if($d->id_jadwal === $data->id_jadwal and $d->kursi == 'H2')
+                                                       disabled
                                                         @endif
                                                         @endforeach
                                                           @endif
