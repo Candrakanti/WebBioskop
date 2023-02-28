@@ -43,11 +43,7 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tangga Buat Akun</th>
                   {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th> --}}
 
-<<<<<<< HEAD
-                 
-=======
  
->>>>>>> f9a303d909348ea77d655958d7e95dda4d94ef5d
                  
                   @foreach($data as $key => $data ) 
                 </tr>
