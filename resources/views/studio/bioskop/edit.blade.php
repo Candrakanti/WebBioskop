@@ -17,7 +17,7 @@
             @method('PUT')
             <div class="form-group">
                 <label for="id_jadwal">Id Bioskop</label>
-                <input type="text" disabled name="id_bioskop" id="id_bioskop" class="form-control" value="{{$data->id_bioskop }}" required="">
+                <input type="text" readonly name="id_bioskop" id="id_bioskop" class="form-control" value="{{$data->id_bioskop }}" required="">
             </div>
 
             <div class="form-group">

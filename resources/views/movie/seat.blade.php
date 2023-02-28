@@ -6,12 +6,8 @@
         
         {{-- {!! QrCode::generate('Make me into a QrCode!'); !!}
        
-<<<<<<< HEAD
-        <div> <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate('Generate any QR Code!')) !!} " download>Downloads</a></div> --}}
-=======
         <div> <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate('Generate any QR Code!')) !!} " download>Downloads</a></div>
          --}}
->>>>>>> f9a303d909348ea77d655958d7e95dda4d94ef5d
         <div class="row" >
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
     
@@ -75,7 +71,7 @@
                                                             @endfor
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
+                                                {{-- <div class="col-4">
                                                         @for($i = 6; $i<=10; $i++)
                                                         <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{$i}}" value="{{ $data->harga }}"  style="width:32px; height:25px;"
                                                         @if($data->id_jadwal == $data->id_jadwal)
@@ -98,7 +94,7 @@
                                                             <input type="text" class="border border-0 p-2 mb-2 ms1 text-bg-light"  disabled placeholder="{{ $v }}{{ $i }}" style="width:40px; height:25px;">
                                                             @endfor
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                             
                                         </div>
@@ -602,7 +598,7 @@
                 });
 
            var check =    $(":checkbox:checked").length;
-           document.getElementById('count_seat').value=  check;
+           document.getElementById('`').value=  check;
            document.getElementById('count_seat2').value=  check;
            document.getElementById('count_seat3').value=  check;
                 var input = document.getElementsByName("kursi[]");

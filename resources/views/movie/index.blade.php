@@ -20,6 +20,8 @@
  
             </div>
 
+            {{-- sini --}}
+
             <div class="col-6 col-xs-6 col-md-6 col-sm-6 col-lg-6">
                 <div class="row d-flex justify-content-end">
                     <div class="col-md-6 col-6 col-sm-6 col-lg-6">
@@ -39,18 +41,6 @@
 
 </section>
 
-        {{-- <div class="container">
-            <ul>
-            <div class="row">
-              <div class="col-lg-4 col-sm-4 col-md-4 col-4">
-                <a class="nav-link {{ request()->is('*movie') ? ' active' : '' }}" href="/movie"><h1>PLAYING</h1></a>
-              </div>
-              <div class="col-lg-3 col-sm-3 col-md-3 col-3">
-                <a class="nav-link {{ request()->is('*upcoming') ? ' active' : '' }}" href="/upcoming"><h1>UPCOMING</h1></a>
-              </div>
-            </div>
-           </ul>
-        </div> --}}
 
         <div class="navbar navbar-expand-lg pl-3 pl-sm-0 bg-white " style="position: sticky; box-shadow: none;" class="pb-5" >
             <div class="container">           
@@ -66,13 +56,6 @@
                 </div>
             </div>
         </div>
-
-        {{-- <div class="container">
-            <div class="row">
-                <div class="col-4 text-danger"> <b>PLAYING</b></div>
-                <div class="col-4"><b>UPCOMING</b></div>   
-            </div>
-        </div> --}}
 
         @if($exp == $exp)
       

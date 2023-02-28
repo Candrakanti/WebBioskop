@@ -157,8 +157,8 @@ class CrudFilmController  extends Controller
         $validatedData = $request->validate([
             'id_film' => 'required|max:255',
             'judul_film' => 'required|max:255',
-            'jenis' => 'required|max:255',
-            // 'jenis_film' => 'required',
+            // 'jenis' => 'required|max:255',
+            'jenis_film' => 'required|max:255',
             'producer' => 'required|max:255',
             'sutradara' => 'required|max:255',
             'penulis' => 'required|max:255',

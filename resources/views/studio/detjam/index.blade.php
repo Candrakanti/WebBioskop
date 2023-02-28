@@ -1,5 +1,5 @@
 @extends('studio.templateDashboard.sidebar')
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
    
         <div class="container pb-3">
@@ -22,16 +22,17 @@
             </div>
 
 
+
             <div class="container-fluid py-4">
                 <div class="row">
                     <div class="col-12">
                         <div class="card mb-4">
                             <div class="card-header pb-0">
-                                <h6 class="text-center">Data Detail Jam</h6>
+                                <h6 class="text-center">Data Studio</h6>
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
-                                    <table class="table mb-0" id="myTable">
+                                    <table class="table align-items-center mb-0" id="myTable">
                                         <thead>
                                             <tr>
                                                 <th
@@ -39,50 +40,46 @@
                                                     No</th>
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                    Id Detail Jam </th>
-                                               
+                                                    Id Detail Jjam</th>
+                                             
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                    Id Bioskop </th>
+                                                    Id Bioskop</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Id jadwal</th>
+                                                    Id Jadwal</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Jam Tayang </th>
-
+                                                    Jam Tayang</th>
+                                           <th
+                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Aksi</th>
                                                 @foreach ($data as $key => $detjam)
                                             </tr>
                                         </thead>
-
+        
                                         <tbody>
                                             <tr>
-
+        
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div>
-
+        
                                                         </div>
                                                         <div class="d-flex flex-column justify-content-center">
                                                             <h6 class="mb-0 text-sm">{{ $key++ }}</h6>
-
+        
                                                         </div>
                                                     </div>
                                                 </td>
-
-
+        
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $detjam->id_det_jam }}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $detjam->id_det_jam}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="text-xs font-weight-bold mb-0">{{ $detjam->id_db }}</p>
                                                 </td>
-
-                                                {{-- <td class="align-middle text-center pt-1">
-                                                    <p class="text-secondary text-xs font-weight-bold">
-                                                        {{ $bioskop->id_studio }}</p>
-                                                </td> --}}
-
+                                                
                                                 <td class="align-middle text-center">
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $detjam->id_jadwal }}</span>
@@ -91,28 +88,26 @@
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $detjam->jam_tayang }}</span>
                                                 </td>
-
+                                              
                                                 <td class="align-middle text-center text-sm">
                                                     <a class="badge badge-sm bg-gradient-warning"
                                                         href="/crudDetjam/{{ $detjam->id_det_jam }}/edit">Edit</a>
-
-
+        
+        
                                                     <form method="POST"
-                                                        action="{{ route('crudDetjam.delete', $detjam->id_det_jam) }}"
-                                                        class="d-inline">
-                                                        @csrf
-                                                        <input name="_method" type="hidden" value="DELETE">
-                                                        <button type="submit"
-                                                            class="badge badge-sm bg-gradient-danger  border-0 show_confirm"
-                                                            data-id="{{$detjam->id_det_jam }}" data-toggle="tooltip"
-                                                            title='Delete'>Delete</button>
-                                                    </form>
-
+                                                    action="{{ route('crudDetjam.delete', $detjam->id_det_jam) }}"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button type="submit"
+                                                        class="badge badge-sm bg-gradient-danger  border-0 show_confirm"
+                                                        data-id="{{$detjam->id_det_jam }}" data-toggle="tooltip"
+                                                        title='Delete'>Delete</button>
+                                                </form>
+        
                                                 </td>
-
+        
                                             </tr>
-                                            <tr>
-                                                <td>
                                             </tr>
                                         </tbody>
                                         @endforeach
@@ -123,6 +118,8 @@
                     </div>
                 </div>
 
+
+
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
@@ -130,6 +127,15 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+
+<script>
+  $(document).ready( function () {
+$('#myTable').DataTable();
+} );
+</script>
 
     <script>
         $('.show_confirm').click(function(event) {

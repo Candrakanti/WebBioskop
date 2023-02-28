@@ -14,6 +14,7 @@ class CreateDetailJamTable extends Migration
     public function up()
     {
         Schema::create('detail_jam', function (Blueprint $table) {
+            $table->string('id_det_jam');
             $table->string('id_db');
             $table->foreign('id_db')->references('id_db')->on('detail_bioskop')->onDelete('cascade');
             $table->string('id_jadwal');

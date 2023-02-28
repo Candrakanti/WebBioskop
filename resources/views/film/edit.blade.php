@@ -34,7 +34,7 @@
 
             <div class="form-group">
                 <label for="id_film">Id Film</label>
-                <input type="text" name="id_film" id="id_film" class="form-control" readonly="readonly" value="{{$film->id_film }}" required="">
+                <input type="text" name="id_film" id="id_film" class="form-control"  value="{{$film->id_film }}">
             </div>
 
             <div class="form-group">
