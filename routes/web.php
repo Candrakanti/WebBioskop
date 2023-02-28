@@ -34,7 +34,7 @@ use App\Http\Controllers\JenisController;
 use App\Http\Controllers\BankController;
 
 use App\Http\Controllers\ApiMindtrasController;
-
+use App\Http\Controllers\CrudDetStudioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -187,6 +187,10 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::post('/crudDetjam/update', [CrudDetJamController::class, 'update']);
     Route::get('/crudDetjam/edit{id_det_jam}', [CrudDetJamController::class, 'edit'])->name('crudDetjam.edit');
 
+    Route::resource('/crudDetStudio', CrudDetStudioController::class);
+    Route::delete('/crudDetStudio/delete/{id_jenis_studio}', [ CrudDetStudioController::class, 'destroy'])->name('crudDetStudio.delete');
+    Route::post('/crudDetStudio/update', [CrudDetStudioController::class, 'update']);
+    Route::get('/crudDetStudio/edit{id_jenis_studio}', [CrudDetStudioController::class, 'edit'])->name('crudDetStudio.edit');
 
     Route::resource('/crudBioskop', CrudBioskopController::class);
     Route::delete('/crudBioskop/delete/{id_bioskop}', [CrudBioskopController::class, 'destroy'])->name('crudBioskop.delete');
