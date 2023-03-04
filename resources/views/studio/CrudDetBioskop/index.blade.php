@@ -13,13 +13,13 @@
         @endif
     </div>
 
-    <div class="row 9-3 align-items-center mt-2">
+    {{-- <div class="row 9-3 align-items-center mt-2">
         <div class="col-auto">
           <form action="/detbioskop" method="GET">
           <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan ID studio">
         </form>
         </div>
-    </div>
+    </div> --}}
 
 
     <div class="container-fluid py-4">
