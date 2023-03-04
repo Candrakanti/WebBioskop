@@ -13,8 +13,17 @@ class CreateUserView extends Migration
      */
     public function up()
     {
-       
-        \DB::statement($this->createView());
+       // MASIH SALAH <3 
+        DB::unprepared('ALTER ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwJenis` AS (
+            SELECT
+              `detail_jenis_studio`.`jenis_studio` AS `jenis_studio`,
+              `detail_jenis_studio`.`harga`        AS `harga`,
+              `studio`.`id_jenis_studio`           AS `id_jenis_studio`
+            FROM (`detail_jenis_studio`
+               JOIN `studio`
+                 ON (`detail_jenis_studio`.`id_jenis_studio` = `studio`.`id_jenis_studio`)
+
+        ');
     }
 
     /**
@@ -24,33 +33,8 @@ class CreateUserView extends Migration
      */
     public function down()
     {
-        \DB::statement($this->dropView());
+        DB::unprepared('DROP VIEW IF EXISTS vwJenis');
+        
     }
 
-    private function createView(): string
-    {
-        return <<
-
-            CREATE VIEW view_user_data AS
-                SELECT 
-                    users.id, 
-                    users.name, 
-                    users.email,
-                    (SELECT count(*) FROM posts
-                                WHERE posts.user_id = users.id
-                            ) AS total_posts,
-                    (SELECT count(*) FROM comments
-                                WHERE comments.user_id = users.id
-                            ) AS total_comments
-                FROM users
-            SQL;
-    }
-
-    private function dropView(): string
-    {
-        return <<
-
-            DROP VIEW IF EXISTS `view_user_data`;
-            SQL;
-    }
 }
