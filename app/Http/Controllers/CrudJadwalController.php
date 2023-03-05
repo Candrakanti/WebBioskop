@@ -110,9 +110,7 @@ class CrudJadwalController extends Controller
         $studio =  studio::all();
         $film =  Film::all();
 
-        $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
-            ->join('film', 'film.id_film', '=', 'jadwal.id_film')
-            ->get(['studio.*', 'jadwal.*', 'film.*'])->where('id_jadwal', $id_jadwal)->first();
+        $data = jadwal::all()->where('id_jadwal', $id_jadwal)->first();
 
         return view(
             'studio.crudJadwal.edit',
@@ -134,17 +132,28 @@ class CrudJadwalController extends Controller
      */
     public function update(Request $request, jadwal $crudJadwal)
     {
-        $jadwal = jadwal::where('id_jadwal', $request->id_jadwal)
-            ->update([
-                'id_jadwal' => $request->id_jadwal,
-                'id_studio' => $request->id_studio,
-                'id_film' => $request->id_film,
-                'tgl_tayang_awal' => $request->tgl_tayang_awal,
-                'tgl_tayang_akhir' => $request->tgl_tayang_akhir,
-                'jam_tayang' => $request->jam_tayang,
-                // 'jam_tayang1' => $request->jam_tayang1,
+        // $jadwal = jadwal::where('id_jadwal', $request->id_jadwal)
+        //     ->update([
+        //         'id_jadwal' => $request->id_jadwal,
+        //         'id_studio' => $request->id_studio,
+        //         'id_film' => $request->id_film,
+        //         'tgl_tayang_awal' => $request->tgl_tayang_awal,
+        //         'tgl_tayang_akhir' => $request->tgl_tayang_akhir,
+        //         'jam_tayang' => $request->jam_tayang,
+        //         // 'jam_tayang1' => $request->jam_tayang1,
 
-            ]);
+        //     ]);
+
+        $validatedData = $request->validate([
+            'id_jadwal' => 'required|max:255',
+            'id_studio' => 'required|max:255',
+         
+            'id_film' => 'required|max:255',
+            'tgl_tayang_awal' => 'required|max:255',
+            'tgl_tayang_akhir' => 'required|max:255',
+        ]);
+
+        jadwal::where('id_jadwal', $request->id_jadwal)->update($validatedData);
 
         return redirect('/crudJadwal')->with('success', 'Data Berhasil Diubah!');
     }

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <title>Laravel - How to Generate Dynamic PDF from HTML using DomPDF</title>
+  <title>Data Payment</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -26,9 +26,11 @@
     </div>
     <div class="col-md-5" align="right">
      <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger">Convert into PDF</a>
+ 
     </div>
    </div>
    <br />
+
    <div class="table-responsive">
     <table class="table table-striped table-bordered">
      <thead>
@@ -56,6 +58,7 @@
     </table>
    </div>
   </div>
- </body>
-</html>
+ 
+
+
 @endsection

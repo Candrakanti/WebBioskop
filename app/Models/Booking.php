@@ -28,6 +28,7 @@ class Booking extends Model
         'harga',
         'jumlah',
         'qr_tiket',
+        'created_at',
     
     ];
 

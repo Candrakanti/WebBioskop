@@ -12,6 +12,9 @@ use App\Models\studio;
 use DB;
 use PDF;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\UsersExport;
+
+use Maatwebsite\Excel\Facades\Excel;
 
 // use Illuminate\Support\Facades\DB;
 
@@ -22,6 +25,28 @@ class CrudPaymentController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function print(){
+        $data =  payment::join('booking' ,'booking.id_payment' , '=' ,'payment.id_payment')->join('users' ,'users.id' ,'=' ,'booking.id_customer')->get(['booking.*' ,'payment.*' , 'users.*']); 
+        return view('payment.crud.print', compact('data'), [
+            'title' => 'Admin Payment',
+            'active' => 'Admin payment',
+            'pages' => 'Table Payment'
+        ]);
+    }
+
+    public function cetakPertanggal($tglawal,$tglakhir){
+        // dd(["Tanggal Awal : ".$tglawal, "Tanggal Akhir :".$tglakhir]);
+
+        $cetak = payment::join('booking' ,'booking.id_payment' , '=' ,'payment.id_payment')->join('users' ,'users.id' ,'=' ,'booking.id_customer')->whereBetween('tanggal_booking',[$tglawal, $tglakhir])->get(['booking.*' ,'payment.*' , 'users.*']); 
+          return view('payment.crud.PrintPayment', compact('cetak'), [
+            'title' => 'Admin Payment',
+            'active' => 'Admin payment',
+            'pages' => 'Table Payment'
+        ]);
+
+    }
+
     public function index(Request $request)
     {
         // $data = User::join('booking' ,'booking.id_customer' ,'=','users.id')->get(['booking.*','users.*']);
@@ -41,8 +66,9 @@ class CrudPaymentController extends Controller
 
 
         return view('Payment.crud.index', compact('data'), [
-            'title' => 'Admin Payment',
-            'pages' => 'Table Payment'
+            'title' => 'Admin payment',
+            'active' => 'Admin payment',
+            'pages' => 'Data payment',
         ]);
 
         // return view('studio.LayoutStudio')->with('studio', $studio);
@@ -111,6 +137,8 @@ class CrudPaymentController extends Controller
      // $post = DB::select("CALL JumlahPembeliann ($id)");
         $post = DB::select("CALL buy()");
 
+       
+
         return view('payment.crud.datauser',  compact('data' , 'post'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
@@ -118,27 +146,22 @@ class CrudPaymentController extends Controller
         // return view('studio.LayoutStudio')->with('studio', $studio);
     }
 
-    // public function print(){
-    //     return view('payment.crud.print', [
-    //         'title' => 'Admin Payment',
-    //         'pages' => 'Table Payment'
-    //     ]);
-    // }
 
-    // public function cetakPertanggal($tglawal,$tglakhir){
-    //     // dd(["Tanggal Awal : ".$tglawal, "Tanggal Akhir :".$tglakhir]);
+    
+    public function exportExcel(Request $request) 
+    {
 
-    //     $cetak = Booking::with('id_customer')->whereBetween('tanggal_booking',[$tglawal, $tglakhir]); 
-    //       return view('payment.crud.PrintPayment', compact('cetak'), [
-    //         'title' => 'Admin Payment',
-    //         'pages' => 'Table Payment'
-    //     ]);
+        $from_date=$request->from_date;
+        $to_date = $request->to_date;
 
-    // }
+
+         return Excel::download(new usersExport($from_date,$to_date), 'excelname.xlsx');
+}
 
     public function Export()
     {
         $customer_data = $this->get_customer_data();
+      
         return view('payment.crud.dynamic_pdf' , [
             'title' => 'Laporan Keuangan',
             'pages' => 'Laporan Keuangan'
@@ -148,9 +171,7 @@ class CrudPaymentController extends Controller
     function get_customer_data()
     {
         $customer_data = payment::join('booking' ,'booking.id_booking','=','payment.id_booking')->join('users','users.id','=','booking.id_customer')->get(['payment.*','booking.*','users.*']);
-    //  $customer_data = DB::table('payment')
-    //      ->limit(10)
-    //      ->get();
+
      return $customer_data;
     }
 
@@ -198,4 +219,6 @@ class CrudPaymentController extends Controller
      $output .= '</table>';
      return $output;
     }
+  
 }   
+

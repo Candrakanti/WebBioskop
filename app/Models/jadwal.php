@@ -17,7 +17,6 @@ class jadwal extends Model
         'id_jadwal',
         'id_studio',
         'id_film',
-      
         'tgl_tayang_awal',
         'tgl_tayang_akhir',
       

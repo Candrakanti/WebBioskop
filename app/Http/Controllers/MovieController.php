@@ -68,8 +68,12 @@ class MovieController extends Controller
     //  $nb =   DB::select('SELECT date_movie() as s');
 
 
+    $result = DB::select('SELECT date_movie (tgl_tayang_akhir,tgl_tayang_awal) as result from jadwal')[2]->result;
+
+
+
         $time = _detail_jam::where('jam_tayang', '<=', Carbon::now()->timezone('asia/jakarta')->format('h:i'))->get();
-        return view('movie.detail', compact('data' ,'time' ,'mall' ,'c'   ), [
+        return view('movie.detail', compact('data' ,'time' ,'mall' ,'c'  , 'result' ), [
             "title" => "Detail movie",
             "active" => 'Movie',
         ]);

@@ -141,7 +141,7 @@ Route::group(["middleware" => 'ceklevel:admin_film'], function () {
     Route::delete('/crudFilm/delete/{id_film}', [CrudFilmController::class, 'destroy'])->name('crudFilm.delete');
     Route::get('/crudFilm/edit/{id_film}', [CrudFilmController::class, 'edit'])->name('crudFilm.edit');
     Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
-    Route::post('/crudFilm/update', [CrudFilmController::class, 'update']);
+
 });
 
 
@@ -179,6 +179,7 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
 
     Route::resource('/crudJadwal', CrudJadwalController::class);
     Route::get('/crudJadwal/edit{id_jadwal}', [CrudJadwalController::class, 'edit'])->name('crudJadwal.edit');
+    Route::post('/crudJadwal/update', [CrudJadwalController::class, 'update']);
 
     Route::delete('/crudJadwal/delete/{id_jadwal}', [CrudJadwalController::class, 'destroy'])->name('crudJadwal.delete');
 
@@ -219,6 +220,8 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
     Route::get('/datauser', [CrudPaymentController::class, 'customer']);
     Route::get('/dynamic_pdf', [CrudPaymentController::class, 'Export']);
     Route::get('/dynamic_pdf/pdf', [CrudPaymentController::class, 'pdf']);
+  Route::get('/cetak-data-pegawai' , [CRudPaymentController::class, 'print']);
+  Route::get('/cetak-data-pertanggal/{tglawal}/{tglakhir}' , [CrudPaymentController::class, 'cetakPertanggal'])->name('cetak-data-pertanggal');
 });
 
 

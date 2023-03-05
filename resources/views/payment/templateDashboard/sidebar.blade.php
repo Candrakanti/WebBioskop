@@ -82,7 +82,8 @@
 
 
         <li class="nav-item">
-          <a class="nav-link {{Request:: is('dynamic_pdf*') ? 'active' : ''}} " href="dynamic_pdf">
+          <a class="nav-link {{Request:: is('cetak-data-pegawai*') ? 'active' : ''}} " href="/cetak-data-pegawai">
+          {{-- <a class="nav-link {{Request:: is('dynamic_pdf*') ? 'active' : ''}} " href="dynamic_pdf"> --}}
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>
@@ -133,7 +134,7 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{$pages}}</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Dashboard Admin Studio</h6>
+          <h6 class="font-weight-bolder mb-0">Dashboard {{ $title }}</h6>
         </nav>
         
           <ul class="navbar-nav  justify-content-end">
