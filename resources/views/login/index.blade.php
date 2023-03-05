@@ -54,19 +54,6 @@
             <form action="/login" method="post">
                 @csrf
 
-
-      <div class="form-floating mb-3">
-        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="name@example.com" autofocus required value="{{ old('username') }}">
-        <label for="username" >Username</label>
-
-        @error('email')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
-
-      </div>
-
               <div class="form-floating mb-3">
                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
                 <label for="email" >Email address</label>

@@ -67,7 +67,10 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+        'timezone' => 'Asia/Jakarta',
+    'locale' => 'id',
+    'faker_locale' => 'id_ID',
+    // 'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -161,6 +164,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+     
 
         /*
          * Package Service Providers...
@@ -228,7 +232,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'locale'=>'id',
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+     
+        
         // 'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],

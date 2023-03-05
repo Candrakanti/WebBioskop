@@ -1,18 +1,7 @@
 @extends('studio.templateDashboard.sidebar')
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ $title }}</title>
-
-    </head>
-
-    <body>
         <div class="container pb-3">
             <a href="/CrudStudio/create" class="btn btn-info"> Create Data Studio</a>
 
@@ -22,6 +11,14 @@
                         {{ session('success') }}
                     </div>
                 @endif
+            </div>
+
+            <div class="row 9-3 align-items-center mt-2">
+                <div class="col-auto">
+                  <form action="/CrudStudio" method="GET">
+                  <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan jenis studio">
+                </form>
+                </div>
             </div>
 
 
@@ -102,7 +99,7 @@
 
                                                 <td class="align-middle text-center text-sm">
                                                     <a class="badge badge-sm bg-gradient-warning"
-                                                        href="/CrudStudio/{{ $data->id_studio }}/edit">Edit</a>
+                                                    href="/CrudStudio/{{ $data->id_studio }}/edit">Edit</a>
 
                                                     {{-- <form id="delete-user-form" action="/CrudStudio/{{ $data->id_studio }}" method="POST" class="d-inline">
                       @csrf
@@ -110,25 +107,26 @@
                     <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" data-id="{{$data->id_studio}}"  data-name="{{$data->id_studio}}"  > delete</a>
                     </form> --}}
 
-                                                    <form method="POST"
-                                                        action="{{ route('CrudStudio.delete', $data->id_studio) }}"
-                                                        class="d-inline">
-                                                        @csrf
-                                                        <input name="_method" type="hidden" value="DELETE">
-                                                        <button type="submit"
-                                                            class="badge badge-sm bg-gradient-danger  border-0 show_confirm"
-                                                            data-id="{{ $data->id_studio }}" data-toggle="tooltip"
-                                                            title='Delete'>Delete</button>
-                                                    </form>
+                       
+
+                        <form method="POST"
+                        action="{{ route('CrudStudio.delete', $data->id_studio) }}"
+                        class="d-inline">
+                        @csrf
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit"
+                            class="badge badge-sm bg-gradient-danger  border-0 show_confirm"
+                            data-id="{{ $data->id_studio }}" data-toggle="tooltip"
+                            title='Delete'>Delete</button>
+                    </form>
+
+                                               
 
                                                     {{-- <a href="/CrudStudio/{{ $data->id_studio }}" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
                                                 </td>
 
                                             </tr>
-                                            <tr>
-                                                <td>
-
-
+                                         
                                             </tr>
                                         </tbody>
                                         @endforeach
@@ -139,7 +137,6 @@
                     </div>
                 </div>
 
-    </body>
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
@@ -169,6 +166,13 @@
         });
     </script>
 
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 
-    </html>
+<script>
+  $(document).ready( function () {
+$('#myTable').DataTable();
+} );
+</script>
+
 @endsection

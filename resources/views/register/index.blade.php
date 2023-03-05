@@ -49,18 +49,6 @@
 
                         </div>
 
-                        <div class="col-6 col-lg-6 col-md-6 col-sm-6">
-                          <div class="form-floating  mb-3">
-                            <input type="text" name="username" class="form-control @error('username') is-invalid  @enderror"  id="username" placeholder="username" required value="{{ old('username') }}">
-                            <label for="username">username</label>
-                            @error('username')
-                            <div class="invalid-feedback">
-                              {{ $message }}
-                            </div>
-                            @enderror
-                          </div>
-                        </div>
-
                       </div>
                      
                      <div class="row">

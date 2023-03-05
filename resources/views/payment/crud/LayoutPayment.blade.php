@@ -2,19 +2,9 @@
 
 @section('container')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
-    
-</head>
-
-<body>
 <div class="container pb-3">
-  <a href="/CrudStudio/create" class="btn btn-info">  Create Data Payment</a>
+  {{-- <a href="{{ route('LayoutPayment.export') }}" class="btn btn-info">print data</a> --}}
+  <a href="/PrintData" class="btn btn-info">print data</a>
    
 <div class="container pt-3">
   @if (session()->has('success'))
@@ -30,7 +20,7 @@
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
-          <h6 class="text-center">Data Studio</h6>
+          <h6 class="text-center">Data Payment</h6>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
@@ -43,6 +33,7 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Payment</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Bayar</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                   @foreach($data as $key => $data ) 
                 </tr>
               </thead>
@@ -62,39 +53,28 @@
                     </div>
                   </td>
 
-                  <td>
-                    {{-- <p class="text-xs font-weight-bold mb-0">{{$data->id_payment}}</p> --}}
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_payment}}</span>
                   </td>
 
                   <td class="align-middle text-center">
-                    {{-- <span class="text-secondary text-xs font-weight-bold">{{$data->id_booking}}</span> --}}
-                  </td>
-                  <td class="align-middle text-center">
-                    {{-- <span class="text-secondary text-xs font-weight-bold">{{$data->jenis_payment}}</span> --}}
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->jumlah_bayar}}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{$data->status_bayar}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->id_booking}}</span>
                   </td>
 
-                     {{-- <td class="align-middle text-center text-sm">
-                    <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Edit</a>
-                   
-                    {{-- <form id="delete-user-form" action="/CrudStudio/{{ $data->id_studio }}" method="POST" class="d-inline">
-                      @csrf
-                      @method('DELETE')
-                    <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" data-id="{{$data->id_studio}}"  data-name="{{$data->id_studio}}"  > delete</a>
-                    </form> --}}
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->nama_bank}}</span>
+                  </td>
 
-                    {{-- <form method="POST" action="{{ route('CrudStudio.delete', $data->id_studio) }}" class="d-inline">
-                      @csrf
-                      <input name="_method" type="hidden" value="DELETE">
-                      <button type="submit" class="badge badge-sm bg-gradient-danger  border-0 show_confirm" data-id="{{$data->id_studio}}" data-toggle="tooltip" title='Delete'>Delete</button>
-                  </form> --}}
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->harga}}</span>
+                  </td>
 
-                    {{-- <a href="/CrudStudio/{{ $data->id_studio }}" class=" badge badge-sm bg-gradient-danger button delete-confirm">Delete</a> --}}
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{$data->status}}</span>
+                  </td>
+          
+                      <td class="align-middle text-center text-sm">
+                    <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Accept</a>
                   </td>
                  
                 </tr>
@@ -111,8 +91,7 @@
       </div>
     </div>
   </div>
-    
-</body>
+
 {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
@@ -143,6 +122,4 @@ $('.show_confirm').click(function(event) {
 
 </script>
 
-
-</html>
 @endsection

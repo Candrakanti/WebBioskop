@@ -1,20 +1,17 @@
 @extends('studio.templateDashboard.sidebar')
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ $title }}</title>
-
-    </head>
-
-    <body>
+ 
         <div class="container pb-3">
             <a href="/crudJadwal/create" class="btn btn-info"> Create Data Jadwal</a>
+
+            <div class="row 9-3 align-items-center mt-2">
+                <div class="col-auto">
+                  <form action="/crudJadwal" method="GET">
+                  <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan id jadwal">
+                </form>
+                </div>
+            </div>
 
             <div class="container pt-3">
                 @if (session()->has('success'))
@@ -55,9 +52,7 @@
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     Tanggal Tayang Akhir</th>
-                                                <th
-                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Jam Tayang</th>
+                                            
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     Aksi</th>
@@ -104,10 +99,7 @@
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $data->tgl_tayang_akhir }}</span>
                                                 </td>
-                                                <td class="align-middle text-center">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $data->jam_tayang }}</span>
-                                                </td>
+                                              
 
                                                 <td class="align-middle text-center text-sm">
                                                     <a class="badge badge-sm bg-gradient-warning"
@@ -130,10 +122,6 @@
                                                 </td>
 
                                             </tr>
-                                            <tr>
-                                                <td>
-
-
                                             </tr>
                                         </tbody>
                                         @endforeach
@@ -144,7 +132,6 @@
                     </div>
                 </div>
 
-    </body>
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
@@ -174,6 +161,12 @@
         });
     </script>
 
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 
-    </html>
+<script>
+  $(document).ready( function () {
+$('#myTable').DataTable();
+} );
+</script>
 @endsection

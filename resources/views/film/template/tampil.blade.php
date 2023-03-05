@@ -28,12 +28,13 @@
                                     <table class="table align-items-center mb-0" id="myTable">
                                         <thead>
                                             <tr>
+                                                
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     No</th>
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                    id_jenis</th>
+                                                    Id Jenis Film</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     Jenis Film</th>
@@ -57,12 +58,12 @@
                                                 </td>
 
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $Jfilm->id_jenis }}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $Jfilm->id_jenis_film }}</p>
                                                 </td>
 
                                                 <td class="align-middle text-center">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $Jfilm->jenis_film }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $Jfilm->jenis_film}}</span>
                                                 </td>
 
                                                 <td class="align-middle text-center text-sm">

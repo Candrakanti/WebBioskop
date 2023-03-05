@@ -1,8 +1,28 @@
 @extends('layouts.main')
 
+<style>
+.btn-outline-danger.disabled{
+    color:#black !important;
+    background-color: #fff !important;
+    outline: wheat !important;
+}
+</style>
+
+
+@foreach($nb as $n)
+{{ $n }}
+@endforeach
+
 @section('container')
-    {{-- <form method="POST" action="{{ route('movie.detail', $data->id_film) }}">
+@if($data->tgl_tayang_awal  >=  Carbon\Carbon::now()->format('Y-m-d'))
+<h4 class="fw-light text-danger">COMING SOON</h4>
+@endif
+
+{{-- <h1>{{ \Carbon\Carbon::now()->format('H:i:s')  }}</h1> --}}
+    {{-- <form method="POST" action="{{ route('movie.detail', $data->id_jadwal) }}">
         @csrf --}}
+        {{-- <h1>{{  \Carbon\Carbon::now()->format('Y-m-d') }}</h1> --}}
+
 
     <div class="container d-flex justify-content-center">
         <div class="row d-flex justify-content-center">
@@ -14,7 +34,8 @@
                     </div>
                 @endif
             </div>
-
+       
+          
             <div class="col-8 ">
                 <div class="card-body">
                     <div class="row">
@@ -60,13 +81,12 @@
                     <div class="row-mb-3" style="margin-left:5%">
                         <hr class="border border-danger border-2 opacity-100" width="40%" style="margin-left:">
 
-                        <a style="color:#0000FF;" href="{{ $data->link_trailer }}">Wacth Trailer</a>&nbsp&nbsp&nbsp
-
-                        {{-- <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    
+                        <!-- Button trigger modal -->
+                        <a type="button" class="link-primary text-center" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
-                            Launch demo modal
-                        </button>
+                           Lihat Trailer
+                        </a>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -79,18 +99,19 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <iframe width="100%" height="100%"
-                                            src="https://www.youtube.com/watch?v=wlp9yv33nWA&feature=youtu.be"
-                                            frameborder="0" allowfullscreen></iframe>
+                                        <iframe width="450" height="315" src="{{  $data->link_trailer }}" frameborder="0" allowfullscreen></iframe>
                                     </div>
 
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
-
-                        <a href="/booking/show/{{ $data->id_jadwal }}" style="color:#0000FF;" class="border border-0 "
+                        @if($data->tgl_tayang_awal  <=  Carbon\Carbon::now()->format('Y-m-d'))
+                        <a href="#Time" style="color:#0000FF;" class="border border-0 "
                             id="book">Book Now</a>
+                            @else
+
+                            @endif
 
                         <hr class="border border-danger border-2 opacity-100" width="40%" style="margin-left:">
                     </div>
@@ -111,8 +132,10 @@
     </div>
     </div>
 
+    @if($data->tgl_tayang_awal  <=  Carbon\Carbon::now()->format('Y-m-d'))
+
     <div class="container">
-        <div class="row">
+        <div class="row">`
             <div class="col-2 col-lg-2 col-sm-2 col-xs-2 mb-3">
                 <span class="badge rounded-pill text-bg-danger btn btn-lg">Today</span>
             </div>
@@ -147,71 +170,80 @@
     </div>
 
 
-
         <section id="Time">
+          
+        @foreach ($mall as $d)
+@if($data->id_jadwal ==  $d->id_jadwal)
             <div class="container pt-3" style="padding-bottom: 60%">
                 <div class="accordion accordion-flush border border-5" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingOne">
+                         
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                 <div class="col-4 col-lg-4 col-md-4 col-sm-6">
                                     <img src="/img/logo.png" class="card-img-top" alt="" style="width: 30%">
                                 </div>
+                              
+                             
                                 <div class="col-8">
-                                    <p><b>KINGS PLAZA</b></p>
+                                
+                                    <p><b>{{ $d->nama_bioskop }}</b></p>
+                           
                                 </div>
+                              
                             </button>
-        
-        
+                           
                         </h2>
-        
+                     
+                       
                         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                             data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                                {{-- <a href="{{ route('booklater.show', $data->id_film) }}" class="btn btn-outline-danger">
-                                    {{ $data->jam_tayang }}
-                                </a> --}}
-                                {{-- @if ($data->jam_tayang <= $data->jam_tayang)
-                                <a href="/booking/show/{{ $data->id_jadwal }}"  class="btn btn-outline-danger disabled">
-                                    {{ $data->jam_tayang }}
-                                </a>  
-                                @else --}}
-                                <a href="/booking/show/{{ $data->id_jadwal }}"  class="btn btn-outline-danger ">
-                                    {{ $data->jam_tayang }}
-                                </a>  
-                                {{-- @endif --}}
-                              
-                             
-                            </div>
+                           
+                             <h1> {{ $d->jam_tayang }}</h1>  
+                      @if( $d->jam_tayang <= Carbon\Carbon::now()->format('H:i:s') )
+                      <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}"  class="btn btn-outline-danger btn disabled">
+                        {{ $d->jam_tayang }} 
+                  </a>  
+
+                  @else
+                    <a href="/booking/{{ $d->id_jadwal }}/{{ $d->jam_tayang }}"  class="btn btn-outline-danger ">
+                    {{ $d->jam_tayang }} 
+              </a>  
+                
+                  
+@endif
+
+                           </div>
                         </div>
+                        
                     </div>
+                 
                 </div>
-        
+               
+
+                @endif
+                @endforeach
         </section>
-   
+        {{-- @else --}}
+
+        @endif
     {{-- </form> --}}
 
     <script>
-//           function check()
-//         {
-//             alert("Hello! I am an alert box!!");
-//         }
+var modal = $('.modal-dialog');
+modal.find('.btn-close').click(function() {
+   modal.remove();
+});
 
-//         $(document).ready(function() {
-//     $('a').click(function(event) {
-//         event.preventDefault(); // Prevent the default link navigation
+var d = document.getElementById("link");
+d.className = d.className + " disabled ";
 
-//         // This is the point where you could fetch content (for instance
-//         // from the href of the clicked link). For this example we just
-//         // generate a string containing the href.
-//         var content = 'Content for ' + $(this).html();
+var d = document.getElementById("test");
+d.className = d.className + " d-none ";
 
-//         $('#time').html(content); // Inject the content
-//     });
-// });
-//         $('#gap_form').wrap(
-//             '<form id="Form2" action="{{ route('booking.show', $data->id_film) }} " method="POST" ></form>'
-//         );
+// $('#link').addClass('disabled' ,'btn btn-warning');
     </script>
+
 @endsection

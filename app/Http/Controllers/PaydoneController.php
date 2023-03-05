@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Film;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PaydoneController extends Controller
 {
@@ -14,23 +15,31 @@ class PaydoneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function index( Request $request)
     {
+        if($request->has('search')) {
+            $listproducts = Film::where('judul_film', 'LIKE', '%' .$request->search. '%')->get();
+        } else {
+            $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->join('payment','payment.id_payment' ,'=','booking.id_payment')->join('studio', 'studio.id_studio', '=' ,'jadwal.id_studio')->join('detail_jenis_studio' ,'detail_jenis_studio.id_jenis_studio','=' ,'studio.id_jenis_studio')->join('detail_bioskop' ,'detail_bioskop.id_jadwal', '=' ,'jadwal.id_jadwal' )->join('bioskop' ,'bioskop.id_bioskop' ,'=' ,'detail_bioskop.id_bioskop')->get(['booking.*', 'jadwal.*' ,'film.*' ,'payment.*' ,'studio.*' ,'detail_jenis_studio.*' ,'bioskop.*'])->where('id_customer', '=', Auth::user()->id);        }
 
-        // $listproducts['listproducts'] = Booking::join('film', 'film.id_film', '=', 'booking.id_film')->get(['booking.', 'film.'])->where('user_id', '=', Auth::user()->id);
-        // return view('profil.paydone', [
-        //     'title' => 'Mycgv',
-        //     'active' => 'Mycgv'
-        // ])->with($listproducts);
-
-
-        $listproducts['listproducts'] = booking::join('jadwal', 'jadwal.id_jadwal', '=', 'booking.id_jadwal')->join('film' , 'film.id_film' ,'=','jadwal.id_film')->get(['booking.*', 'jadwal.*' ,'film.*'])->where('id_customer', '=', Auth::user()->id);
-        return view('profil.paydone', [
+        return view('profil.paydone', compact('listproducts'), [
             'title' => 'Mycgv',
             'active' => 'Mycgv'
-        ])->with($listproducts);
+            ])->with($listproducts);
     }
 
+    public function generate($id_booking)
+    {
+        $data = Booking::all()->where('id_booking', $id_booking)->first();
+   
+        $qrcode = QrCode::size(400)->generate('$data->id_booking');
+        return view('profil.qrcode',compact('data' , 'qrcode') ,[
+            'title' => 'Mycgv',
+            'active' => 'Mycgv'
+        ]);
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

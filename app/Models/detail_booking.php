@@ -19,4 +19,8 @@ class detail_booking extends Model
         'kursi',
         'harga',
     ];
+//   protected $casts = [
+//         'kursi' => 'array',
+
+//     ];
 }

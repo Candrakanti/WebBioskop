@@ -12,9 +12,16 @@ class KotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = kota::all();
+
+        if($request->has('search')) {
+            $data = kota::where('kota', 'LIKE', '%' .$request->search. '%')->get();
+            // $films = Film::where('id_film','LIKE','%' .$request->search.'%' );
+        } else {      
+          $data = kota::all();
+        }
+
         return view('studio.kota.index', compact('data'), [
             'title' => 'Admin Studio',
             'pages' => 'Table Kota'

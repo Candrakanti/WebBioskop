@@ -89,8 +89,8 @@
                         </div> --}}
 
 
-                        <a href="/booking/show/{{ $data->id_jadwal }}" style="color:#0000FF;" class="border border-0 "
-                            id="book">Book Now</a>
+                        <a href="{{ route('bookLaterSeat.show', $data->id_jadwal) }}" style="color:#0000FF;" class="border border-0 "
+                            id="book">Book For Tommorrow </a>
 
                         <hr class="border border-danger border-2 opacity-100" width="40%" style="margin-left:">
                     </div>

@@ -56,20 +56,7 @@
                         @endforeach
                         </datalist>
                 </div>
-                
-
-                <div class="mb-3">
-                    <label for="id_kota" class="form-label"> Kota</label>
-                    {{-- <input type="tect" class="form-control" name="id_jadwal" autofocus> --}}
-                    <select class="form-select form-select-lg mb-3" name="id_kota">
-
-                        @foreach ($data3 as $js)
-                            <option value="{{ $js->id_kota }}" selected>{{ $js->kota }}</option>
-                        @endforeach
-                    </select>
-                </div>
-               
-
+            
                     <div class="mb-3">
                         <label for="tgl_tayang_awal" class="form-label">Tanggal Tayang Awal</label>
                         <input type="date" class="form-control @error('tgl_tayang_awal') is-invalid @enderror"
@@ -91,42 +78,6 @@
                             </div>
                         @enderror
                     </div>
-
-                    <div class="mb-3">
-                    <label for="jam_tayang" class="form-label">Jam Tayang</label>
-
-
-                    <input type="time" class="form-control @error('jam_tayang') is-invalid @enderror" name="jam_tayang"
-                        required value="{{ old('jam_tayang') }}">
-                    @error('jam_tayang')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                    {{-- <div class="form-group">
-                        <label for="jam_tayang">jam_tayang</label>
-                        <div class="row">
-                            <div class="col-md-2">
-                                Key:
-                            </div>
-                            <div class="col-md-4">
-                                Value:
-                            </div>
-                        </div>
-                        @for ($i=0; $i <= 1; $i++)
-                        <div class="row">
-                            <div class="col-md-2">
-                                <input type="text" name="jam_tayang[{{ $i }}][key]" class="form-control" value="{{ old('jam_tayang['.$i.'][key]') }}">
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" name="jam_tayang[{{ $i }}][value]" class="form-control" value="{{ old('jam_tayang['.$i.'][value]') }}">
-                            </div>
-                        </div>
-                        @endfor
-                    </div>
-                    <div> --}}
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-success">Save</button>

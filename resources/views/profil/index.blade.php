@@ -11,7 +11,7 @@
     @auth
         {{-- <div class="container "> --}}
 
-
+         
         <div class="row g-0">
 
             <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-center">
@@ -40,6 +40,7 @@
         </div>
         </div>
 
+        <section id="MENU_USER">
         @if (auth()->user()->is_admin == 'user')
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
@@ -47,30 +48,78 @@
                     Pesanan Saya
                 </div>
             </div>
-
-
-            <div class="row text-center g-0 mt-3">
-
-                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                    <img src="img/wallet.png" width="5%" alt="...">
-
-                    <div class="row g-0">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">
-                            <a href="/unpaid" class="text-decoration-none link-dark">Belum Bayar</a>
-                        </div>
-                    </div>
-
+            
+            <div class="container">
+                @if (session()->has('success'))
+                <div class="alert alert-success " role="alert">
+                    {{ session('success') }}
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                    <img href="/paydone" src="img/cekl.png" width="5%" alt="...">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mx-auto">
-                            <a href="/paydone" class="text-decoration-none link-dark">Selesai</a>
-                        </div>
-                    </div>
-                </div>
+            @endif
             </div>
+
+            <div class="container" id="MENU">
+
+                <div class="row text-center g-0 mt-3">
+
+                 
+
+                    <div class="col-6 col-lg-3 col-md-3 col-sm-3 ">
+                   
+                      @if($cst == 0)
+                      <img href="/unpaid" src="img/wallet.png" width="15%" alt="...">
+                      @else
+                      <div class="card text-bg-transparent mx-auto mb-3 d-flex" style="width:25%; height:25%;">
+                        <img href="/unpaid" src="img/wallet.png" width="15%" class="card-img" alt="...">
+                        <div class="card-img-overlay d-flex justify-content-end  bg-dark rounded-circle " style="width:2px; height:2px">
+                       
+                                <h5 class="card-title text-start text-white mb-5">{{ $cst }}</h5>
+                        </div>
+                      </div>
+
+                      @endif
+                           
+                        <div class="row ">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 mx-auto mt-2">
+                            <a href="/unpaid" class="text-decoration-none link-dark fw-semibold ">Belum Bayar</a>
+                        
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="col-6 col-lg-3 col-md-3 col-sm-3">
+                        <img href="/paydone" src="img/cekl.png" width="15%" alt="...">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 mx-auto">
+                                <a href="/paydone" class="text-decoration-none link-dark fw-semibold">Selesai</a>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-6 col-lg-3 col-md-3 col-sm-3 mt-3 mt-lg-0 mt-md-0">
+                        <img href="/exp" src="img/cancel.png" width="15%" alt="...">
+                       <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 mx-auto ">
+                        <a href="/exp" class="text-decoration-none link-dark fw-semibold">Pembatalan Pesanan</a>
+                        </div>
+                       </div>
+                      
+                        
+                    </div>
+
+                    <div class="col-6 col-lg-3 col-md-3 col-sm-3 mt-2 mt-lg-0 mt-md-0">
+                        <img href="/mybank" src="img/bank.png" width="20%" alt="...">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 mx-auto ">
+                            <a href="/mybank" class="text-decoration-none link-dark fw-semibold">Bank Saya</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>  
         @endif
+    </section>
 
         @if (auth()->user()->is_admin == 'admin_film')
             <div class="container pt-2">

@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Bioskop extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $primaryKey = 'id_bioskop';
+    protected $keyType = 'string';
+    protected $table = "bioskop";
+    protected $fillable = [
+        'id_bioskop',
+        'nama_bioskop',
+        'alamat',
+       
+    ];
 }
