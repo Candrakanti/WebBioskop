@@ -607,7 +607,7 @@
                 });
 
            var check =    $(":checkbox:checked").length;
-           document.getElementById('`').value=  check;
+           document.getElementById('count_seat').value=  check;
            document.getElementById('count_seat2').value=  check;
            document.getElementById('count_seat3').value=  check;
                 var input = document.getElementsByName("kursi[]");

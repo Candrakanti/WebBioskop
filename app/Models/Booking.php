@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\payment;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
-use App\Models\payment;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Booking extends Model
 {
@@ -31,6 +32,13 @@ class Booking extends Model
         'created_at',
     
     ];
+
+
+    public static function getCustomerTicketCount()
+    {
+        $result = DB::select("CALL buyy" );
+        return $result;
+    }
 
     //  protected $casts = [
     //     'kursi' => 'array',

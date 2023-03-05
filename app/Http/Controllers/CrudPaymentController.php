@@ -131,15 +131,15 @@ class CrudPaymentController extends Controller
 
     public function customer()
     {
-        $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->get(['booking.*','payment.*' ,'users.*']);
+        $customerTicketCount = Booking::getCustomerTicketCount();
+        $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->groupBy('id')->get(['booking.*','payment.*' ,'users.*']);
         // $data = DB::table('booking')->join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->select('CALL JumlahPembeliann()')->get(['booking.*','payment.*' ,'users.*']);
      // $post = DB::select("CALL JumlahPembelian");
      // $post = DB::select("CALL JumlahPembeliann ($id)");
-        $post = DB::select("CALL buy()");
 
        
 
-        return view('payment.crud.datauser',  compact('data' , 'post'), [
+        return view('payment.crud.datauser',  compact('data' , 'customerTicketCount'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);
@@ -219,6 +219,31 @@ class CrudPaymentController extends Controller
      $output .= '</table>';
      return $output;
     }
+
+    public function detail($id_customer)
+    {
+        
+        $data = Booking::where('id_customer', $id_customer)->first();
+        $customerTicketCount = Booking::getCustomerTicketCount();
+        return view('payment.crud.detail', compact('data' , 'customerTicketCount' ), [
+            'title' => 'Admin Payment',
+            'active' => 'Admin Payment',
+            'pages' => 'Detail',
+        ]);
+    }
+
+    // public function jumlah(){
+    //     $data = '1'; // contoh input kota
+    //     $count = Booking::countById($data); // memanggil method countByKota pada model Alamat untuk menghitung jumlah alamat pada kota tersebut
+    
+    //     return view('payment.crud.detail', compact('count'));
+    // }
+
+    // public function jumlah()
+    // {
+    //     $customerTicketCount = Booking::getCustomerTicketCount();
+    //     return view('payment.crud.detail', ['customerTicketCount' => $customerTicketCount]);
+    // }
   
 }   
 
