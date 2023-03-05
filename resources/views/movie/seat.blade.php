@@ -3,19 +3,11 @@
 @section('container')
     {{-- <form method="POST" action="{{ route('booking', $data->id_jadwal) }}">
         @csrf --}}
-<<<<<<< HEAD
-
-=======
         
         {{-- {!! QrCode::generate('Make me into a QrCode!'); !!}
        
-<<<<<<< HEAD
-        <div> <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate('Generate any QR Code!')) !!} " download>Downloads</a></div> --}}
-=======
         <div> <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate('Generate any QR Code!')) !!} " download>Downloads</a></div>
          --}}
->>>>>>> f9a303d909348ea77d655958d7e95dda4d94ef5d
->>>>>>> 1e50763322922692623e6065a9991f0981ea2a41
         <div class="row" >
                 <div class=" col-lg-8 col-md-7 col-sm-12 col-xs-12">
     
@@ -26,7 +18,6 @@
                                     class="rounded d-flex justify-content-center">
                             </div>
     
-
                             <p class="card-text text-center pt-1">SCREEN</p>
                            
     
@@ -80,7 +71,7 @@
                                                             @endfor
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
+                                                {{-- <div class="col-4">
                                                         @for($i = 6; $i<=10; $i++)
                                                         <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{$i}}" value="{{ $data->harga }}"  style="width:32px; height:25px;"
                                                         @if($data->id_jadwal == $data->id_jadwal)
@@ -103,7 +94,7 @@
                                                             <input type="text" class="border border-0 p-2 mb-2 ms1 text-bg-light"  disabled placeholder="{{ $v }}{{ $i }}" style="width:40px; height:25px;">
                                                             @endfor
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                             
                                         </div>
@@ -251,34 +242,6 @@
                                                 <input class="form-control" type="hidden" 
                                                 name="status_bayar" value="0" id="status_bayar">
                                             </div>
-<<<<<<< HEAD
-                                            <div class="pt-3">
-                                                <input class="form-control" type="text" placeholder="harga Yang Anda Pilih" readonly
-                                                name="harga" aria-label="Disabled input example"  id="price">
-                                            </div>
-                                            
-                                            <div class="container text-center mt-3">
-
-
-                                                <button class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">BOOK NOW</button>
-                                            </div>
-                
-                                            {{-- <div class="container text-center mt-3">
-                                                    <button type="submit" class="btn btn-primary" id="pay-button" disabled>BOOK NOW </button>
-                                            </div>   --}}
-                                            <div class="book" id="gap_form">
-                                            @csrf
-                                            <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel">{{ auth()->user()->name }}</h1>
-                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body" style="padding: 0;">
-                                                        <ul class="list-group">
-=======
->>>>>>> 1e50763322922692623e6065a9991f0981ea2a41
 
                                             <div class="pt-3">
                                                 <input class="form-control" type="text" 
@@ -297,13 +260,6 @@
 
                                             <div class="pt-3">
                                               
-<<<<<<< HEAD
-
-                            </div>    
-                        </div>
-                    </div>
-    
-=======
                                              Rp. <span class="badge rounded-pill text-bg-secondary border-0">
                                                 <input class="form-control" type="text" readonly
                                                 name="harga" aria-label="Disabled input example"style=" background: transparent; border: none; color:black;" id="price">
@@ -365,6 +321,12 @@
                                                                 </div>
                                                                 </div>
 
+                                                                <div class="">
+                                                                        <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
+                                                                        name="nama_bank" aria-label="Disabled input example" readonly  id="bank2">
+                                                                   </div>
+                                                    
+                                                                
                                                         <div class="">
                                                                 <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                                     placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
@@ -547,7 +509,6 @@
                                     </div>
                                       
                     </div>    
->>>>>>> 1e50763322922692623e6065a9991f0981ea2a41
                 </div>
             </div>
 
@@ -624,11 +585,14 @@
 
             $('.seats').click(function() {
                 var test = new Array();  
-                $("input[name='kursi[]']:checked").each(function() {
+
+                $("input[name='kursi']:checked").each(function() {
                                 test.push($(this).data('value'));          
                 }); 
 
+
                 var check =    $(":checkbox:checked").length;
+
 
            document.getElementById('seat').value = test ;
            document.getElementById('seat2').value = test ;

@@ -5,7 +5,7 @@
 
 <h5>Id Film |{{ $film->id_film }}</h5>
 <a href="/crudFilm" class="btn btn-danger"><span data-feather="arrow-left"></span>Back</a>
-<a href="" class="btn btn-warning"><span data-feather="edit"></span>Edit</a>
+<a href="/crudFilm/{{ $film->id_film }}/edit" class="btn btn-warning"><span data-feather="edit"></span>Edit</a>
 
 <div class="card mb-3" >
     <div class="row g-0">

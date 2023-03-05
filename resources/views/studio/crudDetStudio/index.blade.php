@@ -3,7 +3,7 @@
 @section('container')
 
 <div class="container pb-3">
-    <a href="/detbioskop/create" class="btn btn-info"> Tambah Detail Bioskop</a>
+    <a href="/crudDetStudio/create" class="btn btn-info"> Tambah Detail Studio</a>
 
     <div class="container pt-3">
         @if (session()->has('success'))
@@ -15,7 +15,7 @@
 
     {{-- <div class="row 9-3 align-items-center mt-2">
         <div class="col-auto">
-          <form action="/detbioskop" method="GET">
+          <form action="/CrudDetStudio" method="GET">
           <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan ID studio">
         </form>
         </div>
@@ -27,7 +27,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6 class="text-center">Data Studio</h6>
+                        <h6 class="text-center">Data Detail Studio</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -39,18 +39,18 @@
                                             No</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Id Detail Bioskop</th>
+                                            Id Jenis Studio</th>
                                      
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Id Bioskop</th>
+                                            Jenis Studio</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Id Jadwal</th>
+                                            Harga</th>
                                    <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Aksi</th>
-                                        @foreach ($db as $key => $data)
+                                        @foreach ($data as $key => $data)
                                     </tr>
                                 </thead>
 
@@ -70,30 +70,30 @@
                                         </td>
 
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $data->id_db }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $data->id_jenis_studio }}</p>
                                         </td>
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $data->id_bioskop }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $data->jenis_studio }}</p>
                                         </td>
 
                                         <td class="align-middle text-center">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $data->id_jadwal }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $data->harga }}</span>
                                         </td>
                                       
                                         <td class="align-middle text-center text-sm">
                                             <a class="badge badge-sm bg-gradient-warning"
-                                            href="/detbioskop/{{ $data->id_db }}/edit">Edit</a>
+                                            href="/crudDetStudio/{{ $data->id_jenis_studio }}/edit">Edit</a>
 
 
                                             <form method="POST"
-                                                action="{{ route('detbioskop.delete', $data->id_db) }}"
+                                                action="{{ route('crudDetStudio.delete', $data->id_jenis_studio) }}"
                                                 class="d-inline">
                                                 @csrf
                                                 <input name="_method" type="hidden" value="DELETE">
                                                 <button type="submit"
                                                     class="badge badge-sm bg-gradient-danger  border-0 show_confirm"
-                                                    data-id="{{ $data->id_db }}" data-toggle="tooltip"
+                                                    data-id="{{ $data->id_jenis_studio }}" data-toggle="tooltip"
                                                     title='Delete'>Delete</button>
                                             </form>
 
@@ -126,7 +126,7 @@ $('.show_confirm').click(function(event) {
     event.preventDefault();
     swal({
             title: "APA ANDA YAKIN ?",
-            text: "Anda Akan Menghapus Id Bioskop " + id_db + "",
+            text: "Anda Akan Menghapus Id Jenis Studio " + id_jenis_studio + "",
             icon: "warning",
             buttons: true,
             dangerMode: true,

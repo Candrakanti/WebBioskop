@@ -29,9 +29,11 @@ class CreateTriggerTblsTable extends Migration
         tgl_tayang_akhir=old.tgl_tayang_akhir;
         
     
-    END IF;
-            END
+        END IF;
+            END 
         ');
+
+
     }
 
     /**
