@@ -26,6 +26,30 @@ class CrudPaymentController extends Controller
         $this->middleware('auth');
     }
 
+    public function index(Request $request)
+    {
+
+        if($request->has('search')) {
+            $data = User::where('id', 'LIKE', '%' .$request->search. '%')->get();
+          
+        } else {
+            $data = User::all();
+        }
+
+        $total_harga = payment::select(DB::raw("CAST(sum(harga) as int) as total_harga"))->GroupBy(DB::raw("Month(created_at)"))->pluck('total_harga');
+
+     
+        $bulan = payment::select(DB::raw("MONTHNAME(created_at) as bulan"))->GroupBy(DB::raw("MONTHNAME(created_at)"))->pluck('bulan');
+    
+        return view('Payment.crud.index', compact('data' , 'total_harga' ,'bulan'), [
+            'title' => 'Admin payment',
+            'active' => 'Admin payment',
+            'pages' => 'Data payment',
+        ]);
+
+
+    }
+
     public function print(){
         $data =  payment::join('booking' ,'booking.id_payment' , '=' ,'payment.id_payment')->join('users' ,'users.id' ,'=' ,'booking.id_customer')->get(['booking.*' ,'payment.*' , 'users.*']); 
         return view('payment.crud.print', compact('data'), [
@@ -47,59 +71,7 @@ class CrudPaymentController extends Controller
 
     }
 
-    public function index(Request $request)
-    {
-        // $data = User::join('booking' ,'booking.id_customer' ,'=','users.id')->get(['booking.*','users.*']);
-
-        // return view('Payment.crud.index', compact('data'), [
-        //     'title' => 'Admin Payment',
-        //     'pages' => 'Table Payment'
-        // ]);
-
-
-        if($request->has('search')) {
-            $data = User::where('id', 'LIKE', '%' .$request->search. '%')->get();
-          
-        } else {
-            $data = User::all();
-        }
-
-
-        return view('Payment.crud.index', compact('data'), [
-            'title' => 'Admin payment',
-            'active' => 'Admin payment',
-            'pages' => 'Data payment',
-        ]);
-
-        // return view('studio.LayoutStudio')->with('studio', $studio);
-    }
-
-    // public function edit(studio $studio, $id_studio)
-    // {
-    //     $jenis_studio = jenis_studio::all();
-    //     $std = DB::table('studio')->where('id_studio', $id_studio)->first();
-    //     return view(
-    //         'studio.crud.edit',
-    //         compact('jenis_studio'),
-    //         [
-    //             'studio' => $std,
-    //             'title' => 'Edit Studio',
-    //             'pages' => 'Edit Studio'
-    //         ]
-    //     );
-    // }
-
-    // public function edit($nip)
-    // { 
-    //     $gl = golongan::all();
-    //     $data = DB::table('karyawan')->where('nip', $nip)->first();
-    //     return view('kepegawaian.edit', compact('gl'),
-    //     [
-    //         'data'=> $data
-    //     ]
-    // );
-     
-    // }
+   
 
     public function edit($id_payment)
     {
@@ -131,13 +103,11 @@ class CrudPaymentController extends Controller
 
     public function customer()
     {
-        $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->get(['booking.*','payment.*' ,'users.*']);
+        $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->groupBy('id')->get(['booking.*','payment.*' ,'users.*']);
         // $data = DB::table('booking')->join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->select('CALL JumlahPembeliann()')->get(['booking.*','payment.*' ,'users.*']);
      // $post = DB::select("CALL JumlahPembelian");
      // $post = DB::select("CALL JumlahPembeliann ($id)");
         $post = DB::select("CALL buy()");
-
-       
 
         return view('payment.crud.datauser',  compact('data' , 'post'), [
             'title' => 'Admin Payment',

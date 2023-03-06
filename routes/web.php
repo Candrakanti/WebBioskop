@@ -34,7 +34,7 @@ use App\Http\Controllers\JenisController;
 use App\Http\Controllers\BankController;
 
 use App\Http\Controllers\ApiMindtrasController;
-
+use App\Http\Controllers\CrudDetStudioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +62,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/ContactUs', [HomeController::class, 'contactus']);
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth' ,'LogVisits'])->group(function () {
     Route::get('/unpaid', [UnpaidController::class, 'index']);
     Route::get('/exp', [UnpaidController::class, 'exp']);
 Route::resource('/paydone', PaydoneController::class);
@@ -96,10 +96,10 @@ Route::get('/myseenema', [CgvController::class, 'index']);
 Route::get('/playing', [HomeController::class, 'playing']);
 
 //   ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest' , 'LogVisits');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest' , 'LogVisits');
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
@@ -128,7 +128,7 @@ Route::middleware(['auth'])->group(function () {
 // SELESAI 
 
 
-Route::group(["middleware" => 'ceklevel:admin_film'], function () {
+Route::group(["middleware" => 'ceklevel:admin_film' , 'LogVisits'], function () {
     Route::get('/film', function () {
         return view('film.template.index', [
             'title' => 'Admin Film',
@@ -145,7 +145,7 @@ Route::group(["middleware" => 'ceklevel:admin_film'], function () {
 });
 
 
-Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
+Route::group(["middleware" => 'cekstudio:admin_studio' , 'LogVisits'], function () {
     Route::get('/beranda', function () {
         return view('studio.index', [
             'title' => 'Admin Studio',
@@ -188,6 +188,10 @@ Route::group(["middleware" => 'cekstudio:admin_studio'], function () {
     Route::post('/crudDetjam/update', [CrudDetJamController::class, 'update']);
     Route::get('/crudDetjam/edit{id_det_jam}', [CrudDetJamController::class, 'edit'])->name('crudDetjam.edit');
 
+    Route::resource('/crudDetStudio', CrudDetStudioController::class);
+    Route::delete('/crudDetStudio/delete/{id_jenis_studio}', [ CrudDetStudioController::class, 'destroy'])->name('crudDetStudio.delete');
+    Route::post('/crudDetStudio/update', [CrudDetStudioController::class, 'update']);
+    Route::get('/crudDetStudio/edit{id_jenis_studio}', [CrudDetStudioController::class, 'edit'])->name('crudDetStudio.edit');
 
     Route::resource('/crudBioskop', CrudBioskopController::class);
     Route::delete('/crudBioskop/delete/{id_bioskop}', [CrudBioskopController::class, 'destroy'])->name('crudBioskop.delete');
@@ -212,7 +216,7 @@ Route::get('/bank',[ BankController::class , 'index']);
 // Route::get('/ticket', [TicketController::class, 'index']);
 
 
-Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
+Route::group(["middleware" => 'cekpayment:admin_payment' ,'LogVisits'], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
     Route::get('/CrudPayment/{$id}', [CrudPaymentController::class, 'customer']);
     Route::get('/CrudPayment/edit/{id_payment}',[CrudPaymentController::class,'edit'])->name('CrudPayment.edit');

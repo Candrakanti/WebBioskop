@@ -119,10 +119,10 @@ class BankController extends Controller
             'status_bayar' => $request->status_bayar,
             ]);
 
-                DB::table('booking')->where('id_payment', $request->id_payment)->update([
-                'tenggat_bayar' => $request->tenggat_bayar,
+                // DB::table('booking')->where('id_payment', $request->id_payment)->update([
+                // 'tenggat_bayar' => $request->tenggat_bayar,
              
-                ]);
+                // ]);
 
             return redirect('/myseenema')->with('success', 'Pembayaran Berhasil , Lihat Pada Menu Selesai!');
     }

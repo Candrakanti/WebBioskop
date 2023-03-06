@@ -25,8 +25,10 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            activity()->causedBy(auth::user())->log( auth()->user()->name . 'Berhasil Login');
             return redirect()->intended('/mycgv');
         } else
+        activity()->causedBy(auth::user())->log('Login Gagal');
             return back()->with('loginError', 'Login Gagal !');
     }
 
@@ -36,11 +38,11 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-
+      
         request()->session()->invalidate();
 
         request()->session()->regenerateToken();
-
+     
         return redirect('/myseenema');
     }
 

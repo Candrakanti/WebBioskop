@@ -71,16 +71,16 @@ class BookingController extends Controller
 
             $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->join('payment' ,'payment.id_booking' , '=' ,'booking.id_booking')->get(['jadwal.*' ,'booking.*' ,'payment.*']);
 
-        $generateBK =  IdGenerator::generate(['table' => 'booking', 'field' => 'id_booking', 'length' => 10, 'prefix' => 'BK'.Auth::user()->id]);
+        $generateBK =  IdGenerator::generate(['table' => 'booking', 'field' => 'id_booking', 'length' => 10, 'prefix' => 'BK']);
 
     
-        $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 10, 'prefix' =>'PY'.Auth::user()->id]);
+        $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 12, 'prefix' =>'BK'.Auth::user()->id]);
 
 
         // $exp  =   booking::where('tenggat_bayar', '<',Carbon::now())->delete();
         $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
     
-        $book = booking::join('payment' ,'payment.id_payment' ,'=' ,'booking.id_payment')->get();
+        $book = payment::join('booking' ,'booking.id_payment' ,'=' ,'payment.id_payment')->get(['payment.*' , 'booking.*']);
 
         return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY'  , 'exp' ,'book'), [
             // 'snapToken' =>$snapToken,
@@ -191,6 +191,8 @@ class BookingController extends Controller
     {
    
 //    return $request;
+
+
        Booking::insert([
             'id_booking' =>   $request->id_booking,
             'id_payment' => $request->id_payment,
@@ -200,7 +202,7 @@ class BookingController extends Controller
             'jumlah_kursi' =>  $request->jumlah_kursi,
             'tanggal_booking' => now(),
             'jam_booking' =>$request->jam_booking,
-            'tenggat_bayar' =>now()->addMinutes(1),
+            'tenggat_bayar' =>now()->addMinutes(30),
             'harga' => $request->harga,
             'qr_tiket'=> $request->harga,
             'created_at' => now(),
@@ -216,6 +218,10 @@ class BookingController extends Controller
             'updated_at' => now(),
             // 'bukti_bayar' => $request->file('bukti_bayar')->store('booking-images')
         ]);
+
+
+  
+
         return redirect('/myseenema')->with('success', 'Suksess ! Selesaikan Pembayaran Lihat Pada Menu Belum Bayar!');
         // return redirect()->route('payment.now',$id_jadwal)->with('success', 'success adding to cart !');
     }

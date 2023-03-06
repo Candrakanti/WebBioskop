@@ -65,15 +65,17 @@ class MovieController extends Controller
 
      $c = Bioskop::join('detail_bioskop' ,'detail_bioskop.id_bioskop' ,'=' ,'bioskop.id_bioskop')->join('detail_jam' ,'detail_jam.id_db' , '=' ,'detail_bioskop.id_db')->join('jadwal' ,'jadwal.id_jadwal' ,'=' ,'detail_bioskop.id_jadwal')->join('studio' , 'studio.id_studio' , '=' , 'jadwal.id_studio')->join('detail_jenis_studio' ,'detail_jenis_studio.id_jenis_studio' ,'=' ,'studio.id_jenis_studio')->get(['jadwal.*' ,'bioskop.*' ,'detail_bioskop.*' ,'detail_jam.*' ,'detail_jenis_studio.*']) ;
 
-    //  $nb =   DB::select('SELECT date_movie() as s');
 
+    $result = DB::table('jadwal')
+    ->select(DB::raw('date_movie (tgl_tayang_awal) as result'))
+    ->where('id_jadwal', $id_jadwal)->get();
 
-    $result = DB::select('SELECT date_movie (tgl_tayang_akhir,tgl_tayang_awal) as result from jadwal')[2]->result;
-
-
+    // CONVERT ARRAY KE STRING  FUNGSI STRVAL CONVERT DARI INT KE STRING.
+    $Cs = json_decode($result)[0]->result;
+    $string = strval($Cs);
 
         $time = _detail_jam::where('jam_tayang', '<=', Carbon::now()->timezone('asia/jakarta')->format('h:i'))->get();
-        return view('movie.detail', compact('data' ,'time' ,'mall' ,'c'  , 'result' ), [
+        return view('movie.detail', compact('data' ,'time' ,'mall' ,'c'  , 'result' , 'Cs' , 'string'), [
             "title" => "Detail movie",
             "active" => 'Movie',
         ]);

@@ -24,6 +24,7 @@
 
 <div class="container-fluid py-4">
   <div class="row">
+
       <div class="col-12">
           <div class="card mb-4">
               <div class="card-header pb-0">
@@ -98,6 +99,8 @@
                                           class="text-secondary text-xs font-weight-bold">{{ $d->jumlah }}</span>
                                   </td>
                                   @endforeach
+
+                            
 
                                   <td class="align-middle text-center">
                                       <span

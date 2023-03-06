@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'ceklevel' => \App\Http\Middleware\CekLevel::class,
         'cekstudio' => \App\Http\Middleware\CekStudio::class,
         'cekpayment' => \App\Http\Middleware\CekPayment::class,
+        'LogVisits' => \Shetabit\Visitor\Middlewares\LogVisits::class,
     ];
 }
