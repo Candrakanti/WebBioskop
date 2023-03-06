@@ -1,40 +1,41 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ForgotPasswordController;
-
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CgvController;
-use App\Http\Controllers\MovieController;
-use App\Http\Controllers\UnpaidController;
-use App\Http\Controllers\PaydoneController;
 use Carbon\Carbon;
-use App\Http\Controllers\TicketController;
+use App\Models\viewStudio;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CgvController;
 
-use App\Http\Controllers\BookingController;
+use App\Http\Controllers\BankController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CrudStudioController;
-use App\Http\Controllers\CrudDetBioskopController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KotaController;
-use App\Http\Controllers\CrudFilmController;
-
-
-use App\Http\Controllers\HistoryJadwalController;
-use App\Http\Controllers\CrudJadwalController;
-use App\Http\Controllers\RticketController;
 use App\Http\Controllers\SeatController;
+use App\Http\Controllers\JenisController;
+use App\Http\Controllers\LoginController;
+
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\UnpaidController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\PaydoneController;
+use App\Http\Controllers\RticketController;
+
+
+use App\Http\Controllers\CrudFilmController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CrudDetJamController;
+use App\Http\Controllers\CrudJadwalController;
+
+use App\Http\Controllers\CrudStudioController;
+use App\Http\Controllers\ApiMindtrasController;
 
 use App\Http\Controllers\CrudBioskopController;
-use App\Http\Controllers\CrudDetJamController;
-
 use App\Http\Controllers\CrudPaymentController;
-use App\Http\Controllers\JenisController;
-use App\Http\Controllers\BankController;
-
-use App\Http\Controllers\ApiMindtrasController;
 use App\Http\Controllers\CrudDetStudioController;
+
+use App\Http\Controllers\HistoryJadwalController;
+use App\Http\Controllers\CrudDetBioskopController;
+use App\Http\Controllers\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -230,12 +231,14 @@ Route::group(["middleware" => 'cekpayment:admin_payment'], function () {
   Route::get('/CrudPayment/detail/{id_customer}', [CRudPaymentController::class, 'detail'])->name('CrudPayment.detail');
 });
 
-
 Route::get('/get-procedure', function() {
-    $id = 1;
-
-    $post = DB::select("CALL JumlahPembelian (".$id.")");
-    dd($post);
+     $studio = viewStudio::select("*")
+        ->get();
+        // dd($studio);
+        return view('studio.crud.index', compact('studio'), [
+            'title' => 'Admin Studio',
+            'pages' => 'Table Studio'
+        ]);
 
 });
 

@@ -19,4 +19,5 @@ class studio extends Model
         'jumlah_row',
         'jumlah_kursi_perrow',
     ];
+
 }
