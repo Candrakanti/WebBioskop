@@ -11,30 +11,12 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-
-        // $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')
-        // ->join('bioskop', 'bioskop.id_bioskop', '=', 'jadwal.id_bioskop')
-        // ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
-        // ->get(['bioskop.*', 'jadwal.*', 'film.*', 'studio.*']);
-
-        $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')
-        ->join('film', 'film.id_film', '=', 'jadwal.id_film')
-        ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
-        ->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
-
-    // $data = jadwal::join('bioskop', 'bioskop.id_bioskop', '=', 'jadwal.id_bioskop')
-    //     ->join('film', 'film.id_film', '=', 'jadwal.id_film')
-    //     ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
-    //     ->get(['bioskop.*', 'jadwal.*', 'film.*', 'studio.*']);
-
-        return view('home', compact('data'), [
-
         if($request->has('search')) {
             
             $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')
             ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
             ->where('judul_film', 'LIKE', '%' .$request->search. '%')
-            ->get([ 'jadwal.', 'film.', 'studio.*']);
+            ->get([ 'jadwal.*', 'film.*', 'studio.*']);
             // $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')->join('film', 'film.id_film', '=', 'jadwal.id_film')->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')->where('judul_film', 'LIKE', '%' .$request->search. '%')->get(['kota.', 'jadwal.', 'film.', 'studio.']);
         } else {
             $data = jadwal::join('film', 'film.id_film', '=', 'jadwal.id_film')
@@ -47,7 +29,6 @@ class HomeController extends Controller
         // $start  =  jadwal::where('tgl_tayang_awal', '<=', Carbon::now());
         
         return view('home',compact('data' ,'end' ),[
-
             'title' => 'Home',
             'active' => 'Home'
         ]);
@@ -57,7 +38,7 @@ class HomeController extends Controller
         $data = kota::join('jadwal', 'jadwal.id_kota', '=', 'kota.id_kota')
         ->join('film', 'film.id_film', '=', 'jadwal.id_film')
         ->join('studio', 'studio.id_studio', '=', 'jadwal.id_studio')
-        ->get(['kota.*', 'jadwal.*', 'film.*', 'studio.*']);
+        ->get(['kota.', 'jadwal.', 'film.', 'studio.']);
 
         $play =  jadwal::all();
         return view('movie.playing',compact('data' , 'play'),[

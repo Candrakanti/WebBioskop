@@ -25,14 +25,9 @@ use App\Http\Controllers\HistoryJadwalController;
 use App\Http\Controllers\CrudJadwalController;
 use App\Http\Controllers\RticketController;
 use App\Http\Controllers\SeatController;
-<<<<<<< HEAD
-use App\Http\Controllers\PaymentController;
-use App\Models\studio;
-=======
 
 use App\Http\Controllers\CrudBioskopController;
 use App\Http\Controllers\CrudDetJamController;
->>>>>>> 1e50763322922692623e6065a9991f0981ea2a41
 
 use App\Http\Controllers\CrudPaymentController;
 use App\Http\Controllers\JenisController;

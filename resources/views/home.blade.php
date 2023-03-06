@@ -4,6 +4,7 @@
 
 <div class="row justify-content-center">
     <div class="col-lg-10 col-md-10 col-xs-10 ">
+
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -40,8 +41,8 @@
     <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
       <h3 class="m-0">Saksikan Film Kesayangan Anda <br>Di Seenema Terdekat!</h3>
       <div class="col-lg-7 col-xl-6 p-0">
-        <p class="py-4 m-0 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-        <p class="font-weight-medium text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer</p>
+        <p class="py-4 m-0 text-muted">Kembali hadir film terbaru yang tak kalah seru dari yang sebelumnya.</p>
+        <p class="font-weight-medium text-muted">Saksikan filmnya di bioskop kesayangan anda yang akan ditayangkan di Seenema, Jangan sampai kelewatan.</p>
       </div>    
     </div>
     <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
@@ -55,8 +56,8 @@
     <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-left">
       <h3 class="m-0"> Quality Time Bersama Teman Maupun Keluarga<br> Menjadi Berharga.</h3>
       <div class="col-lg-9 col-xl-8 p-0">
-        <p class="py-4 m-0 text-muted">Power-packed with impressive features and well-optimized, this template is designed to provide the best performance in all circumstances.</p>
-        <p class="pb-2 font-weight-medium text-muted">Its smart features make it a powerful stand-alone website building tool.</p>
+        <p class="py-4 m-0 text-muted">Nonton film di bioskop masih menjadi salah satu pilihan untuk quality time bersama teman maupun keluarga.</p>
+        <p class="pb-2 font-weight-medium text-muted">Beragam film yang bisa anda tonton di bioskop Seenema.</p>
       </div>
       <a href="/movie" class="btn btn-danger" > Pesan Ticket Sekarang !</a>
     </div>
