@@ -51,12 +51,14 @@
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                       No Telp</th>
-                                  <th
-                                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                      Jumlah Pembelian</th>
+                                  
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                       Tanggal Buat AKun</th>
+
+                                      <th
+                                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                      Detail</th>
                           
                                   @foreach ($data as $key => $data)
                               </tr>
@@ -93,19 +95,16 @@
                                           class="text-secondary text-xs font-weight-bold">{{ $data->phone }}</span>
                                   </td>
 
-                                  @foreach($post as $d)
-                                  <td class="align-middle text-center">
-                                      <span
-                                          class="text-secondary text-xs font-weight-bold">{{ $d->jumlah }}</span>
-                                  </td>
-                                  @endforeach
-
-                            
-
                                   <td class="align-middle text-center">
                                       <span
                                           class="text-secondary text-xs font-weight-bold">{{ $data->created_at }}</span>
                                   </td>
+
+                                  <td class="align-middle text-center text-sm">
+                                    <a class="badge badge-sm bg-gradient-warning"
+                                    href="{{ route('CrudPayment.detail', $data->id_customer) }}">Detail</a>
+
+                                </td>
                                 
 
                               </tr>

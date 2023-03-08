@@ -216,8 +216,13 @@ Route::get('/bank',[ BankController::class , 'index']);
 // Route::get('/ticket', [TicketController::class, 'index']);
 
 
-Route::group(["middleware" => 'cekpayment:admin_payment' ,'LogVisits'], function () {
+Route::group(["middleware" => 'cekpayment:admin_payment' ,'LogVisits'   ], function () {
     Route::get('/payment', [CrudPaymentController::class, 'index']);
+    Route::get('/backup', function () {
+        Artisan::call('backup:run');
+        return redirect('/payment')->with('success', 'backup data success');
+    })->name('backup');
+
     Route::get('/CrudPayment/{$id}', [CrudPaymentController::class, 'customer']);
     Route::get('/CrudPayment/edit/{id_payment}',[CrudPaymentController::class,'edit'])->name('CrudPayment.edit');
     Route::post('/CrudPayment/update',[CrudPaymentController::class,'update']);
@@ -226,6 +231,7 @@ Route::group(["middleware" => 'cekpayment:admin_payment' ,'LogVisits'], function
     Route::get('/dynamic_pdf/pdf', [CrudPaymentController::class, 'pdf']);
   Route::get('/cetak-data-pegawai' , [CRudPaymentController::class, 'print']);
   Route::get('/cetak-data-pertanggal/{tglawal}/{tglakhir}' , [CrudPaymentController::class, 'cetakPertanggal'])->name('cetak-data-pertanggal');
+  Route::get('/CrudPayment/detail/{id_customer}', [CrudPaymentController::class, 'detail'])->name('CrudPayment.detail');
 });
 
 

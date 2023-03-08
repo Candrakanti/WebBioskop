@@ -25,10 +25,12 @@
                                 <p class="text-center"> {{ $data->jenis_studio }} : RP. {!! $data->harga !!}</p>
                             </div>
 
+                             {{-- INI CONDISIONAL STATEMENT IF ELSE --}}
                             @if ($data->jenis_studio === 'Regular')
 
                                 <div class="seats" id="seats" name="harga">
-
+                                     
+                                    {{-- INI LOOPING FOREACH DAN FOR --}}
                                         @foreach(range('A',$data->jumlah_row) as $v)
                                         {{-- <h1>{{ $d->status_bayar }}</h1> --}}
                                         <div class="row">
