@@ -229,7 +229,7 @@ Route::group(["middleware" => 'cekpayment:admin_payment' ,'LogVisits'   ], funct
   Route::get('/cetak-data-pegawai' , [CrudPaymentController::class, 'print']);
   Route::get('/cetak-data-pertanggal/{tglawal}/{tglakhir}' , [CrudPaymentController::class, 'cetakPertanggal'])->name('cetak-data-pertanggal');
   Route::get('/CrudPayment/detail/{id_customer}', [CrudPaymentController::class, 'detail'])->name('CrudPayment.detail');
-  Route::get('/logging' , [CrudPaymentController::class, 'logging']);
+  Route::get('/logging/detail/{id}', [CrudPaymentController::class, 'show'])->name('CrudPayment.show');
   Route::get('/logging' , [CrudPaymentController::class, 'logging']);
   Route::get('/exportcustomer', [CrudPaymentController::class, 'costumerexport'])->name('exportcustomer');
 

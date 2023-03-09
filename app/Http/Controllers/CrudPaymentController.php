@@ -30,7 +30,7 @@ class CrudPaymentController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
+    }   
 
     public function index(Request $request)
     {
@@ -78,6 +78,16 @@ class CrudPaymentController extends Controller
 
     }
 
+    public function show($id)
+    {
+        $al = activity_log::where('id', $id)->first();
+        return view('payment.crud.detail_log', compact('al'), [
+            'title' => 'Admin Film',
+            'active' => 'Admin Film',
+            'pages' => 'Detail Film',
+        ]);
+    }
+
    
 
     public function edit($id_payment)
@@ -116,12 +126,29 @@ class CrudPaymentController extends Controller
         // $data = DB::table('booking')->join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->select('CALL JumlahPembeliann()')->get(['booking.*','payment.*' ,'users.*']);
      // $post = DB::select("CALL JumlahPembelian");
      // $post = DB::select("CALL JumlahPembeliann ($id)");
+     
 
         return view('payment.crud.datauser',  compact('data'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);
         // return view('studio.LayoutStudio')->with('studio', $studio);
+    }
+
+    public function detail($id_customer)
+    {
+        
+        // $data = Booking::where('id_customer', $id_customer)->first();
+
+        // $result = DB::table('booking')
+        // ->select(DB::raw( 'CALL buyy'))->get();
+
+        $customerTicketCount = Booking::getCustomerTicketCount('id_customer', $id_customer);
+        return view('payment.crud.detail', compact( 'customerTicketCount'), [
+            'title' => 'Admin Payment',
+            'active' => 'Admin Payment',
+            'pages' => 'Detail',
+        ]);
     }
 
     // public function costumerexport()
@@ -187,21 +214,7 @@ class CrudPaymentController extends Controller
      return $output;
     }
 
-    public function detail($id_customer)
-    {
-        
-        // $data = Booking::where('id_customer', $id_customer)->first();
-
-        // $result = DB::table('booking')
-        // ->select(DB::raw( 'CALL buyy'))->get();
-
-        $customerTicketCount = Booking::getCustomerTicketCount('id_customer', $id_customer);
-        return view('payment.crud.detail', compact( 'customerTicketCount'), [
-            'title' => 'Admin Payment',
-            'active' => 'Admin Payment',
-            'pages' => 'Detail',
-        ]);
-    }
+    
     public function logging()
     {
          $log= activity_log::all();

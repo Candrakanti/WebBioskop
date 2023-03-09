@@ -13,7 +13,8 @@ class CreateDateMovieFunction extends Migration
      */
     public function up()
     {
-        DB::unprepared('CREATE FUNCTION date_movie(tgl_tayang_awal DATE)
+        
+    DB::unprepared('CREATE FUNCTION date_movie(tgl_tayang_awal DATE)
     RETURNS INT(11)
     BEGIN
     RETURN  DATEDIFF( tgl_tayang_awal, NOW());
