@@ -20,7 +20,7 @@ class payment extends Model
 
         'id_payment',
         'id_booking',
-        'payment_type',
+        'nama_bank',
         'harga',
         'status_bayar',
        

@@ -13,7 +13,27 @@ class CreateUserView extends Migration
      */
     public function up()
     {
-       
+
+       // MASIH SALAH <3 
+        DB::unprepared('CREATE
+        /*[ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
+        [DEFINER = { user | CURRENT_USER }]
+        [SQL SECURITY { DEFINER | INVOKER }]*/
+        VIEW `bioskop`.`viewStudio` 
+        AS
+    (
+    SELECT 
+      studio.`id_studio`, 
+      j.id_jenis_studio AS id_jenis_studio,
+      studio.`audiotori`, 
+      studio.`jumlah_row`, 
+      studio.`jumlah_kursi_perrow`
+      
+    FROM  
+        studio
+        JOIN detail_jenis_studio AS j ON studio.id_jenis_studio = j.id_jenis_studio
+    );    
+        ');
     }
 
     /**
@@ -23,7 +43,7 @@ class CreateUserView extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP VIEW IF EXISTS vwJenis');
+        DB::unprepared('DROP VIEW IF EXISTS viewStudio');
         
     }
 

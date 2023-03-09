@@ -6,21 +6,20 @@ use DB;
 use PDF;
 use App\Models\Film;
 use App\Models\User;
+use App\Models\activity_log;
 use App\Models\jadwal;
 use App\Models\studio;
 use App\Models\Booking;
 use App\Models\payment;
-use App\Exports\UsersExport;
-use App\Models\activity_log;
+use App\Services\customer;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
+use App\Exports\CustomerExport;
 use Spatie\Backup\BackupManager;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
 
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Response;
 
 
 
@@ -81,7 +80,8 @@ class CrudPaymentController extends Controller
     public function show($id)
     {
         $al = activity_log::where('id', $id)->first();
-        return view('payment.crud.detail_log', compact('al'), [
+       
+        return view('payment.crud.detail_log', compact('al' ), [
             'title' => 'Admin Film',
             'active' => 'Admin Film',
             'pages' => 'Detail Film',
@@ -119,21 +119,39 @@ class CrudPaymentController extends Controller
     }
 
  
-    public function customer()
+    public function customer(Request $request)
     {
         $customerTicketCount = Booking::getCustomerTicketCount();
-        $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->groupBy('id')->get(['booking.*','payment.*' ,'users.*']);
+        $data = Booking::join('users', 'users.id', '=', 'booking.id_customer')->join('payment', 'payment.id_booking', '=', 'booking.id_booking')->groupBy('id')->paginate(2);
+
+        
+        if($request->has('search')) {
+            $data = User::where('name', 'LIKE', '%' .$request->search. '%')->paginate(2);
+          
+        } else {
+            $data = User::paginate(2);
+        }
+
         // $data = DB::table('booking')->join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->select('CALL JumlahPembeliann()')->get(['booking.*','payment.*' ,'users.*']);
      // $post = DB::select("CALL JumlahPembelian");
      // $post = DB::select("CALL JumlahPembeliann ($id)");
 
-        return view('payment.crud.datauser',  compact('data' , 'customerTicketCount'), [
+        return view('payment.crud.datauser',  compact('data' , 'customerTicketCount' , ), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);
         // return view('studio.LayoutStudio')->with('studio', $studio);
     }
+
+    // public function costumerexport()
+    // {
+    //     return Excel::download(new CustomerExport, 'users.xlsx');
+    // }
     
+    public function costumerexport(customer $export, Request $request, Excel $excel)
+    {
+        return $export->exportToExcel($request, $excel);
+    }
 
     function get_customer_data()
     {
@@ -197,7 +215,7 @@ class CrudPaymentController extends Controller
         // ->select(DB::raw( 'CALL buy'))->get();
 
         $customerTicketCount = Booking::getCustomerTicketCount();
-        return view('payment.crud.detail', compact( 'customerTicketCount' ,'result' ), [
+        return view('payment.crud.detail', compact( 'customerTicketCount' ), [
             'title' => 'Admin Payment',
             'active' => 'Admin Payment',
             'pages' => 'Detail',
@@ -205,9 +223,10 @@ class CrudPaymentController extends Controller
     }
     public function logging()
     {
-         $log= activity_log::all();
+        //  $log= activity_log::all(); 
+        $log = User::join('activity_log', 'activity_log.causer_id', '=', 'users.id')->get(['activity_log.*' ,'users.*']);
         
-        return view('payment.crud.log', compact( 'log' ), [
+        return view('payment.crud.log', compact( 'log'  ), [
             'title' => 'Admin Payment',
             'active' => 'Admin Payment',
             'pages' => 'Activity Log',

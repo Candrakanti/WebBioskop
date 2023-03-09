@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\detail_kota;
 use App\Models\studio;
-use App\Models\kota;
+use App\Models\ViewStudio;
 use App\Models\jenis_studio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +31,6 @@ class CrudStudioController extends Controller
             $std = studio::join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
             ->get(['studio.*', 'detail_jenis_studio.*']);
         }
-
         // $std = studio::all();
        
         return view('studio.crud.LayoutStudio', compact('std'), [
@@ -148,6 +147,17 @@ class CrudStudioController extends Controller
         // return redirect('/CrudStudio')->with('success', 'Data Berhasil Di Hapus');
         DB::table('studio')->where('id_studio', $id_studio)->delete();
         return redirect('/CrudStudio')->with('success', 'Data Berhasil Di Hapus');
+    }
+
+    public function ViewStudio()
+    {
+        $studio = viewStudio::select("*")
+        ->get();
+        // dd($studio);
+        return view('studio.crud.index', compact('studio'), [
+            'title' => 'Admin Studio',
+            'pages' => 'Table Studio'
+        ]);
     }
 
 

@@ -2,7 +2,43 @@
 
 @section('container')
 
-<div class="row justify-content-center">
+
+<style>
+  .preloader {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 9999;
+   background-color: #fff;
+   transition: 10s;
+ }
+ .preloader .loading {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%,-50%);
+   font: 14px arial;
+   transition: 10s;
+ } 
+</style>
+
+<script>
+  $(document).ready(function(){
+      $('.preloader').fadeOut();
+  });
+</script>
+
+<body>
+  <div class="preloader">
+    <div class="loading">
+      <img src="{{asset('img/seenema.png')}}" width="250">
+    </div>
+  </div> 
+ 
+
+  <div class="row justify-content-center">
     <div class="col-lg-10 col-md-10 col-xs-10 ">
 
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -187,5 +223,11 @@
       </div>
   </div>
 </div>
-  </section>
+</section>
+
+
+</body>
+
+
+ 
 @endsection

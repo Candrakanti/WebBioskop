@@ -83,7 +83,7 @@ class BookingController extends Controller
         $book = payment::join('booking' ,'booking.id_payment' ,'=' ,'payment.id_payment')->get(['payment.*' , 'booking.*']);
 
         return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY'  , 'exp' ,'book'), [
-            // 'snapToken' =>$snapToken,
+             // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'
         ]);
@@ -189,6 +189,8 @@ class BookingController extends Controller
      */
     public function store(Request $request, $id_jadwal)
     {
+
+ 
    
 //    return $request;
 

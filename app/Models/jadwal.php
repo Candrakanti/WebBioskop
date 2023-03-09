@@ -68,7 +68,7 @@ class jadwal extends Model
 
     public function Film()
     {
-        return $this->hasMany('App\Models\Film');
+        return $this->hasMany('App\Mo dels\Film');
     }
 
 

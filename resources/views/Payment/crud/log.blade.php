@@ -57,10 +57,12 @@
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">{{ $data->description}}</p>
                                     </td>
+                                 
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{ $data->causer_id }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $data->name }}</p>
                                     </td>
                                     
+                                  
                                     <td class="align-middle text-center">
                                         <span
                                             class="text-secondary text-xs font-weight-bold">{{ $data->created_at }}</span>
@@ -82,4 +84,12 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+
+<script>
+  $(document).ready( function () {
+$('#myTable').DataTable();
+} );
+</script>
 @endsection
