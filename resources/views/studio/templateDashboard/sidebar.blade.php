@@ -97,9 +97,12 @@
 
                 <li class="nav-item">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 81e97d3ec415788435b1de3b366710a375f289d8
+=======
+>>>>>>> d1505e60a98f2eabf60b675a8a8b30e0f411eb0a
                     <a class="nav-link  {{ Request::is('crudDetStudio*') ? 'active' : '' }} " href="crudDetStudio">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">

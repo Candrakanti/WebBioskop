@@ -16,7 +16,7 @@ class CreateTriggerStudio extends Migration
         DB::unprepared('
         CREATE TRIGGER after_update_studio  AFTER UPDATE ON `studio` FOR EACH ROW 
         BEGIN
-        INSERT INTO activity_log (description, created_at, updated_at) VALUES ("Data Studio udah diubah", NOW(), NOW());
+        INSERT INTO activity_log (description, created_at, updated_at) VALUES ("Data Studio sudah diubah", NOW(), NOW());
         
 
         

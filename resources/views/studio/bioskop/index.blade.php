@@ -2,6 +2,10 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 81e97d3ec415788435b1de3b366710a375f289d8
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

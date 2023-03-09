@@ -10,17 +10,16 @@ use App\Models\jadwal;
 use App\Models\studio;
 use App\Models\Booking;
 use App\Models\payment;
-use App\Exports\UsersExport;
-use App\Models\activity_log;
+use App\Services\customer;
 use Illuminate\Http\Request;
+
+use Maatwebsite\Excel\Excel;
+use App\Exports\CustomerExport;
 use Spatie\Backup\BackupManager;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
 
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Response;
 
 
 
@@ -123,7 +122,16 @@ class CrudPaymentController extends Controller
         ]);
         // return view('studio.LayoutStudio')->with('studio', $studio);
     }
+
+    // public function costumerexport()
+    // {
+    //     return Excel::download(new CustomerExport, 'users.xlsx');
+    // }
     
+    public function costumerexport(customer $export, Request $request, Excel $excel)
+    {
+        return $export->exportToExcel($request, $excel);
+    }
 
     function get_customer_data()
     {
