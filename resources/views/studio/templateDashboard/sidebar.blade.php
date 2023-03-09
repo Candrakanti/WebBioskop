@@ -125,7 +125,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link  {{ Request::is('bioskop*') ? 'active' : '' }} " href="/crudBioskop">
+               
                     <a class="nav-link  {{ Request::is('crudBioskop*') ? 'active' : '' }} " href="/crudBioskop">
 
                         <div

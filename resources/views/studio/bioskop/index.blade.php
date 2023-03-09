@@ -2,9 +2,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,13 +12,9 @@
 
     <body>
 
-        
-=======
->>>>>>> 3254608ea0cba4e57a0eea392eb5c53545508dbc
->>>>>>> 85a5ee76e505f844fa18cd9eacf0bd95c813f988
+
         <div class="container pb-3">
             <a href="/crudBioskop/create" class="btn btn-info"> Create Data Bioskop </a>
-
             <div class="row 9-3 align-items-center mt-2">
                 <div class="col-auto">
                   <form action="/crudBioskop" method="GET">

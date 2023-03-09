@@ -49,7 +49,9 @@ return [
             // INI BUAT BACKUP DATABASE PAKAI LIBRARY SPATIE
             'driver' => 'mysql',
         'dump' => [
-            'dump_binary_path' => 'C:\xampp\mysql\bin' // only the path, so without `mysqldump` or `pg_dump`
+            'dump_binary_path' => 'C:\xampp\mysql\bin',
+            'use-single_transaction',
+            'timeout' => 60 * 5,// only the path, so without `mysqldump` or `pg_dump`
 
          ],
          // SAMPAI SINI 
