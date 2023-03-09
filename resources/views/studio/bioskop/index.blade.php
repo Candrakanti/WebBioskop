@@ -11,9 +11,13 @@
     </head>
 
     <body>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 81e97d3ec415788435b1de3b366710a375f289d8
         <div class="container pb-3">
             <a href="/crudBioskop/create" class="btn btn-info"> Create Data Bioskop </a>
-
             <div class="row 9-3 align-items-center mt-2">
                 <div class="col-auto">
                   <form action="/crudBioskop" method="GET">

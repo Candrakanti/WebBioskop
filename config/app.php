@@ -180,6 +180,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Providers\DropboxServiceProvider::class,
+
     ],
 
     /*
@@ -235,7 +237,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'PDF' => Barryvdh\DomPDF\Facade::class,
-     
+
+        'LogActivity' => App\Helpers\LogActivity::class,
         
         // 'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 

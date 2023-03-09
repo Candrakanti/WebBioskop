@@ -122,7 +122,7 @@ integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="ano
 $('.show_confirm').click(function(event) {
     var form = $(this).closest("form");
     var name = $(this).data("name");
-    var id_db = $(this).attr('data-id');
+    var id_jenis_studio  = $(this).attr('data-id');
     event.preventDefault();
     swal({
             title: "APA ANDA YAKIN ?",

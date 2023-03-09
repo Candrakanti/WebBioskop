@@ -25,10 +25,12 @@
                                 <p class="text-center"> {{ $data->jenis_studio }} : RP. {!! $data->harga !!}</p>
                             </div>
 
+                             {{-- INI CONDISIONAL STATEMENT IF ELSE --}}
                             @if ($data->jenis_studio === 'Regular')
 
                                 <div class="seats" id="seats" name="harga">
-
+                                     
+                                    {{-- INI LOOPING FOREACH DAN FOR --}}
                                         @foreach(range('A',$data->jumlah_row) as $v)
                                         {{-- <h1>{{ $d->status_bayar }}</h1> --}}
                                         <div class="row">
@@ -38,9 +40,7 @@
                                                               </nav>
                                                 </div>
                                               
-                                                 
-                                           
-
+                                                 {{-- INI FIXED  --}}
                                                 <div class="col-4 col-lg-4 col-sm-4">
                                                         @for($i = 1; $i<=$data->jumlah_kursi_perrow; $i++)
                                                         <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{  $i}}" value="{{ $data->harga }}"  style="width:32px; height:25px;"
@@ -52,9 +52,12 @@
                                                      
                                                        @foreach($book as $p)
                                                      
-                                                       @if($p->status_bayar == "1" or $p->status_bayar == "0")
-                                                       disabled
-                                                       @endif
+                                                    
+                                                    
+                                                          @if($p->status_bayar == "0" )
+                                                          disabled
+                                                          @endif 
+                                                     
                                                        @endforeach
 
                                                      
@@ -71,30 +74,9 @@
                                                             @endfor
                                                     </div>
                                                 </div>
-                                                {{-- <div class="col-4">
-                                                        @for($i = 6; $i<=10; $i++)
-                                                        <input type="checkbox" class="ms-1"   name="kursi[]"  data-value=" {{  $v}}{{$i}}" value="{{ $data->harga }}"  style="width:32px; height:25px;"
-                                                        @if($data->id_jadwal == $data->id_jadwal)
-                                                        @foreach($data2 as $key=>$d)
-        
-                                                       @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
-                                                       @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') and $p )
+                                              {{-- INI FIXED  --}}
 
-                                                     
-                                                       disabled
-                                                
-                                                       @endif
-                                                       @endif
-                                                        @endforeach
-                                                          @endif
-                                                        >
-                                                        @endfor
-                                                        <div class="row ms-1">
-                                                            @for($i = 6; $i<=10; $i++)
-                                                            <input type="text" class="border border-0 p-2 mb-2 ms1 text-bg-light"  disabled placeholder="{{ $v }}{{ $i }}" style="width:40px; height:25px;">
-                                                            @endfor
-                                                    </div>
-                                                </div> --}}
+                                               
 
                                             
                                         </div>
@@ -105,19 +87,7 @@
                                 {{-- BUAT VELVET STUDIO --}}
                                 @else
                                 <div class="seats" id="seats" name="harga">
-
-                                        {{-- <h1>contoh</h1>
-                                    
-                                        @if($data->id_jadwal == $data->id_jadwal)
-                                      @foreach($data2 as $d)
-                                      @if($d->id_jadwal === $data->id_jadwal)
-                                    <h1>{{ $d->kursi }}</h1>
-                                      @endif
-                                      @endforeach
-                                        @endif
-                                    
-                                     <H1>Selesai</H1>
-<h1>{{ $data->jam_tayang }}</h1> --}}
+  
                                         @foreach(range('A',$data->jumlah_row) as $v)
                                         <div class="row">
                                                 <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -139,8 +109,15 @@
                                                                                @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
                                                                                @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d'))
                                                                                @if( $d->jam_booking  == $data->jam_tayang  )
-                                                                             
-                                                                               disabled
+
+                                                                               @foreach($book as $p)
+
+                                                                            @if($p->status_bayar == 2)
+                                                                              disabled
+                                                                              @else
+                                                                            
+                                                                        @endif
+                                                                               @endforeach
                                                                         
                                                                                @endif
                                                                                @endif
@@ -355,14 +332,16 @@
                                                                     </datalist>
                                                             </div> --}}
 
+                                                            <form role="form" data-toggle="validator">
                                                             <div class="checkout" id="checkout">
                                                                 {{-- @foreach ($data3 as $b) --}}
                                                                 <li class="list-group-item" style="padding: 0.75rem 5rem;">
-                                                                  <input class="form-check-input me-1" type="radio" name="payment_type" value="{{"mandiri"}}"  >
+                                                                  <input class="form-check-input me-1" type="radio" name="payment_type" value="{{"mandiri"}}" required >
                                                                   <label class="form-check-label" for="firstRadio">{{ "mandiri" }}</label>
                                                                 </li>
                                                                 {{-- @endforeach --}}
                                                             </div>
+                                                            </form>
 
                                                         <div class="">
                                                                 <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
@@ -378,6 +357,8 @@
                                           </div>
                                         </div>
                                       </div>
+
+
 
                                       <div class="book" id="gap_form" >
                                         @csrf
@@ -624,28 +605,6 @@
                     if (counter >= 1) {
                         document.getElementById("pay-button").disabled = false;
                         
-                                function startTimer(duration, display) {
-        var timer = duration, minutes, seconds;
-        setInterval(function () {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-
-                display.textContent = minutes + ":" + seconds;
-
-                if (--timer < 0) {
-                timer = duration;
-                }
-        }, 1000);
-        }
-
-        window.onload = function () {
-        var fiveMinutes = 60 * 1,
-                display = document.querySelector('#time');
-        startTimer(fiveMinutes, display);
-        };
 
                         $('#gap_form').wrap(
                                 '<form id="Form2" enctype="multipart/form-data"  action="{{ route('cart.store', $data->id_jadwal) }}" method="POST" ></form>'

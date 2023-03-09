@@ -6,6 +6,7 @@ use App\Models\jadwal;
 use App\Models\kota;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Artisan;
 
 class HomeController extends Controller
 {
@@ -32,6 +33,12 @@ class HomeController extends Controller
             'title' => 'Home',
             'active' => 'Home'
         ]);
+    }
+
+    public function runArtisanCommand(Request $request)
+    {
+        $output = Artisan::call('cache:clear');
+        return redirect('/')->with('success', 'New film has been added!');
     }
 
     public function playing(){
