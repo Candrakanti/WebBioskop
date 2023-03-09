@@ -10,6 +10,7 @@ use App\Models\jadwal;
 use App\Models\studio;
 use App\Models\Booking;
 use App\Models\payment;
+use App\Models\activity_log;
 use App\Services\customer;
 use Illuminate\Http\Request;
 
