@@ -321,12 +321,6 @@
                                                                 </div>
                                                                 </div>
 
-                                                                <div class="">
-                                                                        <input class="form-control" type="hidden" placeholder="harga Yang Anda Pilih"
-                                                                        name="nama_bank" aria-label="Disabled input example" readonly  id="bank2">
-                                                                   </div>
-                                                    
-                                                                
                                                         <div class="">
                                                                 <input class="form-control btn btn-secondary text-dark" type="hidden"
                                                                     placeholder="Kursi Yang Anda Pilih" aria-label="Disabled input example" readonly
@@ -585,14 +579,11 @@
 
             $('.seats').click(function() {
                 var test = new Array();  
-
-                $("input[name='kursi']:checked").each(function() {
+                $("input[name='kursi[]']:checked").each(function() {
                                 test.push($(this).data('value'));          
                 }); 
 
-
                 var check =    $(":checkbox:checked").length;
-
 
            document.getElementById('seat').value = test ;
            document.getElementById('seat2').value = test ;

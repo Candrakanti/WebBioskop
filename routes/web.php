@@ -61,6 +61,8 @@ Route::get('/home', function () {
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/ContactUs', [HomeController::class, 'contactus']);
+Route::get('/UserGuide', [HomeController::class, 'UserGuide']);
+
 
 
 Route::middleware(['auth'])->group(function () {

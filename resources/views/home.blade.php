@@ -174,14 +174,20 @@
                   <a href="https://twitter.com/?lang=id">
                     <i class="fab fa-twitter"></i>
                   </a>
-                  <a href="https://www.instagram.com/">
+                  <a href="https://instagram.com/">
                     <i class="fab fa-instagram"></i>
                   </a>
                   {{-- <a href="#">
                     <i class="fab fa-linkedin-in"></i>
                   </a> --}}
+                  
                 </div>
               </div>
+
+              <div class="container pb-3">
+                <br>
+                <a href="/UserGuide" class="btn btn-danger">User Guide</a><br/>
+               </div>
             </div>
           </div>
       </div>

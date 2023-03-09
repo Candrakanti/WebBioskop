@@ -56,4 +56,12 @@ class HomeController extends Controller
         ]);   
     }
 
+    public function UserGuide (){
+        return view('UserGuide.guide', [
+            'title' => 'User Guide',
+            'active' => 'User Guide',
+            'pages' => 'User Guide'
+        ]);
+    }
+
 }
