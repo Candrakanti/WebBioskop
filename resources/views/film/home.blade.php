@@ -102,6 +102,7 @@
                                                 <td class="align-middle text-center text-sm">
                                                     <a class="badge badge-sm bg-gradient-warning"
                                                         href="/crudFilm/{{ $film->id_film }}/edit">Edit</a>
+                                                        
                                                     <a class="badge badge-sm bg-gradient-warning"
                                                         href="{{ route('crudFilm.show', $film->id_film) }}">Detail</a>
 

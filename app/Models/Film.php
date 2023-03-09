@@ -34,7 +34,7 @@ class Film extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['*']);
+        ->logFillable('*');
         // Chain fluent methods for configuration options
     }
     // public function film()

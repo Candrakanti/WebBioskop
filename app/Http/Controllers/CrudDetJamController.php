@@ -62,7 +62,7 @@ class CrudDetJamController extends Controller
     public function store(Request $request)
     {
         $validatedData =  $request->validate([
-            'id_det_jam' => 'required',
+            'id_det_jam' => 'required|min:5|max:225|unique:detail_jam',
             'id_db' => 'required',
             'id_jadwal' => 'required',
             'jam_tayang' => 'required',

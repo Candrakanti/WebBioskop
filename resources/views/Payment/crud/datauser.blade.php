@@ -2,17 +2,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
-    
-</head>
-
-<body>
 <div class="container pt-3">
   @if (session()->has('success'))
   <div class="alert alert-success " role="alert">
@@ -22,6 +11,7 @@
 </div>
        
 
+<<<<<<< HEAD
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-md-5">
@@ -124,6 +114,10 @@
 
 
 </body>
+=======
+d
+
+>>>>>>> 81e97d3ec415788435b1de3b366710a375f289d8
 {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
@@ -164,6 +158,5 @@ $('#myTable').DataTable();
 } );
 </script>
 
-</html>
 @endsection
     

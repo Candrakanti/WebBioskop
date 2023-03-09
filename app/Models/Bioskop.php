@@ -25,7 +25,7 @@ class Bioskop extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logUnguarded(['*']);
+        ->logFillable('*');
         // Chain fluent methods for configuration options
     }
 }

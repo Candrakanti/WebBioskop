@@ -22,13 +22,14 @@ use Illuminate\Support\Facades\Auth;
 
 
 
+
 class CrudPaymentController extends Controller
 {
+    
     public function __construct()
     {
         $this->middleware('auth');
     }
-
 
     public function index(Request $request)
     {
@@ -62,6 +63,7 @@ class CrudPaymentController extends Controller
             'pages' => 'Table Payment'
         ]);
     }
+   
 
     public function cetakPertanggal($tglawal,$tglakhir){
         // dd(["Tanggal Awal : ".$tglawal, "Tanggal Akhir :".$tglakhir]);
@@ -199,19 +201,18 @@ class CrudPaymentController extends Controller
             'pages' => 'Detail',
         ]);
     }
+    public function logging()
+    {
+         $log= activity_log::all();
+        
+        return view('payment.crud.log', compact( 'log' ), [
+            'title' => 'Admin Payment',
+            'active' => 'Admin Payment',
+            'pages' => 'Activity Log',
+        ]);
+    }
 
-    // public function jumlah(){
-    //     $data = '1'; // contoh input kota
-    //     $count = Booking::countById($data); // memanggil method countByKota pada model Alamat untuk menghitung jumlah alamat pada kota tersebut
-    
-    //     return view('payment.crud.detail', compact('count'));
-    // }
 
-    // public function jumlah()
-    // {
-    //     $customerTicketCount = Booking::getCustomerTicketCount();
-    //     return view('payment.crud.detail', ['customerTicketCount' => $customerTicketCount]);
-    // }
   
 }   
 

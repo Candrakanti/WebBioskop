@@ -109,8 +109,9 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                // 'local',
-                'dropbox',
+                'public',
+                // 'dropbox',
+            
             ],
         ],
 
@@ -155,7 +156,7 @@ return [
         ],
 
         'slack' => [
-            'webhook_url' => 'https://hooks.slack.com/services/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',
+            'webhook_url' => 'https://hooks.slack.com/services/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',
 
             /*
              * If this is set to null the default channel of the webhook will be used.
@@ -179,6 +180,7 @@ return [
             'name' => env('APP_NAME', 'laravel-backup'),
             'disks' => [
                 'dropbox',   
+                'google',   
                 'local'
             ],
             'health_checks' => [

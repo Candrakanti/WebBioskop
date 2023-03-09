@@ -9,7 +9,7 @@
         <h2 class="fw-light" style="margin-left: 40%; text-transform: uppercase"> ADMIN PAYMENT &nbsp;{{ auth()->user()->name }}</h2>
     </h1>
     
-    <a href="{{ route('backup') }}">Backup Database</a>
+    <a href="http://localhost:8080/WebBioskop/public/backup">Backup Database</a>
   
             <div class="container d-flex justify-content-center" style="">
                 <hr class="border border-dark border-2 opacity-50 d-flex justify-content-center" width="50%">

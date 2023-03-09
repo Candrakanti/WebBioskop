@@ -6,10 +6,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class jadwal extends Model
 {
     use HasFactory;
+    use LogsActivity;
     public $timestamps = false;
     protected $primaryKey = 'id_jadwal';
     protected $keyType = 'string';
@@ -23,10 +26,12 @@ class jadwal extends Model
       
     ];
 
-    public static function CountDay($jadwal) {
 
-        $result = DB::select('date_movie (tgl_tayang_akhir,tgl_tayang_awal) as result' ,[$jadwal]);
- 
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logFillable('*');
+        // Chain fluent methods for configuration options
     }
 
     // public function jadwal()
