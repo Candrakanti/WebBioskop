@@ -19,7 +19,7 @@ class ProcedureJumlah extends Migration
         //     END$$
 
         // DELIMITER ;
-
+        //
         DB::unprepared(' CREATE DEFINER=`root`@`localhost` PROCEDURE `buyy`()
         BEGIN
         SELECT id_customer, COUNT(id_customer) AS jumlah FROM booking GROUP BY id_customer;       

@@ -11,7 +11,6 @@
 </div>
        
 
-<<<<<<< HEAD
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-md-5">
@@ -94,12 +93,18 @@
                                           class="text-secondary text-xs font-weight-bold">{{ $data->created_at }}</span>
                                   </td>
 
-                                  <td class="align-middle text-center text-sm">
+                                <td class="align-middle text-center text-sm">
                                     <a class="badge badge-sm bg-gradient-warning"
                                     href="{{ route('CrudPayment.detail', $data->id_customer) }}">Detail</a>
 
                                 </td>
-                                
+
+                                {{-- @foreach ($customerTicketCount as $row)
+                                <tr>
+                                    <td>{{ $row->jumlah }}</td>
+                                </tr>
+                                @endforeach
+                                 --}}
 
                               </tr>
                               </tr>
@@ -114,10 +119,6 @@
 
 
 </body>
-=======
-d
-
->>>>>>> 81e97d3ec415788435b1de3b366710a375f289d8
 {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 

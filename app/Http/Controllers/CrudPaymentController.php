@@ -10,6 +10,7 @@ use App\Models\jadwal;
 use App\Models\studio;
 use App\Models\Booking;
 use App\Models\payment;
+use App\Models\activity_log;
 use App\Services\customer;
 use Illuminate\Http\Request;
 
@@ -110,13 +111,13 @@ class CrudPaymentController extends Controller
  
     public function customer()
     {
-        $customerTicketCount = Booking::getCustomerTicketCount();
+
         $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->groupBy('id')->get(['booking.*','payment.*' ,'users.*']);
         // $data = DB::table('booking')->join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->select('CALL JumlahPembeliann()')->get(['booking.*','payment.*' ,'users.*']);
      // $post = DB::select("CALL JumlahPembelian");
      // $post = DB::select("CALL JumlahPembeliann ($id)");
 
-        return view('payment.crud.datauser',  compact('data' , 'customerTicketCount'), [
+        return view('payment.crud.datauser',  compact('data'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);
@@ -189,13 +190,13 @@ class CrudPaymentController extends Controller
     public function detail($id_customer)
     {
         
-        $data = Booking::where('id_customer', $id_customer)->first();
+        // $data = Booking::where('id_customer', $id_customer)->first();
 
         // $result = DB::table('booking')
-        // ->select(DB::raw( 'CALL buy'))->get();
+        // ->select(DB::raw( 'CALL buyy'))->get();
 
-        $customerTicketCount = Booking::getCustomerTicketCount();
-        return view('payment.crud.detail', compact( 'customerTicketCount' ,'result' ), [
+        $customerTicketCount = Booking::getCustomerTicketCount('id_customer', $id_customer);
+        return view('payment.crud.detail', compact( 'customerTicketCount'), [
             'title' => 'Admin Payment',
             'active' => 'Admin Payment',
             'pages' => 'Detail',
