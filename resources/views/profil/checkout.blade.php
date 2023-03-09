@@ -57,7 +57,7 @@
 <input type="hidden" name="id_payment" value="{{ $d->id_payment }}">
 <input type="hidden" name="id_booking" value="{{ $d->id_booking}}">
 <input type="hidden" name="payment_type" value="{{ $d->payment_type}}">
-<input type="hidden" name="tenggat_bayar" value="done">
+
 
 @if($d->status_bayar == '1')
 <button class="btn btn-info" type="submit" disabled > Telah Dibayar </button>

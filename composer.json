@@ -14,11 +14,18 @@
         "hashids/hashids": "^4.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
+        "laravel/slack-notification-channel": "^2.5",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.10",
         "maatwebsite/excel": "^3.1",
         "midtrans/midtrans-php": "^2.5",
+        "nao-pon/flysystem-google-drive": "~1.1",
+        "opcodesio/log-viewer": "^2.1",
+        "shetabit/visitor": "^4.0",
         "simplesoftwareio/simple-qrcode": "^0.0.4@beta",
+        "spatie/flysystem-dropbox": "^1.0.0",
+        "spatie/laravel-activitylog": "^4.7",
+        "spatie/laravel-backup": "7.0",
         "xendit/xendit-php-clients": "^2.19"
     },
     "require-dev": {

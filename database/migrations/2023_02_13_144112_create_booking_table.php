@@ -18,6 +18,7 @@ class CreateBookingTable extends Migration
             $table->string('id_customer');
             $table->string('id_payment')->unique();
             $table->string('id_jadwal');
+            $table->foreign('id_jadwal')->references('id_jadwal')->on('jadwal')->onDelete('cascade'); 
             $table->date('tanggal_booking');
             $table->time('jam_booking');
             $table->string('tenggat_bayar');

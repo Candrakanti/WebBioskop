@@ -72,7 +72,7 @@ class CrudFilmController extends Controller
             'penulis' => 'required|max:255',
             'cast' => 'required|max:255',
             'link_trailer' => 'required|max:255',
-            'image' => 'image|file|max:1024',
+            'image' => 'required|image|file|max:1024',
             'sinopsis' => 'required'
         ]);
 
@@ -164,7 +164,7 @@ class CrudFilmController extends Controller
             'penulis' => 'required|max:255',
             'cast' => 'required|max:255',
             'link_trailer' => 'required|max:255',
-            'image' => 'image|file|max:1024',
+            'image' => 'image|file|max:1024|required',
             'sinopsis' => 'required'
         ]);
 

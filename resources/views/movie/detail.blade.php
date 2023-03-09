@@ -11,7 +11,8 @@
 
 @section('container')
 @if($data->tgl_tayang_awal  >=  Carbon\Carbon::now()->format('Y-m-d'))
-<h4 class="fw-light text-danger">COMING SOON</h4>
+<h4 class="fw-light text-danger">COMING SOON TAYANG   {{ $string }} HARI  LAGI ! </h4>
+   
 @endif
 
 {{-- <h1>{{ \Carbon\Carbon::now()->format('H:i:s')  }}</h1> --}}

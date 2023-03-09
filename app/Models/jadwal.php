@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class jadwal extends Model
 {
@@ -21,6 +22,12 @@ class jadwal extends Model
         'tgl_tayang_akhir',
       
     ];
+
+    public static function CountDay($jadwal) {
+
+        $result = DB::select('date_movie (tgl_tayang_akhir,tgl_tayang_awal) as result' ,[$jadwal]);
+ 
+    }
 
     // public function jadwal()
     // {
