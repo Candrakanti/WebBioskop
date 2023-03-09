@@ -190,17 +190,6 @@ class BookingController extends Controller
     public function store(Request $request, $id_jadwal)
     {
  
-        payment::insert([
-            'id_payment' => $request->id_payment,
-            // 'id_booking' => $request->id_booking,
-            'nama_bank' => $request->nama_bank,
-            'harga' => $request->harga,
-            'status' => $request->status,  
-            'image' =>   $request->file('image')->store('booking-images')
-          
-        ]);
-
-
        Booking::insert([
             'id_booking' =>   $request->id_booking,
             'id_payment' => $request->id_payment,
