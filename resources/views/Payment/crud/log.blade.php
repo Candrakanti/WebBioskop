@@ -68,7 +68,7 @@
                                    
                                     <td class="align-middle text-center">
                                         <a class="badge badge-sm bg-gradient-warning"
-                                        href="{{ route('crudFilm.show', $film->id_film) }}">Detail</a>
+                                        href="{{ route('CrudPayment.show', $data->id) }}">Detail</a>
                                     </td>
 
                                 </tr>

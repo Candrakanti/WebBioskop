@@ -30,7 +30,7 @@ class CrudPaymentController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
+    }   
 
     public function index(Request $request)
     {
@@ -76,6 +76,16 @@ class CrudPaymentController extends Controller
             'pages' => 'Table Payment'
         ]);
 
+    }
+
+    public function show($id)
+    {
+        $al = activity_log::where('id', $id)->first();
+        return view('payment.crud.detail_log', compact('al'), [
+            'title' => 'Admin Film',
+            'active' => 'Admin Film',
+            'pages' => 'Detail Film',
+        ]);
     }
 
    
