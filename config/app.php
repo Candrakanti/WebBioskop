@@ -169,7 +169,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -178,6 +178,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        App\Providers\DropboxServiceProvider::class,
 
     ],
 
@@ -233,7 +235,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-     
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
+        'LogActivity' => App\Helpers\LogActivity::class,
         
         // 'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 

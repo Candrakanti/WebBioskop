@@ -71,7 +71,7 @@
 
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{$data->status}}</span>
-                  </td>
+                  </td>P
           
                       <td class="align-middle text-center text-sm">
                     <a class="badge badge-sm bg-gradient-warning" href="/CrudStudio/{{$data->id_studio}}/edit">Accept</a>

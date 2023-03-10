@@ -14,7 +14,6 @@
 
         <div class="container pb-3">
             <a href="/crudBioskop/create" class="btn btn-info"> Create Data Bioskop </a>
-
             <div class="row 9-3 align-items-center mt-2">
                 <div class="col-auto">
                   <form action="/crudBioskop" method="GET">

@@ -2,17 +2,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
-    
-</head>
-
-<body>
 <div class="container pt-3">
   @if (session()->has('success'))
   <div class="alert alert-success " role="alert">
@@ -22,14 +11,19 @@
 </div>
        
 
+
 <div class="container-fluid py-4">
   <div class="row">
-
+    <div class="col-md-5">
+        <a href="{{ route('exportcustomer') }}" class="btn btn-danger">Convert to Excel</a>
+      </div>
       <div class="col-12">
           <div class="card mb-4">
+            
               <div class="card-header pb-0">
                   <h6 class="text-center">Data Customer</h6>
               </div>
+              
               <div class="card-body px-0 pt-0 pb-2">
                   <div class="table-responsive p-0">
                       <table class="table align-items-center mb-0" id="myTable">
@@ -51,12 +45,14 @@
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                       No Telp</th>
-                                  {{-- <th
-                                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                      Jumlah Pembelian</th> --}}
+                                  
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                       Tanggal Buat AKun</th>
+
+                                      <th
+                                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                      Detail</th>
                           
                                   @foreach ($data as $key => $data)
                               </tr>
@@ -118,6 +114,7 @@
 
 
 </body>
+
 {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
@@ -158,6 +155,5 @@ $('#myTable').DataTable();
 } );
 </script>
 
-</html>
 @endsection
     

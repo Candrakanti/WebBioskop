@@ -2,28 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Booking;
-use Illuminate\Http\Request;
-use App\Models\jadwal;
-use App\Models\Film;
-use App\Models\payment;
-use App\Models\User;
-use App\Models\studio;
 use DB;
 use PDF;
+use App\Models\Film;
+use App\Models\User;
+use App\Models\jadwal;
+use App\Models\studio;
+use App\Models\Booking;
+use App\Models\payment;
+use App\Services\customer;
+use Illuminate\Http\Request;
+
+use Maatwebsite\Excel\Excel;
+use App\Exports\CustomerExport;
+use Spatie\Backup\BackupManager;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Auth;
-use App\Exports\UsersExport;
 
-use Maatwebsite\Excel\Facades\Excel;
 
-// use Illuminate\Support\Facades\DB;
 
 
 class CrudPaymentController extends Controller
 {
+    
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function index(Request $request)
+    {
+
+        if($request->has('search')) {
+            $data = User::where('id', 'LIKE', '%' .$request->search. '%')->get();
+          
+        } else {
+            $data = User::all();
+        }
+
+        $total_harga = payment::select(DB::raw("CAST(sum(harga) as int) as total_harga"))->GroupBy(DB::raw("Month(created_at)"))->pluck('total_harga');
+
+     
+        $bulan = payment::select(DB::raw("MONTHNAME(created_at) as bulan"))->GroupBy(DB::raw("MONTHNAME(created_at)"))->pluck('bulan');
+    
+        return view('Payment.crud.index', compact('data' , 'total_harga' ,'bulan'), [
+            'title' => 'Admin payment',
+            'active' => 'Admin payment',
+            'pages' => 'Data payment',
+        ]);
+
+
     }
 
     public function print(){
@@ -34,6 +63,7 @@ class CrudPaymentController extends Controller
             'pages' => 'Table Payment'
         ]);
     }
+   
 
     public function cetakPertanggal($tglawal,$tglakhir){
         // dd(["Tanggal Awal : ".$tglawal, "Tanggal Akhir :".$tglakhir]);
@@ -47,59 +77,7 @@ class CrudPaymentController extends Controller
 
     }
 
-    public function index(Request $request)
-    {
-        // $data = User::join('booking' ,'booking.id_customer' ,'=','users.id')->get(['booking.*','users.*']);
-
-        // return view('Payment.crud.index', compact('data'), [
-        //     'title' => 'Admin Payment',
-        //     'pages' => 'Table Payment'
-        // ]);
-
-
-        if($request->has('search')) {
-            $data = User::where('id', 'LIKE', '%' .$request->search. '%')->get();
-          
-        } else {
-            $data = User::all();
-        }
-
-
-        return view('Payment.crud.index', compact('data'), [
-            'title' => 'Admin payment',
-            'active' => 'Admin payment',
-            'pages' => 'Data payment',
-        ]);
-
-        // return view('studio.LayoutStudio')->with('studio', $studio);
-    }
-
-    // public function edit(studio $studio, $id_studio)
-    // {
-    //     $jenis_studio = jenis_studio::all();
-    //     $std = DB::table('studio')->where('id_studio', $id_studio)->first();
-    //     return view(
-    //         'studio.crud.edit',
-    //         compact('jenis_studio'),
-    //         [
-    //             'studio' => $std,
-    //             'title' => 'Edit Studio',
-    //             'pages' => 'Edit Studio'
-    //         ]
-    //     );
-    // }
-
-    // public function edit($nip)
-    // { 
-    //     $gl = golongan::all();
-    //     $data = DB::table('karyawan')->where('nip', $nip)->first();
-    //     return view('kepegawaian.edit', compact('gl'),
-    //     [
-    //         'data'=> $data
-    //     ]
-    // );
-     
-    // }
+   
 
     public function edit($id_payment)
     {
@@ -129,6 +107,7 @@ class CrudPaymentController extends Controller
         return redirect('/CrudPayment')->with('success', 'Data Berhasil Diubah!');
     }
 
+ 
     public function customer()
     {
         $customerTicketCount = Booking::getCustomerTicketCount();
@@ -137,8 +116,6 @@ class CrudPaymentController extends Controller
      // $post = DB::select("CALL JumlahPembelian");
      // $post = DB::select("CALL JumlahPembeliann ($id)");
 
-       
-
         return view('payment.crud.datauser',  compact('data' , 'customerTicketCount'), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
@@ -146,31 +123,20 @@ class CrudPaymentController extends Controller
         // return view('studio.LayoutStudio')->with('studio', $studio);
     }
 
-
+    // public function costumerexport()
+    // {
+    //     return Excel::download(new CustomerExport, 'users.xlsx');
+    // }
     
-    public function exportExcel(Request $request) 
+    public function costumerexport(customer $export, Request $request, Excel $excel)
     {
-
-        $from_date=$request->from_date;
-        $to_date = $request->to_date;
-
-
-         return Excel::download(new usersExport($from_date,$to_date), 'excelname.xlsx');
-}
-
-    public function Export()
-    {
-        $customer_data = $this->get_customer_data();
-      
-        return view('payment.crud.dynamic_pdf' , [
-            'title' => 'Laporan Keuangan',
-            'pages' => 'Laporan Keuangan'
-        ])->with('customer_data', $customer_data);
+        return $export->exportToExcel($request, $excel);
     }
 
     function get_customer_data()
     {
         $customer_data = payment::join('booking' ,'booking.id_booking','=','payment.id_booking')->join('users','users.id','=','booking.id_customer')->get(['payment.*','booking.*','users.*']);
+
 
      return $customer_data;
     }
@@ -224,26 +190,29 @@ class CrudPaymentController extends Controller
     {
         
         $data = Booking::where('id_customer', $id_customer)->first();
+
+        // $result = DB::table('booking')
+        // ->select(DB::raw( 'CALL buy'))->get();
+
         $customerTicketCount = Booking::getCustomerTicketCount();
-        return view('payment.crud.detail', compact('data' , 'customerTicketCount' ), [
+        return view('payment.crud.detail', compact( 'customerTicketCount' ,'result' ), [
             'title' => 'Admin Payment',
             'active' => 'Admin Payment',
             'pages' => 'Detail',
         ]);
     }
+    public function logging()
+    {
+         $log= activity_log::all();
+        
+        return view('payment.crud.log', compact( 'log' ), [
+            'title' => 'Admin Payment',
+            'active' => 'Admin Payment',
+            'pages' => 'Activity Log',
+        ]);
+    }
 
-    // public function jumlah(){
-    //     $data = '1'; // contoh input kota
-    //     $count = Booking::countById($data); // memanggil method countByKota pada model Alamat untuk menghitung jumlah alamat pada kota tersebut
-    
-    //     return view('payment.crud.detail', compact('count'));
-    // }
 
-    // public function jumlah()
-    // {
-    //     $customerTicketCount = Booking::getCustomerTicketCount();
-    //     return view('payment.crud.detail', ['customerTicketCount' => $customerTicketCount]);
-    // }
   
 }   
 

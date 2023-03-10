@@ -70,10 +70,17 @@ class MovieController extends Controller
 
     // $result = DB::select('SELECT date_movie (tgl_tayang_akhir,tgl_tayang_awal) as result from jadwal')[2]->result;
 
+    $result = DB::table('jadwal')
+    ->select(DB::raw('date_movie (tgl_tayang_awal) as result'))
+    ->where('id_jadwal', $id_jadwal)->get();
 
+    // CONVERT ARRAY KE STRING  FUNGSI STRVAL CONVERT DARI INT KE STRING.
+    $Cs = json_decode($result)[0]->result;
+    $string = strval($Cs);
 
         $time = _detail_jam::where('jam_tayang', '<=', Carbon::now()->timezone('asia/jakarta')->format('h:i'))->get();
-        return view('movie.detail', compact('data' ,'time' ,'mall' ,'c'  ), [
+        return view('movie.detail', compact('data' ,'time' ,'mall' ,'c'  , 'result' , 'Cs' , 'string'), [
+
             "title" => "Detail movie",
             "active" => 'Movie',
         ]);

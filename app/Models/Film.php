@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Film extends Model
-{
+{  
+     use LogsActivity;
     use HasFactory;
     public $timestamps = false;
     protected $table = "film";
@@ -27,6 +30,13 @@ class Film extends Model
         'image',
     ];
 
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logFillable('*');
+        // Chain fluent methods for configuration options
+    }
     // public function film()
     // {
     //     // return $this->hasOneThrough(App\Models\jadwal::class, App\Models\studio::class);

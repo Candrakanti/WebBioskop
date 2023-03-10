@@ -43,7 +43,18 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+        
+
         'mysql' => [
+            // INI BUAT BACKUP DATABASE PAKAI LIBRARY SPATIE
+            'driver' => 'mysql',
+        'dump' => [
+            'dump_binary_path' => 'C:\xampp\mysql\bin',
+            'use-single_transaction',
+            'timeout' => 60 * 5,// only the path, so without `mysqldump` or `pg_dump`
+
+         ],
+         // SAMPAI SINI 
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
