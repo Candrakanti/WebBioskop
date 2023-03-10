@@ -11,12 +11,9 @@ use Maatwebsite\Excel\Concerns\Exportable;
 
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class UsersExport implements FromCollection
+class UsersExport implements FromCollection 
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-
+    
     use Exportable;
     
     protected $from_date;

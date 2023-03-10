@@ -29,4 +29,5 @@ class studio extends Model
         ->logFillable('*');
         // Chain fluent methods for configuration options
     }
+
 }

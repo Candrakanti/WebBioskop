@@ -34,6 +34,7 @@ class CreateUserView extends Migration
         JOIN detail_jenis_studio AS j ON studio.id_jenis_studio = j.id_jenis_studio
     );    
         ');
+
     }
 
     /**

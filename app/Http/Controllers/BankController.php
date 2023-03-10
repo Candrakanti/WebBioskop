@@ -67,7 +67,7 @@ class BankController extends Controller
     public function show( Request $request )
     {
         // $exp  =  Booking::where('tenggat_bayar', '<=', Carbon::now()->format('H:i:s'))->delete();
-           $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
+        //    $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
         
         //  return $request;
         if( $request->has('search')) {
@@ -80,7 +80,7 @@ class BankController extends Controller
         }
         $bo = Booking::all();
 
-            return view('profil.checkout', compact('booking' ,'bo' ,'exp'  ), [
+            return view('profil.checkout', compact('booking' ,'bo' ), [
                 "title" => "mycgv",
                 "active" => "mycgv"
             ]);

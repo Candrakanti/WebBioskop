@@ -24,6 +24,7 @@
     {{-- Bootstrap Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <title>SeeNema </title>
+   
 </head>
 
 <body>
@@ -31,6 +32,11 @@
     @include('layouts.navbarNew')
 
     <div class="container">
+                {{-- <div class="preloader">
+                    <div class="loading">
+                    <img src="{{asset('assets/img/avatar/avatar-1.png')}}" width="250">
+                    </div>
+                </div> --}}
         @yield('container')
     </div>
 

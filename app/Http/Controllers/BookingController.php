@@ -74,16 +74,16 @@ class BookingController extends Controller
         $generateBK =  IdGenerator::generate(['table' => 'booking', 'field' => 'id_booking', 'length' => 10, 'prefix' => 'BK']);
 
     
-        $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 12, 'prefix' =>'BK'.Auth::user()->id]);
+        $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 12, 'prefix' =>'PY-']);
 
 
         // $exp  =   booking::where('tenggat_bayar', '<',Carbon::now())->delete();
-        $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
+        // $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
     
         $book = payment::join('booking' ,'booking.id_payment' ,'=' ,'payment.id_payment')->get(['payment.*' , 'booking.*']);
 
-        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY'  , 'exp' ,'book'), [
-            // 'snapToken' =>$snapToken,
+        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY'   ,'book'), [
+             // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'
         ]);
@@ -189,6 +189,8 @@ class BookingController extends Controller
      */
     public function store(Request $request, $id_jadwal)
     {
+
+ 
    
 //    return $request;
 

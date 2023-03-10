@@ -30,11 +30,12 @@ class CrudStudioController extends Controller
         } else {
             $std = studio::join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
             ->get(['studio.*', 'detail_jenis_studio.*']);
+            $studio = viewStudio::select("*")
+            ->get();
         }
-
         // $std = studio::all();
        
-        return view('studio.crud.LayoutStudio', compact('std'), [
+        return view('studio.crud.LayoutStudio', compact('std', 'studio'), [
             'title' => 'Admin Studio',
             'pages' => 'Table Studio'
         ]);
@@ -150,16 +151,16 @@ class CrudStudioController extends Controller
         return redirect('/CrudStudio')->with('success', 'Data Berhasil Di Hapus');
     }
 
-    public function ViewStudio()
-    {
-        $studio = viewStudio::select("*")
-        ->get();
-        // dd($studio);
-        return view('studio.crud.index', compact('studio'), [
-            'title' => 'Admin Studio',
-            'pages' => 'Table Studio'
-        ]);
-    }
+    // public function ViewStudio()
+    // {
+    //     $studio = viewStudio::select("*")
+    //     ->get();
+    //     // dd($studio);
+    //     return view('studio.crud.index', compact('studio'), [
+    //         'title' => 'Admin Studio',
+    //         'pages' => 'Table Studio'
+    //     ]);
+    // }
 
 
 }
