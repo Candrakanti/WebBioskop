@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTriggerTblsTable extends Migration
+class CreateTriggerHistory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateTriggerTblsTable extends Migration
      */
     public function up()
     {
-      
         DB::unprepared('
-        CREATE TRIGGER delete_jadwal BEFORE DELETE ON `history_jadwal` FOR EACH ROW 
+        CREATE TRIGGER delete_jadwal BEFORE DELETE ON `table_history_jadwal` FOR EACH ROW 
         BEGIN
         DECLARE DATA INT DEFAULT 0;
         SELECT COUNT(*) INTO DATA FROM history_jadwal WHERE id_jadwal = old.id_jadwal;
@@ -32,8 +31,6 @@ class CreateTriggerTblsTable extends Migration
         END IF;
             END 
         ');
-
-
     }
 
     /**
@@ -43,6 +40,6 @@ class CreateTriggerTblsTable extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER `delete_jadwal`');
+        Schema::dropIfExists('trigger_history');
     }
 }

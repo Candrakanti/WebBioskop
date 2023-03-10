@@ -2,10 +2,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 81e97d3ec415788435b1de3b366710a375f289d8
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,12 +11,6 @@
     </head>
 
     <body>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 81e97d3ec415788435b1de3b366710a375f289d8
-        <div class="container pb-3">
             <a href="/crudBioskop/create" class="btn btn-info"> Create Data Bioskop </a>
             <div class="row 9-3 align-items-center mt-2">
                 <div class="col-auto">

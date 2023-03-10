@@ -126,7 +126,7 @@
 
                 <li class="nav-item">
 
-            
+
                     <a class="nav-link  {{ Request::is('crudBioskop*') ? 'active' : '' }} " href="/crudBioskop">
 
 

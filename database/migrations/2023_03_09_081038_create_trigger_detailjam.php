@@ -18,7 +18,6 @@ class CreateTriggerDetailjam extends Migration
         BEGIN
         INSERT INTO activity_log (description, created_at, updated_at) VALUES ("Jam sudah admin ubah", NOW(), NOW());
         
-
         
             END 
         ');

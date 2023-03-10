@@ -242,6 +242,7 @@ return [
 
         'LogActivity' => App\Helpers\LogActivity::class,
         
+      
         // 'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],

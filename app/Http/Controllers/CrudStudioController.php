@@ -35,7 +35,9 @@ class CrudStudioController extends Controller
         }
         // $std = studio::all();
        
-        return view('studio.crud.LayoutStudio', compact('std', 'studio'), [
+
+        return view('studio.crud.LayoutStudio', compact( 'studio' ), [
+
             'title' => 'Admin Studio',
             'pages' => 'Table Studio'
         ]);

@@ -6,7 +6,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($result as $row)
+        @foreach ($customerTicketCount as $row)
         <tr>
             <td>{{ $row->id_customer }}</td>
             <td>{{ $row->jumlah }}</td>
