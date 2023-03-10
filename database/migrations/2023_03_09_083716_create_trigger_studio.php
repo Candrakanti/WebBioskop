@@ -17,7 +17,7 @@ class CreateTriggerStudio extends Migration
         CREATE TRIGGER after_update_studio  AFTER UPDATE ON `studio` FOR EACH ROW 
         BEGIN
  
-      INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Studio sudah diubah", studio_prop, "3" , NOW(), NOW());
+      INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Studio sudah diubah", "3" , NOW(), NOW());
       
             END 
         ');

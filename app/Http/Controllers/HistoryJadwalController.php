@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\history_jadwal;
+use App\Models\table_history_jadwal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +15,7 @@ class HistoryJadwalController extends Controller
      */
     public function index()
     {
-        $data = history_jadwal::all();
+        $data = table_history_jadwal::all();
         return view('film.history.index', compact('data'),  [
             'title' => 'Admin Studio',
             'active' => 'Admin Studio',
@@ -83,7 +83,7 @@ class HistoryJadwalController extends Controller
     public function update(Request $request, $id_jadwal)
     {
         //    return $request;
-        $history_jadwal = history_jadwal::where('id_jadwal', $request->id_jadwal)
+        $history_jadwal = table_history_jadwal::where('id_jadwal', $request->id_jadwal)
         ->update([
             'id_jadwal' => $request->id_jadwal,
             'id_studio' => $request->id_studio,
@@ -104,7 +104,7 @@ class HistoryJadwalController extends Controller
      */
     public function destroy($id_jadwal)
     {
-        DB::table('history_jadwal')->where('id_jadwal', $id_jadwal)->delete();
+        DB::table('table_history_jadwal')->where('id_jadwal', $id_jadwal)->delete();
         return redirect('/crudJadwal')->with('success', 'Data Berhasil Di Hapus');
     }
 }

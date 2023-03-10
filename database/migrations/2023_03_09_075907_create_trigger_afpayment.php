@@ -17,8 +17,15 @@ class CreateTriggerAfpayment extends Migration
         CREATE TRIGGER after_update_payment  AFTER UPDATE ON `payment` FOR EACH ROW 
         BEGIN
 
-      
-            INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Studio sudah diubah", studio_prop, "2" , NOW(), NOW());
+        DECLARE payment JSON;
+        SET payment = JSON_ARRAY( 
+        CONCAT("id_payment", old.id_payment)   ,
+        CONCAT("id_booking", old.id_booking) ,
+        CONCAT("harga",  old.harga) ,
+        CONCAT("payment_type",  old.payment_type)   ,
+        CONCAT("status_bayar ",  old.status_bayar)  
+        );
+            INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Studio sudah diubah", payment, "2" , NOW(), NOW());
             END 
         ');
     }
