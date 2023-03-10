@@ -52,7 +52,7 @@ class CrudJadwalController extends Controller
     {
         // $data = studio::join('jadwal', 'jadwal.id_studio', '=', 'studio.id_studio')
         //     ->join('film', 'film.id_film', '=', 'jadwal.id_film')
-        //     ->get(['studio.*', 'film.*', 'jadwal.*']);
+        //     ->get(['studio.', 'film.', 'jadwal.*']);
 
         $data =  studio::all();
         $data1 =  Film::all();
@@ -105,7 +105,7 @@ class CrudJadwalController extends Controller
      */
     public function edit($id_jadwal)
     {
-        // $data = jadwal::join('film', 'jadwal.id_film', '=', 'film.id_film')->join('studio', 'jadwal.id_studio', '=', 'studio.id_studio')->get('jadwal.*', 'film.*', 'studio.*')->where('id_jadwal', $id_jadwal)->first();
+        // $data = jadwal::join('film', 'jadwal.id_film', '=', 'film.id_film')->join('studio', 'jadwal.id_studio', '=', 'studio.id_studio')->get('jadwal.', 'film.', 'studio.*')->where('id_jadwal', $id_jadwal)->first();
         // $jadwal =  DB::table('jadwal')->where('id_jadwal', $id_jadwal)->first();
         $studio =  studio::all();
         $film =  Film::all();

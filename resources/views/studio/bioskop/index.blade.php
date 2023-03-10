@@ -1,6 +1,10 @@
 @extends('studio.templateDashboard.sidebar')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec61e038f3599d5679a0c19e6241785c42e2a8d2
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,7 +42,7 @@
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
-                                    <table class="table align-items-center mb-0" id="myTable">
+                                    <table class="table align-items-ce==nter mb-0" id="myTable">
                                         <thead>
                                             <tr>
                                                 <th
@@ -46,14 +50,14 @@
                                                     No</th>
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                    Id Detail Jam</th>
+                                                    Id Bioskop</th>
                                              
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                    Id Bioskop</th>
+                                                    Nama Bioskop</th>=
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Id Jadwal</th>
+                                                   Alamat </th>
                                              
                                            <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">

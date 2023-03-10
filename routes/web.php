@@ -66,6 +66,8 @@ Route::get('/home', function () {
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/ContactUs', [HomeController::class, 'contactus']);
+Route::get('/UserGuide', [HomeController::class, 'UserGuide']);
+
 
 
 
@@ -115,6 +117,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 //    END ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 
+Route::get('/tampil', [PaymentController::class, 'index']);
 Route::get('/ticket/seat', [SeatController::class, 'index']);
 Route::get('/movie', [MovieController::class, 'index']);
 Route::get('/upcoming', [MovieController::class, 'upcoming']);    

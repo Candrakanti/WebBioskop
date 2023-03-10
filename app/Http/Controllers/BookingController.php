@@ -32,14 +32,14 @@ class BookingController extends Controller
    
     public function index(Request $request, $id_jadwal , $jam_tayang)
     {
-        //         // Set your Merchant Server Key
-        //  \Midtrans\Config::$serverKey = 'SB-Mid-server-HifKik2bJqkbyshlP0mbufdu';
-        //  // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        //  \Midtrans\Config::$isProduction = false;
-        //  // Set sanitization on (default)
-        //  \Midtrans\Config::$isSanitized = true;
-        //  // Set 3DS transaction for credit card to true
-        //  \Midtrans\Config::$is3ds = true;
+                // Set your Merchant Server Key
+         \Midtrans\Config::$serverKey = 'SB-Mid-server-HifKik2bJqkbyshlP0mbufdu';
+         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+         \Midtrans\Config::$isProduction = false;
+         // Set sanitization on (default)
+         \Midtrans\Config::$isSanitized = true;
+         // Set 3DS transaction for credit card to true
+         \Midtrans\Config::$is3ds = true;
          
         //  $params = array(
         //      'transaction_details' => array(
