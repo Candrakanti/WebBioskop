@@ -17,7 +17,7 @@
                                 <tr>
                                     <th
                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Id</th>
+                                        No</th>
                                     <th
                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         Description</th>
@@ -68,10 +68,15 @@
                                             class="text-secondary text-xs font-weight-bold">{{ $data->created_at }}</span>
                                     </td>
                                    
-                                    <td class="align-middle text-center">
+                                    {{-- <td clas</td>s="align-middle text-center">
                                         <a class="badge badge-sm bg-gradient-warning"
-                                        href="{{ route('CrudPayment.show', $data->id) }}">Detail</a>
+
+                                        href="{{ route('crudFilm.show', $film->id_film) }}">Detail</a>
+                                    </td> --}}
+<td>
+                                     <a  class="badge badge-sm bg-gradient-warning" href="{{ route('CrudPayment.show', $data->id) }}">Detail</a>
                                     </td>
+
 
                                 </tr>
                                 </tr>

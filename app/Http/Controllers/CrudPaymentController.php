@@ -6,11 +6,11 @@ use DB;
 use PDF;
 use App\Models\Film;
 use App\Models\User;
-use App\Models\activity_log;
 use App\Models\jadwal;
 use App\Models\studio;
 use App\Models\Booking;
 use App\Models\payment;
+use App\Models\activity_log;
 use App\Services\customer;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
@@ -224,7 +224,7 @@ class CrudPaymentController extends Controller
     public function logging()
     {
         //  $log= activity_log::all(); 
-        $log = User::join('activity_log', 'activity_log.causer_id', '=', 'users.id')->get(['activity_log.*' ,'users.*']);
+        $log = User::all();
         
         return view('payment.crud.log', compact( 'log'  ), [
             'title' => 'Admin Payment',

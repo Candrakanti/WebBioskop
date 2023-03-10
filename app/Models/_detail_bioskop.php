@@ -16,6 +16,7 @@ class _detail_bioskop extends Model
     protected $table = "detail_bioskop";
     public $timestamps = false;
 
+
     protected $fillable = [
         'id_db',
         'id_bioskop',

@@ -74,8 +74,7 @@ class BookingController extends Controller
         $generateBK =  IdGenerator::generate(['table' => 'booking', 'field' => 'id_booking', 'length' => 10, 'prefix' => 'BK']);
 
     
-        $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 12, 'prefix' =>'PY']);
-
+        $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 10, 'prefix' =>'PY']);
 
         // $exp  =   booking::where('tenggat_bayar', '<',Carbon::now())->delete();
         $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
