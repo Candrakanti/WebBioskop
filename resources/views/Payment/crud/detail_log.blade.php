@@ -16,7 +16,9 @@
   </div>
   <div class="card-body">
   
-    <p>{{ $al->properties }}</p>
+    @foreach ($al as $a)
+    <td>{{ $a->properties }}</td>
+    @endforeach
   </div>
 </div>
 

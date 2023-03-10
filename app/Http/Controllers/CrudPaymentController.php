@@ -6,14 +6,13 @@ use DB;
 use PDF;
 use App\Models\Film;
 use App\Models\User;
+use App\Models\activity_log;
 use App\Models\jadwal;
 use App\Models\studio;
 use App\Models\Booking;
 use App\Models\payment;
-use App\Models\activity_log;
 use App\Services\customer;
 use Illuminate\Http\Request;
-
 use Maatwebsite\Excel\Excel;
 use App\Exports\CustomerExport;
 use Spatie\Backup\BackupManager;
@@ -81,7 +80,8 @@ class CrudPaymentController extends Controller
     public function show($id)
     {
         $al = activity_log::where('id', $id)->first();
-        return view('payment.crud.detail_log', compact('al'), [
+       
+        return view('payment.crud.detail_log', compact('al' ), [
             'title' => 'Admin Film',
             'active' => 'Admin Film',
             'pages' => 'Detail Film',
@@ -119,16 +119,16 @@ class CrudPaymentController extends Controller
     }
 
  
-    public function customer()
+    public function customer(Request $request)
     {
 
         $data = Booking::join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->groupBy('id')->get(['booking.*','payment.*' ,'users.*']);
         // $data = DB::table('booking')->join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->select('CALL JumlahPembeliann()')->get(['booking.*','payment.*' ,'users.*']);
-     // $post = DB::select("CALL JumlahPembelian");
-     // $post = DB::select("CALL JumlahPembeliann ($id)");
+        // $post = DB::select("CALL JumlahPembelian");
+        // $post = DB::select("CALL JumlahPembeliann ($id)");
      
-
         return view('payment.crud.datauser',  compact('data'), [
+
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);
@@ -214,12 +214,27 @@ class CrudPaymentController extends Controller
      return $output;
     }
 
-    
+    public function detail($id_customer)
+    {
+        
+        $data = Booking::where('id_customer', $id_customer)->first();
+
+        // $result = DB::table('booking')
+        // ->select(DB::raw( 'CALL buy'))->get();
+
+        $customerTicketCount = Booking::getCustomerTicketCount();
+        return view('payment.crud.detail', compact( 'customerTicketCount' ), [
+            'title' => 'Admin Payment',
+            'active' => 'Admin Payment',
+            'pages' => 'Detail',
+        ]);
+    }
     public function logging()
     {
-         $log= activity_log::all();
+        //  $log= activity_log::all(); 
+        $log = User::join('activity_log', 'activity_log.causer_id', '=', 'users.id')->get(['activity_log.*' ,'users.*']);
         
-        return view('payment.crud.log', compact( 'log' ), [
+        return view('payment.crud.log', compact( 'log'  ), [
             'title' => 'Admin Payment',
             'active' => 'Admin Payment',
             'pages' => 'Activity Log',

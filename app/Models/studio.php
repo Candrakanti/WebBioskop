@@ -26,7 +26,7 @@ class studio extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logFillable('*');
+        ->logFillable('*')->logOnlyDirty();
         // Chain fluent methods for configuration options
     }
 

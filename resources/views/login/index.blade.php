@@ -62,7 +62,6 @@
                 {{ session('loginError') }}
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-<<<<<<< HEAD
       @endif
   </div>
   
@@ -108,25 +107,7 @@
           <small class="d-block text-center mt-3">Forgot Your Password? <a href="{{ route('forget.password.get') }}" class="text-danger"> Change Your Password ! </a></small>
      
           <small class="d-block text-center mt-3">Not Registered? <a href="/register"  class="text-danger">Register Now !</a></small>
-=======
-                @enderror
 
-              </div>
-
-              <div class="form-floating">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword" required>Password</label>
-              </div>
-
-
-
-              <button class="w-100 btn btn-lg btn-danger mt-3" type="submit">Sign in</button>
-              
-            </form>
-
-
-        <small class="d-block text-center mt-3">Forgot Your Password? <a href="{{ route('forget.password.get') }}" class="text-danger"> Change Your Password ! </a></small>
->>>>>>> ec61e038f3599d5679a0c19e6241785c42e2a8d2
    
   </div>
   

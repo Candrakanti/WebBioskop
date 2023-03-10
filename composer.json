@@ -22,7 +22,7 @@
         "nao-pon/flysystem-google-drive": "~1.1",
         "opcodesio/log-viewer": "^2.1",
         "shetabit/visitor": "^4.0",
-        "simplesoftwareio/simple-qrcode": "^0.0.4@beta",
+        "simplesoftwareio/simple-qrcode": "4.2",
         "spatie/flysystem-dropbox": "^1.0.0",
         "spatie/laravel-activitylog": "^4.7",
         "spatie/laravel-backup": "7.0",

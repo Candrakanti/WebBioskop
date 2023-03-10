@@ -78,11 +78,11 @@ class BookingController extends Controller
 
 
         // $exp  =   booking::where('tenggat_bayar', '<',Carbon::now())->delete();
-        // $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
+        $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
     
         $book = payment::join('booking' ,'booking.id_payment' ,'=' ,'payment.id_payment')->get(['payment.*' , 'booking.*']);
 
-        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY'   ,'book'), [
+        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY'   ,'book' , 'exp'), [
              // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'

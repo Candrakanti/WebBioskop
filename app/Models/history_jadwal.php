@@ -11,7 +11,7 @@ class history_jadwal extends Model
     public $timestamps = false;
     protected $primaryKey = 'id_jadwal';
     protected $keyType = 'string';
-    protected $table = "history_jadwal";
+    protected $table = "table_history_jadwal";
     protected $fillable = [
         'id_jadwal',
         'id_studio',

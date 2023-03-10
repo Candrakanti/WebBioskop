@@ -239,15 +239,3 @@ Route::group(["middleware" => 'cekpayment:admin_payment' ,'LogVisits'   ], funct
 });
 
 
-Route::get('/get-procedure', function() {
-     $studio = viewStudio::select("*")
-        ->get();
-        // dd($studio);
-        return view('studio.crud.index', compact('studio'), [
-            'title' => 'Admin Studio',
-            'pages' => 'Table Studio'
-        ]);
-
-});
-
-
