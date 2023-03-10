@@ -53,9 +53,9 @@
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                       No Telp</th>
-                                      <th
+                                      {{-- <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                      Jumlah</th>
+                                      Jumlah</th> --}}
                                   
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -99,10 +99,10 @@
                                       <span
                                           class="text-secondary text-xs font-weight-bold">{{ $d->phone }}</span>
                                   </td>
-                                  <td class="align-middle text-center">
+                                  {{-- <td class="align-middle text-center">
                                     <span
                                         class="text-secondary text-xs font-weight-bold">{{ $data->jumlah }}</span>
-                                </td>
+                                </td> --}}
                                   <td class="align-middle text-center">
                                       <span
                                           class="text-secondary text-xs font-weight-bold">{{ $d->created_at }}</span>
@@ -110,8 +110,7 @@
 
                                 <td class="align-middle text-center text-sm">
                                     <a class="badge badge-sm bg-gradient-warning"
-                                    href="{{ route('CrudPayment.detail', $d->id) }}">Detail</a>
-
+                                    href="{{ route('CrudPayment.detail', $d->id ) }}">Detail</a>
                                 </td>
 
                                 {{-- @foreach ($customerTicketCount as $row)
