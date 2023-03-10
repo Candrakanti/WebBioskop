@@ -26,7 +26,7 @@ class CreateTriggerAfpayment extends Migration
         CONCAT("status_bayar ",  old.status_bayar)  
         );
 
-            INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Payment sudah diubah", payment, "3" , NOW(), NOW());       
+            INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Payment sudah diubah", payment, "2" , NOW(), NOW());       
             END 
         ');
     }
