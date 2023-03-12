@@ -13,8 +13,6 @@
                 @endif
             </div>
 
-       
-
             <div class="container-fluid py-4">
                 <div class="row">
                     <div class="col-12">
@@ -73,7 +71,7 @@
 
                                                 <td class="align-middle text-center">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $data->jenis_studio }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $data->id_jenis_studio }}</span>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span
@@ -129,6 +127,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
 
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>

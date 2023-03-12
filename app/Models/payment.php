@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -32,6 +33,12 @@ class payment extends Model
         return LogOptions::defaults()
         ->logOnly(['*']);
         // Chain fluent methods for configuration options
+    }
+
+      public static function getCustomerTicketCount()
+    {
+        $result = DB::select("CALL CustomerPaid");
+        return $result;
     }
 }
 

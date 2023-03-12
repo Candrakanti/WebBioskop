@@ -121,8 +121,6 @@ class CrudPaymentController extends Controller
  
     public function customer(Request $request)
     {
-
-        $customerTicketCount = Booking::getCustomerTicketCount();
         $data = Booking::join('users', 'users.id', '=', 'booking.id_customer')->join('payment', 'payment.id_booking', '=', 'booking.id_booking')->groupBy('id')->paginate(2);
 
         
@@ -132,7 +130,7 @@ class CrudPaymentController extends Controller
         } else {
             $data = User::paginate(2);
         }
-        return view('payment.crud.datauser',  compact('data', 'customerTicketCount'), [
+        return view('payment.crud.datauser',  compact('data'), [
 
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
@@ -140,16 +138,13 @@ class CrudPaymentController extends Controller
         // return view('studio.LayoutStudio')->with('studio', $studio);
     }
 
-    public function detail($id_customer)
+    public function detail()
     {
-        
-        $data = Booking::where('id_customer', $id_customer)->first();
-
         // $result = DB::table('booking')
         // ->select(DB::raw( 'CALL buy'))->get();
 
-        $customerTicketCount = Booking::getCustomerTicketCount();
-        return view('payment.crud.detail', compact( 'data', 'customerTicketCount' ), [
+        $data = Payment::getCustomerTicketCount();
+        return view('payment.crud.detail', compact('data' ), [
             'title' => 'Admin Payment',
             'active' => 'Admin Payment',
             'pages' => 'Detail',

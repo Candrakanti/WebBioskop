@@ -53,17 +53,11 @@
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                       No Telp</th>
-                                      {{-- <th
-                                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                      Jumlah</th> --}}
                                   
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                       Tanggal Buat AKun</th>
 
-                                      <th
-                                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                      Detail</th>
                           
                                   @foreach ($data as $key => $d)
                               </tr>
@@ -99,27 +93,16 @@
                                       <span
                                           class="text-secondary text-xs font-weight-bold">{{ $d->phone }}</span>
                                   </td>
-                                  {{-- <td class="align-middle text-center">
-                                    <span
-                                        class="text-secondary text-xs font-weight-bold">{{ $data->jumlah }}</span>
-                                </td> --}}
+
                                   <td class="align-middle text-center">
                                       <span
                                           class="text-secondary text-xs font-weight-bold">{{ $d->created_at }}</span>
                                   </td>
 
-                                <td class="align-middle text-center text-sm">
+                                {{-- <td class="align-middle text-center text-sm">
                                     <a class="badge badge-sm bg-gradient-warning"
-                                    href="{{ route('CrudPayment.detail', $d->id ) }}">Detail</a>
-                                </td>
-
-                                {{-- @foreach ($customerTicketCount as $row)
-                                <tr>
-                                    <td>{{ $row->jumlah }}</td>
-                                </tr>
-                                @endforeach
-                                 --}}
-
+                                    href="{{ route('CrudPayment.detail') }}">Detail</a>
+                                </td> --}}
                               </tr>
                               </tr>
                           </tbody>
@@ -132,6 +115,7 @@
           </div>
       </div>
   </div>
+</div>
 
   {{ $data->links() }}
 </body>

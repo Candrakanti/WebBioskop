@@ -17,14 +17,17 @@ class CrudBioskopController extends Controller
      */
     public function index( Request $request)
     {
+
         if($request->has('search')) {
-            $data = Bioskop::where('nama_bioskop', 'LIKE', '%' .$request->search. '%')->get();
-            // $films = Film::where('id_film','LIKE','%' .$request->search.'%' );
+            $data = Bioskop::where('id_Bioskop', 'LIKE', '%' .$request->search. '%')->paginate(2);
         } else {
-              $data = Bioskop::all();
-            // $films = Film::join('jenis_film' ,'jenis_film.id_jenis_film' ,'=','film.id_film')->get(['jenis_film.*','film.*']);
+            $data = Bioskop::paginate(2);
         }
-        // $films = Film::all();
+        // if($request->has('search')) {
+        //     $data = Bioskop::where('nama_bioskop', 'LIKE', '%' .$request->search. '%')->get();
+        // } else {
+        //       $data = Bioskop::all();
+        // }
         
         return view('studio.bioskop.index', compact('data'), [
             'title' => 'Admin Studio',
@@ -41,7 +44,7 @@ class CrudBioskopController extends Controller
      */
     public function create()
     {
-        $data = Bioskop::all();
+       $data = Bioskop::all();
         return view('studio.bioskop.create', compact('data'), [
             'title' => 'Admin Studio',
             'pages' => 'Create new Bioskop'

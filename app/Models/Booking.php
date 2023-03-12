@@ -45,11 +45,11 @@ class Booking extends Model
     }
 
 
-    public static function getCustomerTicketCount()
-    {
-        $result = DB::select("CALL buyy");
-        return $result;
-    }
+    // public static function getCustomerTicketCount()
+    // {
+    //     $result = DB::select("CALL buyy");
+    //     return $result;
+    // }
 
 
     //  protected $casts = [

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTriggerDeleteJadwal extends Migration
+class ProcedureCustomer extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateTriggerDeleteJadwal extends Migration
      */
     public function up()
     {
-        DB::unprepared('
-        CREATE TRIGGER af_delete_jadwal  AFTER DELETE ON `jadwal` FOR EACH ROW 
+        DB::unprepared('CREATE DEFINER=`root`@`localhost` PROCEDURE `CustomerPaid`()
         BEGIN
-        INSERT INTO activity_log (description, created_at, updated_at) VALUES ("Delete data jadwal ", NOW(), NOW());
+            SELECT * 
+            FROM payment
+            WHERE status_bayar = 0;
         
-
-        
-            END 
-        ');
+        END');
     }
 
     /**
@@ -31,6 +29,6 @@ class CreateTriggerDeleteJadwal extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trigger_delete_jadwal');
+        DB::unprepared('DROP procedure IF EXISTS CustomerPaid');
     }
 }

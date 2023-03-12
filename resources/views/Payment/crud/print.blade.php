@@ -3,6 +3,10 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/datetime/1.3.0/css/dataTables.dateTime.min.css">
 @section('container')
 
+<div class="col-md-5">
+    <a href="/CrudPayment/detail" class="btn btn-danger">Data Customer Paid</a>
+  </div>
+
     <section id="print_pdf">
 
         <div class="container d-flex text-center " >
