@@ -25,12 +25,13 @@ class CreateTriggerAfpayment extends Migration
         CONCAT("payment_type",  old.payment_type)   ,
         CONCAT("status_bayar ",  old.status_bayar)  
         );
-            INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Studio sudah diubah", payment, "2" , NOW(), NOW());
+
+            INSERT INTO activity_log (description, properties , causer_id, ,event, created_at, updated_at) VALUES ("Data Studio sudah diubah", payment, "2" ,"update", NOW(), NOW());
             END 
         ');
     }
 
-    /**
+    /** 
      * Reverse the migrations.
      *
      * @return void

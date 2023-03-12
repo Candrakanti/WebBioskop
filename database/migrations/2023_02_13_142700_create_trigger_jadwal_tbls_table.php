@@ -13,9 +13,9 @@ class CreateTriggerJadwalTblsTable extends Migration
      */
     public function up()
     {
-        DB::unprepared('
+        DB::unprepared(' 
         CREATE TRIGGER carbon_jadwal BEFORE DELETE ON `jadwal` FOR EACH ROW 
-        BEGIN
+        BEGIN 
         DECLARE DATA INT DEFAULT 0;
         SELECT COUNT(*) INTO DATA FROM jadwal WHERE id_jadwal = old.id_jadwal;
         
@@ -32,6 +32,12 @@ class CreateTriggerJadwalTblsTable extends Migration
             END
         ');
     }
+
+    /* create trigger (buat trigger dengan name carbon_jadwal ini sebelum dihapus dari ...
+    kalau misalnya film udah habis waktu tanggalnya di jadwal, bakal masuk ke histori 
+    dan ga akan ke hapus filmnya, jadi ada backupan.
+    contoh kita sudah mensetting sampe tanggal 5 januari dan sekarang sudah 7 januari, film itu akan
+    masuk ke histori dan filmnya tidak akan ke hapus */
 
     /**
      * Reverse the migrations.

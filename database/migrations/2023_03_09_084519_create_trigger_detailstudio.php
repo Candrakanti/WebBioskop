@@ -16,7 +16,15 @@ class CreateTriggerDetailstudio extends Migration
         DB::unprepared('
         CREATE TRIGGER after_update_detailstudio AFTER UPDATE ON `detail_jenis_studio` FOR EACH ROW 
         BEGIN
-        INSERT INTO activity_log (description, created_at, updated_at) VALUES ("Data jenis studio sudah diubah", NOW(), NOW());
+
+        DECLARE detailstudio JSON;
+        SET detailstudio = JSON_ARRAY(
+        CONCAT("id_jenis_studio", old.id_jenis_studio),
+        CONCAT("jenis_studio", old.jenis_studio),
+        CONCAT("harga", old.harga)
+        );
+
+        INSERT INTO activity_log (description, properties , causer_id, event, created_at, updated_at) VALUES ("Data Jenis Studio sudah diubah", detailstudio, "3" , "update" ,NOW(), NOW());         
         
 
         

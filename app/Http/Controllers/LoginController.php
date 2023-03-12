@@ -25,7 +25,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            activity()->causedBy(auth::user())->log( auth()->user()->name . 'Berhasil Login');
+            activity()->causedBy(auth::user())->log( auth()->user()->name. ' Berhasil Login');
             return redirect()->intended('/mycgv');
         } else
         activity()->causedBy(auth::user())->log('Login Gagal');

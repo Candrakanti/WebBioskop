@@ -80,7 +80,7 @@ class BankController extends Controller
         }
         $bo = Booking::all();
 
-            return view('profil.checkout', compact('booking' ,'bo' ,'exp'  ), [
+            return view('profil.checkout', compact('booking' ,'bo', 'exp' ), [
                 "title" => "mycgv",
                 "active" => "mycgv"
             ]);

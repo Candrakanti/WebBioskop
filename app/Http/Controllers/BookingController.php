@@ -32,14 +32,14 @@ class BookingController extends Controller
    
     public function index(Request $request, $id_jadwal , $jam_tayang)
     {
-        //         // Set your Merchant Server Key
-        //  \Midtrans\Config::$serverKey = 'SB-Mid-server-HifKik2bJqkbyshlP0mbufdu';
-        //  // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        //  \Midtrans\Config::$isProduction = false;
-        //  // Set sanitization on (default)
-        //  \Midtrans\Config::$isSanitized = true;
-        //  // Set 3DS transaction for credit card to true
-        //  \Midtrans\Config::$is3ds = true;
+                // Set your Merchant Server Key
+         \Midtrans\Config::$serverKey = 'SB-Mid-server-HifKik2bJqkbyshlP0mbufdu';
+         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+         \Midtrans\Config::$isProduction = false;
+         // Set sanitization on (default)
+         \Midtrans\Config::$isSanitized = true;
+         // Set 3DS transaction for credit card to true
+         \Midtrans\Config::$is3ds = true;
          
         //  $params = array(
         //      'transaction_details' => array(
@@ -81,7 +81,7 @@ class BookingController extends Controller
     
         $book = payment::join('booking' ,'booking.id_payment' ,'=' ,'payment.id_payment')->get(['payment.*' , 'booking.*']);
 
-        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY'  , 'exp' ,'book'), [
+        return view('movie.seat', compact('data','data2' ,'generateBK' , 'generatePY'   ,'book' , 'exp'), [
              // 'snapToken' =>$snapToken,
             'title' => 'Seat',
             'pages' => 'Table Studio'
@@ -194,33 +194,57 @@ class BookingController extends Controller
 //    return $request;
 
 
-       Booking::insert([
-            'id_booking' =>   $request->id_booking,
-            'id_payment' => $request->id_payment,
-            'id_customer' => Auth::user()->id,
-            'id_jadwal' => $id_jadwal,
-            'kursi' =>$request->kursi,
-            'jumlah_kursi' =>  $request->jumlah_kursi,
-            'tanggal_booking' => now(),
-            'jam_booking' =>$request->jam_booking,
-            'tenggat_bayar' =>now()->addMinutes(30),
-            'harga' => $request->harga,
-            'qr_tiket'=> $request->harga,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        payment::insert([
-            'id_payment' => $request->id_payment,
-            'id_booking' => $request->id_booking ,
-            'payment_type' => $request->payment_type,
-            'harga' => $request->harga,
-            'status_bayar' => $request->status_bayar,
-            'created_at' => now(),
-            'updated_at' => now(),
-            // 'bukti_bayar' => $request->file('bukti_bayar')->store('booking-images')
-        ]);
+    //    Booking::insert([
+    //         'id_booking' =>   $request->id_booking,
+    //         'id_payment' => $request->id_payment,
+    //         'id_customer' => Auth::user()->id,
+    //         'id_jadwal' => $id_jadwal,
+    //         'kursi' =>$request->kursi,
+    //         'jumlah_kursi' =>  $request->jumlah_kursi,
+    //         'tanggal_booking' => now(),
+    //         'jam_booking' =>$request->jam_booking,
+    //         'tenggat_bayar' =>now()->addMinutes(30),
+    //         'harga' => $request->harga,
+    //         'qr_tiket'=> $request->harga,
+    //         'created_at' => now(),
+    //         'updated_at' => now(),
+    //     ]);
 
+       $booking = new booking;
+         $booking->id_booking = $request->id_booking;
+         $booking->id_payment = $request->id_payment;
+         $booking->id_customer =  Auth::user()->id;
+         $booking->id_jadwal = $request->id_jadwal;
+         $booking->kursi = $request->kursi;
+         $booking->jumlah_kursi = $request->jumlah_kursi;
+         $booking->tanggal_booking = now();
+         $booking->jam_booking = $request->jam_booking;
+         $booking->tenggat_bayar = now()->addMinutes(30);
+         $booking->harga = $request->harga;
+         $booking->created_at = now();
+         $booking->updated_at = now();
+         $booking->save();
 
+        // payment::insert([
+        //     'id_payment' => $request->id_payment,
+        //     'id_booking' => $request->id_booking ,
+        //     'payment_type' => $request->payment_type,
+        //     'harga' => $request->harga,
+        //     'status_bayar' => $request->status_bayar,
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        //     // 'bukti_bayar' => $request->file('bukti_bayar')->store('booking-images')
+        // ]);
+
+            $payment = new payment;
+            $payment->id_payment = $request->id_payment;
+            $payment->id_booking = $request->id_booking;
+            $payment->payment_type = $request->payment_type;
+            $payment->harga = $request->harga;
+            $payment->status_bayar = $request->status_bayar;
+            $payment->created_at = now();
+            $payment->updated_at = now();
+            $payment->save();
   
 
         return redirect('/myseenema')->with('success', 'Suksess ! Selesaikan Pembayaran Lihat Pada Menu Belum Bayar!');

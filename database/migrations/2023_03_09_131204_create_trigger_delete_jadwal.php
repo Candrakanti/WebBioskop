@@ -16,7 +16,7 @@ class CreateTriggerDeleteJadwal extends Migration
         DB::unprepared('
         CREATE TRIGGER af_delete_jadwal  AFTER DELETE ON `jadwal` FOR EACH ROW 
         BEGIN
-        INSERT INTO activity_log (description ,event, created_at, updated_at) VALUES ("Delete data jadwal ", ,"delete", NOW(), NOW());
+        INSERT INTO activity_log (description ,event, created_at, updated_at) VALUES ("Delete data jadwal ", "delete", NOW(), NOW());
         
 
         

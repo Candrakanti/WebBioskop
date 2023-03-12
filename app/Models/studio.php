@@ -23,7 +23,6 @@ class studio extends Model
         'jumlah_kursi_perrow',
     ];
 
-
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

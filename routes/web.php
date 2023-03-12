@@ -66,6 +66,8 @@ Route::get('/home', function () {
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/ContactUs', [HomeController::class, 'contactus']);
+Route::get('/UserGuide', [HomeController::class, 'UserGuide']);
+
 
 
 
@@ -115,6 +117,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 //    END ROUTE BUAT LOGIN REGISTER DAN FORGOT PASSWORD !
 
+Route::get('/tampil', [PaymentController::class, 'index']);
 Route::get('/ticket/seat', [SeatController::class, 'index']);
 Route::get('/movie', [MovieController::class, 'index']);
 Route::get('/upcoming', [MovieController::class, 'upcoming']);    
@@ -229,7 +232,7 @@ Route::group(["middleware" => 'cekpayment:admin_payment' ,'LogVisits'   ], funct
   Route::get('/laporan_penjualan' , [CrudPaymentController::class, 'print']);
   Route::get('/cetak_laporan_penjualan/{tglawal}/{tglakhir}' , [CrudPaymentController::class, 'cetakPertanggal'])->name('cetak-data-pertanggal');
   Route::get('/CrudPayment/detail/{id_customer}', [CrudPaymentController::class, 'detail'])->name('CrudPayment.detail');
-  Route::get('/logging/detail/{id}', [CrudPaymentController::class, 'show'])->name('CrudPayment.show');
+  Route::get('/logging/detail/{id_activity}', [CrudPaymentController::class, 'show'])->name('logging.show');
   Route::get('/logging' , [CrudPaymentController::class, 'logging']);
   Route::get('/exportcustomer', [CrudPaymentController::class, 'costumerexport'])->name('exportcustomer');
 

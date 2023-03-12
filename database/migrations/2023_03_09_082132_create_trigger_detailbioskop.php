@@ -16,9 +16,15 @@ class CreateTriggerDetailbioskop extends Migration
         DB::unprepared('
         CREATE TRIGGER after_update_detailbioskop  AFTER UPDATE ON `detail_bioskop` FOR EACH ROW 
         BEGIN
-        INSERT INTO activity_log (description, created_at, updated_at) VALUES ("Data Sudah Admin Ubah", NOW(), NOW());
-        
 
+        DECLARE detailbioskop JSON;
+        SET detailbioskop = JSON_ARRAY(
+        CONCAT("id_db", old.id_db),
+        CONCAT("id_bioskop", old.id_bioskop),
+        CONCAT("id_jadwal", old.id_jadwal)
+        );
+
+        INSERT INTO activity_log (description, properties, causer_id, event ,created_at, updated_at) VALUES ("Data Detail Bioskop Sudah Admin Ubah", detailbioskop, "3", "update" ,NOW(), NOW());        
         
             END 
         ');

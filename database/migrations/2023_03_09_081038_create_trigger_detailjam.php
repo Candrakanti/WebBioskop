@@ -16,8 +16,17 @@ class CreateTriggerDetailjam extends Migration
         DB::unprepared('
         CREATE TRIGGER after_update_detailjam  AFTER UPDATE ON `detail_jam` FOR EACH ROW 
         BEGIN
-        INSERT INTO activity_log (description, created_at, updated_at) VALUES ("Jam sudah admin ubah", NOW(), NOW());
-        
+
+        DECLARE jam JSON;
+        SET jam = JSON_ARRAY(
+        CONCAT("id_det_jam",old.id_det_jam),
+        CONCAT("id_db",old.id_db),
+        CONCAT("id_jadwal",old.id_jadwal),
+        CONCAT("jam_tayang",old.jam_tayang)
+        );
+
+        INSERT INTO activity_log (description, properties, causer_id, event ,created_at, updated_at) VALUES ("Jam sudah admin ubah", jam ,"3" , ,"update" ,NOW(), NOW());        
+
         
             END 
         ');

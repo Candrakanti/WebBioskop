@@ -130,7 +130,7 @@ class CrudDetBioskopController extends Controller
      */
     public function destroy($id_db)
     {
-        DB::table('_detail_bioskop')->where('id_db', $id_db)->delete();
+        DB::table('detail_bioskop')->where('id_db', $id_db)->delete();
         return redirect('/detbioskop')->with('success', 'Data Berhasil Di Hapus');
     }
 }

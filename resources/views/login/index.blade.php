@@ -107,6 +107,7 @@
           <small class="d-block text-center mt-3">Forgot Your Password? <a href="{{ route('forget.password.get') }}" class="text-danger"> Change Your Password ! </a></small>
      
           <small class="d-block text-center mt-3">Not Registered? <a href="/register"  class="text-danger">Register Now !</a></small>
+
    
   </div>
   

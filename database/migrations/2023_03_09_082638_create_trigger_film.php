@@ -16,7 +16,22 @@ class CreateTriggerFilm extends Migration
         DB::unprepared('
         CREATE TRIGGER after_update_film  AFTER UPDATE ON `film` FOR EACH ROW 
         BEGIN
-        INSERT INTO activity_log (description, created_at, updated_at) VALUES ("Admin sudah update film", NOW(), NOW());
+
+        DECLARE film JSON;
+        SET film = JSON_ARRAY(
+        CONCAT("id_film", old.id_film),
+        CONCAT("judul_film", old.judul_film),
+        CONCAT("jenis_film", old.jenis_film),
+        CONCAT("producer", old.producer),
+        CONCAT("sutradara", old.sutradara),
+        CONCAT("penulis", old.penulis),
+        CONCAT("cast", old.cast),
+        CONCAT("sinopsis", old.sinopsis),
+        CONCAT("link_trailer", old.link_trailer),
+        CONCAT("image", old.image)
+        );
+
+        INSERT INTO activity_log (description, properties , causer_id, event, created_at, updated_at) VALUES ("Data Film sudah diubah", film, "3" ,"update", NOW(), NOW());         
         
 
         

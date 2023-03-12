@@ -14,7 +14,6 @@ class CreateUserView extends Migration
     public function up()
     {
 
-       // MASIH SALAH <3 
         DB::unprepared('CREATE
         /*[ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
         [DEFINER = { user | CURRENT_USER }]

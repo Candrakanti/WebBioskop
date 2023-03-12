@@ -7,7 +7,7 @@
             <div class="mb-3">
                 <label for="id_film" class="form-label">Id Film</label>
                 <input type="text" class="form-control @error('id_film') is-invalid @enderror" id="id_film"
-                    name="id_film" required autofocus value="{{ old('id_film') }}">
+                    name="id_film" required autofocus value="{{ old('id_film') }}" auto>
                 @error('id_film')
                     <div class="invalid-feedback">
                         {{ $message }}

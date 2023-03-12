@@ -47,7 +47,8 @@ class Booking extends Model
 
     public static function getCustomerTicketCount()
     {
-        $result = DB::select("CALL buyy" );
+
+        $result = DB::select("CALL buyy");
         return $result;
     }
 

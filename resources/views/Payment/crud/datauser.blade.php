@@ -14,11 +14,41 @@
 <div class="container">
     <div class="col-md-4    ">
         <form action="/datauser" method="GET">
-        <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan id jadwal">
+        <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Nama Pembeli">
       </form>
       </div>
     </div>
 </div>
+
+
+<div class="container table-cust " style="margin-top:30px;">
+
+    <table id="myTable" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id Payment</th>
+                <th>Id Booking</th>
+                <th>Nama </th>
+                <th>Jumlah bayar</th>
+                <th>Tanggal Booking</th>
+               
+            </tr>
+          
+        </thead>
+        <tbody>
+            @foreach($customerTicketCount as $key => $d)
+            <tr>
+                <td>{{ $d->id_customer }}</td>
+                <td>{{ $d->name }}</td>
+                <td>{{ $d->id_customer}}</td>
+                <td>{{ $d->id_customer }}</td>
+                <td>{{ $d->id_customer }}</td>
+              
+            </tr>
+            @endforeach
+        </tbody>
+
+    </table>
 
 
 <div class="container-fluid py-4">
@@ -35,7 +65,7 @@
               
               <div class="card-body px-0 pt-0 pb-2">
                   <div class="table-responsive p-0">
-                      <table class="table align-items-center mb-0" id="my">
+                      <table class="table align-items-center mb-0" >
                           <thead>
                               <tr>
                                   <th
@@ -54,16 +84,19 @@
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                       No Telp</th>
+                                    
+                                      <th
+                                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                      TotalPembelian</th>
                                   
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                       Tanggal Buat AKun</th>
 
-                                      <th
-                                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                      Detail</th>
-                          
-                                  @foreach ($data as $key => $d)
+                                    
+
+
+                                  @foreach ($customerTicketCount as $key => $d)
                               </tr>
                           </thead>
 
@@ -83,7 +116,7 @@
                                   </td>
 
                                   <td>
-                                      <p class="text-xs font-weight-bold mb-0">{{ $d->id}}</p>
+                                      <p class="text-xs font-weight-bold mb-0">{{ $d->id_customer}}</p>
                                   </td>
                                   <td>
                                       <p class="text-xs font-weight-bold mb-0">{{ $d->name }}</p>
@@ -99,17 +132,17 @@
                                   </td>
 
                                   <td class="align-middle text-center">
+                                    <span
+                                        class="text-secondary text-xs font-weight-bold">{{ $d->order_count }}</span>
+                                </td>
+                                  
+                                  <td class="align-middle text-center">
                                       <span
                                           class="text-secondary text-xs font-weight-bold">{{ $d->created_at }}</span>
                                   </td>
+                                  
 
-                                  <td class="align-middle text-center text-sm">
-                                    <a class="badge badge-sm bg-gradient-warning"
-                                    href="{{ route('CrudPayment.detail', $d->id) }}">Detail</a>
-
-                                </td>
-                                
-
+                            
                               </tr>
                               </tr>
                           </tbody>
@@ -123,7 +156,7 @@
       </div>
   </div>
 
-  {{ $data->links() }}
+  {{-- {{ $data->links() }} --}}
 </body>
 
 {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}

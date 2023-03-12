@@ -9,6 +9,8 @@
     </div>
   @endif
 </div>
+
+ <a class="btn btn-warning" href="logging"> Back</a>
        
 <div class="card">
   <div class="card-header">
@@ -16,9 +18,9 @@
   </div>
   <div class="card-body">
   
-    @foreach ($al as $a)
-    <td>{{ $a->properties }}</td>
-    @endforeach
+   
+    <td>{{ $al->properties }}</td>
+  
   </div>
 </div>
 
