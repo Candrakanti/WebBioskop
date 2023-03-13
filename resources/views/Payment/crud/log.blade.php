@@ -68,11 +68,8 @@
                                             class="text-secondary text-xs font-weight-bold">{{ $data->created_at }}</span>
                                     </td>
                                    
-                                    {{-- <td class="align-middle text-center">
+                                    <td class="align-middle text-center">
                                         <a class="badge badge-sm bg-gradient-warning"
-
-                                        href="{{ route('crudFilm.show', $film->id_film) }}">Detail</a>
-                                    </td> --}}
 
                                         href="{{ route('CrudPayment.show', $data->id) }}">Detail</a>
                                     </td>

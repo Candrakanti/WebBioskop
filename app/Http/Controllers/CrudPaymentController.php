@@ -11,7 +11,6 @@ use App\Models\jadwal;
 use App\Models\studio;
 use App\Models\Booking;
 use App\Models\payment;
-use App\Models\activity_log;
 use App\Services\customer;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
@@ -122,16 +121,16 @@ class CrudPaymentController extends Controller
  
     public function customer(Request $request)
     {
-        $customerTicketCount = Booking::getCustomerTicketCount();
-        $data = Booking::join('users', 'users.id', '=', 'booking.id_customer')->join('payment', 'payment.id_booking', '=', 'booking.id_booking')->groupBy('id')->paginate(2);
+                $customerTicketCount = Booking::getCustomerTicketCount();
+                $data = Booking::join('users', 'users.id', '=', 'booking.id_customer')->join('payment', 'payment.id_booking', '=', 'booking.id_booking')->groupBy('id')->paginate(2);
 
-        
-        if($request->has('search')) {
-            $data = User::where('name', 'LIKE', '%' .$request->search. '%')->paginate(2);
-          
-        } else {
-            $data = User::paginate(2);
-        }
+                
+                if($request->has('search')) {
+                    $data = User::where('name', 'LIKE', '%' .$request->search. '%')->paginate(2);
+                
+                } else {
+                    $data = User::paginate(2);
+                }
 
         // $data = DB::table('booking')->join('users' ,'users.id' ,'=','booking.id_customer')->join('payment','payment.id_booking' ,'=','booking.id_booking')->select('CALL JumlahPembeliann()')->get(['booking.*','payment.*' ,'users.*']);
      // $post = DB::select("CALL JumlahPembelian");
