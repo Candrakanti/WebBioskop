@@ -15,10 +15,7 @@ class ProcedureCustomer extends Migration
     {
         DB::unprepared('CREATE DEFINER=`root`@`localhost` PROCEDURE `CustomerPaid`()
         BEGIN
-            SELECT * 
-            FROM payment
-            WHERE status_bayar = 0;
-        
+        INSERT INTO activity_log (description ,event, created_at, updated_at) VALUES ("Delete data jadwal ", "delete", NOW(), NOW());        
         END');
     }
 

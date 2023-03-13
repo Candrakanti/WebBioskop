@@ -16,7 +16,7 @@ class CreateTriggerDeleteDetailstudio extends Migration
         DB::unprepared('
         CREATE TRIGGER af_delete_detailstudio  AFTER DELETE ON `detail_jenis_studio` FOR EACH ROW 
         BEGIN
-        INSERT INTO activity_log (description, created_at, updated_at) VALUES ("Delete data detail studio", NOW(), NOW());
+        INSERT INTO activity_log (description, causer_id ,event, created_at, updated_at) VALUES ("Delete data detail studio", "3","delete", NOW(), NOW());
         
 
         

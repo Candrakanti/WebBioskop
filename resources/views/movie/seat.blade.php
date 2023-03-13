@@ -50,16 +50,10 @@
                                                        @if($d->id_jadwal == $data->id_jadwal and $d->kursi == $v.$i )
                                                        @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d') )
                                                      
-                                                       @foreach($book as $p)
+                                                       @if($d->status_bayar == 1 or $d->status_bayar == 0 )
+                                                       disabled
                                                      
-                                                    
-                                                    
-                                                          @if($p->status_bayar == "0" )
-                                                          disabled
-                                                          @endif 
-                                                     
-                                                       @endforeach
-
+                                                 @endif
                                                      
                                                        @endif
                                                        @endif
@@ -110,14 +104,11 @@
                                                                                @if($d->tanggal_booking == Carbon\Carbon::now()->format('Y-m-d'))
                                                                                @if( $d->jam_booking  == $data->jam_tayang  )
 
-                                                                               @foreach($book as $p)
-
-                                                                            @if($p->status_bayar == 2)
+                                                                            @if($d->status_bayar == 1 or $d->status_bayar == 0 )
                                                                               disabled
-                                                                              @else
                                                                             
                                                                         @endif
-                                                                               @endforeach
+                                                                            
                                                                         
                                                                                @endif
                                                                                @endif

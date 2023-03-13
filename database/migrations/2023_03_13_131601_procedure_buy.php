@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ProcedureJumlah extends Migration
+class ProcedureBuy extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,7 @@ class ProcedureJumlah extends Migration
      */
     public function up()
     {
-        // DB::unprepared('     CREATE DEFINER=`root`@`localhost` PROCEDURE `buy`()
-        // BEGIN
-        // SELECT id_customer, COUNT(id_customer) AS jumlah FROM booking GROUP BY id_customer;
-        //     END$$
-
-        // DELIMITER ;
-
-
-        DB::unprepared(' CREATE DEFINER=`root`@`localhost` PROCEDURE `buyy`() 
+        DB::unprepared(' CREATE DEFINER=`root`@`localhost` PROCEDURE `buy`() 
         /*ditambahin create definer root localhost (supaya ke panggil filenya)*/ 
         /*sama aja create procedure yang namanya buyy*/ 
         BEGIN
@@ -44,6 +36,7 @@ class ProcedureJumlah extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP procedure IF EXISTS buyy');
+        DB::unprepared('DROP procedure IF EXISTS buy');
+
     }
 }

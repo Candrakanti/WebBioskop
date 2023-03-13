@@ -24,7 +24,7 @@ class CreateTriggerDetailstudio extends Migration
         CONCAT("harga", old.harga)
         );
 
-        INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Jenis Studio sudah diubah", detailstudio, "3" , NOW(), NOW());         
+        INSERT INTO activity_log (description, properties , causer_id, event, created_at, updated_at) VALUES ("Data Jenis Studio sudah diubah", detailstudio, "3" , "update" ,NOW(), NOW());         
         
 
         

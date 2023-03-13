@@ -92,14 +92,7 @@
                                                     <a class="badge badge-sm bg-gradient-warning"
                                                     href="/CrudStudio/{{ $data->id_studio }}/edit">Edit</a>
 
-                                                    {{-- <form id="delete-user-form" action="/CrudStudio/{{ $data->id_studio }}" method="POST" class="d-inline">
-                      @csrf
-                      @method('DELETE')
-                    <a id="delete" type="submit" class="badge badge-sm bg-gradient-danger delete border-0" data-id="{{$data->id_studio}}"  data-name="{{$data->id_studio}}"  > delete</a>
-                    </form> --}}
-
-                       
-
+                                               
                         <form method="POST"
                         action="{{ route('CrudStudio.delete', $data->id_studio) }}"
                         class="d-inline">

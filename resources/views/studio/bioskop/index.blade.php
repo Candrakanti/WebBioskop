@@ -1,6 +1,8 @@
 @extends('studio.templateDashboard.sidebar')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 @section('container')
+
+
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +12,9 @@
     </head>
 
     <body>
+
         <div class="container pb-3">
+
             <a href="/crudBioskop/create" class="btn btn-info"> Create Data Bioskop </a>
             <div class="row 9-3 align-items-center mt-2">
                 <div class="col-auto">

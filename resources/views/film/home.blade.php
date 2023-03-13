@@ -4,20 +4,13 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">  
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css"> 
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css"> 
     </head>
     <body>
         <div class="container pb-3">
             <a href="/crudFilm/create" class="btn btn-info">Create Data Film</a>
 
-           <div class="row 9-3 align-items-center mt-2">
-                <div class="col-auto">
-                  <form action="/crudFilm" method="GET">
-                  <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Masukan judul film">
-                </form>
-                </div>
-            </div>
-            
 
             <div class="container pt-3">
                 @if (session()->has('success'))
@@ -27,17 +20,6 @@
                 @endif
             </div>
 
-            {{-- <form action="/crudFilm/search" class="form-inline" method="GET">
-                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-                    <div class="input-group">
-                      <input type="search" placeholder="Masukan ID Film" aria-describedby="button-addon1" class="form-control border-0 bg-light">
-                      <div class="input-group-append">
-                        <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                </div>
-            </form> --}}
-          
 
             <div class="container-fluid py-4">
                 <div class="row">
@@ -48,7 +30,7 @@
                         <div class="card mb-4">  
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
-                                    <table id="myDataTable" class="table align-items-center mb-0">
+                                    <table  class="table align-items-center mb-0"  id="myTable">
                                         <thead>
                                             <tr>
                                                 <th
@@ -127,54 +109,42 @@
                     </div>
                 </div>
 
-    </body>
-    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script> --}}
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+   {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+   {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script> --}}
+   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
 
-    <script>
-        $('.show_confirm').click(function(event) {
-            var form = $(this).closest("form");
-            var name = $(this).data("name");
-            var id_film = $(this).attr('data-id');
-            event.preventDefault();
-            swal({
-                    title: "APA ANDA YAKIN ?",
-                    text: "Anda Akan Menghapus ID FIlm " + id_film + "",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        form.submit();
-                    }
-                });
-        });
-    </script>
+   <script>
+       $('.show_confirm').click(function(event) {
+           var form = $(this).closest("form");
+           var name = $(this).data("name");
+           var id_film = $(this).attr('data-id');
+           event.preventDefault();
+           swal({
+                   title: "APA ANDA YAKIN ?",
+                   text: "Anda Akan Menghapus ID film " + id_film + "",
+                   icon: "warning",
+                   buttons: true,
+                   dangerMode: true,
+               })
+               .then((willDelete) => {
+                   if (willDelete) {
+                       form.submit();
+                   }
+               });
+       });
+   </script>
 
-{{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+
 <script>
-    $(document).ready(function(){
-        $('#myDataTable').DataTable();
-    });
-</script> --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-
-{{-- <script>
-    $(document).ready(function(){
-        $('#myDataTable').DataTable();
-    });
-</script> --}}
-{{-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> --}}
-
-    
-    </html>
+ $(document).ready( function () {
+$('#myTable').DataTable();
+} );
+</script>
 @endsection

@@ -70,7 +70,7 @@
               </div>
 
               <div class="form-floating">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                 <label for="floatingPassword" required>Password</label>
               </div>
 

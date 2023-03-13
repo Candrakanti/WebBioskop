@@ -35,11 +35,11 @@ class payment extends Model
         // Chain fluent methods for configuration options
     }
 
-      public static function getCustomerTicketCount()
-    {
-        $result = DB::select("CALL CustomerPaid");
-        return $result;
-    }
+    //   public static function getCustomerTicketCount()
+    // {
+    //     $result = DB::select("CALL CustomerPaid");
+    //     return $result;
+    // }
 }
 
 

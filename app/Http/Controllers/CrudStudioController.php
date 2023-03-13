@@ -24,8 +24,7 @@ class CrudStudioController extends Controller
     public function index(Request $request)
     {
         
-        $studio = viewStudio::select("*")
-        ->get();    
+        $studio = viewStudio::select("*")->get();    
         
         if($request->has('search')) {
             $std = studio::where('id_studio', 'LIKE', '%' .$request->search. '%')->get();
@@ -33,11 +32,10 @@ class CrudStudioController extends Controller
         } else {
             // $std = studio::join('detail_jenis_studio', 'detail_jenis_studio.id_jenis_studio', '=', 'studio.id_jenis_studio')
             // ->get(['studio.*', 'detail_jenis_studio.*']);
-          
         }
-        // $std = studio::all();
-    
+
         return view('studio.crud.LayoutStudio', compact( 'studio' ), [
+
             'title' => 'Admin Studio',
             'pages' => 'Table Studio'
         ]);

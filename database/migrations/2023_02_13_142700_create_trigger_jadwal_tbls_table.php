@@ -21,7 +21,7 @@ class CreateTriggerJadwalTblsTable extends Migration
         
         IF DATA > 0 THEN
         
-          INSERT INTO history_jadwal SET id_jadwal = old.id_jadwal,
+          INSERT INTO table_history_jadwal SET id_jadwal = old.id_jadwal,
         id_studio=old.id_studio,
         id_film=old.id_film,
         tgl_tayang_awal=old.tgl_tayang_awal,

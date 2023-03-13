@@ -25,7 +25,7 @@ class CreateTriggerDetailjam extends Migration
         CONCAT("jam_tayang",old.jam_tayang)
         );
 
-        INSERT INTO activity_log (description, properties, causer_id, created_at, updated_at) VALUES ("Jam sudah admin ubah", jam ,"3" ,NOW(), NOW());        
+        INSERT INTO activity_log (description, properties, causer_id, event ,created_at, updated_at) VALUES ("Jam sudah admin ubah", jam ,"3" , ,"update" ,NOW(), NOW());        
 
         
             END 

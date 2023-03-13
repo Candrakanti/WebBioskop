@@ -11,10 +11,11 @@ class _detail_bioskop extends Model
 {
     use HasFactory;
     use LogsActivity;
-    protected $table = "detail_bioskop";
-    public $timestamps = false;
     protected $primaryKey = 'id_db';
     protected $keyType = 'string';
+    protected $table = "detail_bioskop";
+    public $timestamps = false;
+
 
     protected $fillable = [
         'id_db',

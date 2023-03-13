@@ -31,7 +31,7 @@ class CreateTriggerFilm extends Migration
         CONCAT("image", old.image)
         );
 
-        INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Film sudah diubah", film, "3" , NOW(), NOW());         
+        INSERT INTO activity_log (description, properties , causer_id, event, created_at, updated_at) VALUES ("Data Film sudah diubah", film, "3" ,"update", NOW(), NOW());         
         
 
         

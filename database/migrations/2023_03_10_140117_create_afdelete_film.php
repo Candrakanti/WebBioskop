@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTriggerDeleteDetailjam extends Migration
+class CreateAfdeleteFilm extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,12 @@ class CreateTriggerDeleteDetailjam extends Migration
     public function up()
     {
         DB::unprepared('
-        CREATE TRIGGER af_delete_detailjam  AFTER DELETE ON `detail_jam` FOR EACH ROW 
+        CREATE TRIGGER af_delete_film  AFTER DELETE ON `film` FOR EACH ROW 
         BEGIN
-        INSERT INTO activity_log (description,event, created_at, updated_at) VALUES ("Delete data detail jam","delete", NOW(), NOW());
-        
-
+        INSERT INTO activity_log (description, event, created_at, updated_at) VALUES ("Delete data film", "delete", NOW(), NOW());
         
             END 
-        ');
+        '); 
     }
 
     /**
@@ -31,6 +29,6 @@ class CreateTriggerDeleteDetailjam extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trigger_delete_detailjam');
+        Schema::dropIfExists('afdelete_film');
     }
 }

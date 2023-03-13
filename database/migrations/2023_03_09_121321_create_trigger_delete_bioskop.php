@@ -16,7 +16,7 @@ class CreateTriggerDeleteBioskop extends Migration
         DB::unprepared('
         CREATE TRIGGER af_delete_bioskop  AFTER DELETE ON `bioskop` FOR EACH ROW 
         BEGIN
-        INSERT INTO activity_log (description, created_at, updated_at) VALUES ("Delete data bioskop", NOW(), NOW());
+        INSERT INTO activity_log (description, event ,created_at, updated_at) VALUES ("Delete data bioskop","delete", NOW(), NOW());
         
 
         

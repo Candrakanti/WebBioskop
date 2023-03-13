@@ -7,7 +7,6 @@ use PDF;
 use App\Models\Film;
 use App\Models\User;
 use App\Models\activity_log;
-use App\Models\jadwal;
 use App\Models\studio;
 use App\Models\Booking;
 use App\Models\payment;
@@ -17,7 +16,7 @@ use Maatwebsite\Excel\Excel;
 use App\Exports\CustomerExport;
 use Spatie\Backup\BackupManager;
 use App\Http\Controllers\Controller;
-
+use App\Models\ViewStudio;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -57,7 +56,9 @@ class CrudPaymentController extends Controller
 
     public function print(){
         $data =  payment::join('booking' ,'booking.id_payment' , '=' ,'payment.id_payment')->join('users' ,'users.id' ,'=' ,'booking.id_customer')->get(['booking.*' ,'payment.*' , 'users.*']); 
-        return view('payment.crud.print', compact('data'), [
+
+      
+        return view('payment.crud.print', compact('data' ), [
             'title' => 'Admin Payment',
             'active' => 'Admin payment',
             'pages' => 'Table Payment'
@@ -77,9 +78,10 @@ class CrudPaymentController extends Controller
 
     }
 
-    public function show($id)
+    public function show($id_activity)
     {
-        $al = activity_log::where('id', $id)->first();
+        $al = activity_log::where('id_activity', $id_activity)->first();
+        
        
         return view('payment.crud.detail_log', compact('al' ), [
             'title' => 'Admin Film',
@@ -118,24 +120,19 @@ class CrudPaymentController extends Controller
         return redirect('/CrudPayment')->with('success', 'Data Berhasil Diubah!');
     }
 
- 
+
     public function customer(Request $request)
     {
-        $data = Booking::join('users', 'users.id', '=', 'booking.id_customer')->join('payment', 'payment.id_booking', '=', 'booking.id_booking')->groupBy('id')->paginate(2);
 
+        $data = Booking::join('users', 'users.id', '=', 'booking.id_customer')->join('payment', 'payment.id_booking', '=', 'booking.id_booking')->groupBy('id_customer')->paginate(2);        
+        $customerTicketCount = Booking::getCustomerTicketCount();
+    
         
-        if($request->has('search')) {
-            $data = User::where('name', 'LIKE', '%' .$request->search. '%')->paginate(2);
-          
-        } else {
-            $data = User::paginate(2);
-        }
-        return view('payment.crud.datauser',  compact('data'), [
-
+        return view('payment.crud.datauser',  compact('data', 'customerTicketCount' ), [
             'title' => 'Admin Payment',
             'pages' => 'Table Payment'
         ]);
-        // return view('studio.LayoutStudio')->with('studio', $studio);
+     
     }
 
     public function detail()
@@ -217,10 +214,10 @@ class CrudPaymentController extends Controller
     
     public function logging()
     {
-        //  $log= activity_log::all(); 
-        $log = User::join('activity_log', 'activity_log.causer_id', '=', 'users.id')->get(['activity_log.*' ,'users.*']);
-        
-        return view('payment.crud.log', compact( 'log'  ), [
+         $log=  User::join('activity_log', 'activity_log.causer_id' ,'=' ,'users.id')->get(['users.*' ,'activity_log.*']);
+
+         $studio = viewStudio::select("*")->get();
+        return view('payment.crud.log', compact( 'log' ,'studio'), [
             'title' => 'Admin Payment',
             'active' => 'Admin Payment',
             'pages' => 'Activity Log',

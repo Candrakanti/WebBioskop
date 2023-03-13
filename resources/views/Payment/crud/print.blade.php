@@ -3,9 +3,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/datetime/1.3.0/css/dataTables.dateTime.min.css">
 @section('container')
 
-<div class="col-md-5">
-    <a href="/CrudPayment/detail" class="btn btn-danger">Data Customer Paid</a>
-  </div>
 
     <section id="print_pdf">
 
@@ -32,7 +29,7 @@
         
                     </div>
                     <div class="row  d-flex justify-content-center ">
-                        <a href="" onclick="this.href='/cetak-data-pertanggal/'+ document.getElementById('tglawal').value +
+                        <a href="" onclick="this.href='/cetak_laporan_penjualan/'+ document.getElementById('tglawal').value +
                         '/' + document.getElementById('tglakhir').value" class="btn btn-succes">Print Data</a>
                     </div>
                         
@@ -69,19 +66,6 @@
           </div>
 
     <div class="container table-cust " style="margin-top:30px;">
-
-
-        {{-- <table border="0" cellspacing="5" cellpadding="5">
-            <tbody><tr>
-                <td>Minimum date:</td>
-                <td><input type="text" id="min" name="min"></td>
-            </tr>
-            <tr>
-                <td>Maximum date:</td>
-                <td><input type="text" id="max" name="max"></td>
-            </tr>
-        </tbody></table> --}}
-
 
         <table id="example" class="display nowrap" style="width:100%">
             <thead>

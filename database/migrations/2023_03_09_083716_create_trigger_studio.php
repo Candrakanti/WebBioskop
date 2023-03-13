@@ -26,7 +26,7 @@ class CreateTriggerStudio extends Migration
         CONCAT("jumlah_kursi_perrow",  old.jumlah_kursi_perrow)  
     );
     
-        INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Studio sudah diubah", studio_prop, "3" , NOW(), NOW());         
+        INSERT INTO activity_log (description, properties , causer_id, created_at, event, updated_at) VALUES ("Data Studio sudah diubah", studio_prop, "3" , "update", NOW(), NOW());         
         END 
     ');
 

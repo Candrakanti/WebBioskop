@@ -24,7 +24,7 @@ class CreateTriggerDetailbioskop extends Migration
         CONCAT("id_jadwal", old.id_jadwal)
         );
 
-        INSERT INTO activity_log (description, properties, causer_id,created_at, updated_at) VALUES ("Data Detail Bioskop Sudah Admin Ubah", detailbioskop, "3", NOW(), NOW());        
+        INSERT INTO activity_log (description, properties, causer_id, event ,created_at, updated_at) VALUES ("Data Detail Bioskop Sudah Admin Ubah", detailbioskop, "3", "update" ,NOW(), NOW());        
         
             END 
         ');

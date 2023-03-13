@@ -26,7 +26,7 @@ class CreateTriggerJadwal extends Migration
         CONCAT("tgl_tayang_akhir", old.tgl_tayang_akhir)
         );
         
-        INSERT INTO activity_log (description, properties , causer_id, created_at, updated_at) VALUES ("Data Jadwal sudah diubah", jadwal, "3" , NOW(), NOW());         
+        INSERT INTO activity_log (description, properties , causer_id, event, created_at, updated_at) VALUES ("Data Jadwal sudah diubah", jadwal, "3" ,"update", NOW(), NOW());         
         
         
             END 
