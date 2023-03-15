@@ -103,22 +103,13 @@
 <section id="kota">
   <div class="container mb-4">
       <div class="row">
-          <div class="col-8">
-              <li class="nav-item dropdown" style="list-style-type: none !important;">
-                  <h2 style="color: red"><b>
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false" style="padding: none !important;">
-                      Movies in Bandung
-                  </a>
-                  {{-- <ul class="dropdown-menu">
-                      @foreach ($data as $dt)
-                              <p>{{ $dt->id_studio }}</p>
-                      @endforeach
-                  </ul> --}}
-                  </b></h2>
-                
-              </li>
+        <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+
+          <div class="text-danger">
+              <b><h1> Movies in Bandung</h1></b>
           </div>
+
+      </div>
       </div>
   </div>
 </section>

@@ -210,6 +210,9 @@ class BookingController extends Controller
     //         'updated_at' => now(),
     //     ]);
 
+    /* objek */
+    // objek yang dimaksud adalah booking dan dalam objek tersebut meiliki properti seperti id_booking dll
+    // 
        $booking = new booking;
          $booking->id_booking = $request->id_booking;
          $booking->id_payment = $request->id_payment;
@@ -235,6 +238,7 @@ class BookingController extends Controller
         //     'updated_at' => now(),
         //     // 'bukti_bayar' => $request->file('bukti_bayar')->store('booking-images')
         // ]);
+
 
             $payment = new payment;
             $payment->id_payment = $request->id_payment;

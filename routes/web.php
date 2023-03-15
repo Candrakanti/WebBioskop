@@ -68,14 +68,11 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/ContactUs', [HomeController::class, 'contactus']);
 Route::get('/UserGuide', [HomeController::class, 'UserGuide']);
 
-
-
-
-Route::middleware(['auth' ,'LogVisits'])->group(function () {
+    Route::middleware(['auth' ,'LogVisits'])->group(function () {
     Route::get('/unpaid', [UnpaidController::class, 'index']);
     Route::get('/exp', [UnpaidController::class, 'exp']);
-Route::resource('/paydone', PaydoneController::class);
-Route::get('/myseenema', [CgvController::class, 'index']);
+    Route::resource('/paydone', PaydoneController::class);
+    Route::get('/myseenema', [CgvController::class, 'index']);
 
     Route::get('/booking/{id_jadwal}/{jam_tayang}', [BookingController::class, 'index'])->name('booking');
 
@@ -137,7 +134,8 @@ Route::middleware(['auth'])->group(function () {
 });
 // SELESAI 
 
-
+//Middleware bertugas mengecek apakah user sudah mempunyai hak akses web
+//disini contohnya terdapat pengecekan untuk ceklevel yaitu dengan level akses admin_film
 Route::group(["middleware" => 'ceklevel:admin_film' , 'LogVisits'], function () {
     Route::get('/film', function () {
         return view('film.template.index', [

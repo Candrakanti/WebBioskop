@@ -64,7 +64,7 @@ class HistoryJadwalController extends Controller
     public function edit($id_jadwal)
     {
 
-        $data = DB::table('history_jadwal')->where('id_jadwal', $id_jadwal)->first();
+        $data = DB::table('table_history_jadwal')->where('id_jadwal', $id_jadwal)->first();
 
         return view('film.history.update', compact('data'),   [
             'title' => 'Admin Studio',

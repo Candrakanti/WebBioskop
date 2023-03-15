@@ -76,6 +76,7 @@
                 </div>
                 </div>
         
+                
                 <section id="MENU_USER">
                 @if (auth()->user()->is_admin == 'user')
                     <div class="row">

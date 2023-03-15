@@ -26,12 +26,9 @@ class CrudFilmController extends Controller
     {
         if($request->has('search')) {
             $films = Film::where('judul_film', 'LIKE', '%' .$request->search. '%')->get();
-            // $films = Film::where('id_film','LIKE','%' .$request->search.'%' );
         } else {
               $films = Film::all();
-            // $films = Film::join('jenis_film' ,'jenis_film.id_jenis_film' ,'=','film.id_film')->get(['jenis_film.*','film.*']);
         }
-        // $films = Film::all();
         
         return view('film.home', compact('films'), [
             'title' => 'Admin Film',
@@ -62,6 +59,7 @@ class CrudFilmController extends Controller
      */
     public function store(Request $request)
     {
+        //Fungsi ini memulai dengan memvalidasi data yang diterima menggunakan metode validate() pada objek $request.
         $validatedData = $request->validate([
             'id_film' => 'required|max:255',
             'judul_film' => 'required|max:255',

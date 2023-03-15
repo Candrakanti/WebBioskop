@@ -44,14 +44,12 @@
     
             <div class="row">
     
-                <div class="col-6 col-xs-6 col-md-6 col-sm-6 col-lg-6">
+                <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+
+                    <div class="text-danger">
+                        <b><h1> Movies in Bandung</h1></b>
+                    </div>
     
-                    <a class="text-danger" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false" >
-                    <h1>   Movies in Bandung</h1>
-                 
-                    </a>
-     
                 </div>
     
                 {{-- sini --}}

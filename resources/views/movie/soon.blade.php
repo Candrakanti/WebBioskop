@@ -9,23 +9,10 @@
         <div class="row">
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
 
-             <li class="nav-item dropdown" style="list-style-type: none !important;">
-              <H2 style="color: red">
-                <b>
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false" >
-                Movies in Bandung
-                </a>
-                  <ul class="dropdown-menu">
-                    {{-- @foreach ($data as $dt)
-                        @foreach ($dt->detail_kota as $dt)
-                            <p>{{ $dt['value'] }}</p>
-                        @endforeach
-                    @endforeach --}}
-                  </ul>
-               </b>
-              </H2>
-             </li>
+                <div class="text-danger">
+                    <b><h1> Movies in Bandung</h1></b>
+                </div>
+
             </div>
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">

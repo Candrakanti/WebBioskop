@@ -9,6 +9,7 @@ use App\Contracts\Exportable;
 use App\Exports\CustomerExport;
 use Maatwebsite\Excel\Facades\Excel as ExcelFacade;
 
+/*  Interface */
 class customer implements Exportable
 {
     public function exportToExcel(Request $request, Excel $excel)

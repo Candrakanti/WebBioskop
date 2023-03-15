@@ -9,6 +9,7 @@ class detail_booking extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    //hanya bisa di akses oleh class turunanya
     protected $primaryKey = 'id_booking';
     protected $keyType = 'string';
     protected $table = "detail_booking";

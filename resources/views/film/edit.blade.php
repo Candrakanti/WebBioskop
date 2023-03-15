@@ -17,6 +17,11 @@
             @method('PUT')
 
             <div class="form-group">
+                <label for="id_film">Id Film</label>
+                <input type="text" name="id_film" id="id_film" class="form-control"  value="{{$film->id_film }}" readonly>
+            </div>
+
+            <div class="form-group">
                 <label for="image" class="form-label">Post Image</label>
                 <input type="hidden" name="oldImage" value="{{ $film->image }}">
                 @if ($film->image)
@@ -29,13 +34,8 @@
                 <div class="invalid-feedback">
                   {{ $message }}
                 </div>
-                @enderror
+                @enderror 
               </div>
-
-            <div class="form-group">
-                <label for="id_film">Id Film</label>
-                <input type="text" name="id_film" id="id_film" class="form-control"  value="{{$film->id_film }}">
-            </div>
 
             <div class="form-group">
                 <label for="judul_film">Judul Film</label>

@@ -37,7 +37,7 @@
                       <p class="card-text"><b>Jam Booking :</b> {{ $item->jam_booking}}</p>
                       <p class="card-text"><b>kode booking :</b> {{ $item->id_booking }}</p>
 
-                      <a href="{{ route('generate',$item->id_booking) }}" class="btn btn-primary">Generate</a>
+                      {{-- <a href="{{ route('generate',$item->id_booking) }}" class="btn btn-primary">Generate</a> --}}
                       
                       {{-- <p class="card-text">Tempat Duduk : {{ $item->kursi }}</p> --}}
                       <p class="card-text"><small class="text-muted">NOTE: USAHAKAN SAMPAI DI BIOSKOP 10 MENIT SEBELUM FILM DITAYANGKAN !</small></p>

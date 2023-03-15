@@ -13,15 +13,20 @@ class CreateTriggerJadwalTblsTable extends Migration
      */
     public function up()
     {
+        //membuat trigger carbon_jadwal sebelum di hapus di jadwal
+        //pilih semua data jadwal dimana id_jadwal sama dengan id_jdwal lama
+        //harus berisi seengganya 1 data harus ada di dalam jadwal
         DB::unprepared(' 
         CREATE TRIGGER carbon_jadwal BEFORE DELETE ON `jadwal` FOR EACH ROW 
         BEGIN 
         DECLARE DATA INT DEFAULT 0;
         SELECT COUNT(*) INTO DATA FROM jadwal WHERE id_jadwal = old.id_jadwal;
         
+       
         IF DATA > 0 THEN
         
-          INSERT INTO table_history_jadwal SET id_jadwal = old.id_jadwal,
+
+        INSERT INTO table_history_jadwal SET id_jadwal = old.id_jadwal,
         id_studio=old.id_studio,
         id_film=old.id_film,
         tgl_tayang_awal=old.tgl_tayang_awal,

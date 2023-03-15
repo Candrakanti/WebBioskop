@@ -45,7 +45,9 @@
   <h1 class="h3 mb-3 fw-normal text-center pb-3">Masuk Akun!</h1>
   <div class="row justify-content-center">
   
-  
+  {{-- memberi pesan sukses jika data yang dimasukkan sudah sesuai--}}
+  {{-- Jika terdapat session dengan key 'success', maka akan ditampilkan alert dengan class "alert alert-success". 
+  Alert ini akan menampilkan pesan sukses yang disimpan pada session dengan menggunakan fungsi session('success') --}}
       <div class="col-md-6">
   @if(session()->has('success'))
   
@@ -55,15 +57,16 @@
             </div>
   @endif
   
-  <div class="col-md-12">
-      @if(session()->has('loginError'))
-  
-              <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('loginError') }}
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-      @endif
-  </div>
+    {{-- pesan gagal jika data yg masukkan tidak sesuai --}}
+    <div class="col-md-12">
+        @if(session()->has('loginError'))
+    
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ session('loginError') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+        @endif
+    </div>
   
   </div>
   
@@ -80,6 +83,7 @@
               <form action="/login" method="post">
                   @csrf
   
+                  {{-- serta menggunakan @error untuk menampilkan pesan error jika validasi pada input field email gagal, seperti email tidak valid atau email tidak ditemukan pada database. --}}
                 <div class="form-floating mb-3">
                   <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
                   <label for="email" >Email address</label>

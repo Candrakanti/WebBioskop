@@ -17,6 +17,9 @@ use Carbon\Carbon;
 
 use Illuminate\Support\Facades\DB;
 
+//inheritance merupakan pewarisan
+//setiap class induk(superclass) akan mewarisankan property dan method pada class turunannya(subclass)
+//memiliki keyword extends
 class MovieController extends Controller
 {
     public function index(Request $request)

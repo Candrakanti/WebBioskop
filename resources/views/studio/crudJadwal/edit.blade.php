@@ -44,7 +44,7 @@
            
             <div class="form-group">
                 <label for="tgl_tayang_awal">Tanggal Tayang Awal</label>
-                <input type="text" name="tgl_tayang_awal" id="tgl_tayang_awal" class="form-control" value="{{$data->tgl_tayang_awal }}" required="">
+                <input type="date" name="tgl_tayang_awal" id="tgl_tayang_awal" class="form-control" value="{{$data->tgl_tayang_awal }}" required="">
             </div>
 
             <div class="form-group">
