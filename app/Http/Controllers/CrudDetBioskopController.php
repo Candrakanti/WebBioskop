@@ -113,6 +113,7 @@ class CrudDetBioskopController extends Controller
     {
         $_detail_bioskop = _detail_bioskop::where('id_db', $request->id_db)
             ->update([
+
                 'id_db' => $request->id_db,
                 'id_bioskop' => $request->id_bioskop,
                 'id_jadwal' => $request->id_jadwal

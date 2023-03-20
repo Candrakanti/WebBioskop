@@ -64,44 +64,100 @@
             </div>    
           </div>
 
-    <div class="container table-cust " style="margin-top:30px;">
 
-        <table id="example" class="display nowrap" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Id Payment</th>
-                    <th>Id Booking</th>
-                    <th>Nama </th>
-                    <th>Jumlah bayar</th>
-                    <th>Tanggal Booking</th>
-                    <th>Status Bayar</th>
-                
-                </tr>
-              
-            </thead>
-            <tbody>
-                @foreach($data as $key=> $d)
-                <tr>
-                    <td>{{ $d->id_payment }}</td>
-                    <td>{{ $d->id_booking }}</td>
-                    <td>{{ $d->name }}</td>
-                    <td>{{ $d->harga }}</td>
-                    <td>{{ $d->tanggal_booking }}</td>
-                    @if($d->status_bayar == 0)
-                    <td> Belum Bayar</td>
-                    @endif
-                    @if($d->status_bayar == 1)
-                    <td>Telah dibayar</td>
-                    @endif
-                    @if($d->status_bayar == 2)
-                    <td>Dibatalkan Sistem Telat Bayar</td>
-                    @endif
-                   
-                </tr>
-                @endforeach
-            </tbody>
-   
-        </table>
+
+          <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h6 class="text-center">Laporan Penjualan </h6>
+                        </div>
+                        <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <table class="table align-items-center mb-0" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Id Payment</th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Id booking</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Nama</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Jumlah Bayar</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                             Tanggal Booking</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                             Status Bayar</th>
+                                          
+                                           
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach($data as $key=> $d)
+                                        <tr>
+
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div>
+
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{ $d->id_payment }}</h6>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">{{ $d->id_booking }}</p>
+                                            </td>
+
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $d->name }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $d->harga }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $d->tanggal_booking }}</span>
+
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @if($d->status_bayar == 0)
+                                                <span  class="text-secondary text-xs font-weight-bold" > Belum Bayar</span >
+                                                @endif
+                                                @if($d->status_bayar == 1)
+                                                <span  class="text-secondary text-xs font-weight-bold">Telah dibayar</span >
+                                                @endif
+                                                @if($d->status_bayar == 2)
+                                                <span  class="text-secondary text-xs font-weight-bold">Dibatalkan Sistem Telat Bayar</span >
+                                                @endif
+
+                                            </td>
+                                     
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                  
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
     </div>
 
@@ -113,7 +169,7 @@
 
 <script>
   $(document).ready( function () {
-$('#example').DataTable();
+$('#myTable').DataTable();
 } );
 </script>
 

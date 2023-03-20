@@ -35,7 +35,8 @@
             </div>
 
             <div class="form-group">
-               
+
+              
                 <label for="id_jadwal">Id Jadwal</label>
                 <select name="id_jadwal">
                     @foreach ($_detail_jam as $b)

@@ -18,10 +18,10 @@ class CrudBioskopController extends Controller
     public function index( Request $request)
     {
         if($request->has('search')) {
-            $data = Bioskop::where('nama_bioskop', 'LIKE', '%' .$request->search. '%')->get();
+            $data = Bioskop::where('nama_bioskop', 'LIKE', '%' .$request->search. '%')->paginate(2);
             // $films = Film::where('id_film','LIKE','%' .$request->search.'%' );
         } else {
-              $data = Bioskop::all();
+              $data = Bioskop::paginate(2);
             // $films = Film::join('jenis_film' ,'jenis_film.id_jenis_film' ,'=','film.id_film')->get(['jenis_film.*','film.*']);
         }
         // $films = Film::all();
