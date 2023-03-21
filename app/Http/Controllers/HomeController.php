@@ -28,8 +28,10 @@ class HomeController extends Controller
         
         $end  =  jadwal::where('tgl_tayang_awal', '<=', Carbon::now());
         // $start  =  jadwal::where('tgl_tayang_awal', '<=', Carbon::now());
+        $exp  =  jadwal::where('tgl_tayang_akhir', '<', Carbon::now())->delete();
+
         
-        return view('home',compact('data' ,'end' ),[
+        return view('home',compact('data' ,'end' , 'exp'),[
             'title' => 'Home',
             'active' => 'Home'
         ]);

@@ -19,7 +19,7 @@
             
             <div class="form-group">
                 <label for="id_db">Id detail bioskop</label>
-                <input type="text" disabled name="id_db" id="id_db" class="form-control" value="{{$data->id_db }}" readonly required="">
+                <input type="text" name="id_db" id="id_db" class="form-control" value="{{$data->id_db }}" readonly required="">
             </div>
 
 

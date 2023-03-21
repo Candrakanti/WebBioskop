@@ -129,40 +129,50 @@
   </div>
 </div>
 
-<section id="playing">
-  <div class="container">
-    <div class="row">
-      
-      @foreach ($data as $film)
-      @if($film->tgl_tayang_awal <=  Carbon\Carbon::now()->format('Y-m-d') )
-      <div class="col-6 col-lg-3 col-md-3 col-sm-6 col-xs-6">
-        <div class="card" style="width: 17rem;">
-          @if ($film->image)
-          <div class="rounded">
-            <a href="/movie/detail/{{ $film->id_jadwal}}">
-          <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">
-          </a>
+ @if($exp == $exp)
+          
+    <section id="movie">
+        @if (session()->has('success'))
+        <div class="alert alert-success " role="alert">
+            {{ session('success') }}
         </div>
-          @endif
-          <br>
-          {{-- <input type="hidden" value="{{ $film->judul_film }}" class="prod_id"> --}}
-            <a href="/movie/detail/{{ $film->id_jadwal}}">
-              <h6 class="text-center" style="color: black">
-                  <b>{{ $film->judul_film }}</b>
-              </h6>
-          </a>
-          <div class="card-body text-center">
-              <a href="/booking/show/{{ $film->id_film }}" class="btn btn-danger">BOOK NOW</a>
+    @endif
+    <div class="container">
+        <div class="row">
+          @foreach ($data as $film)
+          
+          @if($film->tgl_tayang_awal  <=  Carbon\Carbon::now()->format('Y-m-d'))
+          <div class="col-6 col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div class="card">
+                @if ($film->image)
+                <div class="rounded">
+                <a href="/movie/detail/{{ $film->id_jadwal}}">
+                <img src="{{ asset('storage/' . $film->image) }}" class="card-img-top rounded-3" alt="">    
+                </a>
+              </div>
+                @endif
+                <br>
+                {{-- <input type="hidden" value="{{ $film->judul_jadwal}}" class="prod_id"> --}}
+                <a href="/movie/detail/{{ $film->id_jadwal}}">
+                    <h6 class="text-center" style="color: black">
+                       <b> {{ $film->judul_film}}</b>
+                    </h6>
+                </a>
+                <div class="card-body text-center"> 
+                    <a href="/movie/detail/{{ $film->id_jadwal }}" class="btn btn-danger">BOOK NOW</a>
+                 
+                    {{-- <a href="/booking/show/{{ $film->id_jadwal}}" class="btn btn-danger">BOOK NOW</a> --}}
+                </div>
+              </div>
+             
           </div>
+          @endif
+          @endforeach
         </div>
       </div>
-
-      @endif
-      @endforeach
-    </div>
-  </div>
-
-  </section>
+    </section>
+    
+    @endif
 
   <section id="Map">
     

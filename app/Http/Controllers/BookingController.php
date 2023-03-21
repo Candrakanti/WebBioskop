@@ -71,13 +71,13 @@ class BookingController extends Controller
 
             $data2 = jadwal::join('booking', 'booking.id_jadwal', '=','jadwal.id_jadwal')->join('payment' ,'payment.id_booking' , '=' ,'booking.id_booking')->get(['jadwal.*' ,'booking.*' ,'payment.*']);
 
-        $generateBK =  IdGenerator::generate(['table' => 'booking', 'field' => 'id_booking', 'length' => 10, 'prefix' => 'BK']);
+            $generateBK =  IdGenerator::generate(['table' => 'booking', 'field' => 'id_booking', 'length' => 10, 'prefix' => 'BK']);
 
     
-        $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 10, 'prefix' =>'PY']);
-
-        // $exp  =   booking::where('tenggat_bayar', '<',Carbon::now())->delete();
-        $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
+            $generatePY = IdGenerator::generate(['table' => 'payment', 'field' => 'id_payment', 'length' => 10, 'prefix' =>'PY']);
+    
+            // $exp  =   booking::where('tenggat_bayar', '<',Carbon::now())->delete();
+            $exp =  Booking::join('payment' ,'payment.id_booking' ,'=' ,'booking.id_booking')->where('tenggat_bayar', '<', carbon::now())->update(['status_bayar' => '2']);
     
         $book = payment::join('booking' ,'booking.id_payment' ,'=' ,'payment.id_payment')->get(['payment.*' , 'booking.*']);
 

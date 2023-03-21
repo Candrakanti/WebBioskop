@@ -93,6 +93,7 @@ class CrudDetBioskopController extends Controller
     {
         $bioskop = Bioskop::all();
         $jadwal = jadwal::all();
+        
 
         $data = _detail_bioskop::where('id_db', $id_db)->first();
 
