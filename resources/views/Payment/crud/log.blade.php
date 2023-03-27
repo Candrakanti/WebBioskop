@@ -4,7 +4,6 @@
 @section('container')
 
       
-       
 
             <div class="container-fluid py-4">
                 <div class="row">
@@ -34,11 +33,12 @@
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                  Tanggal Aktivitas</th>
                                               
-                                                @foreach ($log as $data)
+                                               
                                             </tr>
                                         </thead>
 
                                         <tbody>
+                                            @foreach ($log as $data)
                                             <tr>
 
                                                 <td>
@@ -70,13 +70,11 @@
                                                         class="text-secondary text-xs font-weight-bold">{{ $data->created_at }}</span>
 
                                                 </td>
-
-                                             
-                                            </tr>
                                          
                                             </tr>
+                                            @endforeach
                                         </tbody>
-                                        @endforeach
+                                      
                                     </table>
                                 </div>
                             </div>

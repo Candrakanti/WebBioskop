@@ -164,9 +164,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
-        // SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-
+        
         /*
          * Package Service Providers...
          */
@@ -241,9 +239,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
-        'LogActivity' => App\Helpers\LogActivity::class,
-        // 'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
-      
+        'LogActivity' => App\Helpers\LogActivity::class,      
         // 'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],

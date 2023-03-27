@@ -10,7 +10,17 @@
   @endif
 </div>
 
+{{-- <div class="container">
+    <div class="col-md-4    ">
+        <form action="/datauser" method="GET">
+        <input type="search" id="inputPassword2" name="search"  class="form-control"  placeholder="Nama Pembeli">
+      </form>
+      </div>
+    </div>
+</div> --}}
 
+
+<div class="container table-cust " style="margin-top:30px;">
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-md-5">
@@ -25,7 +35,7 @@
               
               <div class="card-body px-0 pt-0 pb-2">
                   <div class="table-responsive p-0">
-                      <table class="table align-items-center mb-0" >
+                      <table class="table align-items-center mb-0" id="myTable" >
                           <thead>
                               <tr>
                                   <th
@@ -50,14 +60,13 @@
                                   <th
                                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                       Tanggal Buat AKun</th>
-
-                                  @foreach ($customerTicketCount as $key => $d)
                               </tr>
                           </thead>
 
                           <tbody>
+                            
+                            @foreach ($customerTicketCount as $key => $d)
                               <tr>
-
                                   <td>
                                       <div class="d-flex px-2 py-1">
                                           <div>
@@ -93,10 +102,10 @@
                                       <span
                                           class="text-secondary text-xs font-weight-bold">{{ $d->created_at }}</span>
                                   </td>
-                                </tr>
                               </tr>
+                              @endforeach
                           </tbody>
-                          @endforeach
+                         
                       </table>
                     
        
